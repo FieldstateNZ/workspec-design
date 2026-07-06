@@ -1,0 +1,105 @@
+name: Release (publish to npm)
+
+# Publishes @workspec/design to npm when a version tag is pushed
+# (e.g. `v0.1.0-alpha.0`).
+#
+# Auth is via npm TRUSTED PUBLISHING (OIDC) — there is NO `NPM_TOKEN` secret.
+# GitHub mints a short-lived id-token (`id-token: write` below) and npm exchanges
+# it for publish rights. Provenance is NOT enabled by this workflow — it is turned
+# on via packages/design/package.json's `publishConfig.provenance: true`, and is
+# attached because the publish runs in this OIDC-authenticated CI context.
+# Prerequisites:
+#   1. `@workspec/design` does not exist on the registry yet. Brett does the
+#      one-time first publish by hand (`npm login` on a workstation, then
+#      `pnpm --filter @workspec/design publish --access public --no-git-checks`).
+#   2. Only after that first publish can a trusted publisher be registered on
+#      npmjs.com for the package, pointing at owner FieldstateNZ / repo
+#      workspec-design / workflow release.yml. Trusted publishers can only be
+#      attached to a package that already exists.
+#   3. npm CLI >= 11.5.1 (Node 20 ships npm 10, so we upgrade to a pinned 11.x
+#      below).
+# Then, for every release after the first:
+#   npm version <x.y.z> --prefix packages/design --no-git-tag-version
+#   git commit -am "release: v<x.y.z>"
+#   git tag v<x.y.z> && git push origin main --tags
+# See RELEASING.md for the full runbook (and the manual path).
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # required for npm trusted publishing (OIDC) + provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+
+      # Trusted publishing (OIDC) requires npm >= 11.5.1; Node 20 ships npm 10.
+      # Pin to an exact 11.x version for reproducible releases (bump deliberately);
+      # staying < 12 also avoids a future npm major that could drop Node 20.
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@11.5.1
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm -r build
+
+      # Belt-and-braces gate before anything leaves the machine.
+      - name: Verify
+        run: |
+          pnpm typecheck
+          pnpm test
+
+      # OIDC trusted publishing for a pnpm workspace.
+      #
+      # `pnpm pack` rewrites `workspace:*` dependency specifiers to the
+      # concrete published version *inside the tarball*. A raw `npm publish`
+      # from the package directory would NOT do this and would ship an
+      # uninstallable manifest if the package ever grows a workspace
+      # dependency (npm has no `workspace:` protocol) — @workspec/design has
+      # none today, but future consumers in this workspace (S4+) may add one,
+      # so the safe path is used from day one. We then `npm publish <tarball>`,
+      # which performs npm's OIDC token exchange (trusted publishing) and
+      # attaches provenance from the package's `publishConfig.provenance: true`.
+      - name: Publish (pnpm pack → npm publish, OIDC)
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          out="$(mktemp -d)"
+          pnpm --filter "@workspec/design" pack --pack-destination "$out"
+          tarballs=("$out"/*.tgz)
+          if [ "${#tarballs[@]}" -ne 1 ]; then
+            echo "error: expected exactly one tarball in $out, found ${#tarballs[@]}: ${tarballs[*]}" >&2
+            exit 1
+          fi
+          tgz="${tarballs[0]}"
+          # Derive the npm dist-tag from the version. A prerelease (e.g.
+          # 0.1.0-alpha.0) must NOT publish to `latest` — npm 11.x rejects it
+          # without an explicit --tag — so route it to its prerelease channel
+          # (alpha/beta/rc); a stable version publishes to `latest`.
+          version="$(node -p "require('./packages/design/package.json').version")"
+          if [[ "$version" == *-* ]]; then
+            pre="${version#*-}"        # e.g. alpha.0
+            dist_tag="${pre%%.*}"      # e.g. alpha
+          else
+            dist_tag="latest"
+          fi
+          echo "publishing version $version to dist-tag '$dist_tag'"
+          echo "publishing $tgz"
+          npm publish "$tgz" --access public --tag "$dist_tag"
