@@ -7,8 +7,9 @@ import { describe, expect, it } from 'vitest';
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 
 /**
- * SHA-256 of each token-bearing vendored file, computed at vendor time
- * (2026-07-06) from workspec/docs/design-handoffs/. These guard the
+ * SHA-256 of every `tokens*.css` file found anywhere under the vendored
+ * handoff bundles (all token-bearing vendored files), computed at vendor
+ * time (2026-07-06) from workspec/docs/design-handoffs/. These guard the
  * reference-of-record against silent edits — CI can't reach back into the
  * source workspec repo to re-diff, so a hash is the only tamper check
  * available. A legitimate re-vendor (Brett pulls a newer handoff export)
@@ -24,6 +25,10 @@ const VENDORED_TOKEN_HASHES: Record<string, string> = {
     '1ca699562f85d97441292de01aa1ef5dbd3d097e292a8afdeaad581277d1e877',
   'docs/design/design_handoff_interaction_modes/tokens/console-light.css':
     '987f0b0f6b06746892e6209faab319c18300b7040f51d3d7bec9856799e85cd1',
+  'docs/design/design_handoff_interaction_modes/tokens/paper-light.css':
+    '389d28fcdc11a7b6cfdb593dbdb4da92c5e5293196e4374ba6ee3fe2693f42a3',
+  'docs/design/design_handoff_interaction_modes/tokens/paper-dark.css':
+    '03595c23423204f523a53183781cceb6ce5cfd2bfd0e74be2851f83ce1bd3322',
 };
 
 function sha256(path: string): string {

@@ -20,8 +20,8 @@ discipline for this repo treats them as read-only inputs, not editable source.
   `data-aesthetic` + `data-theme` attribute model. That is exactly the structure and attribute
   model `workspec/artifacts/workspec/src/styles/tokens` implements. It self-labels **v4** and
   its `tokens.css` is a byte-for-byte strict superset of
-  `design_handoff_workspec/console/tokens.css` (18 added lines, zero changed lines) — evidence
-  it postdates that bundle.
+  `design_handoff_workspec/console/tokens.css` (a 19-line insertion — 18 content lines plus a
+  trailing blank — zero changed lines) — evidence it postdates that bundle.
 
 ### `end-to-end-product-flow/`
 

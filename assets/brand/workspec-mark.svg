@@ -12,7 +12,8 @@
   and square are left unfilled (`fill="none"`) rather than baked to one
   theme's surface color so the mark drops onto any background, and the
   accent circle is fixed to #1b8a55 — the go-live green accent (console-light
-  --accent-deep / "brand guidelines v1", see docs/design/README.md).
+  --accent, equivalently console-dark --accent-deep / "brand guidelines v1",
+  see docs/design/README.md).
 
   These are trademarks — see /NOTICE.
 -->

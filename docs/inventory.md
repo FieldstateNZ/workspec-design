@@ -117,14 +117,22 @@ above, per `DELIVERY_PLAN.md` architecture decision #5:
 
 ### Not-extractable-yet component tiers
 
-Verdict counts from the component map, verified by direct tally against its 213 per-component
-records (**the map's own summary note claims 100/48/65 — that count is wrong**; the correct
-tally, matching the ~39/~58 figures in `DELIVERY_PLAN.md`, is below):
+Verdict counts are tallied directly from the committed component map, `docs/component-map.json`
+(213 per-component records), via:
+
+```
+jq -r '.components | group_by(.extractable) | .[] | "\(.[0].extractable): \(length)"' docs/component-map.json
+```
+
+which reproduces:
 
 - **clean:** 116 (the 57 `ui/` + 13 of 14 `design/`, plus 46 files elsewhere that happen to be
   import-clean but are not in the extraction boundary and so are not extracted this slice)
 - **needs-inversion:** 39
 - **not-extractable:** 58
+
+(The map's own scout-time summary note claimed 100/48/65 — wrong; corrected in
+`docs/component-map.json`'s `notes` array at commit time, see that file for detail.)
 
 #### `needs-inversion` (~39) — clean but for one swappable binding
 
