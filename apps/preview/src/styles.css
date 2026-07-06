@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+@import '@workspec/design/tailwind';
+@import '@workspec/design/fonts.css';
+
+/* Page chrome layout only, not a token demo: every color, spacing, radius,
+   and shadow value on this page comes from a token via Tailwind utilities or
+   `var(--token)`, never a hand-picked value here. */
+body {
+  min-height: 100vh;
+}
+
+.token-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--s-3);
+}
+
+/* The hover half of the motion demo (duration and easing tokens, see
+   MotionSwatch). Inline `style` carries the per-token duration/timing
+   function; this carries the `:hover` trigger, which an inline style
+   cannot express. */
+.motion-demo {
+  transition-property: transform;
+}
+.motion-demo:hover {
+  transform: translateX(0.85rem);
+}
