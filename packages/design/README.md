@@ -1,9 +1,16 @@
 # @workspec/design
 
-Design tokens, themes, Tailwind v4 preset, and self-hosted fonts for the WorkSpec "Console"
-aesthetic — extracted verbatim from WorkSpec Enterprise (`workspec/artifacts/workspec`). See the
-repo-root `DELIVERY_PLAN.md` and `docs/inventory.md` for the extraction discipline and boundary;
-this package is slice S1.
+The WorkSpec design system — design tokens, themes, a Tailwind v4 preset, and self-hosted fonts
+for the "Console" aesthetic — as a consumable npm package. Extracted verbatim from WorkSpec
+Enterprise (`workspec/artifacts/workspec`); see the repo-root `DELIVERY_PLAN.md` and
+`docs/inventory.md` for the extraction discipline and boundary.
+
+**Consumers:** WorkSpec Enterprise (the origin app, migrating onto this package),
+[Decision Studio](https://github.com/FieldstateNZ/workspec-decision-studio), WorkSpec product
+sites, and future mini-apps — one source of truth for every surface that needs to look and feel
+like WorkSpec. See it rendered live at
+[fieldstatenz.github.io/workspec-design](https://fieldstatenz.github.io/workspec-design/)
+(`apps/preview`, generated from this package's own `tokens.json`).
 
 Typed TS token tables in `src/tokens/` are the source of truth. A generator
 (`scripts/generate.ts`) emits every consumable form as a committed file; a Vitest drift test
@@ -14,6 +21,8 @@ regenerates them in-memory on every test run and fails if they've drifted from w
 ```bash
 pnpm add @workspec/design
 ```
+
+Not yet on npm — see [Releasing](#releasing) below.
 
 ## Usage
 
@@ -44,6 +53,24 @@ without you installing either yourself.
 The dark variant needs **both** signals set together on the themed root, same as the enterprise
 app: `<html data-aesthetic="console" data-theme="dark" class="dark">`.
 
+> **The dual-signal rule.** Every dark surface in this system depends on **two** attributes
+> agreeing on the same element: `data-theme="dark"` (which token values apply) and Tailwind's
+> `.dark` class (which `dark:` variants apply). Setting only one gives you tokens with the wrong
+> Tailwind variants, or `dark:` utilities with the wrong token values. Always set both together.
+> See the full contract in [`docs/theming.md`](../../docs/theming.md).
+
+### Fonts only
+
+```css
+@import '@workspec/design/fonts.css';
+```
+
+Registers `@font-face` rules for all four self-hosted families (Inter Tight, JetBrains Mono,
+Caveat, Lora) without pulling in tokens or the Tailwind preset. Reference a family by its literal
+name (`font-family: 'Caveat', cursive;`) or, if you also import the tokens/preset, via the
+`--sans`/`--mono` tokens (`font-family: var(--sans);`) or Tailwind's `font-sans`/`font-mono`
+utilities.
+
 ### TypeScript
 
 ```ts
@@ -56,15 +83,25 @@ THEME_SELECTORS['console-dark']; // '[data-aesthetic="console"][data-theme="dark
 <div style={themeStyle('console-light') as React.CSSProperties}>…</div>;
 ```
 
-### Individual themes / `tokens.json`
+### JSON (for tooling)
+
+```ts
+import tokens from '@workspec/design/tokens.json';
+```
+
+Machine-readable: every theme's tokens, the semantic group table, the Tailwind mapping, and the
+font family/weight summary — see [`apps/preview`](../../apps/preview) for a consumer that renders
+its whole page from this one file. Useful for design tools, doc generators, or a lint rule that
+checks a value against the token table without depending on this package's TS build.
+
+### Individual theme CSS
 
 ```css
 @import '@workspec/design/themes/console-dark.css';
 ```
 
-```ts
-import tokens from '@workspec/design/tokens.json';
-```
+Ship one theme's custom properties without the other — e.g. for a build that never needs
+`console-light` and would rather not carry its bytes.
 
 ## What's in here
 
@@ -103,5 +140,39 @@ after running it should show no changes — that's the CI drift gate.
 
 ## Versioning
 
-Tokens are a contract: a **major** bump renames or removes a token/export, a **minor** bump adds
-one, a **patch** bump corrects a value. (Full policy lands with the release workflow in S3.)
+**Tokens are a contract.** This package follows semver against that contract, not just its TS API:
+
+| Change                                                                                        | Bump      |
+| --------------------------------------------------------------------------------------------- | --------- |
+| Rename or remove a token, theme, export, or the `[data-aesthetic][data-theme]` selector shape | **major** |
+| Add a token, theme, or export                                                                 | **minor** |
+| Correct an existing token's _value_ (a color, a spacing number, a shadow)                     | **patch** |
+
+A value correction is patch-level, but it is never a silent edit: it has to flow through the
+drift/contrast gates first (`docs/drift-log.md` for any handoff-vs-implementation discrepancy,
+the WCAG AA contrast gate in CI, `docs/contrast-audit.md` for the results) before it ships — see
+`DELIVERY_PLAN.md`'s extraction discipline.
+
+**Pin accordingly:**
+
+- Apps that want to track the system as it evolves (new tokens, new themes, corrected values):
+  pin with `^` (`"@workspec/design": "^0.1.0"`) and re-test on minor/patch bumps.
+- Anything that needs exact, reproducible visual output (a snapshot-tested screen, an exported
+  design artifact, a frozen brand moment): pin with `~` or an exact version, and bump
+  deliberately after reviewing the changelog/diff.
+
+## Licensing
+
+Code, tokens, theme definitions, and the self-hosted fonts (SIL OFL — see [`NOTICE`](./NOTICE))
+are Apache-2.0. The WorkSpec name, logo, and wordmark are trademarks of Fieldstate/Ingenious and
+are **not** licensed for reuse — they aren't part of this package's exports, but they are visible
+on [the preview page](https://fieldstatenz.github.io/workspec-design/) this package's `tokens.json`
+generates; see the repo-root `NOTICE` for the full split.
+
+## Releasing
+
+Not yet on npm. `@workspec/design`'s first publish is a one-time manual step (see
+[`RELEASING.md`](../../RELEASING.md)); after that, every `v*` tag push publishes automatically via
+OIDC trusted publishing — no token, no manual `npm publish`. Once live, dist-tags follow the
+version: a stable release publishes to `latest`, a prerelease (`-alpha.`, `-rc.`, …) to its own
+channel.

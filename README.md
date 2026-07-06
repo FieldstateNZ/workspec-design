@@ -7,7 +7,9 @@ sites, future mini-apps, and, eventually, WorkSpec Enterprise itself (mirroring 
 `workspec-schemas` extraction pattern: substrate out of the monolith, product repos consume).
 
 This README stays short — the package-level detail (usage, exports, versioning policy) lives in
-[`packages/design/README.md`](./packages/design/README.md).
+[`packages/design/README.md`](./packages/design/README.md). See it rendered live at
+[fieldstatenz.github.io/workspec-design](https://fieldstatenz.github.io/workspec-design/), and
+see [`RELEASING.md`](./RELEASING.md) for how `@workspec/design` gets published.
 
 ## Extraction discipline
 
@@ -21,16 +23,18 @@ adjudication, never resolved unilaterally in this repo.
 
 ```
 packages/design/      @workspec/design — tokens, themes, Tailwind v4 preset, fonts (S1)
+apps/preview/          Token/theme preview, generated from tokens.json, deployed to Pages (S3)
 examples/fixture/      Tiny Vite + React app proving the Tailwind preset + fonts work (S1)
 docs/design/          Vendored design-handoff bundles (verbatim, byte-identical to source)
 docs/inventory.md     What's being extracted, what's left behind, and why
 docs/drift-log.md     Every handoff-vs-implementation discrepancy found, open for review
 assets/brand/         WorkSpec name, logo, wordmark — trademarks, see NOTICE
 DELIVERY_PLAN.md       The slice-by-slice delivery plan for this extraction
+RELEASING.md           How @workspec/design gets published (OIDC trusted publishing)
 ```
 
-`apps/preview` (the deployed token/component preview) and the component library
-(`packages/design`'s `ui`/`design` exports) land in later slices per `DELIVERY_PLAN.md`.
+The component library (`packages/design`'s `ui`/`design` exports) lands in a later slice per
+`DELIVERY_PLAN.md`.
 
 ## Licensing
 
