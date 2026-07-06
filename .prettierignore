@@ -1,0 +1,13 @@
+**/dist/**
+**/node_modules/**
+**/coverage/**
+pnpm-lock.yaml
+
+# Vendored verbatim from workspec/docs/design-handoffs — must stay
+# byte-identical to the source of record. docs/design/README.md itself is
+# authored in this repo (not vendored), so it's carved back out below.
+docs/design/**
+!docs/design/README.md
+
+# Copied verbatim from the delivery-plan scratchpad source — not reformatted.
+DELIVERY_PLAN.md
