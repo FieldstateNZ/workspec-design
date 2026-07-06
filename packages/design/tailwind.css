@@ -1,0 +1,76 @@
+/*
+ * GENERATED FILE — do not edit by hand.
+ * Regenerate with: pnpm --filter @workspec/design gen:tokens
+ *
+ * Source of truth: packages/design/src/tokens/tailwind-mapping.ts
+ * Extracted from workspec/artifacts/workspec/src/index.css on 2026-07-06
+ * (the `@theme inline` block, `@custom-variant dark`, and the typography
+ * plugin import — the app-level palettes elsewhere in that file are NOT
+ * extracted; see docs/inventory.md "Not-extracted").
+ *
+ * Does NOT `@import "tailwindcss"` — add that in your own entry CSS first:
+ *   @import "tailwindcss";
+ *   @import "@workspec/design/tailwind";
+ */
+
+@import './tokens.css';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--accent);
+  --color-card: var(--bg-elevated);
+  --color-card-foreground: var(--ink);
+  --color-card-border: var(--line);
+  --color-panel-dark: var(--panel-dark);
+  --color-popover: var(--bg-elevated);
+  --color-popover-foreground: var(--ink);
+  --color-popover-border: var(--line);
+
+  /* Primary = brand accent (green · #34d17f dark / #1b8a55 light).
+     bg-primary / text-primary are the brand-colored surfaces.
+     Foreground reads from --on-accent (#0a0a0c dark, #ffffff light).
+  */
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--on-accent);
+  --color-primary-border: var(--accent);
+  --color-secondary: var(--bg-soft);
+  --color-secondary-foreground: var(--ink);
+  --color-secondary-border: var(--line);
+  --color-muted: var(--bg-soft);
+  --color-muted-foreground: var(--ink-soft);
+  --color-muted-border: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--on-accent);
+  --color-accent-border: var(--accent);
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: var(--on-accent);
+  --color-destructive-border: var(--danger);
+  --color-sidebar: var(--bg-soft);
+  --color-sidebar-foreground: var(--ink);
+  --color-sidebar-border: var(--line);
+  --color-sidebar-primary: var(--accent);
+  --color-sidebar-primary-foreground: var(--on-accent);
+  --color-sidebar-primary-border: var(--accent);
+  --color-sidebar-accent: var(--bg-elevated);
+  --color-sidebar-accent-foreground: var(--ink);
+  --color-sidebar-accent-border: var(--line);
+  --color-sidebar-ring: var(--accent);
+  --color-hot: var(--accent);
+  --color-hot-foreground: var(--on-accent);
+  --color-agent: var(--agent);
+  --color-agent-foreground: var(--bg);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-soft);
+  --font-sans: var(--sans, 'Inter Tight', system-ui, sans-serif);
+  --font-mono: var(--mono, 'JetBrains Mono', ui-monospace, monospace);
+  --radius-sm: var(--r-2);
+  --radius-md: var(--r-3);
+  --radius-lg: var(--r-4);
+  --radius-xl: var(--r-5);
+}

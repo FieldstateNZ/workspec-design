@@ -1,0 +1,10 @@
+/*
+ * GENERATED FILE — do not edit by hand.
+ * Regenerate with: pnpm --filter @workspec/design gen:tokens
+ *
+ * Source of truth: packages/design/src/generate/build-tokens-css.ts
+ * Mirrors workspec/artifacts/workspec/src/styles/tokens/index.css.
+ */
+
+@import './themes/console-dark.css';
+@import './themes/console-light.css';

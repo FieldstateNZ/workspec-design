@@ -1,0 +1,33 @@
+@workspec/design — third-party notices
+
+This package self-hosts four font families under `fonts/`, downloaded from Google Fonts
+(fonts.gstatic.com). All four are licensed under the SIL Open Font License, Version 1.1
+("OFL-1.1"); the full license text for each is vendored at `fonts/licenses/<family>-OFL.txt`.
+Per-file download URLs for every weight/subset are recorded in `fonts/manifest.json`; one
+representative URL is cited below per family.
+
+Inter Tight
+  Copyright 2022 The Inter Project Authors (https://github.com/rsms/inter-tight)
+  License: SIL Open Font License, Version 1.1 — fonts/licenses/inter-tight-OFL.txt
+  Source: https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsH8ag.woff2
+
+JetBrains Mono
+  Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+  License: SIL Open Font License, Version 1.1 — fonts/licenses/jetbrains-mono-OFL.txt
+  Source: https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2
+
+Caveat
+  Copyright 2014 The Caveat Project Authors (https://github.com/googlefonts/caveat)
+  License: SIL Open Font License, Version 1.1 — fonts/licenses/caveat-OFL.txt
+  Source: https://fonts.gstatic.com/s/caveat/v23/Wnz6HAc5bAfYB2Q7ZjYY.woff2
+
+Lora
+  Copyright 2011 The Lora Project Authors (https://github.com/cyrealtype/Lora-Cyrillic), with
+  Reserved Font Name "Lora".
+  License: SIL Open Font License, Version 1.1 — fonts/licenses/lora-OFL.txt
+  Source: https://fonts.gstatic.com/s/lora/v37/0QIvMX1D_JOuMwr7Iw.woff2
+
+The OFL permits bundling, use, and redistribution (including in a commercial product) as long
+as the fonts are not sold by themselves and this notice / the license text travels with them.
+None of the above is a trademark claim over the WorkSpec name, logos, or wordmarks — see the
+repository-root `NOTICE` for that.
