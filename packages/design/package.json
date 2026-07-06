@@ -59,7 +59,8 @@
     "prepack": "pnpm build",
     "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "test": "vitest run",
-    "gen:tokens": "tsx scripts/generate.ts"
+    "gen:tokens": "tsx scripts/generate.ts",
+    "audit:contrast": "tsx scripts/contrast-audit.ts"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.15",
