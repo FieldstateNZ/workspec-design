@@ -24,6 +24,7 @@
     "tokens.json",
     "themes",
     "fonts",
+    "fonts.css",
     "README.md",
     "LICENSE",
     "NOTICE"
@@ -55,7 +56,8 @@
   },
   "scripts": {
     "build": "tsup",
-    "typecheck": "tsc --noEmit",
+    "prepack": "pnpm build",
+    "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "test": "vitest run",
     "gen:tokens": "tsx scripts/generate.ts"
   },

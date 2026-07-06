@@ -63,7 +63,19 @@ describe('font manifest', () => {
     '%s: package NOTICE lists it under OFL-1.1',
     (family) => {
       const notice = readFileSync(packageFile('NOTICE'), 'utf8');
-      const familyBlock = notice.slice(notice.indexOf(family));
+      const allFamilies = [...new Set(FONT_MANIFEST.map((entry) => entry.family))];
+      const start = notice.indexOf(family);
+      // Bound the block to just this family's section: from its own heading up
+      // to whichever other family's heading comes next (or end of file), so a
+      // family missing its own license line can't pass on a neighbour's.
+      const nextHeadingIndex = Math.min(
+        ...allFamilies
+          .filter((other) => other !== family)
+          .map((other) => notice.indexOf(other, start + family.length))
+          .filter((index) => index !== -1),
+        notice.length,
+      );
+      const familyBlock = notice.slice(start, nextHeadingIndex);
       expect(familyBlock).toMatch(/SIL Open Font License, Version 1\.1/);
     },
   );
