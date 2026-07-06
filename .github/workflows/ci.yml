@@ -43,3 +43,40 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: gen:tokens produces zero diff
+        run: |
+          pnpm --filter @workspec/design gen:tokens
+          git diff --exit-code
+
+  # S1: examples/fixture proves @workspec/design's Tailwind preset and
+  # self-hosted fonts resolve through a real Tailwind v4 build, in both
+  # themes, with fonts actually served — not just asserted against generated
+  # CSS strings in the package's own unit tests. Separate job so the core
+  # lint/typecheck/test/build job above stays untouched.
+  fixture-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      # Builds @workspec/design (tokens.css, tailwind.css, fonts.css, dist/)
+      # first — the fixture imports its committed root-level exports.
+      - name: Build workspace
+        run: pnpm -r build
+
+      # The GitHub runner has no pre-installed browser; fetch Chromium here.
+      - name: Install Playwright Chromium
+        run: pnpm --filter fixture exec playwright install --with-deps chromium
+
+      - name: Run fixture smoke (Playwright)
+        run: pnpm --filter fixture e2e

@@ -11,3 +11,20 @@ docs/design/**
 
 # Copied verbatim from the delivery-plan scratchpad source — not reformatted.
 DELIVERY_PLAN.md
+
+# @workspec/design committed artifacts — byte content is dictated by
+# packages/design/scripts/generate.ts (the drift test in
+# packages/design/src/generate/generate.test.ts enforces it), not by
+# prettier's CSS/JSON formatter.
+packages/design/themes/**
+packages/design/tokens.css
+packages/design/tailwind.css
+packages/design/tokens.json
+packages/design/fonts.css
+
+# Vendored inputs (fonts) and vendored source-of-record CSS — must stay
+# byte-identical to what they were copied from. source-of-record/README.md is
+# authored in this repo (not vendored), so it's carved back out below.
+packages/design/fonts/manifest.json
+packages/design/src/tokens/source-of-record/**
+!packages/design/src/tokens/source-of-record/README.md
