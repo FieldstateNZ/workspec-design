@@ -35,3 +35,13 @@ docs/contrast-audit.md
 packages/design/fonts/manifest.json
 packages/design/src/tokens/source-of-record/**
 !packages/design/src/tokens/source-of-record/README.md
+
+# Playwright e2e artifacts (git-ignored via .gitignore's `test-results/` /
+# `playwright-report/`, but git-ignored != prettier-ignored) — without this,
+# format:check goes red after any local run of the fixture's e2e suite,
+# since Playwright writes `.last-run.json` etc. into test-results/.
+# examples/fixture/playwright.config.ts pins `reporter: [['list']]` (no
+# 'html'), so it never produces playwright-report/ — only test-results/
+# needs ignoring here. apps/preview has no playwright.config, so no
+# equivalent artifact dirs to cover there.
+examples/fixture/test-results/

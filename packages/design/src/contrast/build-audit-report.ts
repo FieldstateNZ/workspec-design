@@ -2,11 +2,14 @@ import { THEME_NAMES } from '../tokens/theme-name.js';
 import type { ThemeName } from '../tokens/theme-name.js';
 import { THEMES } from '../tokens/theme-registry.js';
 import { themeToRecord } from '../tokens/theme-to-record.js';
-import { CONTRAST_CLASS_THRESHOLDS, CONTRAST_PAIRS, pairLabel } from './pairs.js';
-import type { ContrastPair } from './pairs.js';
+import { CONTRAST_PAIRS } from './pairs.js';
+import type { ContrastPair } from './pairs.types.js';
+import { CONTRAST_CLASS_THRESHOLDS } from './contrast-class-thresholds.js';
+import { pairLabel } from './pair-label.js';
 import { KNOWN_CONTRAST_FAILURES } from './known-failures.js';
 import { measureContrast } from './measure-contrast.js';
 import { roundRatio } from './round-ratio.js';
+import { contrastVerdict } from './contrast-verdict.js';
 
 interface MeasuredCheck {
   readonly pair: ContrastPair;
@@ -21,9 +24,15 @@ function measureAll(): readonly MeasuredCheck[] {
   for (const pair of CONTRAST_PAIRS) {
     for (const theme of THEME_NAMES) {
       const record = themeToRecord(THEMES[theme]);
-      const ratio = roundRatio(measureContrast(record, pair.textToken, pair.bgToken));
+      const rawRatio = measureContrast(record, pair.textToken, pair.bgToken);
       const threshold = CONTRAST_CLASS_THRESHOLDS[pair.class];
-      checks.push({ pair, theme, ratio, threshold, pass: ratio >= threshold });
+      checks.push({
+        pair,
+        theme,
+        ratio: roundRatio(rawRatio),
+        threshold,
+        pass: contrastVerdict(rawRatio, threshold),
+      });
     }
   }
   return checks;

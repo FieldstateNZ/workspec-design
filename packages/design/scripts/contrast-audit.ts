@@ -10,9 +10,12 @@ import { fileURLToPath } from 'node:url';
 import { THEME_NAMES } from '../src/tokens/theme-name.js';
 import { THEMES } from '../src/tokens/theme-registry.js';
 import { themeToRecord } from '../src/tokens/theme-to-record.js';
-import { CONTRAST_CLASS_THRESHOLDS, CONTRAST_PAIRS, pairLabel } from '../src/contrast/pairs.js';
+import { CONTRAST_PAIRS } from '../src/contrast/pairs.js';
+import { CONTRAST_CLASS_THRESHOLDS } from '../src/contrast/contrast-class-thresholds.js';
+import { pairLabel } from '../src/contrast/pair-label.js';
 import { measureContrast } from '../src/contrast/measure-contrast.js';
 import { roundRatio } from '../src/contrast/round-ratio.js';
+import { contrastVerdict } from '../src/contrast/contrast-verdict.js';
 import { buildAuditReport } from '../src/contrast/build-audit-report.js';
 
 // scripts/ -> packages/design/ -> packages/ -> <repo root>/
@@ -23,9 +26,10 @@ let failCount = 0;
 for (const pair of CONTRAST_PAIRS) {
   for (const theme of THEME_NAMES) {
     const record = themeToRecord(THEMES[theme]);
-    const ratio = roundRatio(measureContrast(record, pair.textToken, pair.bgToken));
+    const rawRatio = measureContrast(record, pair.textToken, pair.bgToken);
+    const ratio = roundRatio(rawRatio);
     const threshold = CONTRAST_CLASS_THRESHOLDS[pair.class];
-    const status = ratio >= threshold ? 'PASS' : 'FAIL';
+    const status = contrastVerdict(rawRatio, threshold) ? 'PASS' : 'FAIL';
     if (status === 'FAIL') failCount += 1;
     console.log(
       `${status.padEnd(4)} ${theme.padEnd(14)} ${pairLabel(pair).padEnd(40)} ` +

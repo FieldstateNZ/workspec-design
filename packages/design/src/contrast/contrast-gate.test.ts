@@ -2,10 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { THEME_NAMES } from '../tokens/theme-name.js';
 import { THEMES } from '../tokens/theme-registry.js';
 import { themeToRecord } from '../tokens/theme-to-record.js';
-import { CONTRAST_CLASS_THRESHOLDS, CONTRAST_PAIRS, pairLabel } from './pairs.js';
+import { CONTRAST_PAIRS } from './pairs.js';
+import { CONTRAST_CLASS_THRESHOLDS } from './contrast-class-thresholds.js';
+import { pairLabel } from './pair-label.js';
 import { KNOWN_CONTRAST_FAILURES } from './known-failures.js';
 import { measureContrast } from './measure-contrast.js';
 import { roundRatio } from './round-ratio.js';
+import { contrastVerdict } from './contrast-verdict.js';
 
 /**
  * WCAG AA contrast gate (workspec-design#3, DELIVERY_PLAN.md decision 8).
@@ -16,6 +19,10 @@ import { roundRatio } from './round-ratio.js';
  * drift-log entry and either the value changes or the pair/class is
  * revised. An allowlisted pair that starts passing also breaks this gate:
  * the allowlist records reality, so it can only shrink, never grow stale.
+ *
+ * Pass/fail is decided by `contrastVerdict` (shared with
+ * `build-audit-report.ts`), not a raw `ratio >= threshold` comparison here —
+ * see that module's TSDoc for why the comparison rounds both operands.
  */
 describe('WCAG AA contrast gate', () => {
   for (const themeName of THEME_NAMES) {
@@ -33,7 +40,7 @@ describe('WCAG AA contrast gate', () => {
               entry.theme === themeName,
           );
 
-          if (ratio < threshold) {
+          if (!contrastVerdict(ratio, threshold)) {
             expect(
               allowlisted,
               `${pairLabel(pair)} in ${themeName} measures ${roundRatio(ratio)}:1, below the ` +

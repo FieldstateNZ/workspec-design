@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { TOKEN_NAMES } from '../tokens/token-names.js';
-import { CONTRAST_PAIRS, CONTRAST_CLASS_THRESHOLDS, pairLabel } from './pairs.js';
+import { CONTRAST_PAIRS } from './pairs.js';
+import { CONTRAST_CLASS_THRESHOLDS } from './contrast-class-thresholds.js';
+import { pairLabel } from './pair-label.js';
 
 const DEFINED_TOKEN_NAMES = new Set<string>(TOKEN_NAMES);
 
