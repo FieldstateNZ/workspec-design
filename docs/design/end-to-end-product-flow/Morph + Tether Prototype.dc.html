@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #dcdcdf; }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; background: #dcdcdf; font-family: 'Inter Tight', system-ui, sans-serif; color: #0a0a0c; -webkit-font-smoothing: antialiased; padding: 30px;">
+
+  <div style="width: 1280px; margin: 0 auto 14px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;">
+    <div>
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #76767c; font-family: 'JetBrains Mono', monospace;">WorkSpec · Morph + Tether · interactive</div>
+      <h1 style="margin: 5px 0 0; font-size: 24px; font-weight: 700; letter-spacing: -0.02em;">The spatial contract — feel it before it inks</h1>
+    </div>
+    <div style="font-size: 12.5px; line-height: 1.5; color: #4a4a52; max-width: 460px; text-align: right;">Three moves: <strong>flip the lens</strong> (everything re-represents in place), <strong>pull Post editor back</strong> (halo, not state), <strong>open the room</strong> (tether holds, Esc hops home).</div>
+  </div>
+
+  <div style="width: 1280px; margin: 0 auto; height: 720px; background: #f6f6f7; border: 1px solid #cbcbcf; border-radius: 12px; box-shadow: 0 24px 60px rgba(0,0,0,0.18); overflow: hidden; display: flex; flex-direction: column;">
+
+    <!-- top bar -->
+    <div style="height: 48px; flex-shrink: 0; background: #fff; border-bottom: 1px solid #e4e4e7; display: flex; align-items: center; justify-content: space-between; padding: 0 16px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 7px;"><svg width="20" height="16" viewBox="0 0 24 18" fill="none"><circle cx="3.5" cy="9" r="2.2" stroke="#1b8a55" stroke-width="1.6"></circle><circle cx="12" cy="4" r="2.2" stroke="#1b8a55" stroke-width="1.6"></circle><circle cx="12" cy="14" r="2.2" stroke="#1b8a55" stroke-width="1.6"></circle><circle cx="20.5" cy="9" r="2.2" stroke="#1b8a55" stroke-width="1.6"></circle><path d="M5.6 8 9.9 5M5.6 10 9.9 13M14.1 5 18.4 8M14.1 13 18.4 10" stroke="#1b8a55" stroke-width="1.4"></path></svg><span style="font-size: 13.5px; font-weight: 600; font-family: 'JetBrains Mono', monospace;">workspec</span></div>
+        <span style="width: 1px; height: 20px; background: #e4e4e7;"></span>
+        <span style="font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #b8b8be; font-family: 'JetBrains Mono', monospace;">Brett's workspace /</span>
+        <span style="font-size: 13.5px; font-weight: 700;">Quire CMS</span>
+      </div>
+      <span style="font-size: 11px; color: #76767c; font-family: 'JetBrains Mono', monospace;">{{ statusLine }}</span>
+    </div>
+
+    <!-- ════ BOARD VIEW ════ -->
+    <sc-if value="{{ showBoard }}" hint-placeholder-val="{{ true }}">
+      <div style="flex: 1; position: relative; min-height: 0; background-color: #fafafb; background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px); background-size: 26px 26px;">
+
+        <!-- lens pill -->
+        <div style="position: absolute; top: 14px; left: 50%; transform: translateX(-50%); z-index: 20; display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #e4e4e7; border-radius: 999px; padding: 4px 13px 4px 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+          <div style="display: flex; align-items: center; gap: 2px; background: #f6f6f7; border-radius: 999px; padding: 2px;">
+            <button type="button" onClick="{{ setFreeform }}" style="display: inline-flex; align-items: center; gap: 6px; border: none; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; background: {{ ffBg }}; color: {{ ffColor }}; box-shadow: {{ ffShadow }}; transition: all 0.2s ease;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"></path></svg>Freeform</button>
+            <button type="button" onClick="{{ setStructured }}" style="display: inline-flex; align-items: center; gap: 6px; border: none; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; background: {{ stBg }}; color: {{ stColor }}; box-shadow: {{ stShadow }}; transition: all 0.2s ease;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>Structured</button>
+          </div>
+          <span style="font-size: 11.5px; color: #76767c; white-space: nowrap;">{{ lensCaption }}</span>
+        </div>
+
+        <!-- ink stroke (freeform-native, ghosts in structured) -->
+        <svg style="position: absolute; top: 90px; left: 60px; width: 320px; height: 200px; pointer-events: none; opacity: {{ strokeO }}; transition: opacity 0.28s ease;" viewBox="0 0 320 200">
+          <path d="M20 160 C 60 60, 140 40, 200 70 S 290 150, 250 170" fill="none" stroke="#4a4a52" stroke-width="2" stroke-linecap="round" opacity="0.5"></path>
+          <path d="M236 158 l 18 14 l -22 2" fill="none" stroke="#4a4a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"></path>
+        </svg>
+
+        <!-- ITEM: sticky 1 → loose chip (shared position 120,120) -->
+        <div style="position: absolute; top: 120px; left: 120px; width: 150px; height: 110px;">
+          <div style="position: absolute; inset: 0; opacity: {{ ffO }}; transform: {{ ffStickyT }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: {{ ffPe }};">
+            <div style="width: 146px; background: #ffe566; border: 1px solid #d9c238; border-radius: 2px; padding: 13px 14px; transform: rotate(-3deg); box-shadow: 0 6px 16px rgba(0,0,0,0.12);">
+              <div style="font-family: 'Caveat', cursive; font-size: 19px; font-weight: 600; color: #5a3d00; line-height: 1.1;">checkout retries?</div>
+            </div>
+          </div>
+          <div style="position: absolute; inset: 0; opacity: {{ stO }}; transform: {{ stChipT }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: {{ stPe }};">
+            <div style="width: 150px; background: #fff; border: 1.5px dashed #d1d1d6; border-radius: 8px; padding: 9px 11px;">
+              <div style="font-size: 7.5px; font-weight: 700; letter-spacing: 0.1em; color: #76767c; font-family: 'JetBrains Mono', monospace;">LOOSE · UNTYPED</div>
+              <div style="margin-top: 3px; font-family: 'Caveat', cursive; font-size: 15px; color: #5a4a2a;">checkout retries?</div>
+              <button type="button" style="margin-top: 6px; font-size: 9px; font-weight: 600; color: #1b8a55; background: rgba(27,138,85,0.08); border: 1px solid rgba(27,138,85,0.25); border-radius: 4px; padding: 2px 7px; cursor: pointer;">type it →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM: sticky 2 (shared position 110,430) -->
+        <div style="position: absolute; top: 430px; left: 110px; width: 150px; height: 110px; transform: {{ looseT }}; transition: transform 0.28s ease;">
+          <div style="position: absolute; inset: 0; opacity: {{ ffO }}; transform: {{ ffSticky2T }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: {{ ffPe }};">
+            <div style="width: 140px; background: #ffe566; border: 1px solid #d9c238; border-radius: 2px; padding: 12px 13px; transform: rotate(2deg); box-shadow: 0 6px 16px rgba(0,0,0,0.12);">
+              <div style="font-family: 'Caveat', cursive; font-size: 17px; font-weight: 600; color: #5a3d00; line-height: 1.1;">embargo until 9am</div>
+            </div>
+          </div>
+          <div style="position: absolute; inset: 0; opacity: {{ stO }}; transform: {{ stChipT }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: {{ stPe }};">
+            <div style="width: 150px; background: #fff; border: 1.5px dashed #d1d1d6; border-radius: 8px; padding: 9px 11px;">
+              <div style="font-size: 7.5px; font-weight: 700; letter-spacing: 0.1em; color: #76767c; font-family: 'JetBrains Mono', monospace;">LOOSE · UNTYPED</div>
+              <div style="margin-top: 3px; font-family: 'Caveat', cursive; font-size: 15px; color: #5a4a2a;">embargo until 9am</div>
+              <button type="button" style="margin-top: 6px; font-size: 9px; font-weight: 600; color: #1b8a55; background: rgba(27,138,85,0.08); border: 1px solid rgba(27,138,85,0.25); border-radius: 4px; padding: 2px 7px; cursor: pointer;">type it →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM: Scheduled publishing (shared position 470,140) -->
+        <div style="position: absolute; top: 140px; left: 470px; width: 230px; height: 130px;">
+          <div style="position: absolute; inset: 0; opacity: {{ ffO }}; transform: {{ ffPinT }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: {{ ffPe }};">
+            <div style="position: relative; width: 210px; background: #fff; border: 1px solid #cfe6da; border-left: 4px solid #1f8a6a; border-radius: 9px; padding: 11px 13px; transform: rotate(-1.5deg); box-shadow: 0 10px 22px rgba(0,0,0,0.16);">
+              <span style="position: absolute; top: -7px; left: 50%; transform: translateX(-50%); width: 13px; height: 13px; border-radius: 99px; background: radial-gradient(circle at 35% 30%, #9fb6d0, #3d5d7a); box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></span>
+              <div style="font-size: 8px; font-weight: 700; letter-spacing: 0.1em; color: #1f8a6a; font-family: 'JetBrains Mono', monospace;">FEATURE · INKED</div>
+              <div style="margin-top: 4px; font-size: 14px; font-weight: 600;">Scheduled publishing</div>
+              <div style="margin-top: 3px; font-family: 'Caveat', cursive; font-size: 14px; color: #76767c;">sketch around me freely</div>
+            </div>
+          </div>
+          <div style="position: absolute; inset: 0; opacity: {{ stO }}; transform: {{ stCardT }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: {{ stPe }};">
+            <div style="width: 226px; background: #fff; border: 1px solid #cfe6da; border-left: 4px solid #1f8a6a; border-radius: 10px; padding: 11px 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="font-size: 8px; font-weight: 700; letter-spacing: 0.1em; color: #1f8a6a; font-family: 'JetBrains Mono', monospace;">FEATURE · INKED</div>
+              <div style="margin-top: 4px; font-size: 14px; font-weight: 700;">Scheduled publishing</div>
+              <div style="margin-top: 6px; display: flex; gap: 4px;"><span style="font-size: 8px; font-weight: 700; color: #2f7d7a; border: 1px solid #bfe0de; border-radius: 3px; padding: 1px 5px; font-family: 'JetBrains Mono', monospace;">Post</span><span style="font-size: 8px; font-weight: 700; color: #c89216; border: 1px solid #ecdcb0; border-radius: 3px; padding: 1px 5px; font-family: 'JetBrains Mono', monospace;">ADR-014</span></div>
+              <button type="button" onClick="{{ openRoom }}" style="margin-top: 8px; display: inline-flex; align-items: center; gap: 5px; font-size: 9.5px; font-weight: 700; color: #3a6ea5; background: rgba(58,110,165,0.07); border: 1px solid rgba(58,110,165,0.25); border-radius: 5px; padding: 4px 9px; cursor: pointer; font-family: 'JetBrains Mono', monospace;">ARCHITECTURE · ROOM ↗</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM: Post editor — contested (shared position 470,420) -->
+        <div style="position: absolute; top: 420px; left: 470px; width: 230px; height: 120px;">
+          <!-- rework halo + margin notes (visible in BOTH lenses once on) -->
+          <div style="position: absolute; inset: -16px -52px -22px -18px; border: 1.5px dashed #d8643f; border-radius: 14px; background: rgba(216,100,63,0.03); opacity: {{ reworkO }}; transition: opacity 0.28s ease; pointer-events: none;"></div>
+          <div style="position: absolute; top: -14px; right: -44px; font-size: 8.5px; font-weight: 700; color: #d8643f; font-family: 'JetBrains Mono', monospace; background: #fafafb; padding: 0 4px; opacity: {{ reworkO }}; transition: opacity 0.28s ease; white-space: nowrap;">● REWORKING</div>
+          <div style="position: absolute; top: 84px; left: -10px; opacity: {{ reworkO }}; transform: {{ noteT }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: none;">
+            <div style="background: #ffe566; border: 1px solid #d9c238; border-radius: 2px; padding: 6px 9px; transform: rotate(-4deg); box-shadow: 0 4px 10px rgba(0,0,0,0.1); white-space: nowrap;"><span style="font-family: 'Caveat', cursive; font-size: 14px; color: #5a3d00;">local drafts instead?</span></div>
+          </div>
+          <div style="position: absolute; top: -6px; left: 196px; opacity: {{ reworkO }}; transform: {{ noteT }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: none;">
+            <div style="background: #fff; border: 1px dashed #b9d6ce; border-radius: 6px; padding: 5px 8px; transform: rotate(2deg); white-space: nowrap;"><span style="font-size: 9px; color: #0d8a72;">✦ </span><span style="font-family: 'Caveat', cursive; font-size: 13px; color: #0d6e5b;">PR #44 went manual-save</span></div>
+          </div>
+
+          <div style="position: absolute; inset: 0; opacity: {{ ffO }}; transform: {{ ffPinT }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: {{ ffPe }};">
+            <div style="position: relative; width: 206px; background: #fff; border: 1px solid #cfe6da; border-left: 4px solid #1f8a6a; border-radius: 9px; padding: 11px 13px; transform: rotate(1deg); box-shadow: 0 10px 22px rgba(0,0,0,0.16);">
+              <span style="position: absolute; top: -7px; left: 50%; transform: translateX(-50%); width: 13px; height: 13px; border-radius: 99px; background: radial-gradient(circle at 35% 30%, #9fb6d0, #3d5d7a); box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></span>
+              <div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 8px; font-weight: 700; letter-spacing: 0.1em; color: #1f8a6a; font-family: 'JetBrains Mono', monospace;">FEATURE · INKED</span><span style="font-size: 9px; font-weight: 700; color: #6d4fa6; font-family: 'JetBrains Mono', monospace;">‹/›</span></div>
+              <div style="margin-top: 4px; font-size: 14px; font-weight: 600;">Post editor</div>
+              <button type="button" onClick="{{ toggleRework }}" style="margin-top: 7px; font-size: 9.5px; font-weight: 600; color: {{ reworkBtnColor }}; background: {{ reworkBtnBg }}; border: 1px dashed {{ reworkBtnBorder }}; border-radius: 5px; padding: 4px 9px; cursor: pointer;">{{ reworkLabel }}</button>
+            </div>
+          </div>
+          <div style="position: absolute; inset: 0; opacity: {{ stO }}; transform: {{ stCardT }}; transition: opacity 0.28s ease, transform 0.28s ease; pointer-events: {{ stPe }};">
+            <div style="width: 226px; background: #fff; border: 1px solid #cfe6da; border-left: 4px solid #1f8a6a; border-radius: 10px; padding: 11px 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="display: flex; align-items: center; justify-content: space-between;"><span style="font-size: 8px; font-weight: 700; letter-spacing: 0.1em; color: #1f8a6a; font-family: 'JetBrains Mono', monospace;">FEATURE · INKED</span><span style="font-size: 9px; font-weight: 700; color: #6d4fa6; font-family: 'JetBrains Mono', monospace;">‹/›</span></div>
+              <div style="margin-top: 4px; font-size: 14px; font-weight: 700;">Post editor</div>
+              <button type="button" onClick="{{ toggleRework }}" style="margin-top: 8px; font-size: 9.5px; font-weight: 600; color: {{ reworkBtnColor }}; background: {{ reworkBtnBg }}; border: 1px dashed {{ reworkBtnBorder }}; border-radius: 5px; padding: 4px 9px; cursor: pointer;">{{ reworkLabel }}</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- try-this card -->
+        <div style="position: absolute; bottom: 16px; left: 16px; width: 252px; background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 12px 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); z-index: 20;">
+          <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: #b8b8be; font-family: 'JetBrains Mono', monospace; margin-bottom: 7px;">TRY</div>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; line-height: 1.4; color: #4a4a52;">
+            <div><strong style="color: #1b8a55;">1</strong> Flip the lens — same spots, new clothes. Nothing vanishes.</div>
+            <div><strong style="color: #d8643f;">2</strong> Pull <em>Post editor</em> back — halo + margin notes, still inked, still ‹/› in build.</div>
+            <div><strong style="color: #3a6ea5;">3</strong> Open <em>Architecture · room ↗</em> on Scheduled publishing — Esc hops home.</div>
+            <div><strong style="color: #97701f;">4</strong> Watch <em>embargo until 9am</em> on the flip — it's <em>loosened</em>, so it glides between its two homes. Movement = divergence; anchored items stay put.</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ════ ROOM VIEW ════ -->
+    <sc-if value="{{ showRoom }}" hint-placeholder-val="{{ false }}">
+      <div style="flex: 1; position: relative; min-height: 0; background-color: #fafafb; background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px); background-size: 26px 26px; display: flex; flex-direction: column;">
+        <div style="flex-shrink: 0; margin: 12px 14px 0; background: #fff; border: 1px solid #e4e4e7; border-radius: 9px; padding: 8px 12px; display: flex; align-items: center; gap: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+          <button type="button" onClick="{{ closeRoom }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: #1b8a55; background: rgba(27,138,85,0.08); border: 1px solid rgba(27,138,85,0.22); border-radius: 6px; padding: 4px 10px; cursor: pointer;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"></path></svg>Board</button>
+          <span style="font-size: 11px; color: #b8b8be;">›</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #1f8a6a;"></span><span style="font-size: 12px; font-weight: 600; color: #4a4a52;">Scheduled publishing</span></span>
+          <span style="font-size: 11px; color: #b8b8be;">›</span>
+          <span style="font-size: 12px; font-weight: 700;">Architecture · containers</span>
+          <div style="flex: 1;"></div>
+          <span style="font-size: 10px; color: #b8b8be; font-family: 'JetBrains Mono', monospace;">Esc → back to the board, camera held</span>
+        </div>
+        <div style="flex: 1; position: relative;">
+          <!-- ghost of source -->
+          <div style="position: absolute; top: 50px; left: 40px; width: 180px; background: rgba(255,255,255,0.7); border: 1.5px dashed #c7ccd2; border-radius: 9px; padding: 10px 12px;">
+            <div style="font-size: 7.5px; font-weight: 700; letter-spacing: 0.1em; color: #b8b8be; font-family: 'JetBrains Mono', monospace;">GHOST · CAME FROM</div>
+            <div style="margin-top: 4px; font-size: 12.5px; font-weight: 600; color: #76767c;">Scheduled publishing</div>
+            <div style="margin-top: 3px; font-size: 9.5px; color: #b8b8be;">click Board to return to its exact spot</div>
+          </div>
+          <!-- containers -->
+          <div style="position: absolute; top: 60px; left: 330px; width: 180px; background: #fff; border: 1px solid #438DD5; border-radius: 9px; padding: 10px 13px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+            <div style="font-size: 8px; font-weight: 700; letter-spacing: 0.1em; color: #438DD5; font-family: 'JetBrains Mono', monospace;">CONTAINER · INKED</div>
+            <div style="margin-top: 4px; font-size: 13.5px; font-weight: 600;">Publishing API</div>
+            <div style="margin-top: 2px; font-size: 10px; color: #76767c;">cron · schedules</div>
+          </div>
+          <div style="position: absolute; top: 240px; left: 330px; width: 180px; background: #fff; border: 1.5px dashed #b8b8be; border-radius: 9px; padding: 10px 13px;">
+            <div style="font-size: 8px; font-weight: 700; letter-spacing: 0.1em; color: #76767c; font-family: 'JetBrains Mono', monospace;">CONTAINER · DRAFT ✎</div>
+            <div style="margin-top: 4px; font-size: 13.5px; font-weight: 600;">Publish Worker</div>
+            <div style="margin-top: 2px; font-size: 10px; color: #76767c;">fires at 09:00</div>
+          </div>
+          <div style="position: absolute; top: 150px; left: 610px; width: 170px; background: #fff; border: 1px solid #438DD5; border-radius: 9px; padding: 10px 13px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+            <div style="font-size: 8px; font-weight: 700; letter-spacing: 0.1em; color: #438DD5; font-family: 'JetBrains Mono', monospace;">DATABASE · INKED</div>
+            <div style="margin-top: 4px; font-size: 13.5px; font-weight: 600;">Postgres</div>
+            <div style="margin-top: 2px; font-size: 10px; color: #76767c;">posts · schedules</div>
+          </div>
+          <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;">
+            <path d="M510 100 C 560 110, 580 140, 610 165" fill="none" stroke="#4CAF50" stroke-width="1.5"></path>
+            <path d="M510 280 C 560 270, 580 230, 610 205" fill="none" stroke="#4CAF50" stroke-width="1.5"></path>
+            <path d="M420 120 L420 236" fill="none" stroke="#9C27B0" stroke-width="1.5" stroke-dasharray="4 3"></path>
+            <text x="428" y="184" style="font-size: 9px; fill: #9C27B0; font-family: 'JetBrains Mono', monospace;">queue</text>
+            <path d="M220 95 C 270 85, 290 80, 326 84" fill="none" stroke="#b8b8be" stroke-width="1.3" stroke-dasharray="3 3"></path>
+          </svg>
+          <div style="position: absolute; bottom: 16px; left: 16px; font-size: 11px; color: #76767c; background: rgba(255,255,255,0.8); border: 1px dashed #d1d1d6; border-radius: 8px; padding: 8px 12px;">A room, not a tab: it knows where you came from, and the way back is one key.</div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lens: "structured", rework: false, room: false };
+
+  componentDidMount() {
+    this.onKey = (e) => {
+      if (e.key === "Escape" && this.state.room) this.setState({ room: false });
+    };
+    document.addEventListener("keydown", this.onKey);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.onKey);
+  }
+
+  renderVals() {
+    const { lens, rework, room } = this.state;
+    const ff = lens === "freeform";
+    const active = { bg: "#ffffff", color: "#0e3b2a", shadow: "0 1px 2px rgba(0,0,0,0.1)" };
+    const idle = { bg: "transparent", color: "#76767c", shadow: "none" };
+    const a = ff ? active : idle;
+    const b = ff ? idle : active;
+
+    let status = ff ? "freeform lens · sketch layer live" : "structured lens · typed artifacts";
+    if (rework) status += " · post editor under rework";
+    if (room) status = "architecture room · tethered to Scheduled publishing";
+
+    return {
+      showBoard: !room,
+      showRoom: room,
+      statusLine: status,
+      lensCaption: ff ? "same spots — sketch clothes" : "same spots — typed clothes",
+
+      setFreeform: () => this.setState({ lens: "freeform" }),
+      setStructured: () => this.setState({ lens: "structured" }),
+      ffBg: a.bg, ffColor: a.color, ffShadow: a.shadow,
+      stBg: b.bg, stColor: b.color, stShadow: b.shadow,
+
+      ffO: ff ? 1 : 0,
+      stO: ff ? 0 : 1,
+      ffPe: ff ? "auto" : "none",
+      stPe: ff ? "none" : "auto",
+      ffStickyT: ff ? "scale(1)" : "scale(0.94) rotate(2deg)",
+      ffSticky2T: ff ? "scale(1)" : "scale(0.94) rotate(-2deg)",
+      ffPinT: ff ? "scale(1)" : "scale(0.96)",
+      stChipT: ff ? "scale(0.94)" : "scale(1)",
+      stCardT: ff ? "scale(0.96)" : "scale(1)",
+      strokeO: ff ? 1 : 0.15,
+      looseT: ff ? "translate(0px, 0px)" : "translate(185px, 35px)",
+
+      rework,
+      reworkO: rework ? 1 : 0,
+      noteT: rework ? "translateY(0)" : "translateY(6px)",
+      toggleRework: () => this.setState((s) => ({ rework: !s.rework })),
+      reworkLabel: rework ? "✓ done reworking" : "✎ pull back to the whiteboard",
+      reworkBtnColor: rework ? "#fff" : "#d8643f",
+      reworkBtnBg: rework ? "#d8643f" : "rgba(216,100,63,0.06)",
+      reworkBtnBorder: rework ? "#d8643f" : "rgba(216,100,63,0.45)",
+
+      openRoom: () => this.setState({ room: true }),
+      closeRoom: () => this.setState({ room: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

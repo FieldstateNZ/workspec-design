@@ -1,0 +1,297 @@
+/* Paper aesthetic — overrides scoped under .paper.
+   Uses paper-light tokens (loaded inline below) so component CSS doesn't branch. */
+.paper{
+  /* paper-light tokens, scoped */
+  --bg:#f3ecd8;
+  --bg-soft:#ede4cc;
+  --bg-elevated:#fbf6e8;
+  --line:#d8cdb0;
+  --line-2:#b8a98a;
+  --ink:#1c1814;
+  --ink-soft:#5a4f3f;
+  --ink-fade:#8a7d68;
+  --ink-ghost:#bcb09a;
+  --accent:#c96442;
+  --accent-soft:rgba(201,100,66,0.10);
+  --accent-mid:rgba(201,100,66,0.4);
+  --accent-hover:#b04e2e;
+  --accent-wash:rgba(201,100,66,0.08);
+  --agent:#3f7a5c;
+  --agent-soft:rgba(63,122,92,0.1);
+  --agent-mid:rgba(63,122,92,0.4);
+  --warn:#a87718;
+  --danger:#a83a2a;
+  --on-accent:#fbf6e8;
+  --canvas-from:#ede4cc;
+  --canvas-to:#f3ecd8;
+  --canvas-grid:rgba(28,24,20,0.05);
+  --type-persona:#3a5a8a;
+  --type-feature:#3f7a5c;
+  --type-scenario:#a87718;
+  --type-userreq:#a83a2a;
+  --r-1:2px; --r-2:3px; --r-3:4px; --r-4:6px; --r-5:8px;
+
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Source Sans 3', 'Inter Tight', system-ui, sans-serif;
+}
+
+/* serif for display, sans for body, mono only for labels */
+.paper h1, .paper h2, .paper h3, .paper h4,
+.paper .ttl-serif{
+  font-family:'Source Serif 4', 'Charter', Georgia, serif;
+  font-weight:500;
+  letter-spacing:-0.015em;
+}
+
+/* frame chrome — tighter, no harsh borders, ink rule */
+.paper .frame{background:var(--bg);}
+.paper .frame .fhdr{
+  background:transparent;
+  border-bottom:1px solid var(--ink);  /* ink rule, not soft line */
+  font-family:'JetBrains Mono', ui-monospace, monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  color:var(--ink);
+  padding:12px 18px;
+  text-transform:uppercase;
+}
+.paper .frame .fhdr b{font-weight:600;color:var(--ink);}
+.paper .frame .body{padding:24px 28px;}
+
+/* surfaces — flat cream cards, ink-1px borders */
+.paper .surf{background:var(--bg-elevated);border:1px solid var(--line);border-radius:var(--r-3);box-shadow:0 1px 0 rgba(28,24,20,0.04);}
+.paper .surf-elev{background:var(--bg-elevated);border:1px solid var(--ink);border-radius:var(--r-3);}
+
+/* buttons — ink-stamped, not glowing */
+.paper .btn{
+  font-family:'Source Sans 3','Inter Tight',sans-serif;
+  background:var(--bg-elevated);
+  border:1px solid var(--ink);
+  color:var(--ink);
+  border-radius:var(--r-2);
+  font-weight:500;
+}
+.paper .btn:hover{background:var(--bg-soft);}
+.paper .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600;}
+.paper .btn.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover);}
+.paper .btn.ghost{background:transparent;border-color:transparent;}
+.paper .btn.ghost:hover{background:var(--bg-soft);border-color:transparent;}
+
+/* chip — small ink stamp, mono caps */
+.paper .chip{
+  font-family:'JetBrains Mono',monospace;
+  border:1px solid var(--ink);
+  border-radius:99px;
+  padding:2px 8px;
+  font-size:9.5px;
+  letter-spacing:0.12em;
+  color:var(--ink);
+  background:transparent;
+}
+.paper .chip.accent{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+.paper .chip.agent{color:var(--agent);border-color:var(--agent);background:var(--agent-soft);}
+
+/* avatar — paper version: cream fill + ink border */
+.paper .av{
+  background:var(--bg-elevated);
+  border:1px solid var(--ink);
+  color:var(--ink);
+  font-family:'JetBrains Mono',monospace;
+  font-weight:600;
+}
+.paper .av.brett{background:var(--accent);color:var(--on-accent);border-color:var(--accent);}
+.paper .av.alice{background:#cfdcec;color:#1c1814;border-color:#3a5a8a;}
+.paper .av.kai{background:#e8d8a8;color:#1c1814;border-color:#a87718;}
+.paper .av.atlas{background:transparent;border:1px solid var(--agent);color:var(--agent);}
+.paper .av.cc{background:var(--bg-elevated);color:var(--ink);border-color:var(--ink);}
+.paper .av.gpt{background:var(--bg-elevated);color:#1f6a52;border-color:#1f6a52;}
+.paper .av.cur{background:var(--bg-elevated);color:#3a5a8a;border-color:#3a5a8a;}
+.paper .av.dana{background:#c5e0d4;color:#1c1814;border-color:var(--agent);}
+
+/* chat panel — serif title, ink rules, mono only for tool calls */
+.paper .cp{background:var(--bg);}
+.paper .cp .top{padding:14px 18px;border-bottom:1px solid var(--ink);}
+.paper .cp .top .ttl{
+  font-family:'Source Serif 4', Georgia, serif;
+  font-weight:500;
+  font-size:18px;
+  letter-spacing:-0.01em;
+}
+.paper .cp .top .sub{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--ink-fade);letter-spacing:0.12em;}
+.paper .cp .stream{padding:18px;gap:16px;}
+.paper .cp .turn .meta{font-family:'JetBrains Mono',monospace;color:var(--ink-fade);}
+.paper .cp .turn .meta b{font-family:'Source Sans 3','Inter Tight',sans-serif;color:var(--ink);font-weight:600;font-size:12px;}
+.paper .cp .turn .body{font-size:13px;color:var(--ink);line-height:1.55;font-family:'Source Sans 3','Inter Tight',sans-serif;}
+.paper .cp .turn.system .body{color:var(--ink-soft);font-style:italic;font-family:'Source Serif 4', Georgia, serif;}
+/* tool calls = bordered cream card, deeper ink */
+.paper .cp .turn.action .body{
+  background:#e6dcc0;
+  border:1px solid var(--line-2);
+  border-left:3px solid var(--ink);
+  font-family:'JetBrains Mono',monospace;
+  color:var(--ink);
+  font-size:11px;
+  padding:8px 10px;
+  border-radius:var(--r-2);
+}
+/* note = margin-marked, like a marginalia annotation */
+.paper .cp .turn.note .body{
+  background:transparent;
+  border-left:3px solid var(--accent);
+  padding:4px 0 4px 12px;
+  font-family:'Source Serif 4', Georgia, serif;
+  font-style:italic;
+  font-size:13.5px;
+  color:var(--ink);
+  line-height:1.5;
+}
+.paper .cp .input{padding:12px 18px;border-top:1px solid var(--ink);background:var(--bg-elevated);}
+.paper .cp .input.locked{
+  background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(28,24,20,0.025) 6px 7px);
+  border-top:1px solid var(--ink);
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;
+  color:var(--ink-fade);
+  font-style:italic;
+}
+.paper .cp .input input{font-family:'Source Sans 3','Inter Tight',sans-serif;color:var(--ink);}
+.paper .cp .input input::placeholder{color:var(--ink-fade);font-style:italic;}
+.paper .input{background:var(--bg-elevated);border:1px solid var(--ink);}
+.paper .input:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+.paper .kbd2{font-family:'JetBrains Mono',monospace;background:var(--bg);border:1px solid var(--ink);color:var(--ink);}
+.paper .code{font-family:'JetBrains Mono',monospace;background:var(--bg-elevated);border:1px solid var(--line-2);color:var(--ink);}
+
+/* connections — table-like with ink rules between rows */
+.paper .conn{background:var(--bg-elevated);border:1px solid var(--ink);border-radius:var(--r-3);}
+.paper .conn .row{border-bottom:1px solid var(--line);padding:14px 18px;}
+.paper .conn .row .ic{background:var(--bg);border:1px solid var(--ink);font-family:'JetBrains Mono',monospace;color:var(--ink);}
+.paper .conn .row .nm{font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:14px;letter-spacing:-0.005em;}
+.paper .conn .row .id{font-family:'JetBrains Mono',monospace;color:var(--ink-fade);}
+.paper .conn .row .scope{font-family:'JetBrains Mono',monospace;color:var(--ink-soft);}
+.paper .conn .row.live .scope{color:var(--accent);}
+.paper .conn .row .last{font-family:'JetBrains Mono',monospace;color:var(--ink-fade);font-size:10px;}
+
+/* code block — paper version: cream bg, deep ink, ink rule */
+.paper .codeblk{
+  background:var(--bg-elevated);
+  border:1px solid var(--ink);
+  border-left:3px solid var(--ink);
+  border-radius:var(--r-3);
+  padding:14px 16px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11.5px;
+  line-height:1.55;
+  color:var(--ink);
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+.paper .codeblk .k{color:var(--accent);font-weight:600;}
+.paper .codeblk .s{color:var(--agent);}
+
+/* labels in paper */
+.paper .lbl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--ink-fade);
+}
+
+/* canvas backdrop — warm paper, ink dotted grid */
+.paper .pres-canvas{
+  background:
+    radial-gradient(circle at 50% 50%, var(--canvas-from) 0, var(--canvas-to) 100%);
+  position:relative;
+}
+.paper .pres-canvas .grid{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle, rgba(28,24,20,0.18) 1px, transparent 1.4px);
+  background-size:24px 24px;
+  background-position:0 0;
+  opacity:0.4;
+}
+
+/* artifact card — paper: card stock + ink rule + serif title */
+.paper .art{
+  background:var(--bg-elevated);
+  border:1px solid var(--ink);
+  border-radius:var(--r-3);
+  box-shadow:1px 1px 0 rgba(28,24,20,0.06);
+  padding:11px 13px;
+}
+.paper .art .type{font-family:'JetBrains Mono',monospace;color:var(--ink-fade);}
+.paper .art.persona .type{color:var(--type-persona);}
+.paper .art.feature .type{color:var(--type-feature);}
+.paper .art.scenario .type{color:var(--type-scenario);}
+.paper .art.userreq .type{color:var(--type-userreq);}
+.paper .art .ttl{font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:13px;color:var(--ink);}
+.paper .art .sub{font-family:'Source Sans 3','Inter Tight',sans-serif;color:var(--ink-soft);}
+.paper .art:hover{border-color:var(--accent);}
+
+/* presence cursors — ink ghost lines, smaller dots */
+.paper .cursor{position:absolute;display:flex;align-items:flex-start;pointer-events:none;}
+.paper .cursor .lbl{
+  display:inline-block;
+  background:var(--bg-elevated);
+  border:1px solid var(--ink);
+  padding:1px 6px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.06em;
+  color:var(--ink);
+  border-radius:99px;
+  margin-left:4px;
+  margin-top:6px;
+  white-space:nowrap;
+}
+
+/* author dot — paper: small ink-stamped circle */
+.paper .author-dot{
+  position:absolute;top:-5px;right:-5px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--bg-elevated);
+  border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:7.5px;
+  font-weight:600;
+}
+.paper .author-dot.cc{border-color:var(--ink);color:var(--ink);}
+.paper .author-dot.gpt{border-color:#1f6a52;color:#1f6a52;}
+.paper .author-dot.atlas{border-color:var(--agent);color:var(--agent);background:var(--agent-soft);}
+.paper .author-dot.brett{background:var(--accent);border-color:var(--accent);}
+
+/* activity stream — like a printed ledger */
+.paper .activity{
+  position:absolute;
+  top:14px;right:14px;
+  width:200px;
+  background:var(--bg-elevated);
+  border:1px solid var(--ink);
+  border-radius:var(--r-3);
+  padding:12px;
+  font-family:'Source Sans 3','Inter Tight',sans-serif;
+  font-size:11.5px;
+  color:var(--ink);
+  box-shadow:0 2px 4px rgba(28,24,20,0.06);
+}
+.paper .activity .it{
+  display:grid;grid-template-columns:8px 1fr;gap:8px;
+  padding:5px 0;
+  border-bottom:1px solid var(--line);
+  align-items:flex-start;
+  line-height:1.4;
+}
+.paper .activity .it:last-child{border-bottom:0;}
+.paper .activity .it .dot{
+  width:6px;height:6px;border-radius:50%;margin-top:6px;
+}
+
+/* divider rule */
+.paper .divider{height:1px;background:var(--ink);opacity:0.2;}
+
+/* placeholder for content blocks (dotted ink rule) */
+.paper hr.ink{border:0;border-top:1px solid var(--ink);}
+.paper hr.ink.dotted{border-top:1px dashed var(--ink);opacity:0.4;}

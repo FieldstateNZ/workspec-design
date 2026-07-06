@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+body{margin:0;}
+.wrap{min-height:100vh;display:grid;grid-template-columns:380px 1fr;}
+.left{background:var(--paper-deep);border-right:1.5px solid var(--ink);padding:48px 40px;display:flex;flex-direction:column;}
+.left .wm{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-0.02em;}
+.left .wm .dot{color:var(--coral);}
+.steps{margin-top:56px;}
+.steps .s{display:grid;grid-template-columns:32px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--rule-soft);}
+.steps .s .n{font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.14em;}
+.steps .s.active .n{color:var(--coral);}
+.steps .s.done .n{color:var(--sage);}
+.steps .s .t{font-family:var(--serif);font-size:16px;font-weight:600;letter-spacing:-0.01em;color:var(--ink-soft);}
+.steps .s.active .t{color:var(--ink);}
+.steps .s.done .t{color:var(--sage);text-decoration:line-through;text-decoration-thickness:1px;}
+.right{padding:48px 56px;display:flex;flex-direction:column;}
+.right .top{font-family:var(--mono);font-size:11px;color:var(--coral);letter-spacing:0.16em;text-transform:uppercase;}
+.right h1{font-family:var(--serif);font-size:56px;font-weight:600;letter-spacing:-0.025em;line-height:1.05;margin:14px 0 14px;}
+.right .lead{font-size:17px;color:var(--ink-soft);line-height:1.55;max-width:560px;}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;max-width:780px;}
+.choice{background:var(--paper-soft);border:1.5px solid var(--ink);padding:24px;cursor:pointer;position:relative;}
+.choice.selected{border-color:var(--coral);box-shadow:var(--sh-stamp);}
+.choice .n{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);}
+.choice h3{font-family:var(--serif);font-size:18px;font-weight:600;letter-spacing:-0.015em;margin:6px 0 10px;}
+.choice p{font-size:13px;color:var(--ink-soft);line-height:1.5;}
+.choice .vis{margin-top:16px;height:80px;border:1px solid var(--rule-soft);background:var(--paper);position:relative;}
+.choice.selected .check{position:absolute;top:-9px;right:-9px;width:22px;height:22px;background:var(--coral);color:var(--paper);font-family:var(--mono);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--ink);}
+.foot{margin-top:auto;padding-top:36px;display:flex;justify-content:space-between;align-items:center;border-top:1.5px solid var(--ink);}
+.foot .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);}
+</style></head>
+<body>
+<div class="page">
+  <span class="trim tl"></span><span class="trim tr"></span><span class="trim bl"></span><span class="trim br"></span>
+  <div class="wrap">
+    <aside class="left">
+      <div class="wm">workspec<span class="dot">.</span></div>
+      <div class="steps">
+        <div class="s done"><span class="n">01</span><span class="t">Welcome</span></div>
+        <div class="s active"><span class="n">02</span><span class="t">Pick a starter shape</span></div>
+        <div class="s"><span class="n">03</span><span class="t">Invite Atlas</span></div>
+        <div class="s"><span class="n">04</span><span class="t">Drop your first thought</span></div>
+      </div>
+      <div style="margin-top:auto;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;">2 of 4 · ~90 sec</div>
+    </aside>
+    <main class="right">
+      <span class="top">Step 02 · Starter shape</span>
+      <h1>Pick a shape that fits<br/>where you're <span class="underline">starting</span>.</h1>
+      <p class="lead">Each starter is a sheet preset — same data model, different opening pose. You can always change later, or start blank.</p>
+
+      <div class="choices">
+        <div class="choice">
+          <span class="n">Empty sheet</span>
+          <h3>Blank</h3>
+          <p>Drop a prompt. Atlas drafts from scratch.</p>
+          <div class="vis">
+            <svg viewBox="0 0 200 80" width="100%" height="100%"><line x1="10" y1="40" x2="50" y2="40" stroke="#8a7e68" stroke-width="0.5" stroke-dasharray="2 2"/><line x1="60" y1="40" x2="100" y2="40" stroke="#8a7e68" stroke-width="0.5" stroke-dasharray="2 2"/></svg>
+          </div>
+        </div>
+        <div class="choice selected">
+          <span class="check">✓</span>
+          <span class="n">Research mode</span>
+          <h3>Research</h3>
+          <p>Notes column · clustering live · drafts in pencil.</p>
+          <div class="vis">
+            <svg viewBox="0 0 200 80" width="100%" height="100%"><rect x="10" y="14" width="40" height="14" fill="#f3ecd8" stroke="#1c1814" stroke-width="0.8"/><rect x="10" y="34" width="40" height="14" fill="#f3ecd8" stroke="#1c1814" stroke-width="0.8"/><rect x="10" y="54" width="40" height="14" fill="#f3ecd8" stroke="#1c1814" stroke-width="0.8"/><rect x="78" y="34" width="50" height="20" fill="#f3ecd8" stroke="#c96442" stroke-width="1"/><line x1="50" y1="21" x2="78" y2="40" stroke="#3a5a7a" stroke-width="0.6"/><line x1="50" y1="41" x2="78" y2="44" stroke="#3a5a7a" stroke-width="0.6"/><line x1="50" y1="61" x2="78" y2="48" stroke="#3a5a7a" stroke-width="0.6"/></svg>
+          </div>
+        </div>
+        <div class="choice">
+          <span class="n">From a backlog</span>
+          <h3>Backlog</h3>
+          <p>Triage board first · structure later.</p>
+          <div class="vis">
+            <svg viewBox="0 0 200 80" width="100%" height="100%"><rect x="10" y="10" width="56" height="60" fill="#f3ecd8" stroke="#1c1814" stroke-width="0.8"/><rect x="72" y="10" width="56" height="60" fill="#f3ecd8" stroke="#1c1814" stroke-width="0.8"/><rect x="134" y="10" width="56" height="60" fill="#f3ecd8" stroke="#1c1814" stroke-width="0.8"/><rect x="14" y="20" width="48" height="8" fill="#f7f1de" stroke="#1c1814" stroke-width="0.5"/><rect x="14" y="32" width="48" height="8" fill="#f7f1de" stroke="#1c1814" stroke-width="0.5"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <span class="meta">A · 08/14 · Onboarding</span>
+        <div style="display:flex;gap:12px;">
+          <button class="btn">← Back</button>
+          <button class="btn primary">Continue →</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<a class="back-contents" href="index.html">← contents</a>
+</body></html>

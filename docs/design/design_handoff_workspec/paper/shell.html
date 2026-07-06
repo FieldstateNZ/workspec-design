@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Shell</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+body{margin:0;}
+.app{display:grid;grid-template-rows:auto 1fr;height:100vh;}
+.canvas{display:grid;grid-template-columns:240px 1fr 320px;height:100%;}
+.canvas-area{position:relative;background:var(--paper);overflow:hidden;background-image:linear-gradient(rgba(28,24,20,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(28,24,20,0.06) 1px,transparent 1px);background-size:24px 24px;}
+.detail{border-left:1.5px solid var(--ink);background:var(--paper);padding:20px 22px;overflow:auto;}
+.detail::before{content:"";display:block;height:1px;background:var(--ink);opacity:.4;margin:-20px -22px 16px;}
+.detail-h{font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);}
+.detail h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-0.015em;margin:8px 0 14px;}
+.detail .field{padding:14px 0;border-bottom:1px solid var(--rule-soft);}
+.detail .field .l{font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);margin-bottom:4px;}
+.detail .field .v{font-size:13.5px;color:var(--ink);}
+.afact{background:var(--paper-soft);border:1.5px solid var(--ink);padding:12px 14px;position:absolute;width:160px;}
+.afact .head{font-family:var(--mono);font-size:9px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;display:flex;justify-content:space-between;}
+.afact .head .v{color:var(--coral);}
+.afact .title{font-family:var(--serif);font-size:13px;font-weight:600;color:var(--ink);margin-top:5px;line-height:1.3;}
+.afact.focus{box-shadow:0 0 0 1.5px var(--coral),var(--sh-2);}
+.afact.draft{border-style:dashed;border-color:var(--ink-ghost);background:transparent;}
+.afact.draft .title{color:var(--ink-ghost);}
+.bubble{position:absolute;background:var(--paper);border:1.5px solid var(--coral);padding:10px 14px;width:240px;}
+.bubble .h{font-family:var(--mono);font-size:9px;color:var(--coral);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.bubble .dot{width:6px;height:6px;background:var(--coral);border-radius:50%;}
+.bubble .text{font-family:var(--hand);font-size:15px;color:var(--ink);line-height:1.3;}
+.toolbar{position:absolute;top:18px;left:50%;transform:translateX(-50%);display:flex;gap:6px;background:var(--paper);border:1.5px solid var(--ink);padding:5px;z-index:5;}
+.toolbar .t{padding:6px 12px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;}
+.toolbar .t.active{background:var(--ink);color:var(--paper);}
+.crumb-line{position:absolute;top:18px;left:18px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.12em;text-transform:uppercase;}
+.crumb-line .here{color:var(--ink);}
+.minimap{position:absolute;bottom:18px;right:18px;width:148px;height:96px;background:var(--paper);border:1.5px solid var(--ink);font-family:var(--mono);font-size:9px;color:var(--ink-fade);padding:6px 8px;letter-spacing:0.12em;text-transform:uppercase;}
+.note-on-canvas{position:absolute;font-family:var(--hand);font-size:14px;color:var(--coral);}
+.dim{position:absolute;font-family:var(--mono);font-size:9px;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;}
+</style></head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="wordmark">workspec<span class="dot"></span></div>
+    <nav class="nav">
+      <a class="active">Canvas</a><a>Boards</a><a>Library</a>
+    </nav>
+    <div class="spacer"></div>
+    <span class="meta">Sheet · Discovery</span>
+    <button class="btn">Share</button>
+    <button class="btn primary">Run draft <span class="kbd">⌘↵</span></button>
+    <span class="avatar">CL</span>
+  </header>
+
+  <main class="canvas">
+    <aside class="sidebar">
+      <div class="group">
+        <div class="group-label">Canvas</div>
+        <div class="item active"><span class="num">01</span>Discovery</div>
+        <div class="item"><span class="num">02</span>System</div>
+        <div class="item"><span class="num">03</span>Backlog</div>
+      </div>
+      <div class="group">
+        <div class="group-label">Boards</div>
+        <div class="item"><span class="num">·</span>Q2 triage</div>
+        <div class="item"><span class="num">·</span>Open questions</div>
+        <div class="item"><span class="num">·</span>Drafts (3)</div>
+      </div>
+      <div class="group">
+        <div class="group-label">Library</div>
+        <div class="item"><span class="num">·</span>Notes · 24</div>
+        <div class="item"><span class="num">·</span>Features · 7</div>
+        <div class="item"><span class="num">·</span>Slices · 11</div>
+      </div>
+    </aside>
+
+    <section class="canvas-area">
+      <div class="crumb-line">canvas › <span class="here">discovery</span></div>
+      <div class="toolbar">
+        <div class="t active">Logical</div>
+        <div class="t">Deployment</div>
+        <div class="t">Both</div>
+      </div>
+
+      <div class="afact" style="left:80px;top:120px;"><div class="head"><span>NOTE</span></div><div class="title">user can't sign in</div></div>
+      <div class="afact" style="left:80px;top:200px;"><div class="head"><span>NOTE</span></div><div class="title">SSO ask · 3rd time</div></div>
+      <div class="afact" style="left:80px;top:280px;"><div class="head"><span>NOTE</span></div><div class="title">password reset broken</div></div>
+      <div class="afact focus" style="left:300px;top:200px;width:200px;"><div class="head"><span>FEATURE</span><span class="v">v3</span></div><div class="title">GitHub OAuth flow</div></div>
+      <div class="afact draft" style="left:540px;top:200px;width:170px;"><div class="head" style="color:var(--coral);"><span>DRAFT</span></div><div class="title">Login retry slice</div></div>
+
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+        <path d="M 240 145 Q 280 145, 300 230" stroke="#3a5a7a" stroke-width="1" fill="none"/>
+        <path d="M 240 225 L 300 230" stroke="#3a5a7a" stroke-width="1" fill="none"/>
+        <path d="M 240 305 Q 280 305, 300 240" stroke="#3a5a7a" stroke-width="1" fill="none"/>
+        <path d="M 500 230 L 540 230" stroke="#c96442" stroke-width="1.2" fill="none" stroke-dasharray="4 3"/>
+        <path d="M 534 226 L 540 230 L 534 234" stroke="#c96442" stroke-width="1.2" fill="none"/>
+      </svg>
+
+      <div class="bubble" style="left:300px;top:120px;">
+        <div class="h"><span class="dot"></span>Atlas · drafting</div>
+        <div class="text">Three notes look like one feature. Pencil it in?</div>
+      </div>
+
+      <div class="dim" style="left:80px;top:90px;">↕ 6 NOTES · UNRESOLVED</div>
+
+      <div class="minimap">
+        <div>Sheet 01 · Discovery</div>
+        <svg viewBox="0 0 130 70" style="margin-top:6px;">
+          <rect x="2" y="2" width="126" height="66" fill="none" stroke="#1c1814"/>
+          <rect x="10" y="14" width="14" height="6" fill="#1c1814"/>
+          <rect x="10" y="22" width="14" height="6" fill="#1c1814"/>
+          <rect x="10" y="30" width="14" height="6" fill="#1c1814"/>
+          <rect x="40" y="22" width="20" height="8" fill="#c96442"/>
+          <rect x="70" y="22" width="16" height="6" fill="none" stroke="#c96442" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+    </section>
+
+    <aside class="detail">
+      <div class="detail-h">Feature · v3 · drafted</div>
+      <h2>GitHub OAuth flow</h2>
+      <div style="display:flex;gap:6px;margin-bottom:10px;"><span class="chip coral fill">Drafted v3</span><span class="chip">Auth</span></div>
+      <div class="field"><div class="l">Sourced from</div><div class="v">[[note-1]] · [[note-2]] · [[note-3]]</div></div>
+      <div class="field"><div class="l">Drawn by</div><div class="v">CL · 04.12 · revised by Atlas</div></div>
+      <div class="field"><div class="l">Feeds</div><div class="v">[[slice-fix]] · [[bug-loop]]</div></div>
+      <div class="field"><div class="l">Notes</div><div class="v" style="font-family:var(--hand);font-size:17px;color:var(--ink-soft);">"three users wrote in this week. SSO most-asked. retry next."</div></div>
+      <div style="display:flex;gap:8px;margin-top:18px;"><button class="btn primary" style="flex:1;">Promote to ink</button><button class="btn">Edit</button></div>
+    </aside>
+  </main>
+</div>
+
+<div class="titleblock">
+  <div class="row bordered-r"><span class="lbl">Sheet</span><span class="val">A · 05/14</span></div>
+  <div class="row"><span class="lbl">Scale</span><span class="val">1:1</span></div>
+  <div class="row bordered-r"><span class="lbl">Drawn</span><span class="val">CL/AT</span></div>
+  <div class="row"><span class="lbl">Date</span><span class="val">2026.04</span></div>
+  <div class="row full"><span class="lbl">Sheet name</span><span class="val serif">Workspace shell</span></div>
+</div>
+
+<a class="back-contents" href="index.html">← contents</a>
+</body></html>

@@ -1,0 +1,145 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Terminal · Canvas primitives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shell.css">
+<style>
+.canvas-stage{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-3);overflow:hidden;}
+.canvas-stage::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);background-size:24px 24px;pointer-events:none;}
+.spec{font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);letter-spacing:0.04em;margin-top:14px;line-height:1.5;}
+</style>
+</head><body>
+<div class="page">
+<div class="crumb"><a href="../index.html">Design Set</a> · <a href="index.html">Terminal</a> · <span style="color:var(--ink)">Canvas primitives</span></div>
+<h1 class="page-title">Canvas primitives.</h1>
+<p class="page-lead">The atoms of WorkSpec. Every screen is built from these. Defined as classes in <code class="code">shell.css</code> so the same markup works in static mockups and in the live prototype.</p>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">01</span>Artifact card</h2>
+<p class="note">The fundamental unit. Type chip on top, title bold, optional sub. Type color signals kind. <code class="code">.selected</code> adds accent border + glow. <code class="code">.badge</code> in the corner for version pills.</p>
+<div class="canvas-stage" style="height:300px;">
+  <div class="art persona" style="left:30px;top:30px;"><div class="type">PERSONA</div><div class="ttl">Sarah · PM</div><div class="sub">leads spec @ 50-person SaaS</div></div>
+  <div class="art note" style="left:240px;top:30px;"><div class="type">NOTE</div><div class="ttl">"GitHub OAuth ideal"</div><div class="sub">interview · Sarah · 04-22</div></div>
+  <div class="art feature selected" style="left:30px;top:140px;"><div class="type">FEATURE</div><div class="ttl">GitHub OAuth flow</div><div class="sub">3 sources · feeds 2 slices</div><span class="badge">v3</span></div>
+  <div class="art scenario" style="left:240px;top:140px;"><div class="type">SCENARIO</div><div class="ttl">First-time user</div><div class="sub">redirected from /login</div></div>
+  <div class="art userreq" style="left:450px;top:30px;"><div class="type">USER REQ</div><div class="ttl">Single sign-on</div><div class="sub">3 customers asked</div></div>
+  <div class="art domain" style="left:450px;top:140px;width:220px;"><div class="type">CONTAINER</div><div class="ttl">Authentication</div><div class="sub">12 artifacts inside →</div></div>
+</div>
+<div class="spec">Type variants: persona · note · feature · scenario · userreq · domain — each tints the type chip via the type-class.</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">02</span>Edges</h2>
+<p class="note">Edges connect artifacts. Three weights: ghost (line), default (line-2), accent (active flow). Solid = derives from. Dashed = related to.</p>
+<div class="canvas-stage" style="height:220px;">
+  <svg style="position:absolute;inset:0;width:100%;height:100%;">
+    <path class="edge" d="M 130 60 C 200 60, 200 60, 280 60"/>
+    <path class="edge accent" d="M 130 110 C 200 110, 200 110, 280 110"/>
+    <path class="edge dashed" d="M 130 160 C 200 160, 200 160, 280 160"/>
+    <path class="edge" d="M 380 60 C 460 60, 460 60, 540 60"/>
+    <path class="edge accent" d="M 380 110 C 460 110, 460 110, 540 110"/>
+    <path class="edge dashed" d="M 380 160 C 460 160, 460 160, 540 160"/>
+  </svg>
+  <div style="position:absolute;left:30px;top:48px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.06em;">DEFAULT · derives from</div>
+  <div style="position:absolute;left:30px;top:98px;font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:0.06em;">ACCENT · active flow</div>
+  <div style="position:absolute;left:30px;top:148px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.06em;">DASHED · related</div>
+  <div class="art note" style="left:540px;top:38px;width:120px;"><div class="type">SOURCE</div><div class="ttl">note · 1</div></div>
+  <div class="art feature" style="left:540px;top:88px;width:120px;"><div class="type">SOURCE</div><div class="ttl">feature · 2</div></div>
+  <div class="art scenario" style="left:540px;top:138px;width:120px;"><div class="type">SOURCE</div><div class="ttl">scenario · 3</div></div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">03</span>Agent bubble</h2>
+<p class="note">Anchored at a canvas point — usually near where the agent is "looking." Pulse dot signals live thinking. Disappears after acknowledgement or 12s.</p>
+<div class="canvas-stage" style="height:220px;">
+  <div class="art note" style="left:30px;top:50px;"><div class="type">NOTE · 1</div><div class="ttl">"OAuth ideal"</div></div>
+  <div class="art note" style="left:30px;top:130px;"><div class="type">NOTE · 2</div><div class="ttl">"GitHub login"</div></div>
+  <div class="art note" style="left:30px;top:210px;display:none;"><div class="type">NOTE · 3</div><div class="ttl">"social login"</div></div>
+  <svg style="position:absolute;inset:0;width:100%;height:100%;"><path class="edge dashed accent" d="M 220 80 C 260 80, 280 80, 320 70"/></svg>
+  <div class="bubble" style="left:330px;top:36px;">
+    <div class="who"><span class="pulse"></span>ATLAS · NOTICED</div>
+    <p>3 notes look duplicated — all about OAuth. Want me to group them as <b style="color:var(--accent);">cluster: auth-login</b>?</p>
+    <div style="display:flex;gap:6px;margin-top:10px;">
+      <button class="btn sm primary">Group</button>
+      <button class="btn sm">Show me</button>
+      <button class="btn sm ghost">Dismiss</button>
+    </div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">04</span>Lasso · multi-select</h2>
+<p class="note">Drag to select. The lasso rectangle uses the accent in low alpha. While active, a floating action bar appears below the selection.</p>
+<div class="canvas-stage" style="height:280px;">
+  <div class="art note" style="left:60px;top:50px;"><div class="type">NOTE</div><div class="ttl">"OAuth"</div></div>
+  <div class="art note selected" style="left:230px;top:50px;"><div class="type">NOTE</div><div class="ttl">"GitHub login"</div></div>
+  <div class="art note selected" style="left:60px;top:130px;"><div class="type">NOTE</div><div class="ttl">"social signin"</div></div>
+  <div class="art note selected" style="left:230px;top:130px;"><div class="type">NOTE</div><div class="ttl">"SSO"</div></div>
+  <div class="art note" style="left:400px;top:90px;"><div class="type">NOTE</div><div class="ttl">"reset password"</div></div>
+  <div class="lasso" style="left:220px;top:40px;width:170px;height:140px;"></div>
+  <div style="position:absolute;left:220px;top:200px;background:var(--bg-elevated);border:1px solid var(--line-2);border-radius:var(--r-3);box-shadow:var(--sh-3);padding:6px;display:flex;align-items:center;gap:4px;">
+    <span class="chip accent" style="margin-right:6px;">3 selected</span>
+    <button class="btn sm">Group</button>
+    <button class="btn sm">Promote</button>
+    <button class="btn sm">→ Board</button>
+    <div style="width:1px;height:18px;background:var(--line);margin:0 4px;"></div>
+    <button class="btn sm primary">/ ask agent</button>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">05</span>Board tile</h2>
+<p class="note">A board is an artifact too. On the canvas it shows as a tile with column previews and a count. Click to drill in.</p>
+<div class="canvas-stage" style="height:240px;padding:30px;">
+  <div style="position:absolute;left:30px;top:30px;background:var(--bg-soft);border:1px solid var(--line-2);border-radius:var(--r-3);width:340px;padding:14px;cursor:pointer;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <div><span class="chip">BOARD</span></div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.06em;">9 ITEMS · 3 COLS</div>
+    </div>
+    <div style="font-size:15px;font-weight:600;letter-spacing:-0.005em;">Triage · auth bugs</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px;">
+      <div style="background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:8px;"><div style="font-family:var(--mono);font-size:8.5px;color:var(--ink-fade);letter-spacing:0.1em;">TRIAGE · 3</div><div style="height:4px;background:var(--line-2);border-radius:2px;margin-top:6px;"></div><div style="height:4px;background:var(--line-2);border-radius:2px;margin-top:4px;"></div><div style="height:4px;background:var(--line-2);border-radius:2px;margin-top:4px;"></div></div>
+      <div style="background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:8px;"><div style="font-family:var(--mono);font-size:8.5px;color:var(--accent);letter-spacing:0.1em;">READY · 2</div><div style="height:4px;background:var(--accent);border-radius:2px;margin-top:6px;"></div><div style="height:4px;background:var(--line-2);border-radius:2px;margin-top:4px;"></div></div>
+      <div style="background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:8px;"><div style="font-family:var(--mono);font-size:8.5px;color:var(--agent);letter-spacing:0.1em;">DONE · 4</div><div style="height:4px;background:var(--agent);border-radius:2px;margin-top:6px;opacity:0.7;"></div><div style="height:4px;background:var(--agent);border-radius:2px;margin-top:4px;opacity:0.7;"></div></div>
+    </div>
+  </div>
+  <div style="position:absolute;left:400px;top:30px;background:var(--bg-soft);border:1px solid var(--accent);box-shadow:var(--sh-glow);border-radius:var(--r-3);width:200px;padding:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <span class="chip accent">BOARD · selected</span>
+    </div>
+    <div style="font-size:14px;font-weight:600;letter-spacing:-0.005em;">Sprint 12</div>
+    <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);margin-top:6px;letter-spacing:0.04em;">5 features · 0 due today</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:10px;">
+      <div style="height:24px;background:var(--bg);border-radius:2px;"></div>
+      <div style="height:24px;background:var(--bg);border-radius:2px;"></div>
+      <div style="height:24px;background:var(--bg);border-radius:2px;"></div>
+      <div style="height:24px;background:var(--bg);border-radius:2px;"></div>
+    </div>
+  </div>
+</div>
+<div class="spec">Two sizes: full (3-col preview) and compact (count strip). Both link to the same board detail.</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">06</span>Lens toggle</h2>
+<p class="note">Switches between views of the same graph. <b style="color:var(--ink);">L</b>ogical (problems/features), <b style="color:var(--ink);">D</b>eployment (services/infra), <b style="color:var(--ink);">B</b>oth (overlay). Lives top-right of the canvas.</p>
+<div class="demo" style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;">
+  <div class="lens-toggle">
+    <div class="opt on">L</div>
+    <div class="opt">D</div>
+    <div class="opt">B</div>
+  </div>
+  <div class="lens-toggle">
+    <div class="opt">L</div>
+    <div class="opt on">D</div>
+    <div class="opt">B</div>
+  </div>
+  <div class="lens-toggle">
+    <div class="opt">L</div>
+    <div class="opt">D</div>
+    <div class="opt on">B</div>
+  </div>
+  <div class="spec" style="margin:0;">Keyboard: <span class="kbd">L</span> cycles forward · <span class="kbd">⇧L</span> backward</div>
+</div>
+
+<div class="foot"><span>Terminal · Canvas primitives</span><span><a href="shell.html">Workspace shell →</a></span></div>
+</div>
+</body></html>

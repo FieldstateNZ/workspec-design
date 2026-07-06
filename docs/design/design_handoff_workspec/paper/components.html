@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Components</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+.wrap{max-width:1240px;margin:0 auto;padding:48px 56px 120px;}
+.back{font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;}
+.back:hover{color:var(--coral);}
+h1{font-family:var(--serif);font-size:80px;line-height:1;letter-spacing:-0.035em;font-weight:600;margin:18px 0 0;}
+.lead{color:var(--ink-soft);font-size:17px;line-height:1.55;max-width:580px;margin-top:14px;}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-fade);}
+hr.rule{border:0;height:1.5px;background:var(--ink);margin:56px 0 32px;position:relative;}
+hr.rule::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:.4;}
+h2{font-family:var(--serif);font-size:28px;letter-spacing:-0.02em;font-weight:600;margin:0 0 6px;}
+.section-num{font-family:var(--mono);font-size:11px;color:var(--coral);letter-spacing:0.16em;text-transform:uppercase;}
+.demo{background:var(--paper-soft);border:1.5px solid var(--ink);padding:28px 32px;margin-top:16px;}
+.row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+.row:last-child{margin-bottom:0;}
+.lbl-row{font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;}
+.menu{background:var(--paper);border:1.5px solid var(--ink);padding:6px 0;width:240px;box-shadow:var(--sh-3);}
+.menu .item{padding:8px 16px;font-size:13.5px;display:flex;justify-content:space-between;align-items:center;}
+.menu .item:hover{background:var(--paper-deep);color:var(--coral);}
+.menu .item .kbd{font-family:var(--mono);font-size:10px;color:var(--ink-fade);}
+.menu .sep{height:1px;background:var(--rule-soft);margin:6px 0;}
+.tabs{display:flex;border-bottom:1.5px solid var(--ink);}
+.tabs .t{padding:10px 18px;font-family:var(--sans);font-size:13px;color:var(--ink-soft);position:relative;cursor:pointer;}
+.tabs .t.active{color:var(--ink);font-weight:500;}
+.tabs .t.active::after{content:"";position:absolute;left:6px;right:6px;bottom:-2px;height:3px;background:var(--coral);border-radius:2px;transform:rotate(-0.3deg);}
+.dialog{width:420px;background:var(--paper);border:1.5px solid var(--ink);box-shadow:var(--sh-3);}
+.dialog .head{padding:16px 20px;border-bottom:1.5px solid var(--ink);display:flex;justify-content:space-between;align-items:center;}
+.dialog .head h3{font-family:var(--serif);font-size:18px;font-weight:600;letter-spacing:-0.01em;margin:0;}
+.dialog .body-d{padding:18px 20px;font-size:14px;color:var(--ink-soft);line-height:1.55;}
+.dialog .foot{padding:14px 20px;border-top:1.5px solid var(--ink);display:flex;justify-content:flex-end;gap:10px;background:var(--paper-deep);}
+.toast{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:var(--paper);border:1.5px solid var(--ink);box-shadow:var(--sh-2);width:380px;}
+.toast .icon{width:24px;height:24px;border-radius:50%;background:var(--sage);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:600;flex-shrink:0;}
+.toast.coral .icon{background:var(--coral);}
+.toast.ochre .icon{background:var(--ochre);}
+.toast .body-t{flex:1;}
+.toast .body-t .t{font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--ink);}
+.toast .body-t .s{font-size:13px;color:var(--ink-soft);margin-top:2px;}
+</style></head>
+<body>
+<div class="page">
+  <span class="trim tl"></span><span class="trim tr"></span><span class="trim bl"></span><span class="trim br"></span>
+  <div class="wrap">
+    <a class="back" href="index.html">← Paper</a>
+    <div class="kicker" style="margin-top:18px;">Sheet 03 · Components</div>
+    <h1>Components.</h1>
+    <p class="lead">The kit. Buttons, inputs, chips, menus, tabs, dialogs, toasts. Each one square by default, ink-bordered, paper-soft inside.</p>
+
+    <hr class="rule"/>
+    <div class="section-num">01 · Buttons</div>
+    <h2 style="margin-top:6px;">Action hierarchy</h2>
+    <div class="demo">
+      <div class="lbl-row">Primary · secondary · ghost · coral</div>
+      <div class="row">
+        <button class="btn primary">Run draft <span class="kbd">⌘↵</span></button>
+        <button class="btn">Cancel</button>
+        <button class="btn ghost">Skip</button>
+        <button class="btn coral">Accept draft</button>
+      </div>
+      <div class="lbl-row">Sizes</div>
+      <div class="row">
+        <button class="btn primary" style="font-size:11px;padding:5px 10px;">Small</button>
+        <button class="btn primary">Default</button>
+        <button class="btn primary" style="font-size:15px;padding:11px 22px;">Large</button>
+      </div>
+      <div class="lbl-row">Stamps &amp; chips</div>
+      <div class="row">
+        <span class="stamp">Drafted</span>
+        <span class="chip">Feature</span>
+        <span class="chip coral">v3</span>
+        <span class="chip coral fill">Drafted v3</span>
+        <span class="chip blue">Logical</span>
+        <span class="chip ochre">Conflict</span>
+        <span class="chip sage">Resolved</span>
+        <span class="chip ghost">Archived</span>
+      </div>
+    </div>
+
+    <hr class="rule"/>
+    <div class="section-num">02 · Inputs</div>
+    <h2 style="margin-top:6px;">Text fields</h2>
+    <div class="demo">
+      <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+        <div>
+          <div class="lbl-row">Default</div>
+          <input class="input" placeholder="search.spec"/>
+        </div>
+        <div>
+          <div class="lbl-row">Focus</div>
+          <input class="input" value="GitHub OAuth flow" style="border-color:var(--coral);box-shadow:0 0 0 3px var(--coral-soft);"/>
+        </div>
+        <div>
+          <div class="lbl-row">With hand label</div>
+          <input class="input" placeholder="we want users to log in with…" style="font-family:var(--hand);font-size:18px;"/>
+        </div>
+        <div>
+          <div class="lbl-row">Disabled</div>
+          <input class="input" value="locked field" disabled style="background:var(--paper-deep);color:var(--ink-fade);"/>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule"/>
+    <div class="section-num">03 · Menu</div>
+    <h2 style="margin-top:6px;">Dropdown / context</h2>
+    <div class="demo" style="display:flex;gap:36px;">
+      <div class="menu">
+        <div class="item">Open detail<span class="kbd">↵</span></div>
+        <div class="item">Promote draft<span class="kbd">⌘P</span></div>
+        <div class="item">Group selection<span class="kbd">⌘G</span></div>
+        <div class="sep"></div>
+        <div class="item">Add to board<span class="kbd">B</span></div>
+        <div class="item">Cite as source<span class="kbd">@</span></div>
+        <div class="sep"></div>
+        <div class="item" style="color:var(--coral);">Archive…<span class="kbd">⌫</span></div>
+      </div>
+      <div style="flex:1;">
+        <div class="lbl-row">Tabs</div>
+        <div class="tabs" style="margin-top:4px;">
+          <div class="t active">Detail</div>
+          <div class="t">Sources</div>
+          <div class="t">Versions</div>
+          <div class="t">Activity</div>
+        </div>
+        <div style="padding:24px 4px;color:var(--ink-soft);font-size:14px;">Tab content sits below the rule. The active tab gets a hand-drawn coral underline.</div>
+      </div>
+    </div>
+
+    <hr class="rule"/>
+    <div class="section-num">04 · Dialog</div>
+    <h2 style="margin-top:6px;">Modal</h2>
+    <div class="demo" style="display:flex;justify-content:center;padding:48px;">
+      <div class="dialog">
+        <div class="head"><h3>Promote this draft?</h3><button class="btn ghost" style="padding:4px 8px;font-size:11px;">Esc</button></div>
+        <div class="body-d">
+          Atlas drafted <b>GitHub OAuth flow</b> from three notes. Promoting will solidify the pencil into ink and add it to the canvas as a feature artifact.
+        </div>
+        <div class="foot">
+          <button class="btn">Keep as draft</button>
+          <button class="btn primary">Promote →</button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule"/>
+    <div class="section-num">05 · Toasts</div>
+    <h2 style="margin-top:6px;">Notification</h2>
+    <div class="demo" style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;">
+      <div class="toast"><div class="icon">✓</div><div class="body-t"><div class="t">Saved to Triage</div><div class="s">Sheet · Discovery · 14:32</div></div></div>
+      <div class="toast coral"><div class="icon">!</div><div class="body-t"><div class="t">Atlas drafted three new artifacts</div><div class="s"><span style="color:var(--coral);cursor:pointer;">Review →</span> · or keep working</div></div></div>
+      <div class="toast ochre"><div class="icon">?</div><div class="body-t"><div class="t">Two notes look like duplicates</div><div class="s">Want me to merge them?</div></div></div>
+    </div>
+
+    <div style="margin-top:60px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;border-top:1.5px solid var(--ink);padding-top:18px;">
+      <span>Sheet 03 of 14</span><span><a href="canvas-primitives.html" style="color:var(--coral);">Next: Canvas primitives →</a></span>
+    </div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</helmet>
+<div style="width: 234px; height: 100%; background: #fafafb; border-right: 1px solid #e4e4e7; display: flex; flex-direction: column; padding: 16px 12px 12px; overflow-y: auto; font-family: 'Inter Tight', system-ui, sans-serif; color: #0a0a0c;">
+
+  <!-- BOARD -->
+  <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #b8b8be; font-family: 'JetBrains Mono', monospace; padding: 0 8px; margin-bottom: 7px;">Board</div>
+  <div style="{{ sDiscovery }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b8a55" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18M3 12h18" opacity="0.45"></path></svg>
+    <span style="font-size: 13px; flex: 1;">Discovery</span>
+    <span style="font-size: 9px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: #1b8a55; background: #fff; border: 1px solid rgba(27,138,85,0.25); border-radius: 4px; padding: 1px 5px; white-space: nowrap;">2 lenses</span>
+  </div>
+  <div style="display: flex; gap: 4px; padding: 4px 8px 0 34px; margin-bottom: 14px;">
+    <span style="{{ sLensFreeform }}">Freeform</span>
+    <span style="color: #d1d1d6; font-size: 11px; padding: 2px;">⇄</span>
+    <span style="{{ sLensStructured }}">Structured</span>
+  </div>
+
+  <!-- DESIGN -->
+  <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #b8b8be; font-family: 'JetBrains Mono', monospace; padding: 0 8px; margin-bottom: 7px; display: flex; align-items: center; justify-content: space-between;"><span>Design</span><span style="font-size: 8px; letter-spacing: 0.04em; color: #cfcfd4;">lenses · rooms</span></div>
+  <div style="{{ sArchitecture }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3a6ea5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+    <span style="font-size: 13px; white-space: nowrap;">Architecture</span>
+    <span style="margin-left: auto; font-size: 7.5px; font-weight: 700; letter-spacing: 0.05em; color: #3a6ea5; background: rgba(58,110,165,0.07); border: 1px solid rgba(58,110,165,0.2); border-radius: 3px; padding: 1px 4px; font-family: 'JetBrains Mono', monospace; white-space: nowrap;">ROOM ↗</span>
+  </div>
+  <div style="{{ sDataDictionary }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f8a6a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path></svg>
+    <span style="font-size: 13px; white-space: nowrap;">Data Dictionary</span>
+    <span style="margin-left: auto; font-size: 7.5px; font-weight: 700; letter-spacing: 0.05em; color: #1f8a6a; background: rgba(31,138,106,0.07); border: 1px solid rgba(31,138,106,0.2); border-radius: 3px; padding: 1px 4px; font-family: 'JetBrains Mono', monospace; white-space: nowrap;">ON BOARD</span>
+  </div>
+  <div style="{{ sJourneys }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a07a14" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"></path><circle cx="19" cy="15" r="3"></circle></svg>
+    <span style="font-size: 13px; white-space: nowrap;">User Journeys</span>
+    <span style="margin-left: auto; font-size: 7.5px; font-weight: 700; letter-spacing: 0.05em; color: #1f8a6a; background: rgba(31,138,106,0.07); border: 1px solid rgba(31,138,106,0.2); border-radius: 3px; padding: 1px 4px; font-family: 'JetBrains Mono', monospace; white-space: nowrap;">ON BOARD</span>
+  </div>
+
+  <!-- REGISTERS -->
+  <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #b8b8be; font-family: 'JetBrains Mono', monospace; padding: 0 8px; margin: 14px 0 7px;">Registers</div>
+  <div style="{{ sDecisions }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a4a2a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"></path><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"></path></svg>
+    <span style="font-size: 13px; flex: 1;">Decisions</span>
+    <span style="font-size: 10px; color: #b8b8be; font-family: 'JetBrains Mono', monospace;">5</span>
+  </div>
+  <div style="{{ sRisks }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c43a3a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4M12 17h.01"></path></svg>
+    <span style="font-size: 13px; flex: 1;">Risks</span>
+    <span style="font-size: 10px; color: #b8b8be; font-family: 'JetBrains Mono', monospace;">2</span>
+  </div>
+
+  <!-- DELIVER -->
+  <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #b8b8be; font-family: 'JetBrains Mono', monospace; padding: 0 8px; margin: 14px 0 7px;">Deliver</div>
+  <div style="{{ sBacklog }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6d4fa6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+    <span style="font-size: 13px; flex: 1;">Backlog</span>
+    <span style="font-size: 10px; color: #b8b8be; font-family: 'JetBrains Mono', monospace;">12</span>
+  </div>
+  <div style="{{ sBuild }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6d4fa6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+    <span style="font-size: 13px; flex: 1;">Build</span>
+    <span style="width: 6px; height: 6px; border-radius: 99px; background: #1b8a55;"></span>
+  </div>
+  <div style="{{ sTriage }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3a6ea5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"></path></svg>
+    <span style="font-size: 13px; flex: 1;">Triage</span>
+    <span style="font-size: 9px; font-weight: 700; color: #3a6ea5; background: rgba(58,110,165,0.12); border-radius: 4px; padding: 1px 5px; font-family: 'JetBrains Mono', monospace;">4</span>
+  </div>
+  <div style="{{ sTest }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f8a6a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L15 8V2M8 2h8"></path></svg>
+    <span style="font-size: 13px; flex: 1;">Test</span>
+    <span style="font-size: 10px; color: #b8b8be; font-family: 'JetBrains Mono', monospace;">94%</span>
+  </div>
+  <div style="{{ sAttention }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c43a3a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"></path></svg>
+    <span style="font-size: 13px; flex: 1;">Attention</span>
+    <span style="font-size: 9px; font-weight: 700; color: #c43a3a; background: rgba(196,58,58,0.12); border-radius: 4px; padding: 1px 5px; font-family: 'JetBrains Mono', monospace;">2</span>
+  </div>
+  <div style="{{ sVelocity }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b8a55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"></polyline><polyline points="15 7 21 7 21 13"></polyline></svg>
+    <span style="font-size: 13px; flex: 1;">Velocity</span>
+  </div>
+  <div style="{{ sReconcile }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c89216" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"></path></svg>
+    <span style="font-size: 13px; flex: 1;">Reconcile</span>
+    <span style="font-size: 9px; font-weight: 700; color: #c89216; background: rgba(200,146,22,0.14); border-radius: 4px; padding: 1px 5px; font-family: 'JetBrains Mono', monospace;">3</span>
+  </div>
+
+  <!-- PROJECT -->
+  <div style="border-top: 1px solid #e4e4e7; margin-top: 16px; padding-top: 12px;">
+    <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #b8b8be; font-family: 'JetBrains Mono', monospace; padding: 0 8px; margin-bottom: 7px;">Project</div>
+    <div style="{{ sDocuments }}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#76767c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M8 13h8M8 17h6"></path></svg>
+      <span style="font-size: 13px; flex: 1;">Documents</span>
+    </div>
+    <div style="{{ sSettings }}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#76767c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      <span style="font-size: 13px; flex: 1;">Settings</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 234, &quot;height&quot;: 760}, &quot;active&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;discovery&quot;,&quot;architecture&quot;,&quot;dataDictionary&quot;,&quot;journeys&quot;,&quot;decisions&quot;,&quot;risks&quot;,&quot;backlog&quot;,&quot;build&quot;,&quot;triage&quot;,&quot;test&quot;,&quot;attention&quot;,&quot;velocity&quot;,&quot;reconcile&quot;,&quot;documents&quot;,&quot;settings&quot;], &quot;default&quot;: &quot;discovery&quot;}, &quot;lens&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;freeform&quot;,&quot;structured&quot;], &quot;default&quot;: &quot;freeform&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active || 'discovery';
+    const base = 'display:flex; align-items:center; gap:9px; padding:7px 9px; border-radius:7px; cursor:pointer; color:#4a4a52; font-weight:500; margin-bottom:1px;';
+    const on = 'display:flex; align-items:center; gap:9px; padding:8px 9px; border-radius:7px; cursor:pointer; background:rgba(27,138,85,0.10); color:#0e3b2a; font-weight:600; margin-bottom:1px;';
+    const ids = ['discovery','architecture','dataDictionary','journeys','decisions','risks','backlog','build','triage','test','attention','velocity','reconcile','documents','settings'];
+    const key = { discovery:'sDiscovery', architecture:'sArchitecture', dataDictionary:'sDataDictionary', journeys:'sJourneys', decisions:'sDecisions', risks:'sRisks', backlog:'sBacklog', build:'sBuild', triage:'sTriage', test:'sTest', attention:'sAttention', velocity:'sVelocity', reconcile:'sReconcile', documents:'sDocuments', settings:'sSettings' };
+    const out = {};
+    ids.forEach(id => { out[key[id]] = (id === active ? on : base); });
+
+    // Discovery sub-row: Freeform ⇄ Structured lens chips
+    const lensOff = 'font-size:10.5px; font-weight:500; color:#76767c; padding:2px 2px 4px;';
+    const lensOn = 'font-size:10.5px; font-weight:600; color:#1b8a55; border-bottom:2px solid #1b8a55; padding:2px 2px 4px;';
+    const lens = this.props.lens || 'freeform';
+    out.sLensFreeform = lens === 'freeform' ? lensOn : lensOff;
+    out.sLensStructured = lens === 'structured' ? lensOn : lensOff;
+    return out;
+  }
+}
+</script>
+</body>
+</html>

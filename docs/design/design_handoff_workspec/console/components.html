@@ -1,0 +1,199 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Terminal · Components</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shell.css">
+<style>
+.demo{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-3);padding:24px;}
+.demo-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:14px;}
+.spec{font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);letter-spacing:0.04em;margin-top:14px;line-height:1.5;}
+.spec b{color:var(--ink-soft);font-weight:500;}
+</style>
+</head><body>
+<div class="page">
+<div class="crumb"><a href="../index.html">Design Set</a> · <a href="index.html">Terminal</a> · <span style="color:var(--ink)">Components</span></div>
+<h1 class="page-title">Components.</h1>
+<p class="page-lead">The core kit. Built once, used everywhere. Markup is intentionally simple — class names match the tokens that drive them.</p>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">01</span>Buttons</h2>
+<div class="demo">
+  <div class="demo-row">
+    <button class="btn primary">Run agent</button>
+    <button class="btn">Cancel</button>
+    <button class="btn ghost">Skip</button>
+    <button class="btn primary lg">Get early access →</button>
+    <button class="btn sm">Add note</button>
+    <button class="btn icon" title="More"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="3" cy="7" r="1.2" fill="currentColor"/><circle cx="7" cy="7" r="1.2" fill="currentColor"/><circle cx="11" cy="7" r="1.2" fill="currentColor"/></svg></button>
+  </div>
+  <div class="demo-row" style="margin-top:14px;">
+    <button class="btn primary" disabled style="opacity:0.4;cursor:not-allowed;">Disabled</button>
+    <button class="btn">⌘ + K <span class="kbd" style="margin-left:6px;">⌘K</span></button>
+    <button class="btn" style="color:var(--danger);border-color:rgba(255,77,77,0.3);">Delete artifact</button>
+  </div>
+  <div class="spec"><b>Variants:</b> primary · default · ghost · icon · destructive &nbsp; · &nbsp; <b>Sizes:</b> sm 26 · base 32 · lg 40 &nbsp; · &nbsp; <b>States:</b> default · hover · active · focus-visible · disabled</div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">02</span>Inputs</h2>
+<div class="demo" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+  <div>
+    <div class="lbl">Default</div>
+    <div class="input" style="margin-top:8px;"><input type="text" placeholder="describe the system you're building"/></div>
+  </div>
+  <div>
+    <div class="lbl">With prefix · search</div>
+    <div class="input" style="margin-top:8px;">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:var(--ink-fade);"><circle cx="6" cy="6" r="4.5" stroke="currentColor"/><line x1="9.5" y1="9.5" x2="13" y2="13" stroke="currentColor"/></svg>
+      <input type="text" placeholder="search artifacts…"/>
+      <span class="kbd">⌘K</span>
+    </div>
+  </div>
+  <div>
+    <div class="lbl">Focused</div>
+    <div class="input" style="margin-top:8px;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);">
+      <input type="text" value="users want SSO" autofocus/>
+    </div>
+  </div>
+  <div>
+    <div class="lbl">Error</div>
+    <div class="input" style="margin-top:8px;border-color:var(--danger);">
+      <input type="text" value="auth-loop"/>
+    </div>
+    <div style="font-family:var(--mono);font-size:10.5px;color:var(--danger);margin-top:6px;">id already in use</div>
+  </div>
+  <div style="grid-column:1/-1;">
+    <div class="lbl">Multiline · prompt</div>
+    <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-2);padding:12px;margin-top:8px;font-family:var(--mono);font-size:13px;color:var(--ink);min-height:80px;">we want users to log in with their GitHub account, but we also want to keep the existing email/password flow as a fallback for enterprise customers<span style="background:var(--accent);color:var(--accent);">_</span></div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">03</span>Cards</h2>
+<div class="demo demo-grid">
+  <div class="uic">
+    <div class="lbl">Note</div>
+    <div style="font-size:14px;font-weight:600;margin-top:4px;">"GitHub OAuth would be ideal"</div>
+    <div style="font-size:12.5px;color:var(--ink-soft);margin-top:6px;line-height:1.4;">Captured from interview · Sarah, 2026-04-22</div>
+  </div>
+  <div class="uic" style="border-color:var(--accent);box-shadow:var(--sh-glow);">
+    <div class="lbl" style="color:var(--accent);">Selected</div>
+    <div style="font-size:14px;font-weight:600;margin-top:4px;">Artifact selected</div>
+    <div style="font-size:12.5px;color:var(--ink-soft);margin-top:6px;line-height:1.4;">⌘E to edit · ⌘D to duplicate · / to ask agent</div>
+  </div>
+  <div class="uic" style="display:flex;justify-content:space-between;align-items:flex-start;">
+    <div>
+      <div class="lbl" style="color:#5cf2c0;">Feature</div>
+      <div style="font-size:14px;font-weight:600;margin-top:4px;">GitHub OAuth flow</div>
+      <div style="font-size:12.5px;color:var(--ink-soft);margin-top:6px;">v3 · supersedes v2</div>
+    </div>
+    <span class="chip accent">v3</span>
+  </div>
+  <div class="uic" style="background:transparent;border-style:dashed;color:var(--ink-fade);text-align:center;">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;">+ add artifact</div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">04</span>Menu</h2>
+<div class="demo" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+  <div>
+    <div class="lbl">Context menu (right-click on artifact)</div>
+    <div class="menu" style="margin-top:10px;">
+      <div class="menu-item">Open in detail panel <span class="meta">⏎</span></div>
+      <div class="menu-item">Edit inline <span class="meta">⌘E</span></div>
+      <div class="menu-item">Duplicate <span class="meta">⌘D</span></div>
+      <div class="menu-divider"></div>
+      <div class="menu-item">Group selected (3) <span class="meta">G</span></div>
+      <div class="menu-item">Promote to feature</div>
+      <div class="menu-item">Move to board ▸</div>
+      <div class="menu-divider"></div>
+      <div class="menu-item" style="color:var(--danger);">Delete <span class="meta" style="color:rgba(255,77,77,0.5)">⌫</span></div>
+    </div>
+  </div>
+  <div>
+    <div class="lbl">Command palette (⌘K)</div>
+    <div class="menu" style="margin-top:10px;width:100%;">
+      <div style="padding:10px 12px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" style="color:var(--ink-fade);"><circle cx="6" cy="6" r="4.5" stroke="currentColor"/><line x1="9.5" y1="9.5" x2="13" y2="13" stroke="currentColor"/></svg>
+        <input type="text" placeholder="run a command…" style="flex:1;background:none;border:0;color:var(--ink);font:inherit;outline:none;font-size:13px;"/>
+      </div>
+      <div style="padding:6px 12px;font-family:var(--mono);font-size:9px;color:var(--ink-fade);letter-spacing:0.1em;text-transform:uppercase;">Recent</div>
+      <div class="menu-item">Switch to deployment lens <span class="meta">L</span></div>
+      <div class="menu-item">New board… <span class="meta">⇧⌘B</span></div>
+      <div class="menu-item">Ask agent: "find duplicates" <span class="meta">/</span></div>
+      <div style="padding:6px 12px;font-family:var(--mono);font-size:9px;color:var(--ink-fade);letter-spacing:0.1em;text-transform:uppercase;">Navigate</div>
+      <div class="menu-item">Discovery canvas</div>
+      <div class="menu-item">Container · Auth</div>
+    </div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">05</span>Tabs</h2>
+<div class="demo">
+  <div class="tabs">
+    <div class="tab active">Discovery</div>
+    <div class="tab">Containers</div>
+    <div class="tab">Boards</div>
+    <div class="tab">Versions</div>
+    <div class="tab" style="margin-left:auto;color:var(--accent);">+ new view</div>
+  </div>
+  <div style="padding:24px 0 8px;color:var(--ink-soft);font-size:13px;">Tab content area. Tabs are uppercase mono — they signal "navigation," not "content."</div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">06</span>Dialog</h2>
+<div class="demo" style="background:var(--bg);padding:0;border:0;">
+  <div style="background:rgba(0,0,0,0.5);padding:48px;display:flex;justify-content:center;border-radius:var(--r-3);border:1px solid var(--line);">
+    <div class="dialog">
+      <div class="lbl" style="color:var(--accent);">Confirm · supersede</div>
+      <h4 style="margin-top:8px;">Replace v2 with this version?</h4>
+      <p>v2 will move to history. The 3 boards referencing it will update to track v3 automatically. You can always restore from history.</p>
+      <div style="display:flex;gap:8px;justify-content:flex-end;">
+        <button class="btn ghost">Cancel</button>
+        <button class="btn">Keep v2 too</button>
+        <button class="btn primary">Supersede →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">07</span>Toasts</h2>
+<div class="demo" style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;">
+  <div class="toast">
+    <div class="dot"></div>
+    <div class="body">3 notes grouped into <b>cluster: auth</b><small>⌘Z to undo · 5s</small></div>
+  </div>
+  <div class="toast">
+    <div class="dot" style="background:var(--agent);"></div>
+    <div class="body">Atlas finished — 2 features, 1 board<small>⌘⇧A to view</small></div>
+  </div>
+  <div class="toast">
+    <div class="dot" style="background:var(--warn);"></div>
+    <div class="body">Auto-save paused · network<small>retrying…</small></div>
+  </div>
+  <div class="toast" style="border-color:var(--danger);">
+    <div class="dot" style="background:var(--danger);"></div>
+    <div class="body" style="color:var(--ink);">Couldn't reach the agent<small style="color:var(--danger);">retry · /report</small></div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">08</span>Chips &amp; tags</h2>
+<div class="demo">
+  <div class="demo-row">
+    <span class="chip">FEATURE</span>
+    <span class="chip">SLICE · v2</span>
+    <span class="chip accent">SELECTED · 3</span>
+    <span class="chip agent"><span style="display:inline-block;width:5px;height:5px;background:var(--agent);border-radius:50%;"></span>ATLAS</span>
+    <span class="chip" style="color:var(--warn);border-color:rgba(242,201,76,0.4);">DRAFT</span>
+    <span class="chip" style="color:var(--danger);border-color:rgba(255,77,77,0.3);">SUPERSEDED</span>
+  </div>
+</div>
+
+<div class="foot"><span>Terminal · Components</span><span><a href="canvas-primitives.html">Canvas primitives →</a></span></div>
+</div>
+</body></html>

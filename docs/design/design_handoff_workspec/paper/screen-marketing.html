@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+body{margin:0;}
+.nav-m{display:flex;align-items:center;padding:24px 56px;border-bottom:1.5px solid var(--ink);position:relative;}
+.nav-m::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:.4;}
+.nav-m .wm{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-0.02em;}
+.nav-m .wm .dot{color:var(--coral);}
+.nav-m .links{margin-left:48px;display:flex;gap:28px;font-size:14px;color:var(--ink-soft);}
+.nav-m .links a:hover{color:var(--coral);}
+.nav-m .right{margin-left:auto;display:flex;gap:10px;align-items:center;}
+.hero{padding:80px 56px 100px;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;border-bottom:1.5px solid var(--ink);position:relative;}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:.4;}
+.hero .kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--coral);}
+.hero h1{font-family:var(--serif);font-size:84px;font-weight:600;letter-spacing:-0.035em;line-height:0.98;margin:18px 0 0;}
+.hero h1 .it{font-style:italic;color:var(--coral);}
+.hero p{font-size:19px;color:var(--ink-soft);line-height:1.55;max-width:520px;margin-top:24px;}
+.hero .ctas{display:flex;gap:12px;margin-top:32px;}
+.hero .ctas .btn{padding:12px 22px;font-size:14px;}
+.hero .meta-row{display:flex;gap:32px;margin-top:36px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;}
+
+.hero-art{border:1.5px solid var(--ink);background:var(--paper-soft);position:relative;height:520px;background-image:linear-gradient(rgba(28,24,20,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(28,24,20,0.07) 1px,transparent 1px);background-size:16px 16px;overflow:hidden;}
+.hero-art .label{position:absolute;top:-11px;left:18px;background:var(--paper);padding:0 10px;font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:0.16em;text-transform:uppercase;}
+.hero-art .meta{position:absolute;bottom:14px;right:18px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;}
+.afact{background:var(--paper);border:1.5px solid var(--ink);padding:10px 12px;position:absolute;width:140px;}
+.afact .h{font-family:var(--mono);font-size:9px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;}
+.afact .t{font-family:var(--serif);font-size:13px;font-weight:600;margin-top:4px;line-height:1.3;}
+.afact.draft{border-style:dashed;border-color:var(--ink-ghost);background:transparent;}
+.afact.draft .t{color:var(--ink-ghost);}
+.afact.focus{box-shadow:0 0 0 1.5px var(--coral);}
+.pencil{position:absolute;font-family:var(--hand);font-size:14px;color:var(--coral);transform:rotate(-2deg);}
+
+.section{padding:96px 56px;max-width:1320px;margin:0 auto;}
+.section-h{margin-bottom:48px;}
+.section-h .k{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--coral);}
+.section-h h2{font-family:var(--serif);font-size:56px;font-weight:600;letter-spacing:-0.025em;line-height:1.05;margin:14px 0 14px;max-width:780px;}
+.section-h p{font-size:17px;color:var(--ink-soft);max-width:680px;line-height:1.55;}
+
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.feat{border-top:1.5px solid var(--ink);padding-top:24px;}
+.feat .num{font-family:var(--mono);font-size:11px;color:var(--coral);letter-spacing:0.14em;}
+.feat h3{font-family:var(--serif);font-size:24px;font-weight:600;margin:8px 0 12px;letter-spacing:-0.015em;}
+.feat p{font-size:14.5px;color:var(--ink-soft);line-height:1.55;}
+
+.split{padding:96px 56px;background:var(--paper-deep);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);position:relative;}
+.split::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:.4;}
+.split .grid{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.split blockquote{font-family:var(--serif);font-size:36px;font-weight:500;letter-spacing:-0.018em;line-height:1.3;margin:0;color:var(--ink);font-style:italic;}
+.split blockquote::before{content:"\"";color:var(--coral);font-size:64px;line-height:0;display:inline-block;margin-right:6px;vertical-align:-0.3em;}
+.split .who{margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);}
+
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--ink);}
+.tier{padding:32px;border-right:1.5px solid var(--ink);position:relative;}
+.tier:last-child{border-right:none;}
+.tier.featured{background:var(--paper-deep);}
+.tier .ti{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-fade);}
+.tier.featured .ti{color:var(--coral);}
+.tier h3{font-family:var(--serif);font-size:32px;font-weight:600;margin:8px 0 8px;letter-spacing:-0.02em;}
+.tier .price{font-family:var(--serif);font-size:48px;font-weight:600;letter-spacing:-0.025em;margin:18px 0 4px;}
+.tier .price .sub{font-family:var(--sans);font-size:14px;color:var(--ink-fade);font-weight:400;letter-spacing:0;}
+.tier ul{margin:24px 0;padding:0;list-style:none;}
+.tier li{padding:8px 0;font-size:14px;color:var(--ink-soft);border-bottom:1px solid var(--rule-soft);}
+.tier li::before{content:"•";color:var(--coral);margin-right:10px;}
+.tier .stamp-corner{position:absolute;top:14px;right:14px;}
+
+.cta{padding:120px 56px;text-align:center;border-top:1.5px solid var(--ink);position:relative;}
+.cta::before{content:"";position:absolute;left:0;right:0;top:5px;height:1px;background:var(--ink);opacity:.4;}
+.cta h2{font-family:var(--serif);font-size:72px;font-weight:600;letter-spacing:-0.03em;line-height:1;margin:0;}
+.cta .it{font-style:italic;color:var(--coral);}
+.cta p{font-size:17px;color:var(--ink-soft);margin:18px auto 32px;max-width:520px;line-height:1.55;}
+
+.footer{padding:36px 56px;border-top:1.5px solid var(--ink);font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);display:flex;justify-content:space-between;}
+</style></head>
+<body>
+<div class="page">
+  <span class="trim tl"></span><span class="trim tr"></span><span class="trim bl"></span><span class="trim br"></span>
+
+  <nav class="nav-m">
+    <div class="wm">workspec<span class="dot">.</span></div>
+    <div class="links"><a>Product</a><a>How it works</a><a>Pricing</a><a>Manifesto</a></div>
+    <div class="right"><a style="font-size:14px;color:var(--ink-soft);">Sign in</a><button class="btn primary">Early access</button></div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="kicker">Spec OS · Drafted 2026</div>
+      <h1>Spec your<br/>product, <span class="it">in pencil</span>.</h1>
+      <p>WorkSpec is a graph for product teams who think before they ship. Discovery, structure, and work — drafted on the same sheet, with every artifact dated, sourced, and signed by a hand.</p>
+      <div class="ctas">
+        <button class="btn primary">Get early access →</button>
+        <button class="btn">Watch the 90-second tour</button>
+      </div>
+      <div class="meta-row"><span>Drafted by · 12 design teams</span><span>·</span><span>Drafted in · April 2026</span></div>
+    </div>
+    <div class="hero-art">
+      <span class="label">SHEET · DISCOVERY</span>
+      <div class="afact" style="left:24px;top:60px;"><div class="h">NOTE</div><div class="t">user can't sign in</div></div>
+      <div class="afact" style="left:24px;top:140px;"><div class="h">NOTE</div><div class="t">SSO ask</div></div>
+      <div class="afact" style="left:24px;top:220px;"><div class="h">NOTE</div><div class="t">password reset</div></div>
+      <div class="afact focus" style="left:200px;top:140px;width:160px;"><div class="h">FEAT · v3</div><div class="t">OAuth flow</div></div>
+      <div class="afact draft" style="left:380px;top:80px;"><div class="h" style="color:var(--coral);">DRAFT</div><div class="t">SSO config</div></div>
+      <div class="afact draft" style="left:380px;top:200px;"><div class="h" style="color:var(--coral);">DRAFT</div><div class="t">Retry slice</div></div>
+      <div class="pencil" style="left:30px;top:300px;">↳ Atlas merged 3</div>
+      <svg style="position:absolute;inset:0;width:100%;height:100%;"><path d="M 164 90 Q 200 90, 200 160" stroke="#3a5a7a" stroke-width="1" fill="none"/><path d="M 164 170 L 200 170" stroke="#3a5a7a" stroke-width="1" fill="none"/><path d="M 164 250 Q 200 250, 200 180" stroke="#3a5a7a" stroke-width="1" fill="none"/><path d="M 360 165 L 380 110" stroke="#c96442" stroke-width="1" fill="none" stroke-dasharray="3 3"/><path d="M 360 175 L 380 230" stroke="#c96442" stroke-width="1" fill="none" stroke-dasharray="3 3"/></svg>
+      <span class="meta">Drawn · 04.13 · CL/AT</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-h">
+      <div class="k">01 · How it works</div>
+      <h2>One graph for <span class="underline">research</span>, structure, and work.</h2>
+      <p>Notes become features become slices become tickets. Every artifact has provenance — drawn by, dated, drafted-or-final. Drafts stay legible. Versions stay legible. Work happens in the open.</p>
+    </div>
+    <div class="three">
+      <div class="feat"><div class="num">01</div><h3>Discover.</h3><p>Drop notes, paste tickets, import a backlog. Atlas pencils the connections — you decide which ink to keep.</p></div>
+      <div class="feat"><div class="num">02</div><h3>Structure.</h3><p>Logical lens, deployment lens, both. Drill into containers. Promote drafts to ink. Supersede on the canvas.</p></div>
+      <div class="feat"><div class="num">03</div><h3>Ship.</h3><p>Boards live inside the canvas. Tickets keep their sources. Engineering gets context, not just a one-line summary.</p></div>
+    </div>
+  </section>
+
+  <section class="split">
+    <div class="grid">
+      <blockquote>WorkSpec is the first product tool where the AI feels like a junior I want to work with — visible, attributable, legible. It drafts. I decide.</blockquote>
+      <div>
+        <div class="who">— Maya R · Head of Product · Faro</div>
+        <div style="margin-top:32px;border-top:1.5px solid var(--ink);padding-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+          <div><div style="font-family:var(--serif);font-size:36px;font-weight:600;letter-spacing:-0.02em;">3.4×</div><div class="who" style="margin-top:4px;">faster from note → spec</div></div>
+          <div><div style="font-family:var(--serif);font-size:36px;font-weight:600;letter-spacing:-0.02em;">100%</div><div class="who" style="margin-top:4px;">artifacts have sources</div></div>
+          <div><div style="font-family:var(--serif);font-size:36px;font-weight:600;letter-spacing:-0.02em;">0</div><div class="who" style="margin-top:4px;">surprise auto-merges</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-h">
+      <div class="k">02 · Pricing</div>
+      <h2>Three plans. <span class="underline">No</span> seat tax.</h2>
+    </div>
+    <div class="pricing">
+      <div class="tier">
+        <div class="ti">Solo</div>
+        <h3>Drafter</h3>
+        <div class="price">$0<span class="sub"> · forever</span></div>
+        <ul><li>1 sheet</li><li>50 artifacts</li><li>Atlas · 100 drafts/mo</li><li>Local export</li></ul>
+        <button class="btn" style="width:100%;">Start free</button>
+      </div>
+      <div class="tier featured">
+        <span class="stamp-corner stamp">Most teams</span>
+        <div class="ti">Team</div>
+        <h3>Studio</h3>
+        <div class="price">$24<span class="sub"> / member / mo</span></div>
+        <ul><li>Unlimited sheets</li><li>Unlimited artifacts</li><li>Atlas · unlimited</li><li>Boards, lenses, drilling</li><li>SSO · audit log</li></ul>
+        <button class="btn primary" style="width:100%;">Start 14-day trial</button>
+      </div>
+      <div class="tier">
+        <div class="ti">Org</div>
+        <h3>Atelier</h3>
+        <div class="price" style="font-size:32px;padding-top:8px;">Talk to us</div>
+        <ul><li>SAML · SCIM · DPA</li><li>Custom Atlas policies</li><li>Dedicated infra</li><li>White-glove onboarding</li></ul>
+        <button class="btn" style="width:100%;">Book a call</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Stop shipping <span class="it">decks</span>.<br/>Start shipping <span class="underline">specs</span>.</h2>
+    <p>Early access is open through April. Drop your email, we'll send a sheet to play with.</p>
+    <div style="display:flex;gap:8px;justify-content:center;max-width:480px;margin:0 auto;">
+      <input class="input" placeholder="your@work.email" style="flex:1;"/>
+      <button class="btn primary">Get the sheet →</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>workspec · 2026</span>
+    <span>drafted · CL/AT</span>
+    <span>privacy · terms · manifesto</span>
+  </footer>
+</div>
+<a class="back-contents" href="index.html">← contents</a>
+</body></html>

@@ -1,0 +1,85 @@
+/* PAPER · Direction A — Architectural plan / blueprint
+   blueprint-cream paper, ink black, faded blueprint blue, coral accent
+   Tiempos Headline (display) · Söhne (sans) · JetBrains Mono (mono)
+*/
+
+:root{
+  /* Paper surface */
+  --paper:        #f3ecd8;       /* warm blueprint cream — the ground */
+  --paper-deep:   #ede4cb;       /* slightly more saturated for cards */
+  --paper-soft:   #f7f1de;       /* almost-white wash */
+  --paper-edge:   #e3d8b8;       /* aged edge / divider */
+
+  /* Ink */
+  --ink:          #1c1814;       /* primary text */
+  --ink-soft:     #4a4338;       /* secondary */
+  --ink-fade:     #8a7e68;       /* tertiary, captions */
+  --ink-ghost:    #b6a988;       /* hand-drawn ghost */
+
+  /* Lines */
+  --rule:         #1c1814;       /* hard ink rule */
+  --rule-soft:    rgba(28,24,20,0.18);
+  --rule-faint:   rgba(28,24,20,0.08);
+  --grid-major:   rgba(28,24,20,0.10);
+  --grid-minor:   rgba(28,24,20,0.04);
+
+  /* Blueprint blue — the technical line work */
+  --blue:         #3a5a7a;
+  --blue-soft:    #6e87a3;
+  --blue-faint:   rgba(58,90,122,0.14);
+
+  /* Coral — drafted / agent / accent */
+  --coral:        #c96442;       /* hot coral, sun-faded ink stamp */
+  --coral-deep:   #a84a2c;       /* darker hover */
+  --coral-soft:   rgba(201,100,66,0.12);
+
+  /* Ochre — warnings, highlights */
+  --ochre:        #b88420;
+  --ochre-soft:   rgba(184,132,32,0.14);
+
+  /* Sage — quiet positive */
+  --sage:         #5e7a4f;
+  --sage-soft:    rgba(94,122,79,0.14);
+
+  /* Type scales */
+  --serif:        "Tiempos Headline","Source Serif 4","Iowan Old Style",Georgia,serif;
+  --sans:         "Söhne","Inter","Helvetica Neue",system-ui,sans-serif;
+  --mono:         "JetBrains Mono","SF Mono",Menlo,monospace;
+  --hand:         "Caveat","Kalam",cursive;       /* pencil drafts */
+
+  /* Sizes — generous editorial scale */
+  --t-display:    72px;
+  --t-h1:         48px;
+  --t-h2:         32px;
+  --t-h3:         22px;
+  --t-body:       15px;
+  --t-small:      13px;
+  --t-caption:    11px;
+  --t-mono-sm:    10.5px;        /* labels, dimensions */
+
+  /* Space — based on a 4 grid */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+  /* Radii — Paper is mostly square; subtle rounding for chips */
+  --r-1: 1px;  --r-2: 2px;  --r-3: 3px;  --r-pill: 99px;
+
+  /* Shadows — soft paper drop */
+  --sh-1: 0 1px 0 rgba(28,24,20,0.04);
+  --sh-2: 0 1px 2px rgba(28,24,20,0.06), 0 4px 12px rgba(28,24,20,0.05);
+  --sh-3: 0 4px 16px rgba(28,24,20,0.10), 0 16px 40px rgba(28,24,20,0.08);
+  --sh-press: inset 0 1px 0 rgba(28,24,20,0.08);
+  --sh-stamp: 0 0 0 1.5px var(--coral), 0 1px 2px rgba(201,100,66,0.2);
+
+  /* Motion */
+  --d-fast: 120ms;
+  --d-med:  220ms;
+  --d-slow: 380ms;
+  --ease-out:  cubic-bezier(.2,.7,.2,1);
+  --ease-in-out: cubic-bezier(.4,0,.2,1);
+}
+
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:var(--t-body);line-height:1.55;font-feature-settings:"ss01","cv11";-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+*{box-sizing:border-box;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--coral);color:var(--paper);}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Detail</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+body{margin:0;}
+.app{display:grid;grid-template-rows:auto 1fr;height:100vh;}
+.wrap{display:grid;grid-template-columns:1fr 360px;height:100%;}
+.main{padding:48px 56px;overflow:auto;}
+.kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--coral);}
+h1{font-family:var(--serif);font-size:48px;font-weight:600;letter-spacing:-0.025em;line-height:1.05;margin:8px 0 14px;}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px;}
+.tabs{display:flex;border-bottom:1.5px solid var(--ink);margin-bottom:24px;}
+.tabs .t{padding:10px 18px;font-family:var(--sans);font-size:13px;color:var(--ink-soft);position:relative;cursor:pointer;}
+.tabs .t.active{color:var(--ink);font-weight:500;}
+.tabs .t.active::after{content:"";position:absolute;left:8px;right:8px;bottom:-2px;height:3px;background:var(--coral);transform:rotate(-0.3deg);}
+.field{display:grid;grid-template-columns:160px 1fr;gap:24px;padding:18px 0;border-bottom:1px solid var(--rule-soft);}
+.field .l{font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;padding-top:2px;}
+.field .v{font-size:15px;color:var(--ink);line-height:1.55;}
+.field .v.hand{font-family:var(--hand);font-size:20px;color:var(--ink-soft);}
+.linked{display:inline-block;padding:2px 8px;border:1px solid var(--blue);color:var(--blue);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;margin-right:6px;margin-bottom:4px;}
+.right{border-left:1.5px solid var(--ink);background:var(--paper-deep);padding:32px 28px;display:flex;flex-direction:column;gap:24px;overflow:auto;}
+.right h3{font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);margin:0 0 10px;font-weight:500;}
+.history .h{display:grid;grid-template-columns:48px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--rule-soft);position:relative;}
+.history .h .v{font-family:var(--mono);font-size:11px;color:var(--coral);}
+.history .h.past .v{color:var(--ink-fade);}
+.history .h .body{}
+.history .h .by{font-size:13px;color:var(--ink);font-weight:500;}
+.history .h .on{font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;}
+.history .h .note{font-family:var(--hand);font-size:14px;color:var(--ink-soft);margin-top:4px;}
+.action-stack{display:flex;flex-direction:column;gap:8px;}
+</style></head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="wordmark">workspec<span class="dot"></span></div>
+    <nav class="nav"><a class="active">Canvas</a><a>Boards</a><a>Library</a></nav>
+    <div class="spacer"></div>
+    <span class="meta">Detail · Feature</span>
+    <span class="avatar">CL</span>
+  </header>
+  <main class="wrap">
+    <section class="main">
+      <div class="kicker">FEATURE · v3 · drafted</div>
+      <h1>GitHub <span class="underline">OAuth</span> flow.</h1>
+      <div class="chips">
+        <span class="chip coral fill">Drafted v3</span>
+        <span class="chip">Auth</span>
+        <span class="chip blue">Logical</span>
+        <span class="chip ghost">M · est. 3d</span>
+      </div>
+      <div class="tabs">
+        <div class="t active">Detail</div>
+        <div class="t">Sources</div>
+        <div class="t">Versions (3)</div>
+        <div class="t">Activity</div>
+      </div>
+
+      <div class="field"><div class="l">Sourced from</div><div class="v"><span class="linked">[[note-41]]</span><span class="linked">[[note-44]]</span><span class="linked">[[note-46]]</span><br/><span style="color:var(--ink-soft);font-size:13px;">Three tickets, two ranging Q1, all asking for OAuth.</span></div></div>
+      <div class="field"><div class="l">Drawn by</div><div class="v">CL on 04.12 — revised by Atlas on 04.13</div></div>
+      <div class="field"><div class="l">Feeds</div><div class="v"><span class="linked">[[slice-login-retry]]</span><span class="linked">[[bug-loop]]</span></div></div>
+      <div class="field"><div class="l">Description</div><div class="v">Standard OAuth 2.0 authorization-code flow with GitHub as provider. On callback, exchange code for access token, fetch user, mint internal session.</div></div>
+      <div class="field"><div class="l">Pencil notes</div><div class="v hand" style="color:var(--coral);">add SSO? · check rate limits · what happens on revoke?</div></div>
+      <div class="field"><div class="l">Acceptance</div><div class="v" style="font-family:var(--mono);font-size:13px;">→ user lands on /login<br/>→ click "GitHub", redirect to provider<br/>→ on callback, session set, redirect to dest<br/>→ on error, error page with retry</div></div>
+    </section>
+
+    <aside class="right">
+      <div>
+        <h3>Version history</h3>
+        <div class="history">
+          <div class="h"><span class="v">v3</span><div class="body"><div class="by">Drafted v3 — Atlas merged note-46</div><div class="on">AT · 04.13 · 14:32</div><div class="note">"added SSO consideration"</div></div></div>
+          <div class="h past"><span class="v">v2</span><div class="body"><div class="by">CL revised flow</div><div class="on">CL · 04.12 · 09:11</div></div></div>
+          <div class="h past"><span class="v">v1</span><div class="body"><div class="by">CL drew first version</div><div class="on">CL · 04.10 · 16:04</div></div></div>
+        </div>
+      </div>
+      <div>
+        <h3>Actions</h3>
+        <div class="action-stack">
+          <button class="btn primary">Promote to ink</button>
+          <button class="btn">Open on canvas</button>
+          <button class="btn ghost">Add to board…</button>
+          <button class="btn ghost">Cite as source</button>
+          <button class="btn ghost" style="color:var(--coral);">Archive…</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+</div>
+<div class="titleblock">
+  <div class="row bordered-r"><span class="lbl">Sheet</span><span class="val">A · 13/14</span></div>
+  <div class="row"><span class="lbl">Scale</span><span class="val">1:1</span></div>
+  <div class="row bordered-r"><span class="lbl">Drawn</span><span class="val">CL/AT</span></div>
+  <div class="row"><span class="lbl">Date</span><span class="val">2026.04</span></div>
+  <div class="row full"><span class="lbl">Sheet name</span><span class="val serif">Detail panel — feature</span></div>
+</div>
+<a class="back-contents" href="index.html">← contents</a>
+</body></html>

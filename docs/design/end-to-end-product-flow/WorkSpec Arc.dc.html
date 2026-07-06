@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #e9ebee; }
+    * { box-sizing: border-box; }
+    ::selection { background: #cfe6da; }
+    @keyframes wsPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(123,109,240,0.0); } 50% { box-shadow: 0 0 0 4px rgba(123,109,240,0.14); } }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; background: #e9ebee; font-family: 'Inter Tight', -apple-system, system-ui, sans-serif; color: #1f2937; -webkit-font-smoothing: antialiased; padding: 40px 40px 120px;">
+<div style="max-width: 1380px; margin: 0 auto;">
+
+  <!-- ════════════ MASTHEAD ════════════ -->
+  <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; margin-bottom: 26px;">
+    <div style="max-width: 760px;">
+      <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 14px;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 7px; background: hsl(152 42% 36%); color: #fff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="5.5" cy="12" r="2.5"></circle><circle cx="18.5" cy="6" r="2.5"></circle><circle cx="18.5" cy="18" r="2.5"></circle><path d="M7.8 10.8 16.2 7.2M7.8 13.2 16.2 16.8"></path></svg>
+        </span>
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6b7280; font-family: 'JetBrains Mono', monospace;">WorkSpec · Arc Concepts</span>
+      </div>
+      <h1 style="margin: 0; font-size: 38px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05;">Putting the arc together</h1>
+      <p style="margin: 14px 0 0; font-size: 15.5px; line-height: 1.6; color: #4b5563; max-width: 68ch; text-wrap: pretty;">
+        One camera, two lenses — and a per-element arc that carries any single thing from <strong>sketch</strong> through <strong>design</strong>, <strong>build</strong>, and <strong>test</strong>, with the AI live alongside. This board is explorable options, not a finished design: each of the seven open questions gets directions with the trade-offs written next to them. Critique it frame by frame.
+      </p>
+    </div>
+    <div style="flex-shrink: 0; width: 250px; border: 1px solid #d8dce1; background: #fff; border-radius: 12px; padding: 14px 15px;">
+      <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #9ca3af; font-family: 'JetBrains Mono', monospace; margin-bottom: 9px;">Committed — not redesigned</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 11.5px; line-height: 1.4; color: #374151;">
+        <div style="display: flex; gap: 7px;"><span style="color: hsl(152 42% 40%); font-weight: 800;">1</span><span><strong>One camera, two lenses.</strong> Freeform + structured coexist for life. Not phases.</span></div>
+        <div style="display: flex; gap: 7px;"><span style="color: hsl(152 42% 40%); font-weight: 800;">2</span><span><strong>No promotion gate.</strong> Readiness is per-element, never per-project.</span></div>
+        <div style="display: flex; gap: 7px;"><span style="color: hsl(152 42% 40%); font-weight: 800;">3</span><span><strong>The arc is per-element.</strong> The board is permanently mixed-state.</span></div>
+        <div style="display: flex; gap: 7px;"><span style="color: hsl(152 42% 40%); font-weight: 800;">4</span><span><strong>The AI is a live participant.</strong> Pencils drafts as you work.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════ READING KEY ════════════ -->
+  <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 12px; padding: 13px 18px; margin-bottom: 38px; display: flex; align-items: center; gap: 26px; flex-wrap: wrap;">
+    <span style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #9ca3af; font-family: 'JetBrains Mono', monospace;">Reading key</span>
+    <div style="display: flex; align-items: center; gap: 8px;"><span style="display: inline-block; width: 26px; height: 20px; background: #fde7a3; border: 1px solid #e6c75f; border-radius: 3px; transform: rotate(-3deg);"></span><span style="font-size: 12px; color: #4b5563;">Freeform — sticky / sketch</span></div>
+    <div style="display: flex; align-items: center; gap: 8px;"><span style="display: inline-block; width: 28px; height: 20px; background: #fff; border: 1px solid #d8dce1; border-left: 3px solid #3a5a8a; border-radius: 4px;"></span><span style="font-size: 12px; color: #4b5563;">Structured — typed artifact</span></div>
+    <div style="display: flex; align-items: center; gap: 8px;"><span style="display: inline-block; width: 28px; height: 20px; background: #f6f5ff; border: 1px dashed #b9b2ef; border-radius: 4px;"></span><span style="font-size: 12px; color: #4b5563;">AI pencil draft</span></div>
+    <div style="display: flex; align-items: center; gap: 8px;"><span style="display: inline-block; width: 28px; height: 20px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 40%); border-radius: 4px;"></span><span style="font-size: 12px; color: #4b5563;">Inked / ready</span></div>
+    <div style="display: flex; align-items: center; gap: 8px;"><span style="display: inline-block; width: 26px; height: 6px; border-bottom: 2px wavy #c98a2a; border-radius: 2px;"></span><span style="font-size: 12px; color: #4b5563;">Drift / reconcile</span></div>
+  </div>
+
+  <div id="sections">
+  <!-- ════════════════════ THE ARC ════════════════════ -->
+  <div style="margin-bottom: 56px;">
+    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(152 42% 40%); font-family: 'JetBrains Mono', monospace; margin-bottom: 6px;">The arc · how the pieces fit</div>
+    <h2 style="margin: 0 0 4px; font-size: 25px; font-weight: 700; letter-spacing: -0.02em;">Where your three projects already sit</h2>
+    <p style="margin: 0 0 22px; font-size: 14px; line-height: 1.55; color: #4b5563; max-width: 82ch;">The arc runs <strong>per element</strong>, not per project — so the board is permanently heterogeneous. The three studios you've already built are all <strong>design-stage</strong> surfaces. What's unbuilt is the upstream board (sketch + structure) and the connective tissue that carries an element across stages. Reconciliation is the loop underneath, not a stage.</p>
+
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 16px; padding: 26px 26px 22px; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+
+      <!-- stage rail -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative;">
+
+        <!-- connecting line -->
+        <div style="position: absolute; top: 21px; left: 11%; right: 11%; height: 2px; background: linear-gradient(90deg, #e6c75f, #3a5a8a 33%, #6d4fa6 50%, #c98a2a 78%, hsl(152 42% 45%)); border-radius: 2px; z-index: 0;"></div>
+
+        <!-- 1 SKETCH/STRUCTURE -->
+        <div style="position: relative; z-index: 1; padding: 0 14px;">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: #fdf6e0; border: 1.5px solid #e6c75f; color: #9a7a1e;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+            </span>
+            <div style="margin-top: 11px; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap;">Sketch / Structure</div>
+            <div style="margin-top: 3px; font-size: 11px; color: #9ca3af; font-family: 'JetBrains Mono', monospace;">the board · two lenses</div>
+          </div>
+          <div style="margin-top: 14px; border: 1px dashed #c7ccd2; border-radius: 10px; padding: 11px 12px; min-height: 96px; background: #fafbfc;">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #b08400; font-family: 'JetBrains Mono', monospace;">Unbuilt — this brief</div>
+            <div style="margin-top: 7px; font-size: 11.5px; line-height: 1.45; color: #4b5563;">Freeform stickies &amp; sketches ⇄ typed artifacts. The home everything starts in and returns to.</div>
+          </div>
+          <div style="margin-top: 9px; font-size: 10px; color: #7b6df0; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 5px;"><span style="font-size: 12px;">✦</span> AI: loud — drafts structure</div>
+        </div>
+
+        <!-- 2 DESIGN -->
+        <div style="position: relative; z-index: 1; padding: 0 14px;">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: #eef2f9; border: 1.5px solid #b7c4da; color: #3a5a8a;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+            </span>
+            <div style="margin-top: 11px; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap;">Design</div>
+            <div style="margin-top: 3px; font-size: 11px; color: #9ca3af; font-family: 'JetBrains Mono', monospace;">arch · data · journeys · cost</div>
+          </div>
+          <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 7px; min-height: 96px;">
+            <div style="border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 42%); border-radius: 8px; padding: 7px 9px; background: #f7fbf9;">
+              <div style="font-size: 11.5px; font-weight: 700;">Topology Lenses</div>
+              <div style="margin-top: 1px; font-size: 10px; color: #6b7280;">cost · logical · placement</div>
+            </div>
+            <div style="border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 42%); border-radius: 8px; padding: 7px 9px; background: #f7fbf9;">
+              <div style="font-size: 11.5px; font-weight: 700;">Decision Studio</div>
+              <div style="margin-top: 1px; font-size: 10px; color: #6b7280;">costed ADRs · compare</div>
+            </div>
+            <div style="border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 42%); border-radius: 8px; padding: 7px 9px; background: #f7fbf9;">
+              <div style="font-size: 11.5px; font-weight: 700;">Deployment Diagrams</div>
+              <div style="margin-top: 1px; font-size: 10px; color: #6b7280;">C4 deploy canvas</div>
+            </div>
+          </div>
+          <div style="margin-top: 9px; font-size: 10px; color: hsl(152 42% 38%); font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 5px;">● Built — see Q3 for how they attach</div>
+        </div>
+
+        <!-- 3 BUILD -->
+        <div style="position: relative; z-index: 1; padding: 0 14px;">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: #f3eefb; border: 1.5px solid #c9b8ea; color: #6d4fa6;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </span>
+            <div style="margin-top: 11px; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap;">Build</div>
+            <div style="margin-top: 3px; font-size: 11px; color: #9ca3af; font-family: 'JetBrains Mono', monospace;">slices · the repo</div>
+          </div>
+          <div style="margin-top: 14px; border: 1px dashed #c7ccd2; border-radius: 10px; padding: 11px 12px; min-height: 96px; background: #fafbfc;">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8a6db8; font-family: 'JetBrains Mono', monospace;">Partial — tracers</div>
+            <div style="margin-top: 7px; font-size: 11.5px; line-height: 1.45; color: #4b5563;">An element flows to a build slice and leaves a tracer on the board. No gate — see Q4.</div>
+          </div>
+          <div style="margin-top: 9px; font-size: 10px; color: #9ca3af; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 5px;"><span style="font-size: 12px;">✦</span> AI: quiet — writes slices</div>
+        </div>
+
+        <!-- 4 TEST -->
+        <div style="position: relative; z-index: 1; padding: 0 14px;">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: #f0f8f2; border: 1.5px solid hsl(152 38% 70%); color: hsl(152 42% 38%);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L15 8V2"></path><path d="M8 2h8M7.5 14h9"></path></svg>
+            </span>
+            <div style="margin-top: 11px; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap;">Test</div>
+            <div style="margin-top: 3px; font-size: 11px; color: #9ca3af; font-family: 'JetBrains Mono', monospace;">terminal · per element</div>
+          </div>
+          <div style="margin-top: 14px; border: 1px dashed #c7ccd2; border-radius: 10px; padding: 11px 12px; min-height: 96px; background: #fafbfc;">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: hsl(152 30% 42%); font-family: 'JetBrains Mono', monospace;">Per-element terminus</div>
+            <div style="margin-top: 7px; font-size: 11.5px; line-height: 1.45; color: #4b5563;">The last stage of one element's arc — <em>not</em> the same as board-wide reconciliation. See Q5.</div>
+          </div>
+          <div style="margin-top: 9px; font-size: 10px; color: #9ca3af; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 5px;"><span style="font-size: 12px;">✦</span> AI: watchdog — flags failures</div>
+        </div>
+
+      </div>
+
+      <!-- reconciliation loop underneath -->
+      <div style="margin-top: 22px; border-top: 1px dashed #dde1e6; padding-top: 16px; display: flex; align-items: center; gap: 16px;">
+        <span style="display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c98a2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path><path d="M3 21v-5h5"></path></svg>
+          <span style="font-size: 12.5px; font-weight: 700; color: #97701f;">Reconciliation</span>
+        </span>
+        <span style="font-size: 12.5px; color: #4b5563; line-height: 1.5;">A <strong>continuous loop over the whole board</strong> — drift detection between the spec and the linked repo. It runs across every shipped element at once, after the arc, forever. Deliberately <em>not</em> collapsed into Test.</span>
+      </div>
+
+    </div>
+  </div>
+  <!-- ════════════════════ Q1 · LENS MECHANICS ════════════════════ -->
+  <div style="margin-bottom: 18px; border-top: 2px solid #1f2937; padding-top: 16px;">
+    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6b7280; font-family: 'JetBrains Mono', monospace; margin-bottom: 6px;">Question 01 · Lens mechanics</div>
+    <h2 style="margin: 0 0 6px; font-size: 25px; font-weight: 700; letter-spacing: -0.02em;">What <em style="font-style: italic; color: hsl(152 42% 38%);">is</em> switching lenses, physically?</h2>
+    <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4b5563; max-width: 84ch;">Toggle, morph, overlay, side-by-side? And the deeper question: does an item hold <strong>one shared position</strong> across both lenses, or its own arrangement per lens? Three directions — each makes a different bet on spatial memory vs. tidiness.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 18px; align-items: start;">
+
+    <!-- A · MORPH IN PLACE -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT A</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Same-position morph</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 210px; position: relative;">
+        <div style="position: absolute; top: 12px; left: 16px; font-size: 8.5px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: #b08400;">FREEFORM</div>
+        <div style="position: absolute; top: 12px; right: 16px; font-size: 8.5px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: #3a5a8a;">STRUCTURED</div>
+        <!-- shared-position item: card ghost behind sticky -->
+        <div style="position: absolute; top: 64px; left: 50%; transform: translateX(-50%);">
+          <div style="position: absolute; top: 6px; left: 8px; width: 134px; height: 48px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 6px; opacity: 0.55;"></div>
+          <div style="position: relative; width: 130px; padding: 8px 10px; background: #fde7a3; border: 1px solid #e6c75f; border-radius: 4px; transform: rotate(-2deg); box-shadow: 0 4px 10px rgba(16,24,40,0.1);">
+            <div style="font-family: 'Caveat', cursive; font-size: 15px; font-weight: 600; color: #5b4a1f; line-height: 1.15;">checkout retries?</div>
+          </div>
+        </div>
+        <div style="position: absolute; top: 132px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid #e3e6e9; border-radius: 999px; padding: 4px 11px; box-shadow: 0 2px 8px rgba(16,24,40,0.08);">
+          <span style="font-size: 13px; color: #9ca3af;">⇄</span>
+          <span style="font-size: 10.5px; font-weight: 600; color: #4b5563;">morph in place</span>
+        </div>
+        <div style="position: absolute; bottom: 12px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">Same <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px;">x,y</span> — only the representation changes.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Spatial memory is sacred. Truly "one camera."</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">A messy freeform cluster forces structure into the same messy spot.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Structured layouts can't auto-tidy without breaking position.</span></div>
+      </div>
+    </div>
+
+    <!-- B · PER-LENS ARRANGEMENT -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT B</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Per-lens arrangement</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 210px; position: relative;">
+        <div style="position: absolute; top: 12px; left: 16px; font-size: 8.5px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: #b08400;">FREEFORM POS</div>
+        <!-- sticky at origin -->
+        <div style="position: absolute; top: 40px; left: 22px; width: 116px; padding: 7px 9px; background: #fde7a3; border: 1px solid #e6c75f; border-radius: 4px; transform: rotate(-2deg); box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-family: 'Caveat', cursive; font-size: 14px; font-weight: 600; color: #5b4a1f; line-height: 1.15;">checkout retries?</div>
+        </div>
+        <!-- ghost trail arrow -->
+        <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"><path d="M120 64 C 180 90, 200 120, 250 138" fill="none" stroke="#b7c4da" stroke-width="1.5" stroke-dasharray="3 3"></path><path d="M250 138 l -8 -2 l 4 7 z" fill="#b7c4da"></path></svg>
+        <!-- card at structured home -->
+        <div style="position: absolute; top: 124px; right: 18px; width: 120px; padding: 7px 9px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 6px; box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-size: 7.5px; font-weight: 700; letter-spacing: 0.1em; color: #3a5a8a; font-family: 'JetBrains Mono', monospace;">FEATURE</div>
+          <div style="margin-top: 2px; font-size: 11px; font-weight: 600;">Checkout retries</div>
+        </div>
+        <div style="position: absolute; bottom: 28px; right: 16px; font-size: 8.5px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: #3a5a8a;">STRUCTURED POS</div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">Each lens keeps its own tidy home; items fly between.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Each lens can be genuinely tidy — structure auto-lays-out.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">"Where did it go?" Spatial memory breaks on every switch.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Two positions per item to store, animate, and reason about.</span></div>
+      </div>
+    </div>
+
+    <!-- C · X-RAY DIAL -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT C</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">X-ray dial (overlay)</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 210px; position: relative;">
+        <div style="position: absolute; top: 12px; left: 16px; right: 16px; text-align: center; font-size: 8.5px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: #6b7280;">BOTH AT ONCE · BLEND 50%</div>
+        <!-- blended item: card semi over sticky -->
+        <div style="position: absolute; top: 56px; left: 50%; transform: translateX(-50%);">
+          <div style="position: relative; width: 132px; padding: 8px 10px; background: #fde7a3; border: 1px solid #e6c75f; border-radius: 4px; transform: rotate(-2deg);">
+            <div style="font-family: 'Caveat', cursive; font-size: 14px; font-weight: 600; color: #5b4a1f; line-height: 1.1;">checkout retries?</div>
+          </div>
+          <div style="position: absolute; top: 4px; left: 6px; width: 132px; padding: 8px 10px; background: rgba(255,255,255,0.7); border: 1px dashed #9ec; border: 1px dashed #9eb6d8; border-radius: 6px; backdrop-filter: blur(1px);">
+            <div style="font-size: 7.5px; font-weight: 700; letter-spacing: 0.1em; color: #3a5a8a; font-family: 'JetBrains Mono', monospace;">FEATURE</div>
+            <div style="margin-top: 2px; font-size: 11px; font-weight: 600; color: #1f2937;">Checkout retries</div>
+          </div>
+        </div>
+        <!-- dial -->
+        <div style="position: absolute; bottom: 34px; left: 16px; right: 16px;">
+          <div style="height: 4px; background: linear-gradient(90deg, #e6c75f, #3a5a8a); border-radius: 99px; position: relative;">
+            <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 14px; height: 14px; background: #fff; border: 2px solid #4b5563; border-radius: 99px; box-shadow: 0 2px 5px rgba(16,24,40,0.18);"></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 8.5px; font-family: 'JetBrains Mono', monospace; color: #9ca3af;"><span>freeform</span><span>structured</span></div>
+        </div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">No hidden state — bidirectionality is native.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">No "mode" at all. You always see both truths blended.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Visual density explodes past a dozen items.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Hard to make legible at board scale; better as a peek gesture.</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Q1 recommendation + sub-question -->
+  <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; margin-bottom: 56px;">
+    <div style="border: 1px solid #cfe6da; background: #f7fbf9; border-left: 3px solid hsl(152 42% 42%); border-radius: 12px; padding: 14px 17px;">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 7px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%); background: #e7f3ec; border-radius: 4px; padding: 2px 7px;">A LEAN</span>
+        <span style="font-size: 13px; font-weight: 700;">Morph as default, with an opt-in "loosen"</span>
+      </div>
+      <div style="font-size: 12.5px; line-height: 1.5; color: #4b5563;">Default to <strong>A</strong> — shared position keeps the camera honest and spatial memory intact. Let any item <em>opt into</em> a per-lens offset when structure genuinely needs to re-tidy (a sprinkle of B), and keep <strong>C</strong> as a momentary "peek both" gesture (hold a key), not a third mode. Switching is a 280ms crossfade, never a teleport.</div>
+    </div>
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 12px; padding: 14px 17px;">
+      <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9ca3af; font-family: 'JetBrains Mono', monospace; margin-bottom: 8px;">The cross-lens question</div>
+      <div style="display: flex; flex-direction: column; gap: 7px; font-size: 12px; line-height: 1.45; color: #4b5563;">
+        <div><strong style="color: #1f2937;">Artifact seen in freeform →</strong> a "pinned card" you can draw and sticky around, not a sticky.</div>
+        <div><strong style="color: #1f2937;">Sticky seen in structured →</strong> a "loose / untyped" chip parked in a margin inbox, awaiting a type.</div>
+      </div>
+    </div>
+  </div>
+  <!-- ════════════════════ Q2 · BIDIRECTIONALITY ════════════════════ -->
+  <div style="margin-bottom: 18px; border-top: 2px solid #1f2937; padding-top: 16px;">
+    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6b7280; font-family: 'JetBrains Mono', monospace; margin-bottom: 6px;">Question 02 · Bidirectionality</div>
+    <h2 style="margin: 0 0 6px; font-size: 25px; font-weight: 700; letter-spacing: -0.02em;">Pulling an artifact <em style="font-style: italic; color: hsl(152 42% 38%);">back</em> onto the whiteboard</h2>
+    <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4b5563; max-width: 84ch;">Freeform→structured is obvious. The reverse keeps the whiteboard alive: when a structured artifact gets contested or messy, you need to sketch <em>around</em> it again. If structure is one-way, it's a filing cabinet. So — what does "back on the whiteboard" mean for something that still exists in the structure?</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 18px; align-items: start;">
+
+    <!-- A · UNFRAME IN PLACE -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT A</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Unframe in place</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 218px; position: relative;">
+        <!-- artifact with rework halo + scribbles around it -->
+        <div style="position: absolute; top: 58px; left: 50%; transform: translateX(-50%); width: 152px; height: 88px; border: 1.5px dashed #d8643f; border-radius: 12px; background: rgba(216,100,63,0.04);"></div>
+        <div style="position: absolute; top: 74px; left: 50%; transform: translateX(-50%); width: 122px; padding: 8px 10px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 6px; box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-size: 7.5px; font-weight: 700; letter-spacing: 0.1em; color: #3a5a8a; font-family: 'JetBrains Mono', monospace;">FEATURE</div>
+          <div style="margin-top: 2px; font-size: 11px; font-weight: 600;">Refund policy</div>
+        </div>
+        <div style="position: absolute; top: 40px; right: 22px; padding: 5px 7px; background: #fde7a3; border: 1px solid #e6c75f; border-radius: 4px; transform: rotate(4deg);"><div style="font-family: 'Caveat', cursive; font-size: 12px; color: #5b4a1f; line-height: 1;">partial?</div></div>
+        <div style="position: absolute; bottom: 44px; left: 18px; padding: 5px 7px; background: #fde7a3; border: 1px solid #e6c75f; border-radius: 4px; transform: rotate(-5deg);"><div style="font-family: 'Caveat', cursive; font-size: 12px; color: #5b4a1f; line-height: 1;">edge: chargebacks</div></div>
+        <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"><path d="M236 70 C 220 86, 210 92, 196 98" fill="none" stroke="#d8643f" stroke-width="1.3" stroke-dasharray="2 3"></path></svg>
+        <div style="position: absolute; top: 12px; left: 16px; right: 16px; text-align: center;"><span style="font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #d8643f;">● STILL LINKED · BEING REWORKED</span></div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">It stays itself — just gains a freeform annotation halo.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">No copy, no downgrade. One identity, still traceable.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Its structured links may dangle while it's messy.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Need a "reworking" state that isn't a draft (that's VC).</span></div>
+      </div>
+    </div>
+
+    <!-- B · SHADOW COPY -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT B</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Shadow copy</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 218px; position: relative;">
+        <div style="position: absolute; top: 56px; left: 18px; width: 116px; padding: 8px 10px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 6px; box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-size: 7.5px; font-weight: 700; letter-spacing: 0.1em; color: #3a5a8a; font-family: 'JetBrains Mono', monospace;">FEATURE · LIVE</div>
+          <div style="margin-top: 2px; font-size: 11px; font-weight: 600;">Refund policy</div>
+        </div>
+        <div style="position: absolute; top: 104px; right: 18px; width: 120px; padding: 8px 10px; background: #fffdf4; border: 1px dashed #e6c75f; border-radius: 6px; transform: rotate(-1.5deg);">
+          <div style="font-family: 'Caveat', cursive; font-size: 13px; color: #5b4a1f; line-height: 1.1;">working copy ✎</div>
+        </div>
+        <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"><path d="M134 78 C 180 90, 210 100, 250 112" fill="none" stroke="#c98a2a" stroke-width="1.3" stroke-dasharray="3 3"></path></svg>
+        <div style="position: absolute; top: 12px; left: 16px; right: 16px; text-align: center;"><span style="font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #c98a2a;">⚠ TWO TRUTHS · RECONCILE LATER</span></div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">Live structure untouched; sketch freely on the copy.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Live artifact and its links stay stable while you explore.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Two versions of the truth — exactly the drift we hate.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Demands a merge ceremony to fold the copy back.</span></div>
+      </div>
+    </div>
+
+    <!-- C · DEMOTE (anti-pattern) -->
+    <div style="border: 1px solid #ead7d2; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f4eae7; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #b4452f; border: 1px solid #ecd2cb; background: #fbf0ed; border-radius: 4px; padding: 2px 6px;">REJECT</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Demote to draft</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 218px; position: relative;">
+        <div style="position: absolute; top: 70px; left: 50%; transform: translateX(-50%); width: 128px; padding: 9px 11px; background: #f6f5ff; border: 1px dashed #b9b2ef; border-radius: 6px;">
+          <div style="font-size: 7.5px; font-weight: 700; letter-spacing: 0.1em; color: #7b6df0; font-family: 'JetBrains Mono', monospace;">↩ BACK TO PENCIL</div>
+          <div style="margin-top: 3px; font-family: 'Caveat', cursive; font-size: 14px; color: #6b5fd6;">Refund policy</div>
+        </div>
+        <div style="position: absolute; top: 12px; left: 16px; right: 16px; text-align: center;"><span style="font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #b4452f;">✕ CONFLATES WITH VERSION-CONTROL</span></div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">Reverting state ≠ moving lens. The brief says keep these apart.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f4eae7; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Reuses the pencil/ink machine that already exists.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Overloads draft-state with "lens." Two meanings, one signal.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Directly violates "don't redesign the pencil/ink layer."</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Q2 recommendation -->
+  <div style="border: 1px solid #cfe6da; background: #f7fbf9; border-left: 3px solid hsl(152 42% 42%); border-radius: 12px; padding: 14px 17px; margin-bottom: 56px;">
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 7px;">
+      <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%); background: #e7f3ec; border-radius: 4px; padding: 2px 7px;">A LEAN</span>
+      <span style="font-size: 13px; font-weight: 700;">"Back on the whiteboard" = unframe in place, not copy or downgrade</span>
+    </div>
+    <div style="font-size: 12.5px; line-height: 1.5; color: #4b5563; max-width: 96ch;">The artifact keeps its identity and its links; what changes is that it grows a <strong>freeform annotation halo</strong> — stickies, sketches, and ink strokes can land on and around it, and a coral "being reworked" ring marks it contested. This is a <em>presence in both lenses at once</em>, which is exactly why <strong>Q1's morph</strong> wants shared positions. Avoid B's shadow-copy (it manufactures the drift reconciliation is supposed to kill) and never reach for C (state ≠ lens).</div>
+  </div>
+  <!-- ════════════════════ Q3 · WHERE DESIGN LIVES ════════════════════ -->
+  <div style="margin-bottom: 18px; border-top: 2px solid hsl(152 42% 38%); padding-top: 16px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+      <span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(152 42% 38%); font-family: 'JetBrains Mono', monospace;">Question 03 · Where design lives</span>
+      <span style="font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #b4452f; background: #fbf0ed; border: 1px solid #ecd2cb; border-radius: 4px; padding: 2px 7px;">THE UNRESOLVED ONE</span>
+    </div>
+    <h2 style="margin: 0 0 6px; font-size: 25px; font-weight: 700; letter-spacing: -0.02em;">A third lens on the same camera, or a surface you enter?</h2>
+    <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4b5563; max-width: 88ch;">The live tension: a data <strong>entity</strong> wants to sit <em>next to</em> the feature that needs it — but an <strong>architecture diagram</strong> is a different working surface with its own spatial logic. The brief is firm: <em>don't default to more tabs/boards. If a separate surface is the answer, earn it — show why co-location fails first.</em> So here's co-location succeeding and failing, honestly.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 18px; align-items: start;">
+
+    <!-- A · THIRD LENS -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT A</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Design as a third lens</span>
+      </div>
+      <div style="padding: 14px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 250px; position: relative;">
+        <!-- WORKS: entity next to feature -->
+        <div style="position: relative; border: 1px solid #cfe6da; border-radius: 8px; background: rgba(47,122,87,0.04); padding: 8px 9px 10px; margin-bottom: 9px;">
+          <div style="font-size: 8px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%); margin-bottom: 6px;">✓ DATA &amp; JOURNEYS — CO-LOCATION FEELS RIGHT</div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <div style="width: 86px; padding: 6px 8px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 5px;"><div style="font-size: 7px; font-weight: 700; color: #3a5a8a; font-family: 'JetBrains Mono', monospace;">FEATURE</div><div style="font-size: 9.5px; font-weight: 600;">Checkout</div></div>
+            <span style="color: #9bb0c6; font-size: 13px;">→</span>
+            <div style="width: 86px; padding: 6px 8px; background: #fff; border: 1px solid #bfe0de; border-left: 3px solid #2f7d7a; border-radius: 5px;"><div style="font-size: 7px; font-weight: 700; color: #2f7d7a; font-family: 'JetBrains Mono', monospace;">ENTITY</div><div style="font-size: 9.5px; font-weight: 600;">Order</div></div>
+          </div>
+        </div>
+        <!-- FAILS: arch diagram crammed -->
+        <div style="position: relative; border: 1px solid #ecd2cb; border-radius: 8px; background: rgba(180,69,47,0.04); padding: 8px 9px 10px;">
+          <div style="font-size: 8px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #b4452f; margin-bottom: 6px;">✕ ARCH DIAGRAM — FIGHTS THE CLUSTER</div>
+          <svg viewBox="0 0 240 70" style="width: 100%; height: 56px;">
+            <rect x="6" y="10" width="46" height="22" rx="3" fill="#fff" stroke="#c7ccd2"></rect>
+            <rect x="96" y="6" width="46" height="22" rx="3" fill="#fff" stroke="#c7ccd2"></rect>
+            <rect x="96" y="40" width="46" height="22" rx="3" fill="#fff" stroke="#c7ccd2"></rect>
+            <rect x="188" y="22" width="46" height="22" rx="3" fill="#fff" stroke="#c7ccd2"></rect>
+            <path d="M52 21 L96 17 M52 21 L96 51 M142 17 L188 31 M142 51 L188 35" stroke="#b4452f" stroke-width="1" fill="none" stroke-dasharray="2 2"></path>
+          </svg>
+          <div style="font-size: 9px; color: #b4452f; text-align: center; margin-top: 2px;">boxes &amp; wires want orthogonal routing, not free clusters</div>
+        </div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Data &amp; journeys live exactly where they're needed. Zero navigation.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">One camera can't host wire-routing and free clusters at once.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Pan/zoom semantics fight between diagram and board.</span></div>
+      </div>
+    </div>
+
+    <!-- B · DISTINCT SURFACE -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT B</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Design as a surface</span>
+      </div>
+      <div style="padding: 14px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 250px; position: relative;">
+        <!-- board element -->
+        <div style="position: absolute; top: 20px; left: 16px; width: 104px; padding: 7px 9px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 6px; box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-size: 7.5px; font-weight: 700; color: #3a5a8a; font-family: 'JetBrains Mono', monospace;">FEATURE</div>
+          <div style="margin-top: 2px; font-size: 10.5px; font-weight: 600;">Checkout</div>
+          <div style="margin-top: 6px; display: inline-flex; align-items: center; gap: 3px; font-size: 8px; font-weight: 700; color: #6d4fa6; background: #f3eefb; border: 1px solid #d9cbef; border-radius: 4px; padding: 1.5px 5px; font-family: 'JetBrains Mono', monospace;">⤢ OPEN DESIGN</div>
+        </div>
+        <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"><path d="M120 44 C 150 56, 165 78, 165 96" fill="none" stroke="#c9b8ea" stroke-width="1.5" stroke-dasharray="4 3"></path><path d="M165 96 l -3 -7 l 7 2 z" fill="#c9b8ea"></path></svg>
+        <!-- dedicated surface -->
+        <div style="position: absolute; bottom: 14px; left: 14px; right: 14px; height: 120px; background: #0e0f13; border: 1px solid #2a2c34; border-radius: 8px; padding: 9px 10px; overflow: hidden;">
+          <div style="font-size: 7.5px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: #5cf2c0;">DEPLOYMENT SURFACE</div>
+          <svg viewBox="0 0 240 70" style="width: 100%; height: 66px; margin-top: 4px;">
+            <rect x="10" y="14" width="60" height="40" rx="4" fill="none" stroke="#3a3d47"></rect>
+            <rect x="90" y="8" width="44" height="20" rx="3" fill="#15161b" stroke="#4a4d57"></rect>
+            <rect x="90" y="40" width="44" height="20" rx="3" fill="#15161b" stroke="#4a4d57"></rect>
+            <rect x="170" y="22" width="56" height="26" rx="3" fill="#15161b" stroke="#ff5a36"></rect>
+            <path d="M70 28 L90 18 M70 40 L90 50 M134 18 L170 32 M134 50 L170 38" stroke="#5cf2c0" stroke-width="1" fill="none"></path>
+          </svg>
+        </div>
+        <div style="position: absolute; top: 96px; right: 18px; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; font-family: 'JetBrains Mono', monospace; color: #6d4fa6;">A ROOM YOU ENTER</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Each surface gets its native spatial logic. Your 3 studios already are these.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Navigation distance. The board risks becoming a filing cabinet.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">A data entity sent "to a room" loses its adjacency to the feature.</span></div>
+      </div>
+    </div>
+
+    <!-- C · HYBRID (recommended) -->
+    <div style="border: 1.5px solid hsl(152 42% 62%); background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(47,122,87,0.12);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #eaf3ee; display: flex; align-items: center; gap: 9px; background: #f7fbf9;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #fff; background: hsl(152 42% 40%); border-radius: 4px; padding: 2px 6px;">OPT C</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Hybrid + tether</span>
+        <span style="margin-left: auto; font-size: 8px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%);">RECOMMENDED</span>
+      </div>
+      <div style="padding: 14px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 250px; position: relative;">
+        <!-- inline data -->
+        <div style="position: relative; display: flex; gap: 7px; align-items: center; margin-bottom: 10px;">
+          <div style="width: 84px; padding: 6px 8px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 5px;"><div style="font-size: 7px; font-weight: 700; color: #3a5a8a; font-family: 'JetBrains Mono', monospace;">FEATURE</div><div style="font-size: 9.5px; font-weight: 600;">Checkout</div></div>
+          <span style="color: #9bb0c6; font-size: 12px;">→</span>
+          <div style="width: 84px; padding: 6px 8px; background: #fff; border: 1px solid #bfe0de; border-left: 3px solid #2f7d7a; border-radius: 5px;"><div style="font-size: 7px; font-weight: 700; color: #2f7d7a; font-family: 'JetBrains Mono', monospace;">ENTITY</div><div style="font-size: 9.5px; font-weight: 600;">Order</div></div>
+          <span style="font-size: 8px; color: hsl(152 42% 38%); font-family: 'JetBrains Mono', monospace; line-height: 1.2;">inline<br>(lens)</span>
+        </div>
+        <!-- tether to surface -->
+        <div style="position: relative; border-top: 1px dashed #d3d7dc; padding-top: 9px;">
+          <div style="font-size: 7.5px; font-family: 'JetBrains Mono', monospace; color: #9ca3af; margin-bottom: 5px;">board <span style="color:#6d4fa6;">›</span> Checkout <span style="color:#6d4fa6;">›</span> <span style="color:#1f2937; font-weight:700;">architecture</span></div>
+          <div style="display: flex; gap: 8px;">
+            <div style="width: 58px; flex-shrink: 0; padding: 6px; background: #fff; border: 1px dashed #c7ccd2; border-radius: 6px; opacity: 0.7;"><div style="font-size: 6.5px; font-weight: 700; color: #6b7280; font-family: 'JetBrains Mono', monospace;">GHOST</div><div style="font-size: 8px; font-weight: 600; color:#9ca3af;">source</div></div>
+            <div style="flex: 1; background: #0e0f13; border: 1px solid #2a2c34; border-radius: 6px; padding: 7px 8px;">
+              <div style="font-size: 7px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: #5cf2c0;">DESIGN SURFACE · TETHERED</div>
+              <svg viewBox="0 0 180 46" style="width: 100%; height: 46px; margin-top: 3px;">
+                <rect x="6" y="12" width="40" height="22" rx="3" fill="#15161b" stroke="#4a4d57"></rect>
+                <rect x="70" y="6" width="40" height="16" rx="3" fill="#15161b" stroke="#4a4d57"></rect>
+                <rect x="70" y="26" width="40" height="16" rx="3" fill="#15161b" stroke="#4a4d57"></rect>
+                <rect x="134" y="14" width="40" height="20" rx="3" fill="#15161b" stroke="#ff5a36"></rect>
+                <path d="M46 20 L70 14 M46 26 L70 34 M110 14 L134 22 M110 34 L134 28" stroke="#5cf2c0" stroke-width="0.9" fill="none"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div style="position: absolute; bottom: 9px; left: 14px; right: 14px; font-size: 9.5px; color: #6b7280; text-align: center;">Co-locate data; surface diagrams — always with a breadcrumb home.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #eaf3ee; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Each kind of design gets the home it deserves — earned, not default.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Two patterns to learn: inline lens vs. tethered surface.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">The tether (breadcrumb + ghost + minimap) must be built well.</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Q3 recommendation -->
+  <div style="border: 1px solid #cfe6da; background: #f7fbf9; border-left: 3px solid hsl(152 42% 42%); border-radius: 12px; padding: 14px 17px; margin-bottom: 56px;">
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 7px;">
+      <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%); background: #e7f3ec; border-radius: 4px; padding: 2px 7px;">C LEAN</span>
+      <span style="font-size: 13px; font-weight: 700;">Split by spatial logic — and this is exactly where your three studios attach</span>
+    </div>
+    <div style="font-size: 12.5px; line-height: 1.5; color: #4b5563; max-width: 100ch;">Design isn't one thing. <strong>Data dictionary &amp; user journeys</strong> share the board's clustering logic → third lens, co-located (A). <strong>Architecture, deployment, data-flow, costed decisions</strong> need orthogonal routing and their own zoom → a tethered surface (B) — which is precisely what <strong>Topology Lenses</strong>, <strong>Deployment Diagrams</strong>, and <strong>Decision Studio</strong> already are. The thing to build is the <strong>tether</strong>: a persistent breadcrumb, a ghost of the originating element, and a one-key hop back. Co-location fails for diagrams (shown in A) — so the surface is earned, not a tab grabbed by default.</div>
+  </div>
+  <!-- ════════════════════ Q4 · FLOW-TO-DEV ════════════════════ -->
+  <div style="margin-bottom: 18px; border-top: 2px solid #1f2937; padding-top: 16px;">
+    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6b7280; font-family: 'JetBrains Mono', monospace; margin-bottom: 6px;">Question 04 · Flow-to-dev</div>
+    <h2 style="margin: 0 0 6px; font-size: 25px; font-weight: 700; letter-spacing: -0.02em;">With no gate, what says "this one's ready to build"?</h2>
+    <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4b5563; max-width: 84ch;">Readiness is per-element, so there's no ceremony — but it shouldn't be invisible either. Who signals it: the user, the AI, either? And what does an element visibly <em>leaving for build</em> look like, with what trace left behind on the board?</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 18px; align-items: start;">
+
+    <!-- A · SEND-TO-BUILD PULL -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT A</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Send-to-build pull</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 220px; position: relative;">
+        <div style="position: absolute; top: 26px; left: 16px; width: 110px; padding: 8px 10px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 42%); border-radius: 6px; box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-size: 7.5px; font-weight: 700; color: hsl(152 42% 36%); font-family: 'JetBrains Mono', monospace;">FEATURE · INKED</div>
+          <div style="margin-top: 2px; font-size: 11px; font-weight: 600;">Checkout</div>
+          <div style="margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; font-size: 8px; font-weight: 700; color: #fff; background: hsl(152 42% 40%); border-radius: 4px; padding: 2px 6px; font-family: 'JetBrains Mono', monospace;">▸ SEND TO BUILD</div>
+        </div>
+        <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"><path d="M128 56 C 180 70, 210 90, 248 104" fill="none" stroke="hsl(152 42% 50%)" stroke-width="1.5"></path><path d="M248 104 l -3 -7 l 7 2 z" fill="hsl(152 42% 50%)"></path></svg>
+        <!-- build slice -->
+        <div style="position: absolute; bottom: 44px; right: 16px; width: 108px; padding: 8px 10px; background: #f3eefb; border: 1px solid #c9b8ea; border-left: 3px solid #6d4fa6; border-radius: 6px;">
+          <div style="font-size: 7.5px; font-weight: 700; color: #6d4fa6; font-family: 'JetBrains Mono', monospace;">BUILD SLICE</div>
+          <div style="margin-top: 2px; font-size: 10.5px; font-weight: 600;">checkout-svc</div>
+        </div>
+        <!-- tracer left behind -->
+        <div style="position: absolute; top: 110px; left: 22px; display: inline-flex; align-items: center; gap: 4px; font-size: 8.5px; font-family: 'JetBrains Mono', monospace; color: #6d4fa6; background: #fff; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">→ build #128</div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">User pulls; element spawns a slice + leaves a tracer chip.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Deliberate, human-owned, one gesture. No batching.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Easy to forget; nothing nudges you when something's ripe.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Need a build rail/target for the gesture to land on.</span></div>
+      </div>
+    </div>
+
+    <!-- B · READINESS RIBBON (caution) -->
+    <div style="border: 1px solid #ead9c4; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f4ece0; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #97701f; border: 1px solid #e8d6b2; background: #fbf5e8; border-radius: 4px; padding: 2px 6px;">CAUTION</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Readiness ribbon</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 220px; position: relative;">
+        <div style="position: absolute; top: 44px; left: 50%; transform: translateX(-50%); width: 150px; padding: 9px 11px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 42%); border-radius: 7px; box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-size: 7.5px; font-weight: 700; color: hsl(152 42% 36%); font-family: 'JetBrains Mono', monospace;">FEATURE</div>
+          <div style="margin-top: 2px; font-size: 11px; font-weight: 600;">Checkout</div>
+          <div style="margin-top: 8px; display: flex; gap: 4px; align-items: center;">
+            <span style="font-size: 7px; font-family: 'JetBrains Mono', monospace; color: #9ca3af;">decision</span><span style="width: 9px; height: 9px; border-radius: 2px; background: hsl(152 42% 50%);"></span>
+            <span style="font-size: 7px; font-family: 'JetBrains Mono', monospace; color: #9ca3af;">data</span><span style="width: 9px; height: 9px; border-radius: 2px; background: hsl(152 42% 50%);"></span>
+            <span style="font-size: 7px; font-family: 'JetBrains Mono', monospace; color: #9ca3af;">scenario</span><span style="width: 9px; height: 9px; border-radius: 2px; background: #dfe3e8;"></span>
+          </div>
+          <div style="margin-top: 8px; height: 4px; background: #eef0f2; border-radius: 99px; overflow: hidden;"><div style="width: 66%; height: 100%; background: hsl(152 42% 50%);"></div></div>
+        </div>
+        <div style="position: absolute; top: 12px; left: 16px; right: 16px; text-align: center;"><span style="font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #97701f;">⚠ A METER IS A SCORE IS A GATE?</span></div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">Element accrues "ready" signals; full meter → one-tap flow.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f4ece0; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Makes ripeness visible without anyone watching.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">A completion meter smells like the gate we just deleted.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Only safe if it never <em>blocks</em> — pure hint, never a checkpoint.</span></div>
+      </div>
+    </div>
+
+    <!-- C · AI PENCILS THE SLICE -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT C</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">AI pencils the slice</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 220px; position: relative;">
+        <div style="position: absolute; top: 30px; left: 16px; width: 104px; padding: 8px 10px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 42%); border-radius: 6px; box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-size: 7.5px; font-weight: 700; color: hsl(152 42% 36%); font-family: 'JetBrains Mono', monospace;">FEATURE</div>
+          <div style="margin-top: 2px; font-size: 11px; font-weight: 600;">Checkout</div>
+        </div>
+        <!-- AI pencilled slice draft -->
+        <div style="position: absolute; bottom: 50px; right: 16px; width: 116px; padding: 8px 10px; background: #f6f5ff; border: 1px dashed #b9b2ef; border-radius: 6px; animation: wsPulse 2s ease-in-out infinite;">
+          <div style="display: flex; align-items: center; gap: 4px;"><span style="font-size: 10px; color: #7b6df0;">✦</span><span style="font-size: 7.5px; font-weight: 700; color: #7b6df0; font-family: 'JetBrains Mono', monospace;">ATLAS · DRAFT SLICE</span></div>
+          <div style="margin-top: 3px; font-family: 'Caveat', cursive; font-size: 14px; color: #6b5fd6;">checkout-svc?</div>
+          <div style="margin-top: 5px; display: flex; gap: 5px;"><span style="font-size: 8px; font-weight: 700; color: hsl(152 42% 40%); border: 1px solid #cfe6da; border-radius: 3px; padding: 1px 5px;">✓ ink</span><span style="font-size: 8px; font-weight: 700; color: #9ca3af; border: 1px solid #e3e6e9; border-radius: 3px; padding: 1px 5px;">dismiss</span></div>
+        </div>
+        <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"><path d="M122 56 C 170 78, 200 96, 244 120" fill="none" stroke="#c9c2f2" stroke-width="1.3" stroke-dasharray="3 3"></path></svg>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">AI notices ripeness, pencils a slice; human inks to confirm.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Nudges without nagging; reuses the pencil/ink gesture you know.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Over-eager AI could litter the board with premature slices.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Ink stays human — the AI can draft, never send.</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Q4 recommendation -->
+  <div style="border: 1px solid #cfe6da; background: #f7fbf9; border-left: 3px solid hsl(152 42% 42%); border-radius: 12px; padding: 14px 17px; margin-bottom: 56px;">
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 7px;">
+      <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%); background: #e7f3ec; border-radius: 4px; padding: 2px 7px;">A + C</span>
+      <span style="font-size: 13px; font-weight: 700;">Either hand can start it; both leave the same tracer. No meter.</span>
+    </div>
+    <div style="font-size: 12.5px; line-height: 1.5; color: #4b5563; max-width: 100ch;">Let the <strong>human pull</strong> (A) <em>or</em> the <strong>AI pencil a slice</strong> (C) — same outcome: a build slice spawns and the element keeps a quiet <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; background: #eef0f2; border-radius: 3px; padding: 0 4px;">→ build #128</span> tracer plus a faded twin in place, so the board still shows what's left for build. Skip the readiness meter (B): it re-creates a checkpoint by the back door. Ink stays a human act — the AI drafts the send, never commits it.</div>
+  </div>
+  <!-- ════════════════════ Q5 · TEST vs RECONCILIATION ════════════════════ -->
+  <div style="margin-bottom: 16px; border-top: 2px solid #1f2937; padding-top: 16px;">
+    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6b7280; font-family: 'JetBrains Mono', monospace; margin-bottom: 6px;">Question 05 · Test vs reconciliation</div>
+    <h2 style="margin: 0 0 6px; font-size: 25px; font-weight: 700; letter-spacing: -0.02em;">Two different things — don't collapse them</h2>
+    <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4b5563; max-width: 84ch;"><strong>Test</strong> is the terminal stage of one element's arc. <strong>Reconciliation</strong> — drift between the spec and the linked repo — is a continuous loop over the <em>whole board</em>, forever, keeping the spec honest after things ship. Here's the distinction made explicit, then where drift surfaces.</p>
+  </div>
+
+  <!-- the distinction strip -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 12px; padding: 14px 16px; display: flex; gap: 13px; align-items: flex-start;">
+      <span style="flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 9px; background: #f0f8f2; border: 1px solid hsl(152 38% 72%); color: hsl(152 42% 38%);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L15 8V2"></path><path d="M8 2h8"></path></svg></span>
+      <div>
+        <div style="font-size: 13px; font-weight: 700;">Test — per element, terminal</div>
+        <div style="margin-top: 3px; font-size: 11.5px; line-height: 1.45; color: #6b7280;">A chip on the element's own arc track. Belongs to <em>one</em> thing. Runs once it's built; the last stop on that element's journey.</div>
+      </div>
+    </div>
+    <div style="border: 1px solid #ead9c4; background: #fffdf8; border-radius: 12px; padding: 14px 16px; display: flex; gap: 13px; align-items: flex-start;">
+      <span style="flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 9px; background: #fbf3e3; border: 1px solid #e8d6b2; color: #c98a2a;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path><path d="M3 21v-5h5"></path></svg></span>
+      <div>
+        <div style="font-size: 13px; font-weight: 700;">Reconciliation — whole board, continuous</div>
+        <div style="margin-top: 3px; font-size: 11.5px; line-height: 1.45; color: #8a6d3b;">Not a stage. A standing loop comparing every shipped element against the repo. Drift can hit something that finished its arc months ago.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; font-family: 'JetBrains Mono', monospace; margin-bottom: 12px;">Where drift surfaces — three options</div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 18px; align-items: start;">
+
+    <!-- A · MARGINALIA -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT A</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Drift on the element</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 210px; position: relative;">
+        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 150px; padding: 9px 11px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 42%); border-radius: 7px; box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-size: 7.5px; font-weight: 700; color: hsl(152 42% 36%); font-family: 'JetBrains Mono', monospace;">FEATURE · SHIPPED</div>
+          <div style="margin-top: 2px; font-size: 11.5px; font-weight: 600; display: inline-block; border-bottom: 2px solid #c98a2a; padding-bottom: 1px; background-image: linear-gradient(#c98a2a 0 0); background-size: 100% 2px; background-position: 0 100%; background-repeat: repeat-x;">Refund policy</div>
+          <div style="margin-top: 7px; display: inline-flex; align-items: center; gap: 4px; font-size: 8px; font-weight: 700; color: #97701f; background: #fbf3e3; border: 1px solid #e8d6b2; border-radius: 4px; padding: 2px 6px; font-family: 'JetBrains Mono', monospace;">⚠ DRIFTED FROM repo</div>
+        </div>
+        <div style="position: absolute; top: 12px; right: 16px; display: inline-flex; align-items: center; gap: 5px; background: #fff; border: 1px solid #e8d6b2; border-radius: 999px; padding: 3px 9px; box-shadow: 0 2px 6px rgba(16,24,40,0.06);"><span style="width: 6px; height: 6px; border-radius: 99px; background: #c98a2a;"></span><span style="font-size: 9px; font-weight: 700; color: #97701f; font-family: 'JetBrains Mono', monospace;">3 DRIFTED</span></div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">Amber underline on drifted items + a board-level count.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Drift lives on the exact thing that drifted. Click → diff.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Scattered — no whole-board read of how honest the spec is.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Marks must stay quiet — not every card wearing a warning.</span></div>
+      </div>
+    </div>
+
+    <!-- B · RECONCILE LENS -->
+    <div style="border: 1.5px solid hsl(152 42% 62%); background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(47,122,87,0.12);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #eaf3ee; display: flex; align-items: center; gap: 9px; background: #f7fbf9;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #fff; background: hsl(152 42% 40%); border-radius: 4px; padding: 2px 6px;">OPT B</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Reconcile overlay</span>
+        <span style="margin-left: auto; font-size: 8px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%);">LEAN</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 210px; position: relative;">
+        <div style="position: absolute; top: 12px; left: 16px; right: 16px; text-align: center;"><span style="font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 38%);">OVERLAY ON · RECOLOUR BY SYNC</span></div>
+        <div style="position: absolute; top: 40px; left: 16px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="width: 96px; padding: 6px 8px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 45%); border-radius: 5px;"><div style="font-size: 9px; font-weight: 600;">Checkout</div><div style="font-size: 7px; color: hsl(152 42% 38%); font-family: 'JetBrains Mono', monospace;">in sync</div></div>
+          <div style="width: 96px; padding: 6px 8px; background: #fff; border: 1px solid #e8d6b2; border-left: 3px solid #c98a2a; border-radius: 5px;"><div style="font-size: 9px; font-weight: 600;">Refund policy</div><div style="font-size: 7px; color: #97701f; font-family: 'JetBrains Mono', monospace;">drifted</div></div>
+        </div>
+        <div style="position: absolute; top: 40px; right: 16px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="width: 96px; padding: 6px 8px; background: #fff; border: 1px solid #d8dce1; border-left: 3px solid #b6bcc4; border-radius: 5px;"><div style="font-size: 9px; font-weight: 600; color: #9ca3af;">Audit log</div><div style="font-size: 7px; color: #9ca3af; font-family: 'JetBrains Mono', monospace;">unlinked</div></div>
+          <div style="width: 96px; padding: 6px 8px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 45%); border-radius: 5px;"><div style="font-size: 9px; font-weight: 600;">Cart</div><div style="font-size: 7px; color: hsl(152 42% 38%); font-family: 'JetBrains Mono', monospace;">in sync</div></div>
+        </div>
+        <div style="position: absolute; bottom: 30px; left: 16px; right: 16px; display: flex; justify-content: center; gap: 10px;">
+          <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 8px; font-family: 'JetBrains Mono', monospace; color: #6b7280;"><span style="width: 8px; height: 8px; border-radius: 2px; background: hsl(152 42% 45%);"></span>sync</span>
+          <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 8px; font-family: 'JetBrains Mono', monospace; color: #6b7280;"><span style="width: 8px; height: 8px; border-radius: 2px; background: #c98a2a;"></span>drift</span>
+          <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 8px; font-family: 'JetBrains Mono', monospace; color: #6b7280;"><span style="width: 8px; height: 8px; border-radius: 2px; background: #b6bcc4;"></span>unlinked</span>
+        </div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">A momentary overlay — recolours, hides nothing, locks nothing.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #eaf3ee; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Whole-board honesty in one glance. Reuses the lens mechanic.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Must read as an overlay, not a fourth "phase" lens.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">It tints, never filters — every element stays put and live.</span></div>
+      </div>
+    </div>
+
+    <!-- C · ATLAS PASS -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT C</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Atlas reconcile pass</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 210px; position: relative;">
+        <div style="position: absolute; top: 26px; left: 16px; width: 100px; padding: 7px 9px; background: #fff; border: 1px solid #e8d6b2; border-left: 3px solid #c98a2a; border-radius: 6px;"><div style="font-size: 9px; font-weight: 600;">Refund policy</div><div style="font-size: 7px; color: #97701f; font-family: 'JetBrains Mono', monospace;">drifted</div></div>
+        <!-- atlas digest -->
+        <div style="position: absolute; top: 16px; right: 14px; bottom: 38px; width: 132px; background: #f6f5ff; border: 1px solid #ddd7f7; border-radius: 8px; padding: 9px 10px;">
+          <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 7px;"><span style="font-size: 10px; color: #7b6df0;">✦</span><span style="font-size: 7.5px; font-weight: 700; color: #7b6df0; font-family: 'JetBrains Mono', monospace;">ATLAS DIGEST</span></div>
+          <div style="font-family: 'Caveat', cursive; font-size: 13px; color: #6b5fd6; line-height: 1.25;">3 specs drifted since Tue — refund logic changed in repo.</div>
+          <div style="margin-top: 7px; font-size: 8px; color: #9ca3af; font-family: 'JetBrains Mono', monospace;">review →</div>
+        </div>
+        <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"><path d="M118 44 C 150 50, 170 54, 196 58" fill="none" stroke="#c9c2f2" stroke-width="1.3" stroke-dasharray="3 3"></path></svg>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 10px; line-height: 1.35; color: #6b7280; text-align: center;">Atlas sweeps periodically; pencils notes + a rail digest.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Drift gets explained, not just flagged. No one has to go looking.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Trust depends on the sweep's accuracy and cadence.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Needs the live repo link + a diff the AI can read.</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Q5 recommendation -->
+  <div style="border: 1px solid #cfe6da; background: #f7fbf9; border-left: 3px solid hsl(152 42% 42%); border-radius: 12px; padding: 14px 17px; margin-bottom: 56px;">
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 7px;">
+      <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%); background: #e7f3ec; border-radius: 4px; padding: 2px 7px;">B + C</span>
+      <span style="font-size: 13px; font-weight: 700;">Test stays an arc chip; reconciliation is an overlay + an Atlas digest</span>
+    </div>
+    <div style="font-size: 12.5px; line-height: 1.5; color: #4b5563; max-width: 100ch;">Keep <strong>Test</strong> exactly where it belongs: a chip on each element's arc track (Q6). Make <strong>reconciliation</strong> a non-destructive <strong>overlay</strong> (B) you flip on to recolour the whole board by sync-state — tinting, never filtering, so it can't masquerade as a phase — backed by <strong>Atlas's periodic digest</strong> (C) that explains <em>why</em> things drifted. Per-element marginalia (A) is the on-element detail you see when you click a drifted card. One is terminal and local; the other is continuous and global — and the UI never lets them blur.</div>
+  </div>
+  <!-- ════════════════════ Q6 · STATE LEGIBILITY ════════════════════ -->
+  <div style="margin-bottom: 18px; border-top: 2px solid #1f2937; padding-top: 16px;">
+    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6b7280; font-family: 'JetBrains Mono', monospace; margin-bottom: 6px;">Question 06 · State legibility</div>
+    <h2 style="margin: 0 0 6px; font-size: 25px; font-weight: 700; letter-spacing: -0.02em;">Read a mixed-state board at a glance — without a dashboard</h2>
+    <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4b5563; max-width: 84ch;">The board is permanently heterogeneous: raw stickies next to mature features next to things in build. A user must read <strong>which lens an item is native to</strong> and <strong>where it sits in the arc</strong> — quietly, without the board degrading into a status grid of pills and badges.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 18px; align-items: start;">
+
+    <!-- A · ARC TRACK -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT A</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">A tiny arc track</span>
+      </div>
+      <div style="padding: 18px 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 210px; position: relative; display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+        <div style="width: 168px; margin: 0 auto; padding: 9px 11px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 7px; box-shadow: 0 3px 8px rgba(16,24,40,0.06);">
+          <div style="font-size: 7.5px; font-weight: 700; color: #3a5a8a; font-family: 'JetBrains Mono', monospace;">FEATURE</div>
+          <div style="margin-top: 2px; font-size: 11.5px; font-weight: 600;">Checkout</div>
+          <div style="margin-top: 8px; display: flex; align-items: center; gap: 5px;">
+            <span style="width: 7px; height: 7px; border-radius: 99px; background: hsl(152 42% 48%);"></span>
+            <span style="flex: 1; height: 1.5px; background: hsl(152 42% 48%);"></span>
+            <span style="width: 7px; height: 7px; border-radius: 99px; background: hsl(152 42% 48%);"></span>
+            <span style="flex: 1; height: 1.5px; background: #dfe3e8;"></span>
+            <span style="width: 7px; height: 7px; border-radius: 99px; background: #fff; border: 1.5px solid #c5cbd2;"></span>
+            <span style="flex: 1; height: 1.5px; background: #dfe3e8;"></span>
+            <span style="width: 7px; height: 7px; border-radius: 99px; background: #fff; border: 1.5px solid #c5cbd2;"></span>
+          </div>
+          <div style="margin-top: 4px; display: flex; justify-content: space-between; font-size: 6.5px; font-family: 'JetBrains Mono', monospace; color: #9ca3af;"><span>sketch</span><span>design</span><span>build</span><span>test</span></div>
+        </div>
+        <div style="text-align: center; font-size: 10px; color: #6b7280;">Four dots, filled to the current stage. Native lens = card vs sticky form.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Precise — exact arc position, legible without opening.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Always-on dots on every card = the dashboard we're avoiding.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Best demoted to hover/zoom rather than resting state.</span></div>
+      </div>
+    </div>
+
+    <!-- B · MATERIAL (recommended) -->
+    <div style="border: 1.5px solid hsl(152 42% 62%); background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(47,122,87,0.12);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #eaf3ee; display: flex; align-items: center; gap: 9px; background: #f7fbf9;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #fff; background: hsl(152 42% 40%); border-radius: 4px; padding: 2px 6px;">OPT B</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Material encodes state</span>
+        <span style="margin-left: auto; font-size: 8px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%);">LEAN</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 210px; position: relative; display: flex; flex-direction: column; gap: 9px; justify-content: center;">
+        <div style="display: flex; gap: 9px; align-items: center;">
+          <div style="width: 92px; padding: 6px 8px; background: #fde7a3; border: 1px solid #e6c75f; border-radius: 4px; transform: rotate(-2deg);"><div style="font-family: 'Caveat', cursive; font-size: 12px; color: #5b4a1f; line-height: 1;">retries?</div></div>
+          <span style="font-size: 9.5px; color: #6b7280;">sticky → <strong>freeform, sketch</strong></span>
+        </div>
+        <div style="display: flex; gap: 9px; align-items: center;">
+          <div style="width: 92px; padding: 6px 8px; background: #f6f5ff; border: 1px dashed #b9b2ef; border-radius: 5px;"><div style="font-family: 'Caveat', cursive; font-size: 12px; color: #6b5fd6; line-height: 1;">Checkout</div></div>
+          <span style="font-size: 9.5px; color: #6b7280;">pencil → <strong>AI draft</strong></span>
+        </div>
+        <div style="display: flex; gap: 9px; align-items: center;">
+          <div style="width: 92px; padding: 6px 8px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 5px;"><div style="font-size: 10px; font-weight: 600;">Checkout</div></div>
+          <span style="font-size: 9.5px; color: #6b7280;">ink → <strong>structured</strong></span>
+        </div>
+        <div style="display: flex; gap: 9px; align-items: center;">
+          <div style="width: 92px; padding: 6px 8px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 42%); border-radius: 5px; position: relative;"><div style="font-size: 10px; font-weight: 600;">Checkout</div><span style="position: absolute; top: 4px; right: 5px; font-size: 8px; font-family: 'JetBrains Mono', monospace; color: #6d4fa6;">‹/›</span></div>
+          <span style="font-size: 9.5px; color: #6b7280;">mono tag → <strong>in build</strong></span>
+        </div>
+        <div style="display: flex; gap: 9px; align-items: center;">
+          <div style="width: 92px; padding: 6px 8px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 42%); border-radius: 5px; position: relative;"><div style="font-size: 10px; font-weight: 600;">Checkout</div><span style="position: absolute; top: 3px; right: 5px; font-size: 9px; color: hsl(152 42% 42%);">✓</span></div>
+          <span style="font-size: 9.5px; color: #6b7280;">embossed ✓ → <strong>tested</strong></span>
+        </div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #eaf3ee; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">State <em>is</em> the look of the thing. No badges, reads at a glance.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">A vocabulary to learn; fewer states than a track can show.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Reuses pencil/ink language — must not fight that meaning.</span></div>
+      </div>
+    </div>
+
+    <!-- C · ZOOM REVEAL -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT C</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Detail on zoom</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 210px; position: relative;">
+        <div style="display: flex; gap: 14px; height: 100%;">
+          <div style="flex: 1; border-right: 1px dashed #dde1e6; padding-right: 12px;">
+            <div style="font-size: 7.5px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: #9ca3af; margin-bottom: 10px;">FAR ZOOM</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <span style="width: 22px; height: 16px; background: #fde7a3; border: 1px solid #e6c75f; border-radius: 3px; transform: rotate(-3deg);"></span>
+              <span style="width: 24px; height: 16px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 3px;"></span>
+              <span style="width: 24px; height: 16px; background: #f6f5ff; border: 1px dashed #b9b2ef; border-radius: 3px;"></span>
+              <span style="width: 24px; height: 16px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 45%); border-radius: 3px;"></span>
+              <span style="width: 22px; height: 16px; background: #fde7a3; border: 1px solid #e6c75f; border-radius: 3px; transform: rotate(2deg);"></span>
+              <span style="width: 24px; height: 16px; background: #fff; border: 1px solid #cfe6da; border-left: 3px solid hsl(152 42% 45%); border-radius: 3px;"></span>
+            </div>
+            <div style="margin-top: 10px; font-size: 9px; color: #9ca3af; line-height: 1.35;">Only form + colour. Shape of the field, no detail.</div>
+          </div>
+          <div style="flex: 1;">
+            <div style="font-size: 7.5px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 38%); margin-bottom: 10px;">ZOOMED IN</div>
+            <div style="width: 100%; padding: 7px 8px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 6px; box-shadow: 0 2px 6px rgba(16,24,40,0.06);">
+              <div style="font-size: 10px; font-weight: 600;">Checkout</div>
+              <div style="margin-top: 6px; display: flex; align-items: center; gap: 3px;"><span style="width: 5px; height: 5px; border-radius: 99px; background: hsl(152 42% 48%);"></span><span style="flex: 1; height: 1px; background: hsl(152 42% 48%);"></span><span style="width: 5px; height: 5px; border-radius: 99px; background: hsl(152 42% 48%);"></span><span style="flex: 1; height: 1px; background: #dfe3e8;"></span><span style="width: 5px; height: 5px; border-radius: 99px; background: #fff; border: 1px solid #c5cbd2;"></span></div>
+            </div>
+            <div style="margin-top: 10px; font-size: 9px; color: #6b7280; line-height: 1.35;">Arc track + meta appear as you approach.</div>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Density scales with intent. Detail only where you look.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Can't compare arc stages across distant cards at once.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Needs a smooth zoom-driven level-of-detail system.</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Q6 recommendation -->
+  <div style="border: 1px solid #cfe6da; background: #f7fbf9; border-left: 3px solid hsl(152 42% 42%); border-radius: 12px; padding: 14px 17px; margin-bottom: 56px;">
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 7px;">
+      <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%); background: #e7f3ec; border-radius: 4px; padding: 2px 7px;">B + C</span>
+      <span style="font-size: 13px; font-weight: 700;">Material at rest, the arc track on approach</span>
+    </div>
+    <div style="font-size: 12.5px; line-height: 1.5; color: #4b5563; max-width: 100ch;">At resting zoom, let the <strong>material</strong> carry it (B): sticky vs card says native lens; pencil/ink/mono-tag/embossed-check says arc stage — zero badges, so the board reads as a workspace, not a kanban. Then reveal the precise <strong>arc track</strong> (A) only on hover or zoom-in (C). The dashboard never appears because the per-element detail is always one gesture away, never always-on.</div>
+  </div>
+  <!-- ════════════════════ Q7 · AI PRESENCE ════════════════════ -->
+  <div style="margin-bottom: 18px; border-top: 2px solid #1f2937; padding-top: 16px;">
+    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6b7280; font-family: 'JetBrains Mono', monospace; margin-bottom: 6px;">Question 07 · AI presence</div>
+    <h2 style="margin: 0 0 6px; font-size: 25px; font-weight: 700; letter-spacing: -0.02em;">Where does the AI live across the whole arc?</h2>
+    <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4b5563; max-width: 84ch;">It drafts loudly while you sketch — but what's its presence during design, build, and test? How loud per lens, and where does it live spatially: ambient on the board, docked in a rail, or inline on artifacts?</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 20px; align-items: start;">
+
+    <!-- A · AMBIENT PENCIL -->
+    <div style="border: 1.5px solid hsl(152 42% 62%); background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(47,122,87,0.12);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #eaf3ee; display: flex; align-items: center; gap: 9px; background: #f7fbf9;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #fff; background: hsl(152 42% 40%); border-radius: 4px; padding: 2px 6px;">OPT A</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Ambient pencil</span>
+        <span style="margin-left: auto; font-size: 8px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%);">LEAN</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 196px; position: relative;">
+        <div style="position: absolute; top: 28px; left: 16px; width: 96px; padding: 7px 9px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 6px;"><div style="font-size: 10px; font-weight: 600;">Checkout</div></div>
+        <div style="position: absolute; top: 84px; left: 40px; padding: 6px 8px; background: #f6f5ff; border: 1px dashed #b9b2ef; border-radius: 6px; animation: wsPulse 2s ease-in-out infinite;"><div style="font-family: 'Caveat', cursive; font-size: 12px; color: #6b5fd6; line-height: 1;">+ retry policy?</div></div>
+        <!-- thin rail, only when active -->
+        <div style="position: absolute; top: 12px; right: 14px; bottom: 12px; width: 88px; background: #f6f5ff; border: 1px solid #ddd7f7; border-radius: 7px; padding: 7px;">
+          <div style="font-size: 7px; font-weight: 700; color: #7b6df0; font-family: 'JetBrains Mono', monospace;">✦ ATLAS</div>
+          <div style="margin-top: 5px; font-size: 7px; color: #8c83c4; font-family: 'JetBrains Mono', monospace; line-height: 1.5;">goal · group<br>tool · read<br>draft · ✎</div>
+          <div style="margin-top: 6px; font-size: 7px; color: #b4aee0; font-family: 'JetBrains Mono', monospace;">appears<br>when active</div>
+        </div>
+        <div style="position: absolute; bottom: 11px; left: 16px; width: 120px; font-size: 9.5px; line-height: 1.3; color: #6b7280;">Pencils on the board; rail streams reasoning only when it's working.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #eaf3ee; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Lives where the work is; no permanent panel hogging the canvas.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Reasoning is ephemeral — need a way to recall what it did.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Loudness must be tuned per stage (see matrix below).</span></div>
+      </div>
+    </div>
+
+    <!-- B · DOCKED -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT B</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Docked co-author</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 196px; position: relative;">
+        <div style="position: absolute; top: 28px; left: 16px; width: 96px; padding: 7px 9px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 6px;"><div style="font-size: 10px; font-weight: 600;">Checkout</div></div>
+        <div style="position: absolute; top: 12px; right: 14px; bottom: 12px; width: 118px; background: #fff; border: 1px solid #e3e6e9; border-radius: 7px; padding: 8px; box-shadow: -4px 0 12px rgba(16,24,40,0.05);">
+          <div style="font-size: 7.5px; font-weight: 700; color: #7b6df0; font-family: 'JetBrains Mono', monospace;">✦ ATLAS</div>
+          <div style="margin-top: 6px; height: 8px; background: #f0f1f3; border-radius: 3px;"></div>
+          <div style="margin-top: 4px; height: 8px; background: #f0f1f3; border-radius: 3px; width: 80%;"></div>
+          <div style="margin-top: 4px; height: 8px; background: #f0f1f3; border-radius: 3px; width: 90%;"></div>
+          <div style="margin-top: 8px; font-size: 7px; color: #b6bcc4; font-family: 'JetBrains Mono', monospace;">always here</div>
+        </div>
+        <div style="position: absolute; bottom: 11px; left: 16px; width: 116px; font-size: 9.5px; line-height: 1.3; color: #6b7280;">Persistent rail. Presence constant; content shifts per stage.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Predictable home; full history always at hand.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Always-on rail steals canvas; pulls focus off the board.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Drifts toward a chat window — which the model rejects.</span></div>
+      </div>
+    </div>
+
+    <!-- C · INLINE -->
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(16,24,40,0.04);">
+      <div style="padding: 12px 15px; border-bottom: 1px solid #f0f1f3; display: flex; align-items: center; gap: 9px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; color: #6b7280; border: 1px solid #e3e6e9; border-radius: 4px; padding: 2px 6px;">OPT C</span>
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;">Inline on artifacts</span>
+      </div>
+      <div style="padding: 16px; background-color: #fafbfb; background-image: linear-gradient(#eef0f2 1px, transparent 1px), linear-gradient(90deg, #eef0f2 1px, transparent 1px); background-size: 22px 22px; min-height: 196px; position: relative;">
+        <div style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%); width: 150px; padding: 9px 11px; background: #fff; border: 1px solid #cdd9ea; border-left: 3px solid #3a5a8a; border-radius: 7px; box-shadow: 0 3px 8px rgba(16,24,40,0.08);">
+          <div style="font-size: 10.5px; font-weight: 600;">Checkout</div>
+          <div style="margin-top: 7px; display: flex; align-items: center; gap: 5px; border-top: 1px dashed #e3e6e9; padding-top: 6px;"><span style="font-size: 10px; color: #7b6df0;">✦</span><span style="font-family: 'Caveat', cursive; font-size: 12px; color: #6b5fd6;">add a retry rule?</span></div>
+        </div>
+        <div style="position: absolute; bottom: 11px; left: 16px; right: 16px; font-size: 9.5px; line-height: 1.3; color: #6b7280; text-align: center;">A per-card whisper on whatever you've focused. No global presence.</div>
+      </div>
+      <div style="padding: 12px 15px; border-top: 1px solid #f0f1f3; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: hsl(152 42% 38%); padding-top: 1px;">PRO</span><span style="color: #4b5563;">Maximum context; suggestion sits on the exact thing.</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #b4452f; padding-top: 1px;">CON</span><span style="color: #4b5563;">Loses board-level moves ("group these five stickies").</span></div>
+        <div style="display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4;"><span style="flex-shrink: 0; width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; color: #97701f; padding-top: 1px;">COST</span><span style="color: #4b5563;">Best as a complement to A, not the whole presence.</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- loudness matrix + recommendation -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 52px;">
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 12px; padding: 14px 17px;">
+      <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9ca3af; font-family: 'JetBrains Mono', monospace; margin-bottom: 12px;">Loudness, tuned per stage</div>
+      <div style="display: flex; flex-direction: column; gap: 11px;">
+        <div style="display: flex; align-items: center; gap: 11px;"><span style="width: 64px; flex-shrink: 0; font-size: 11.5px; font-weight: 600;">Sketch</span><div style="flex: 1; height: 6px; background: #eef0f2; border-radius: 99px; overflow: hidden;"><div style="width: 92%; height: 100%; background: #7b6df0;"></div></div><span style="width: 64px; flex-shrink: 0; font-size: 10px; color: #6b7280; text-align: right;">loud · drafts</span></div>
+        <div style="display: flex; align-items: center; gap: 11px;"><span style="width: 64px; flex-shrink: 0; font-size: 11.5px; font-weight: 600;">Design</span><div style="flex: 1; height: 6px; background: #eef0f2; border-radius: 99px; overflow: hidden;"><div style="width: 60%; height: 100%; background: #7b6df0;"></div></div><span style="width: 64px; flex-shrink: 0; font-size: 10px; color: #6b7280; text-align: right;">offers scaffolds</span></div>
+        <div style="display: flex; align-items: center; gap: 11px;"><span style="width: 64px; flex-shrink: 0; font-size: 11.5px; font-weight: 600;">Build</span><div style="flex: 1; height: 6px; background: #eef0f2; border-radius: 99px; overflow: hidden;"><div style="width: 32%; height: 100%; background: #7b6df0;"></div></div><span style="width: 64px; flex-shrink: 0; font-size: 10px; color: #6b7280; text-align: right;">quiet · slices</span></div>
+        <div style="display: flex; align-items: center; gap: 11px;"><span style="width: 64px; flex-shrink: 0; font-size: 11.5px; font-weight: 600;">Test</span><div style="flex: 1; height: 6px; background: #eef0f2; border-radius: 99px; overflow: hidden;"><div style="width: 24%; height: 100%; background: #7b6df0;"></div></div><span style="width: 64px; flex-shrink: 0; font-size: 10px; color: #6b7280; text-align: right;">watchdog</span></div>
+        <div style="display: flex; align-items: center; gap: 11px;"><span style="width: 64px; flex-shrink: 0; font-size: 11.5px; font-weight: 600; color: #97701f;">Reconcile</span><div style="flex: 1; height: 6px; background: #eef0f2; border-radius: 99px; overflow: hidden;"><div style="width: 46%; height: 100%; background: #c98a2a;"></div></div><span style="width: 64px; flex-shrink: 0; font-size: 10px; color: #6b7280; text-align: right;">digests drift</span></div>
+      </div>
+    </div>
+    <div style="border: 1px solid #cfe6da; background: #f7fbf9; border-left: 3px solid hsl(152 42% 42%); border-radius: 12px; padding: 14px 17px;">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 7px;">
+        <span style="font-size: 9px; font-weight: 700; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 36%); background: #e7f3ec; border-radius: 4px; padding: 2px 7px;">A + C</span>
+        <span style="font-size: 13px; font-weight: 700;">Ambient pencil, loudness mapped to stage</span>
+      </div>
+      <div style="font-size: 12.5px; line-height: 1.5; color: #4b5563;">One spatial home: Atlas <strong>pencils on the board</strong> (A), with a thin reasoning rail that appears only while it works and an <strong>inline whisper</strong> (C) on the focused artifact. It's the same participant throughout — what changes is volume, not address. Reject the always-on dock (B): it becomes the chat window the model rules out. The pencil/ink gesture stays the contract everywhere: Atlas drafts, you ink.</div>
+    </div>
+  </div>
+
+  <!-- closing -->
+  <div style="border-top: 2px solid #1f2937; padding-top: 18px; display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; flex-wrap: wrap;">
+    <div style="max-width: 620px;">
+      <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6b7280; font-family: 'JetBrains Mono', monospace; margin-bottom: 7px;">Where to push next</div>
+      <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: #4b5563;">This is a board to argue with, not a spec to sign. Every "LEAN" is a starting position — tell me which to harden, which to kill, and which need a third option. The highest-leverage thing to make real first is <strong>Q1's morph + Q3's tether</strong>: together they decide how the board, the lenses, and your three studios actually connect into one motion.</p>
+    </div>
+    <div style="border: 1px solid #d8dce1; background: #fff; border-radius: 12px; padding: 13px 16px; min-width: 230px;">
+      <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9ca3af; font-family: 'JetBrains Mono', monospace; margin-bottom: 9px;">The seven, at a glance</div>
+      <div style="display: flex; flex-direction: column; gap: 5px; font-size: 11px; color: #4b5563;">
+        <div><span style="font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 40%); font-weight: 700;">1</span> Morph in place, shared position</div>
+        <div><span style="font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 40%); font-weight: 700;">2</span> Unframe — not copy, not downgrade</div>
+        <div><span style="font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 40%); font-weight: 700;">3</span> Inline data · tethered diagrams</div>
+        <div><span style="font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 40%); font-weight: 700;">4</span> Pull or pencil; tracer, no meter</div>
+        <div><span style="font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 40%); font-weight: 700;">5</span> Test local · reconcile overlay</div>
+        <div><span style="font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 40%); font-weight: 700;">6</span> Material at rest, track on zoom</div>
+        <div><span style="font-family: 'JetBrains Mono', monospace; color: hsl(152 42% 40%); font-weight: 700;">7</span> Ambient pencil, loud-to-quiet</div>
+      </div>
+    </div>
+  </div></div>
+
+</div>
+</div>
+</x-dc>
+</body>
+</html>

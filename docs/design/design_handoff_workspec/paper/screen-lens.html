@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Lens</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+body{margin:0;}
+.app{display:grid;grid-template-rows:auto 1fr;height:100vh;}
+.canvas-area{position:relative;background:var(--paper);overflow:hidden;background-image:linear-gradient(rgba(28,24,20,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(28,24,20,0.06) 1px,transparent 1px);background-size:24px 24px;padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.lens-toggle{position:absolute;top:18px;right:18px;display:inline-flex;border:1.5px solid var(--ink);background:var(--paper);z-index:5;}
+.lens-toggle .seg{padding:7px 14px;font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);border-right:1.5px solid var(--ink);cursor:pointer;}
+.lens-toggle .seg:last-child{border-right:none;}
+.lens-toggle .seg.active{background:var(--ink);color:var(--paper);}
+.frame{border:1.5px solid var(--ink);background:var(--paper-deep);padding:36px 28px 28px;position:relative;}
+.frame .label{position:absolute;top:-11px;left:18px;background:var(--paper);padding:0 10px;font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:0.16em;text-transform:uppercase;}
+.frame .meta{position:absolute;top:-11px;right:18px;background:var(--paper);padding:0 10px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px;}
+.afact{background:var(--paper-soft);border:1.5px solid var(--ink);padding:10px 12px;}
+.afact .h{font-family:var(--mono);font-size:9px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;}
+.afact .t{font-family:var(--serif);font-size:13px;font-weight:600;margin-top:4px;line-height:1.3;}
+.afact.draft{border-style:dashed;border-color:var(--ink-ghost);background:transparent;}
+.afact.draft .t{color:var(--ink-ghost);}
+.afact.focus{box-shadow:0 0 0 1.5px var(--coral);}
+.depl{background:var(--paper-soft);border:1.5px solid var(--blue);padding:14px 16px;display:flex;flex-direction:column;gap:8px;}
+.depl .ti{font-family:var(--mono);font-size:9.5px;color:var(--blue);letter-spacing:0.14em;text-transform:uppercase;}
+.depl .name{font-family:var(--serif);font-size:14px;font-weight:600;}
+.depl .info{font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.1em;}
+.linker{position:relative;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;text-align:center;padding:14px 0;}
+.linker::before,.linker::after{content:"";display:inline-block;width:32%;height:1px;background:var(--rule-soft);vertical-align:middle;margin:0 8px;}
+</style></head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="wordmark">workspec<span class="dot"></span></div>
+    <nav class="nav"><a class="active">Canvas</a><a>Boards</a><a>Library</a></nav>
+    <div class="spacer"></div>
+    <span class="meta">Lens · Both</span>
+    <span class="avatar">CL</span>
+  </header>
+  <main class="canvas-area">
+    <div class="lens-toggle">
+      <div class="seg">Logical</div>
+      <div class="seg">Deployment</div>
+      <div class="seg active">Both</div>
+    </div>
+
+    <div class="frame">
+      <span class="label">LOGICAL · 7 PARTS</span>
+      <span class="meta">By concept</span>
+      <div class="row">
+        <div class="afact"><div class="h">FEAT</div><div class="t">OAuth</div></div>
+        <div class="afact focus"><div class="h">FEAT</div><div class="t">SSO</div></div>
+        <div class="afact draft"><div class="h" style="color:var(--coral);">DRAFT</div><div class="t">SAML</div></div>
+      </div>
+      <div class="row">
+        <div class="afact"><div class="h">FLOW</div><div class="t">Login</div></div>
+        <div class="afact"><div class="h">FLOW</div><div class="t">Recovery</div></div>
+        <div class="afact"><div class="h">FLOW</div><div class="t">Logout</div></div>
+      </div>
+      <div class="row" style="grid-template-columns:1fr;">
+        <div class="afact"><div class="h">SLICE</div><div class="t">Login retry loop fix</div></div>
+      </div>
+    </div>
+
+    <div class="frame">
+      <span class="label">DEPLOYMENT · 5 SERVICES</span>
+      <span class="meta">By runtime</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="depl"><span class="ti">SVC · web</span><span class="name">auth-frontend</span><span class="info">Next.js · Vercel</span></div>
+        <div class="depl"><span class="ti">SVC · api</span><span class="name">auth-api</span><span class="info">Go · Fly · 3 regions</span></div>
+        <div class="depl"><span class="ti">SVC · worker</span><span class="name">email-verify</span><span class="info">Node · queue</span></div>
+        <div class="depl"><span class="ti">DB</span><span class="name">users.pg</span><span class="info">Postgres 15 · prod</span></div>
+        <div class="depl" style="grid-column:span 2;"><span class="ti">EXT · OAuth provider</span><span class="name">github.com/login</span><span class="info">read:user · email</span></div>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="titleblock">
+  <div class="row bordered-r"><span class="lbl">Sheet</span><span class="val">A · 11/14</span></div>
+  <div class="row"><span class="lbl">Scale</span><span class="val">1:1</span></div>
+  <div class="row bordered-r"><span class="lbl">Drawn</span><span class="val">CL</span></div>
+  <div class="row"><span class="lbl">Date</span><span class="val">2026.04</span></div>
+  <div class="row full"><span class="lbl">Sheet name</span><span class="val serif">Lens — both views</span></div>
+</div>
+<a class="back-contents" href="index.html">← contents</a>
+</body></html>

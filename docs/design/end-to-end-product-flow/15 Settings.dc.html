@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #dcdcdf; }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; background: #dcdcdf; font-family: 'Inter Tight', system-ui, sans-serif; color: #0a0a0c; -webkit-font-smoothing: antialiased; padding: 30px 30px 40px;">
+
+  <div style="width: 1360px; margin: 0 auto 16px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;">
+    <div>
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #76767c; font-family: 'JetBrains Mono', monospace;">WorkSpec · Project · 15</div>
+      <h1 style="margin: 6px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em;">Settings — where the project's rules are set</h1>
+    </div>
+    <div style="font-size: 12.5px; line-height: 1.5; color: #4a4a52; max-width: 440px; text-align: right;">The same discipline you saw across every surface — trace before dispatch, block merge on drift — lives here as <strong>policy</strong>. A config surface, so Atlas steps away entirely.</div>
+  </div>
+
+  <div style="width: 1360px; margin: 0 auto; height: 840px; background: #f6f6f7; border: 1px solid #cbcbcf; border-radius: 12px; box-shadow: 0 24px 60px rgba(0,0,0,0.18); overflow: hidden; display: flex; flex-direction: column;">
+
+    <dc-import name="WorkSpecTopbar" hint-size="100%,52px" style="flex-shrink: 0;"></dc-import>
+
+    <div style="flex: 1; display: flex; min-height: 0;">
+      <dc-import name="WorkSpecNav" active="settings" lens="freeform" hint-size="234px,100%" style="width: 234px; flex-shrink: 0; height: 100%;"></dc-import>
+
+      <!-- settings sub-nav -->
+      <div style="width: 210px; flex-shrink: 0; background: #fbfbfc; border-right: 1px solid #e4e4e7; padding: 20px 12px; overflow-y: auto;">
+        <div style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b8b8be; font-family: 'JetBrains Mono', monospace; padding: 0 8px; margin-bottom: 9px;">Project settings</div>
+        <div style="display: flex; align-items: center; gap: 9px; padding: 8px 9px; border-radius: 7px; background: rgba(27,138,85,0.1); color: #0e3b2a; font-size: 13px; font-weight: 600; margin-bottom: 2px; cursor: pointer;">General</div>
+        <div style="display: flex; align-items: center; gap: 9px; padding: 8px 9px; border-radius: 7px; color: #4a4a52; font-size: 13px; font-weight: 500; margin-bottom: 2px; cursor: pointer;">Repository</div>
+        <div style="display: flex; align-items: center; gap: 9px; padding: 8px 9px; border-radius: 7px; color: #4a4a52; font-size: 13px; font-weight: 500; margin-bottom: 2px; cursor: pointer;">Integrations</div>
+        <div style="display: flex; align-items: center; gap: 9px; padding: 8px 9px; border-radius: 7px; color: #4a4a52; font-size: 13px; font-weight: 500; margin-bottom: 2px; cursor: pointer;">Members &amp; roles</div>
+        <div style="display: flex; align-items: center; gap: 9px; padding: 8px 9px; border-radius: 7px; color: #4a4a52; font-size: 13px; font-weight: 500; margin-bottom: 2px; cursor: pointer;">Atlas behaviour</div>
+        <div style="border-top: 1px solid #e9e9ec; margin: 12px 4px; "></div>
+        <div style="display: flex; align-items: center; gap: 9px; padding: 8px 9px; border-radius: 7px; color: #c43a3a; font-size: 13px; font-weight: 500; cursor: pointer;">Danger zone</div>
+      </div>
+
+      <!-- panel -->
+      <div style="flex: 1; min-width: 0; overflow-y: auto; background: #f6f6f7; padding: 28px 36px;">
+        <div style="max-width: 660px;">
+
+          <!-- General -->
+          <h2 style="margin: 0 0 2px; font-size: 19px; font-weight: 700; letter-spacing: -0.015em;">General</h2>
+          <p style="margin: 0 0 20px; font-size: 12.5px; color: #76767c;">Identity and defaults for this project.</p>
+
+          <div style="background: #fff; border: 1px solid #e4e4e7; border-radius: 11px; overflow: hidden; margin-bottom: 26px;">
+            <div style="display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-bottom: 1px solid #f0f0f1;"><div style="width: 160px; flex-shrink: 0;"><div style="font-size: 12.5px; font-weight: 600;">Project name</div></div><div style="flex: 1; height: 34px; border: 1px solid #e4e4e7; border-radius: 7px; display: flex; align-items: center; padding: 0 11px; font-size: 13px; color: #2a2a30;">Quire CMS</div></div>
+            <div style="display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-bottom: 1px solid #f0f0f1;"><div style="width: 160px; flex-shrink: 0;"><div style="font-size: 12.5px; font-weight: 600;">Project key</div></div><div style="flex: 1; height: 34px; border: 1px solid #e4e4e7; border-radius: 7px; display: flex; align-items: center; padding: 0 11px; font-size: 13px; color: #76767c; font-family: 'JetBrains Mono', monospace;">QUIRE</div></div>
+            <div style="display: flex; align-items: flex-start; gap: 16px; padding: 14px 18px; border-bottom: 1px solid #f0f0f1;"><div style="width: 160px; flex-shrink: 0; padding-top: 6px;"><div style="font-size: 12.5px; font-weight: 600;">Description</div></div><div style="flex: 1; min-height: 56px; border: 1px solid #e4e4e7; border-radius: 7px; padding: 8px 11px; font-size: 13px; color: #2a2a30; line-height: 1.5;">Git-native CMS &amp; blogging platform. Authors write in Quire; content publishes to a GitHub repo via PRs and build actions.</div></div>
+            <div style="display: flex; align-items: center; gap: 16px; padding: 14px 18px;"><div style="width: 160px; flex-shrink: 0;"><div style="font-size: 12.5px; font-weight: 600;">Default lens</div><div style="font-size: 11px; color: #9a9aa0;">Discovery opens in…</div></div><div style="display: flex; align-items: center; gap: 2px; background: #f6f6f7; border: 1px solid #e9e9ec; border-radius: 999px; padding: 2px;"><span style="font-size: 11.5px; font-weight: 600; color: #0e3b2a; background: #fff; border-radius: 999px; padding: 5px 13px; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Freeform</span><span style="font-size: 11.5px; font-weight: 500; color: #76767c; border-radius: 999px; padding: 5px 13px; cursor: pointer;">Structured</span></div></div>
+          </div>
+
+          <!-- Delivery policy -->
+          <h2 style="margin: 0 0 2px; font-size: 19px; font-weight: 700; letter-spacing: -0.015em;">Delivery policy</h2>
+          <p style="margin: 0 0 20px; font-size: 12.5px; color: #76767c;">The rules that keep build and design honest. These power the gates you see in Backlog, Build and Reconcile.</p>
+
+          <div style="background: #fff; border: 1px solid #e4e4e7; border-radius: 11px; overflow: hidden; margin-bottom: 26px;">
+            <div style="display: flex; align-items: center; gap: 16px; padding: 15px 18px; border-bottom: 1px solid #f0f0f1;"><div style="flex: 1;"><div style="font-size: 13px; font-weight: 600; margin-bottom: 2px;">Require complete trace before dispatch</div><div style="font-size: 11.5px; color: #76767c; line-height: 1.45;">A slice can't become a GitHub issue until it links a journey, entities and an element.</div></div><span style="flex-shrink: 0; width: 40px; height: 23px; border-radius: 999px; background: #1b8a55; position: relative; cursor: pointer;"><span style="position: absolute; top: 2px; left: 19px; width: 19px; height: 19px; border-radius: 99px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.25);"></span></span></div>
+            <div style="display: flex; align-items: center; gap: 16px; padding: 15px 18px; border-bottom: 1px solid #f0f0f1;"><div style="flex: 1;"><div style="font-size: 13px; font-weight: 600; margin-bottom: 2px;">Block merge while a slice has open drift</div><div style="font-size: 11.5px; color: #76767c; line-height: 1.45;">PRs whose slice shows unresolved drift in Reconcile can't merge to main.</div></div><span style="flex-shrink: 0; width: 40px; height: 23px; border-radius: 999px; background: #1b8a55; position: relative; cursor: pointer;"><span style="position: absolute; top: 2px; left: 19px; width: 19px; height: 19px; border-radius: 99px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.25);"></span></span></div>
+            <div style="display: flex; align-items: center; gap: 16px; padding: 15px 18px; border-bottom: 1px solid #f0f0f1;"><div style="flex: 1;"><div style="font-size: 13px; font-weight: 600; margin-bottom: 2px;">Auto-raise a Risk on a detected journey gap</div><div style="font-size: 11.5px; color: #76767c; line-height: 1.45;">When Atlas finds an unhandled branch, open a linked Risk automatically.</div></div><span style="flex-shrink: 0; width: 40px; height: 23px; border-radius: 999px; background: #1b8a55; position: relative; cursor: pointer;"><span style="position: absolute; top: 2px; left: 19px; width: 19px; height: 19px; border-radius: 99px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.25);"></span></span></div>
+            <div style="display: flex; align-items: center; gap: 16px; padding: 15px 18px;"><div style="flex: 1;"><div style="font-size: 13px; font-weight: 600; margin-bottom: 2px;">Let Atlas auto-fold safe reconcile drift</div><div style="font-size: 11.5px; color: #76767c; line-height: 1.45;">Non-scope, non-schema drift folds into the design without asking. Off by default.</div></div><span style="flex-shrink: 0; width: 40px; height: 23px; border-radius: 999px; background: #d8d8dd; position: relative; cursor: pointer;"><span style="position: absolute; top: 2px; left: 2px; width: 19px; height: 19px; border-radius: 99px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.18);"></span></span></div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <button type="button" style="font-size: 12.5px; font-weight: 600; color: #fff; background: #1b8a55; border: none; border-radius: 8px; padding: 9px 18px; cursor: pointer;">Save changes</button>
+            <button type="button" style="font-size: 12.5px; font-weight: 500; color: #76767c; background: #fff; border: 1px solid #e4e4e7; border-radius: 8px; padding: 9px 16px; cursor: pointer;">Discard</button>
+            <span style="margin-left: 6px; font-size: 11px; color: #9a9aa0; font-family: 'JetBrains Mono', monospace;">last saved 2d ago by Brett</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="width: 1360px; margin: 14px auto 0; display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: #9a9aa0; font-family: 'JetBrains Mono', monospace;">
+    <span>Design target · Project / Settings</span>
+    <span>gap → FieldstateNZ/workspec#265</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

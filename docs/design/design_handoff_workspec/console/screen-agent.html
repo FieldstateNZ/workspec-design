@@ -1,0 +1,134 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Terminal · Agent thinking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shell.css">
+<style>
+body{overflow:hidden;background:var(--bg);}
+.crumb-overlay{position:fixed;top:auto;bottom:14px;left:14px;right:auto;z-index:20;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.08em;text-transform:uppercase;background:var(--bg-elevated);border:1px solid var(--line);padding:5px 9px;border-radius:var(--r-2);}
+.crumb-overlay a{border-bottom:1px solid var(--line-2);padding-bottom:1px;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+@keyframes dot{0%,80%,100%{opacity:0.3;}40%{opacity:1;}}
+@keyframes scan{0%{transform:translateY(0);}100%{transform:translateY(380px);}}
+.scanline{position:absolute;left:30px;right:30px;height:1px;background:linear-gradient(90deg,transparent,var(--agent),transparent);opacity:0.6;animation:scan 2.4s ease-in-out infinite;pointer-events:none;}
+.tool-row{display:flex;align-items:flex-start;gap:8px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);line-height:1.6;padding:3px 0;}
+.tool-row .arr{color:var(--agent);}
+.tool-row .name{color:var(--agent);}
+.tool-row .args{color:var(--ink-fade);}
+.tool-row .out{color:var(--ink);}
+.tool-row.done .arr{color:var(--ink-fade);}
+</style>
+</head><body>
+<div class="crumb-overlay"><a href="index.html">← Terminal</a></div>
+<div class="ws">
+  <div class="ws-top">
+    <div class="crumbs">
+      <span style="font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink);">workspec</span>
+      <span>/</span><span>checkout-redesign</span>
+    </div>
+    <div class="lens-toggle" style="margin-left:18px;"><div class="opt on">L</div><div class="opt">D</div><div class="opt">B</div></div>
+    <div class="right">
+      <span class="chip agent" style="border-color:var(--agent);"><span style="display:inline-block;width:5px;height:5px;background:var(--agent);border-radius:50%;animation:pulse 1.4s ease-in-out infinite;"></span>ATLAS · WORKING</span>
+      <button class="btn sm" style="border-color:var(--danger);color:var(--danger);">Esc · interrupt</button>
+      <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);font-family:var(--mono);font-size:10px;color:#0a0a0c;display:flex;align-items:center;justify-content:center;font-weight:700;">JL</div>
+    </div>
+  </div>
+
+  <div class="ws-rail">
+    <div class="icon active"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" stroke="currentColor"/><rect x="9" y="2" width="5" height="5" stroke="currentColor"/><rect x="2" y="9" width="5" height="5" stroke="currentColor"/><rect x="9" y="9" width="5" height="5" stroke="currentColor"/></svg></div>
+    <div class="icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" stroke="currentColor"/><line x1="2" y1="6" x2="14" y2="6" stroke="currentColor"/></svg></div>
+    <div class="icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="3" height="12" stroke="currentColor"/><rect x="6.5" y="2" width="3" height="9" stroke="currentColor"/><rect x="11" y="2" width="3" height="6" stroke="currentColor"/></svg></div>
+    <div class="icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor"/><polyline points="8,5 8,8 11,10" stroke="currentColor" fill="none"/></svg></div>
+    <div style="margin-top:auto;"></div>
+    <div class="icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="2" stroke="currentColor"/><path d="M 7 1 L 7 3 M 7 11 L 7 13 M 1 7 L 3 7 M 11 7 L 13 7" stroke="currentColor"/></svg></div>
+  </div>
+
+  <div class="ws-canvas">
+    <div class="grid"></div>
+    <div class="scanline" style="top:80px;"></div>
+
+    <!-- "looking at" highlights -->
+    <div class="art note" style="left:40px;top:60px;width:180px;border-color:rgba(92,242,192,0.5);"><div class="type">NOTE</div><div class="ttl">"OAuth ideal"</div></div>
+    <div class="art note" style="left:40px;top:140px;width:180px;border-color:rgba(92,242,192,0.5);"><div class="type">NOTE</div><div class="ttl">"GitHub login"</div></div>
+    <div class="art note" style="left:40px;top:220px;width:180px;border-color:rgba(92,242,192,0.5);"><div class="type">NOTE</div><div class="ttl">"social signin"</div></div>
+    <div class="art note" style="left:40px;top:300px;width:180px;opacity:0.4;"><div class="type">NOTE</div><div class="ttl">"reset password"</div></div>
+    <div class="art note" style="left:40px;top:380px;width:180px;opacity:0.4;"><div class="type">NOTE</div><div class="ttl">"need 2FA"</div></div>
+
+    <!-- agent ghost-creating new feature in middle -->
+    <div class="art feature" style="left:280px;top:140px;width:200px;border-style:dashed;border-color:var(--agent);background:rgba(92,242,192,0.04);">
+      <div class="type" style="color:var(--agent);">FEATURE · DRAFTING</div>
+      <div class="ttl">GitHub OAuth flow</div>
+      <div class="sub" style="font-family:var(--mono);font-size:11px;color:var(--agent);">writing<span style="display:inline-block;width:6px;height:11px;background:var(--agent);margin-left:2px;animation:pulse 1s steps(2) infinite;vertical-align:-1px;"></span></div>
+    </div>
+
+    <!-- thinking trace floating -->
+    <div style="position:absolute;left:520px;top:60px;width:340px;background:var(--bg-elevated);border:1px solid var(--agent);border-radius:var(--r-3);box-shadow:0 8px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(92,242,192,0.15);overflow:hidden;">
+      <div style="padding:10px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;">
+        <span style="display:inline-block;width:6px;height:6px;background:var(--agent);border-radius:50%;animation:pulse 1.4s ease-in-out infinite;"></span>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--agent);letter-spacing:0.1em;text-transform:uppercase;">ATLAS · THINKING</span>
+        <span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink-fade);">12.4s</span>
+      </div>
+      <div style="padding:12px 14px;">
+        <div style="font-size:12.5px;color:var(--ink);line-height:1.5;margin-bottom:10px;">User asked: <span style="color:var(--accent);">"find duplicates and group them."</span></div>
+        <div class="tool-row done"><span class="arr">→</span><div><span class="name">searchArtifacts</span><span class="args">(type:"note", limit:50)</span><br/><span class="out">  ✓ 12 results in 80ms</span></div></div>
+        <div class="tool-row done"><span class="arr">→</span><div><span class="name">embedAndCluster</span><span class="args">(threshold:0.78)</span><br/><span class="out">  ✓ 3 clusters found</span></div></div>
+        <div class="tool-row done"><span class="arr">→</span><div><span class="name">readContext</span><span class="args">("auth domain")</span><br/><span class="out">  ✓ 12 artifacts loaded</span></div></div>
+        <div class="tool-row"><span class="arr" style="color:var(--agent);">→</span><div><span class="name">draftFeature</span><span class="args">(name:"GitHub OAuth flow", sources:[…3])</span><br/><span style="color:var(--agent);">  <span style="display:inline-flex;gap:2px;"><span style="display:inline-block;width:3px;height:3px;background:var(--agent);border-radius:50%;animation:dot 1.2s ease-in-out infinite;"></span><span style="display:inline-block;width:3px;height:3px;background:var(--agent);border-radius:50%;animation:dot 1.2s ease-in-out infinite 0.15s;"></span><span style="display:inline-block;width:3px;height:3px;background:var(--agent);border-radius:50%;animation:dot 1.2s ease-in-out infinite 0.3s;"></span></span> writing</span></div></div>
+        <div class="tool-row" style="opacity:0.4;"><span class="arr">→</span><div><span class="name" style="color:var(--ink-fade);">linkSources</span><span class="args">(featureId, [3 noteIds])</span></div></div>
+        <div class="tool-row" style="opacity:0.4;"><span class="arr">→</span><div><span class="name" style="color:var(--ink-fade);">notifyUser</span><span class="args">("done")</span></div></div>
+      </div>
+      <div style="padding:8px 14px;background:var(--bg);border-top:1px solid var(--line);display:flex;align-items:center;gap:8px;">
+        <span style="font-family:var(--mono);font-size:10px;color:var(--ink-fade);">3 / 6 steps</span>
+        <div style="flex:1;height:2px;background:var(--line);border-radius:1px;overflow:hidden;"><div style="width:50%;height:100%;background:var(--agent);"></div></div>
+        <button class="btn sm ghost" style="color:var(--danger);">Esc</button>
+      </div>
+    </div>
+
+    <!-- edges agent is writing -->
+    <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+      <path d="M 220 90 C 250 110, 260 150, 280 175" stroke="var(--agent)" stroke-width="1.4" stroke-dasharray="3 3" fill="none" opacity="0.7"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="0.8s" repeatCount="indefinite"/></path>
+      <path d="M 220 170 C 250 175, 260 175, 280 180" stroke="var(--agent)" stroke-width="1.4" stroke-dasharray="3 3" fill="none" opacity="0.7"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="0.8s" repeatCount="indefinite"/></path>
+      <path d="M 220 250 C 250 230, 260 200, 280 190" stroke="var(--agent)" stroke-width="1.4" stroke-dasharray="3 3" fill="none" opacity="0.7"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="0.8s" repeatCount="indefinite"/></path>
+    </svg>
+
+    <!-- prompt input bottom -->
+    <div style="position:absolute;left:30px;right:380px;bottom:24px;background:var(--bg-soft);border:1px solid var(--line-2);border-radius:var(--r-3);padding:12px 14px;display:flex;align-items:center;gap:10px;">
+      <span style="font-family:var(--mono);font-size:11px;color:var(--accent);">/</span>
+      <span style="flex:1;font-family:var(--mono);font-size:13px;color:var(--ink-soft);">find duplicates and group them<span style="display:inline-block;width:6px;height:13px;background:var(--accent);margin-left:2px;animation:pulse 1s steps(2) infinite;vertical-align:-2px;"></span></span>
+      <button class="btn sm primary">Send</button>
+    </div>
+  </div>
+
+  <div class="ws-detail">
+    <div class="lbl" style="color:var(--agent);">SESSION LOG</div>
+    <div style="font-size:18px;font-weight:600;letter-spacing:-0.015em;margin-top:10px;">Atlas is working</div>
+    <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);margin-top:4px;">started 12s ago · 3 of 6 steps</div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">What it's doing</div>
+      <p style="color:var(--ink-soft);font-size:13px;line-height:1.5;margin:6px 0 0;">Scanning notes for duplicates, found 3 about login methods. Drafting a feature called "GitHub OAuth flow" that points back to all three. Will write the edges last.</p>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Touched</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:8px;line-height:1.7;">
+        <div>· note-1 · note-2 · note-5 <span style="color:var(--agent);">read</span></div>
+        <div>· feat-gh-oauth <span style="color:var(--agent);">drafting</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Cost · this turn</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;font-family:var(--mono);font-size:11px;">
+        <div style="background:var(--bg-soft);border:1px solid var(--line);padding:8px 10px;border-radius:var(--r-2);"><div style="color:var(--ink-fade);font-size:9px;letter-spacing:0.1em;">TOKENS</div><div style="color:var(--ink);margin-top:2px;">4,210</div></div>
+        <div style="background:var(--bg-soft);border:1px solid var(--line);padding:8px 10px;border-radius:var(--r-2);"><div style="color:var(--ink-fade);font-size:9px;letter-spacing:0.1em;">TOOLS</div><div style="color:var(--ink);margin-top:2px;">3 / 6</div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;display:flex;gap:6px;">
+      <button class="btn sm" style="border-color:var(--danger);color:var(--danger);">Esc · stop</button>
+      <button class="btn sm">Skip step</button>
+    </div>
+  </div>
+</div>
+</body></html>

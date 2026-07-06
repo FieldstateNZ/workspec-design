@@ -1,0 +1,165 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Terminal · States</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shell.css">
+<style>
+.state{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-3);overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center;padding:36px;}
+.state::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);background-size:24px 24px;pointer-events:none;}
+.state .inner{position:relative;text-align:center;max-width:420px;}
+.state h3{font-size:20px;letter-spacing:-0.015em;margin:14px 0 6px;}
+.state p{color:var(--ink-soft);font-size:13.5px;line-height:1.5;margin:0;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes blink{50%{opacity:0;}}
+.skeleton{display:block;background:linear-gradient(90deg,var(--bg-soft) 0%,var(--line) 50%,var(--bg-soft) 100%);background-size:200% 100%;animation:shimmer 1.4s ease-in-out infinite;border-radius:3px;}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+</style>
+</head><body>
+<div class="page">
+<div class="crumb"><a href="../index.html">Design Set</a> · <a href="index.html">Terminal</a> · <span style="color:var(--ink)">States</span></div>
+<h1 class="page-title">States.</h1>
+<p class="page-lead">Empty, loading, error. The cases people forget. Each one is a chance to teach, not just to placeholder.</p>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">01</span>Empty states</h2>
+<p class="note">Empty isn't blank. It's an invitation. We always tell the user what to do next, in their voice — never "no items found."</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;">
+  <div class="state">
+    <div class="inner">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin:0 auto;display:block;color:var(--ink-fade);"><rect x="6" y="6" width="44" height="44" rx="3" stroke="currentColor" stroke-dasharray="4 3"/><line x1="20" y1="28" x2="36" y2="28" stroke="currentColor"/><line x1="28" y1="20" x2="28" y2="36" stroke="currentColor"/></svg>
+      <h3>Nothing here yet</h3>
+      <p>Start with a thought — paste a Slack thread, drop a doc, or just type what you're trying to figure out.</p>
+      <div style="margin-top:18px;display:flex;gap:8px;justify-content:center;">
+        <button class="btn primary sm">+ Add note</button>
+        <button class="btn sm">Paste from clipboard</button>
+      </div>
+    </div>
+  </div>
+  <div class="state">
+    <div class="inner">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin:0 auto;display:block;color:var(--ink-fade);"><circle cx="28" cy="28" r="22" stroke="currentColor"/><circle cx="28" cy="28" r="3" fill="currentColor"/></svg>
+      <h3>No matches</h3>
+      <p>Nothing here matches "<b style="color:var(--ink);">payment-flow</b>". Try a different query, or ask the agent to find related ideas.</p>
+      <div style="margin-top:18px;">
+        <button class="btn sm">/ ask agent →</button>
+      </div>
+    </div>
+  </div>
+  <div class="state">
+    <div class="inner">
+      <div style="font-family:var(--mono);font-size:48px;color:var(--ink-fade);">$</div>
+      <h3>First spec</h3>
+      <p>This project is empty. The fastest way to start: paste your existing PRD or describe the thing in one sentence. Atlas will scaffold from there.</p>
+      <div class="input" style="max-width:340px;margin:18px auto 0;text-align:left;">
+        <input type="text" placeholder="we're building a way to…"/>
+      </div>
+    </div>
+  </div>
+  <div class="state">
+    <div class="inner">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin:0 auto;display:block;color:var(--ink-fade);"><rect x="8" y="14" width="40" height="32" rx="3" stroke="currentColor"/><line x1="14" y1="22" x2="42" y2="22" stroke="currentColor"/><circle cx="18" cy="32" r="2" stroke="currentColor"/><line x1="24" y1="32" x2="42" y2="32" stroke="currentColor"/></svg>
+      <h3>No history</h3>
+      <p>This artifact has only ever been v1. When you supersede it, older versions land here.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">02</span>Loading</h2>
+<p class="note">Three loading vocabularies. Spinner is for actions. Skeleton is for content. Streaming dots are for the agent — never for static loading.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:18px;">
+  <div class="state" style="min-height:200px;">
+    <div class="inner">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin:0 auto;display:block;animation:spin 1s linear infinite;"><circle cx="16" cy="16" r="13" stroke="var(--line)" stroke-width="2"/><path d="M 16 3 A 13 13 0 0 1 29 16" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/></svg>
+      <h3 style="margin-top:18px;">Spinner</h3>
+      <p>Action in flight: saving, navigating, opening a modal. Sub-1s actions don't show a spinner — they just complete.</p>
+    </div>
+  </div>
+  <div class="state" style="min-height:200px;">
+    <div class="inner" style="text-align:left;width:100%;">
+      <div class="lbl" style="text-align:center;margin-bottom:14px;">Skeleton</div>
+      <div class="uic">
+        <span class="skeleton" style="width:60px;height:8px;"></span>
+        <div style="margin-top:8px;"><span class="skeleton" style="width:80%;height:14px;"></span></div>
+        <div style="margin-top:6px;"><span class="skeleton" style="width:60%;height:10px;"></span></div>
+      </div>
+      <div class="uic" style="margin-top:8px;">
+        <span class="skeleton" style="width:60px;height:8px;"></span>
+        <div style="margin-top:8px;"><span class="skeleton" style="width:90%;height:14px;"></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="state" style="min-height:200px;">
+    <div class="inner">
+      <div style="display:flex;align-items:center;gap:6px;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--agent);">
+        <span style="display:inline-block;width:6px;height:6px;background:var(--agent);border-radius:50%;animation:pulse 1.4s ease-in-out infinite;"></span>
+        atlas thinking
+        <span style="display:inline-flex;gap:2px;">
+          <span style="display:inline-block;width:3px;height:3px;background:var(--agent);border-radius:50%;animation:dot 1.2s ease-in-out infinite;"></span>
+          <span style="display:inline-block;width:3px;height:3px;background:var(--agent);border-radius:50%;animation:dot 1.2s ease-in-out infinite 0.15s;"></span>
+          <span style="display:inline-block;width:3px;height:3px;background:var(--agent);border-radius:50%;animation:dot 1.2s ease-in-out infinite 0.3s;"></span>
+        </span>
+      </div>
+      <h3 style="margin-top:18px;">Streaming</h3>
+      <p>The agent is working. Pulse + dots. Always show the user how to interrupt: <span class="kbd">Esc</span>.</p>
+    </div>
+  </div>
+</div>
+<style>@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}@keyframes dot{0%,80%,100%{opacity:0.3;}40%{opacity:1;}}</style>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">03</span>Errors</h2>
+<p class="note">Errors are owned. We say what happened, what we tried, what to do next. Never "something went wrong."</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;">
+  <div class="state">
+    <div class="inner">
+      <div style="color:var(--danger);font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;">⚠ network</div>
+      <h3 style="color:var(--ink);">Couldn't reach the agent</h3>
+      <p>We tried 3 times. Your work is saved locally. We'll retry automatically when you're back online — or hit retry now.</p>
+      <div style="margin-top:18px;display:flex;gap:8px;justify-content:center;">
+        <button class="btn primary sm">Retry</button>
+        <button class="btn sm">Work offline</button>
+      </div>
+    </div>
+  </div>
+  <div class="state">
+    <div class="inner">
+      <div style="color:var(--danger);font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;">⚠ conflict</div>
+      <h3>Someone else edited this</h3>
+      <p>Sarah saved a new version of <b style="color:var(--ink);">GitHub OAuth flow</b> while you were typing. Pick which version to keep.</p>
+      <div style="margin-top:18px;display:flex;gap:8px;justify-content:center;">
+        <button class="btn primary sm">Keep mine</button>
+        <button class="btn sm">Take Sarah's</button>
+        <button class="btn sm ghost">Compare</button>
+      </div>
+    </div>
+  </div>
+  <div class="state">
+    <div class="inner">
+      <div style="color:var(--danger);font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;">⚠ permission</div>
+      <h3>Read-only project</h3>
+      <p>You're viewing <b style="color:var(--ink);">acme/checkout-redesign</b> as a guest. To edit, ask Jordan to add you as a collaborator.</p>
+      <div style="margin-top:18px;">
+        <button class="btn sm">Request access</button>
+      </div>
+    </div>
+  </div>
+  <div class="state">
+    <div class="inner">
+      <div style="color:var(--danger);font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;">⚠ 500</div>
+      <h3>Something broke on our side</h3>
+      <p>Error <code class="code" style="color:var(--danger);">E_AGENT_TIMEOUT_5012</code>. We've been notified. Your draft is safe; nothing was lost.</p>
+      <div style="margin-top:18px;display:flex;gap:8px;justify-content:center;">
+        <button class="btn sm">Reload</button>
+        <button class="btn sm ghost">Copy error ID</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="foot"><span>Terminal · States</span><span>End of foundations · screens →</span></div>
+</div>
+</body></html>

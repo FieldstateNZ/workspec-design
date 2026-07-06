@@ -1,0 +1,323 @@
+/* PAPER · shell — shared chrome for all surfaces
+   architectural plan vibe: title block, trim marks, dimension callouts, leader lines
+   Companion to tokens.css
+*/
+
+/* ─── Page frame ───────────────────────────────────────────── */
+.page{
+  min-height:100vh;
+  background:var(--paper);
+  position:relative;
+  /* faint blueprint grid in the background — far enough back not to fight content */
+  background-image:
+    linear-gradient(var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px;
+}
+
+/* Trim marks — corner cropping registration marks, like printer's marks */
+.trim{position:fixed;width:18px;height:18px;pointer-events:none;z-index:1;opacity:.45;}
+.trim::before,.trim::after{content:"";position:absolute;background:var(--ink);}
+.trim::before{width:18px;height:1px;top:50%;left:0;}
+.trim::after{height:18px;width:1px;left:50%;top:0;}
+.trim.tl{top:18px;left:18px;}
+.trim.tr{top:18px;right:18px;}
+.trim.bl{bottom:18px;left:18px;}
+.trim.br{bottom:18px;right:18px;}
+
+/* ─── Top bar / drafting table edge ───────────────────────── */
+.topbar{
+  height:56px;
+  border-bottom:1.5px solid var(--ink);
+  background:var(--paper);
+  display:flex;align-items:center;
+  padding:0 24px;
+  gap:24px;
+  position:relative;
+}
+.topbar::after{
+  /* secondary hairline below — drafting-table double rule */
+  content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--ink);opacity:.4;
+}
+.topbar .wordmark{
+  font-family:var(--serif);
+  font-size:22px;font-weight:600;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  display:flex;align-items:baseline;gap:6px;
+}
+.topbar .wordmark .dot{
+  width:8px;height:8px;background:var(--coral);border-radius:50%;
+  display:inline-block;transform:translateY(-2px);
+}
+.topbar .nav{display:flex;gap:24px;align-items:center;}
+.topbar .nav a{
+  font-family:var(--sans);font-size:13px;color:var(--ink-soft);
+  padding:6px 0;position:relative;
+}
+.topbar .nav a.active{color:var(--ink);}
+.topbar .nav a.active::after{
+  /* hand-drawn underline */
+  content:"";position:absolute;left:-2px;right:-2px;bottom:0;height:2px;
+  background:var(--coral);border-radius:2px;
+  transform:rotate(-0.3deg);
+}
+.topbar .spacer{flex:1;}
+.topbar .meta{
+  font-family:var(--mono);font-size:var(--t-mono-sm);
+  text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-fade);
+}
+
+/* ─── Title block (architectural cartouche, lower-right) ── */
+.titleblock{
+  position:fixed;bottom:24px;right:24px;z-index:5;
+  background:var(--paper);
+  border:1.5px solid var(--ink);
+  font-family:var(--mono);font-size:var(--t-mono-sm);
+  text-transform:uppercase;letter-spacing:0.1em;
+  width:280px;
+  display:grid;grid-template-columns:1fr 1fr;
+  box-shadow:var(--sh-2);
+}
+.titleblock .row{
+  border-bottom:1px solid var(--ink);
+  padding:6px 8px;
+  display:flex;flex-direction:column;gap:2px;
+}
+.titleblock .row.full{grid-column:span 2;}
+.titleblock .row:nth-last-child(-n+2){border-bottom:none;}
+.titleblock .row.bordered-r{border-right:1px solid var(--ink);}
+.titleblock .lbl{color:var(--ink-fade);font-size:9px;}
+.titleblock .val{color:var(--ink);font-size:11px;letter-spacing:0.05em;}
+.titleblock .val.serif{font-family:var(--serif);font-size:14px;letter-spacing:-0.01em;text-transform:none;font-weight:600;}
+/* Hide title-block cartouche on workspace shells that already have meta chrome.
+   Pages that want it (contents/brand/tokens-style) opt back in via .titleblock.show. */
+body:has(.app) .titleblock:not(.show){display:none;}
+/* Back-to-contents link: pin bottom-left across all screens for consistency. */
+.back-contents{
+  position:fixed;bottom:24px;left:24px;z-index:6;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ink-fade);background:var(--paper);
+  padding:6px 10px;border:1px solid var(--ink);
+}
+.back-contents:hover{color:var(--coral);}
+
+/* ─── Sidebar ─────────────────────────────────────────────── */
+.sidebar{
+  width:240px;
+  border-right:1.5px solid var(--ink);
+  background:var(--paper);
+  padding:24px 20px;
+  position:relative;
+}
+.sidebar .group{margin-bottom:28px;}
+.sidebar .group-label{
+  font-family:var(--mono);font-size:var(--t-caption);
+  text-transform:uppercase;letter-spacing:0.14em;
+  color:var(--ink-fade);
+  margin-bottom:10px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--rule-soft);
+}
+.sidebar .item{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 0;
+  font-size:14px;color:var(--ink-soft);
+  cursor:pointer;
+  position:relative;
+}
+.sidebar .item .num{
+  font-family:var(--mono);font-size:10px;color:var(--ink-ghost);width:18px;
+}
+.sidebar .item.active{color:var(--ink);font-weight:500;}
+.sidebar .item.active::before{
+  content:"";position:absolute;left:-20px;top:50%;width:14px;height:1.5px;
+  background:var(--coral);transform:translateY(-50%);
+}
+
+/* ─── Buttons ─────────────────────────────────────────────── */
+.btn{
+  font-family:var(--sans);font-size:13px;font-weight:500;
+  padding:8px 16px;
+  border:1.5px solid var(--ink);
+  background:var(--paper);
+  color:var(--ink);
+  cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform var(--d-fast) var(--ease-out), box-shadow var(--d-fast) var(--ease-out);
+  white-space:nowrap;flex:0 0 auto;
+  letter-spacing:-0.005em;
+  border-radius:var(--r-2);
+}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--sh-2);}
+.btn:active{transform:translateY(0);box-shadow:var(--sh-press);}
+.btn.primary{background:var(--ink);color:var(--paper);}
+.btn.primary:hover{background:var(--coral);border-color:var(--coral);}
+.btn.coral{background:var(--coral);border-color:var(--coral);color:var(--paper);}
+.btn.coral:hover{background:var(--coral-deep);border-color:var(--coral-deep);}
+.btn.ghost{border-color:var(--rule-soft);}
+.btn.ghost:hover{border-color:var(--ink);}
+.btn .kbd{
+  font-family:var(--mono);font-size:10px;color:var(--ink-fade);
+  border:1px solid var(--rule-soft);
+  padding:1px 5px;border-radius:2px;
+  margin-left:4px;
+}
+.btn.primary .kbd{color:rgba(243,236,216,.6);border-color:rgba(243,236,216,.3);}
+
+/* ─── Chips / tags ────────────────────────────────────────── */
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:3px 10px;
+  font-family:var(--mono);font-size:10.5px;
+  text-transform:uppercase;letter-spacing:0.1em;
+  border:1px solid var(--ink);
+  border-radius:var(--r-pill);
+  color:var(--ink);background:var(--paper);
+  white-space:nowrap;flex:0 0 auto;
+  line-height:1;
+}
+.chip.coral{border-color:var(--coral);color:var(--coral);}
+.chip.coral.fill{background:var(--coral);color:var(--paper);}
+.chip.blue{border-color:var(--blue);color:var(--blue);}
+.chip.blue.fill{background:var(--blue);color:var(--paper);}
+.chip.ochre{border-color:var(--ochre);color:var(--ochre);}
+.chip.sage{border-color:var(--sage);color:var(--sage);}
+.chip.ghost{border-color:var(--rule-soft);color:var(--ink-fade);}
+
+/* Stamp — looks like an inked rubber stamp */
+.stamp{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 10px;
+  font-family:var(--mono);font-size:10.5px;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.14em;
+  color:var(--coral);
+  border:1.5px solid var(--coral);
+  border-radius:var(--r-2);
+  transform:rotate(-1.5deg);
+  background:transparent;
+  white-space:nowrap;
+}
+
+/* ─── Cards / artifact cards ──────────────────────────────── */
+.card{
+  background:var(--paper-soft);
+  border:1.5px solid var(--ink);
+  padding:16px;
+  position:relative;
+  border-radius:var(--r-2);
+}
+.card.draft{
+  border-style:dashed;
+  border-color:var(--ink-ghost);
+  background:transparent;
+}
+
+/* ─── Hand-drawn underline (used by .underline) ──────────── */
+.underline{position:relative;display:inline-block;}
+.underline::after{
+  content:"";position:absolute;left:-3px;right:-3px;bottom:-4px;height:3px;
+  background:var(--coral);
+  border-radius:2px;
+  transform:rotate(-0.4deg);
+  opacity:.85;
+}
+.underline.thin::after{height:2px;opacity:.7;}
+.underline.ink::after{background:var(--ink);}
+
+/* ─── Hairlines and rules ─────────────────────────────────── */
+.rule{height:1.5px;background:var(--ink);width:100%;}
+.rule.soft{height:1px;background:var(--rule-soft);}
+.rule.double{height:4px;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--ink);background:transparent;}
+
+/* ─── Dimension callouts — leader lines + measurement ──── */
+.dim{
+  position:absolute;
+  font-family:var(--mono);font-size:9.5px;
+  text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--blue);
+  pointer-events:none;
+}
+
+/* ─── Section headers (used on contents/index pages) ────── */
+.section-num{
+  font-family:var(--mono);font-size:var(--t-caption);
+  text-transform:uppercase;letter-spacing:0.16em;
+  color:var(--coral);
+  margin-bottom:8px;
+}
+.section-title{
+  font-family:var(--serif);font-size:var(--t-h2);
+  font-weight:600;letter-spacing:-0.015em;
+  color:var(--ink);
+  margin:0 0 8px 0;line-height:1.1;
+}
+.section-sub{
+  font-size:var(--t-body);color:var(--ink-soft);
+  max-width:62ch;
+  margin:0 0 24px 0;
+}
+
+/* Page kicker — the row of metadata under section header */
+.kicker{
+  font-family:var(--mono);font-size:var(--t-caption);
+  text-transform:uppercase;letter-spacing:0.16em;
+  color:var(--ink-fade);
+  display:flex;gap:16px;align-items:center;
+}
+.kicker .dot{width:3px;height:3px;background:var(--ink-fade);border-radius:50%;}
+
+/* ─── Crumb / breadcrumb overlay ─────────────────────────── */
+.crumb{
+  position:fixed;bottom:24px;left:24px;z-index:5;
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:var(--t-mono-sm);
+  text-transform:uppercase;letter-spacing:0.1em;
+  background:var(--paper);
+  border:1px solid var(--ink);
+  padding:6px 12px;
+  border-radius:var(--r-2);
+}
+.crumb a{color:var(--ink-fade);}
+.crumb a:hover{color:var(--coral);}
+.crumb .sep{color:var(--ink-fade);}
+.crumb .here{color:var(--ink);}
+
+/* ─── Avatar + corner meta ───────────────────────────────── */
+.avatar{
+  width:28px;height:28px;
+  border-radius:50%;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--mono);font-size:11px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--ink);
+}
+
+/* ─── Common inputs ──────────────────────────────────────── */
+.input{
+  font-family:var(--sans);font-size:14px;
+  padding:10px 12px;
+  border:1.5px solid var(--ink);
+  background:var(--paper);
+  color:var(--ink);
+  border-radius:var(--r-2);
+  width:100%;
+}
+.input:focus{outline:none;border-color:var(--coral);box-shadow:0 0 0 3px var(--coral-soft);}
+
+/* ─── Headings ───────────────────────────────────────────── */
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-0.015em;color:var(--ink);}
+h1{font-size:var(--t-h1);line-height:1.05;margin:0;}
+h2{font-size:var(--t-h2);line-height:1.1;margin:0;}
+h3{font-size:var(--t-h3);line-height:1.25;margin:0;}
+p{margin:0;color:var(--ink-soft);}
+.lead{font-size:18px;line-height:1.5;color:var(--ink);}
+
+/* utility */
+.mono{font-family:var(--mono);}
+.serif{font-family:var(--serif);}
+.hand{font-family:var(--hand);color:var(--ink-soft);}
+.ghost{color:var(--ink-ghost);}
+.coral{color:var(--coral);}
+.blue{color:var(--blue);}
