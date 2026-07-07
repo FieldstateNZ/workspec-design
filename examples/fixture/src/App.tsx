@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ComponentsPage } from './components-page';
 
 type Theme = 'dark' | 'light';
 
@@ -47,6 +48,8 @@ export function App() {
 
       <p className="font-mono">JetBrains Mono sample text (font-mono).</p>
       <p style={{ fontFamily: "'Caveat', cursive" }}>Caveat handwriting sample.</p>
+
+      <ComponentsPage />
     </main>
   );
 }

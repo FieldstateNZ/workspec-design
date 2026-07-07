@@ -1,3 +1,16 @@
 @import 'tailwindcss';
 @import '@workspec/design/tailwind';
 @import '@workspec/design/fonts.css';
+
+/* This app resolves `@workspec/design/components` to the package's built
+   `dist/components/index.js` (no `@workspec/source` condition here, unlike
+   apps/preview — this fixture's own `e2e` script builds before running
+   Playwright, so dist-based resolution is representative of a real
+   published-package consumer). Tailwind v4's automatic content detection
+   ignores `node_modules` (which is where the workspace symlink to
+   `packages/design` lives) — `@source` is Tailwind's documented mechanism
+   for scanning it anyway. The bundled dist JS still contains the migrated
+   components' literal utility-class strings (esbuild doesn't rewrite string
+   literals), so pointing `@source` at the built output — not the package's
+   TypeScript source — works the same way a real npm consumer's build would. */
+@source '../../../packages/design/dist/components';
