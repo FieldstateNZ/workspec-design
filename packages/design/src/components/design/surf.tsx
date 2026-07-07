@@ -6,7 +6,6 @@
  *   <InfoBar>  Surf preset for the bottom-of-step explanatory bar
  *              (mono caption font, can render in 1-col or 2-col grid).
  */
-import type * as React from 'react';
 import { cn } from '../../lib/utils';
 
 export function Surf({

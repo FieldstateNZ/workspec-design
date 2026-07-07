@@ -14,7 +14,6 @@
  * happens to be the most common consumer. Pass any string-literal
  * union and a matching `options` array.
  */
-import type * as React from 'react';
 import { cn } from '../../lib/utils';
 
 export interface LensOption<T extends string> {

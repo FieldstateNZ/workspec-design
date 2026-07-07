@@ -11,7 +11,6 @@
  * Used by workspace-create steps 2 & 3, ModeSwitch, and any future
  * "pick one of two" surfaces.
  */
-import type * as React from 'react';
 import { Chip } from './chip';
 import { cn } from '../../lib/utils';
 

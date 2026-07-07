@@ -13,7 +13,6 @@
  *
  * Surface matches Surf: rounded-md, border, bg-muted/40, mono.
  */
-import type * as React from 'react';
 import { cn } from '../../lib/utils';
 
 type Token =

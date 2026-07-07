@@ -17,7 +17,6 @@
  * Composes shadcn `<Card>` so Paper-aesthetic flips and dark/light
  * theme propagate without per-callsite work.
  */
-import type * as React from 'react';
 import { Card } from '../ui/card';
 import { Lbl } from './typography';
 import { cn } from '../../lib/utils';

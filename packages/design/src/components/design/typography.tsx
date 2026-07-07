@@ -10,7 +10,6 @@
  * Plus a tiny <Kicker> for the corner mono-caps rows on the frame
  * header strip and meta lines.
  */
-import type * as React from 'react';
 import { cn } from '../../lib/utils';
 
 export function Lbl({

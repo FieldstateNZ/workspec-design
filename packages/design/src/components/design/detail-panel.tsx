@@ -32,7 +32,6 @@
  * for placing it (fixed right rail on canvas pages, inline column
  * on brief / recs). The component itself doesn't position.
  */
-import type * as React from 'react';
 import { X } from 'lucide-react';
 import { Button } from '../ui/button';
 import { ScrollArea } from '../ui/scroll-area';

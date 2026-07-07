@@ -9,7 +9,6 @@
  *   agent     — agent-green border (used for atlas/agent presence)
  *   ghost     — text-only, no border (for dense feature rows)
  */
-import type * as React from 'react';
 import { Badge } from '../ui/badge';
 import { cn } from '../../lib/utils';
 
