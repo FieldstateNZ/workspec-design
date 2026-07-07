@@ -1,0 +1,77 @@
+/* CONSOLE · LIGHT token set — "paper console"
+   Inversion of the Terminal/Console aesthetic onto a near-white surface.
+   Mono-heavy idiom preserved (this is still Console, not Paper) — only the
+   surface ramp inverts. Hot coral accent kept. Agent green darkened so it
+   reads on light without burning.
+
+   Drop-in for the Console aesthetic when [data-theme="light"] is set.
+   Variable names match terminal/tokens.css exactly.
+*/
+
+:root[data-theme="light"],
+.console-light {
+  /* color — light surface ramp */
+  --bg:           #f7f5f0;       /* was #0a0a0c — warm off-white */
+  --bg-soft:      #efece4;       /* cards (was #16161a) */
+  --bg-elevated: #ffffff;       /* dialogs / popovers (was #1c1c22) */
+  --line:         #d9d4c6;       /* primary divider (was #26262c) */
+  --line-2:       #c2bcab;       /* stronger divider / hover (was #34343d) */
+
+  --ink:          #16140f;       /* primary text (was #e8e8ea) */
+  --ink-soft:     #4a463c;       /* secondary (was #a4a4ac) */
+  --ink-fade:     #7a7466;       /* tertiary (was #62626a) */
+  --ink-ghost:    #b8b2a3;       /* placeholders, dimmed (was #3a3a42) */
+
+  /* Accent — same hue, slightly deeper for contrast on light */
+  --accent:       #d94a26;       /* was #ff5a36 */
+  --accent-soft:  rgba(217,74,38,0.10);
+  --accent-mid:   rgba(217,74,38,0.35);
+
+  /* Agent — darkened from neon mint to read on cream */
+  --agent:        #1f8a6a;       /* was #5cf2c0 */
+  --agent-soft:   rgba(31,138,106,0.10);
+
+  /* Status */
+  --warn:         #b8851a;       /* was #f2c94c */
+  --danger:       #c43838;       /* was #ff4d4d */
+
+  /* on-accent text — readable on top of --accent fills */
+  --on-accent:#ffffff;
+
+  /* canvas surface ramp — light gradient */
+  --canvas-from:#efece4;
+  --canvas-to:#f7f5f0;
+  --canvas-grid:rgba(22,20,15,0.04);
+
+  /* artifact type colors — deepened for legibility on light */
+  --type-persona:#3a6ea5;
+  --type-feature:#1f8a6a;
+  --type-scenario:#a07a14;
+  --type-userreq:#b04848;
+
+  --accent-hover:#c43e1c;
+  --accent-wash:rgba(217,74,38,0.08);
+  --agent-mid:rgba(31,138,106,0.4);
+
+  /* type — unchanged */
+  --sans:'Inter Tight', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+
+  /* space — unchanged */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px; --s-20:80px;
+
+  /* radius — unchanged */
+  --r-1:3px; --r-2:4px; --r-3:6px; --r-4:8px; --r-5:12px; --r-pill:99px;
+
+  /* shadow — softer drop on light, no neon glow */
+  --sh-1:0 1px 0 rgba(22,20,15,0.06);
+  --sh-2:0 1px 2px rgba(22,20,15,0.06), 0 4px 12px rgba(22,20,15,0.06);
+  --sh-3:0 8px 24px rgba(22,20,15,0.10), 0 2px 6px rgba(22,20,15,0.06);
+  --sh-glow:0 0 0 1px var(--accent), 0 0 0 4px rgba(217,74,38,0.12);
+
+  /* motion — unchanged */
+  --ease-out:cubic-bezier(0.2, 0.7, 0.3, 1);
+  --ease-in-out:cubic-bezier(0.5, 0, 0.5, 1);
+  --d-fast:120ms; --d-base:180ms; --d-slow:280ms;
+}

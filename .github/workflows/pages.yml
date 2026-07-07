@@ -1,0 +1,74 @@
+name: Publish preview (GitHub Pages)
+
+# Builds and deploys apps/preview — the token/theme preview page generated
+# from @workspec/design's tokens.json — to GitHub Pages at
+# https://fieldstatenz.github.io/workspec-design/.
+#
+# This is a project Pages site (not a custom domain), so no CNAME is needed —
+# apps/preview/vite.config.ts's `base` defaults to `/workspec-design/` to
+# match that URL shape.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/preview/**'
+      - 'packages/design/**'
+      # Repo-level build inputs: with `--frozen-lockfile` the deployed preview
+      # is pinned by the lockfile, so a dependency bump here must redeploy too.
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.npmrc'
+      - 'package.json'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never cancel an in-flight Pages deploy; queue instead.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      # apps/preview consumes @workspec/design over the workspace (`workspace:*`,
+      # not the published registry build — see apps/preview/package.json), so
+      # build the whole workspace first to produce tokens.css/tailwind.css/
+      # tokens.json/dist before building the preview against them.
+      - name: Build workspace
+        run: pnpm -r build
+
+      - name: Build the preview
+        run: pnpm --filter preview build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/preview/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Tokens</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+.wrap{max-width:1240px;margin:0 auto;padding:48px 56px 120px;}
+.back{font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;}
+.back:hover{color:var(--coral);}
+h1{font-family:var(--serif);font-size:80px;line-height:1;letter-spacing:-0.035em;font-weight:600;margin:18px 0 0;}
+.lead{color:var(--ink-soft);font-size:17px;line-height:1.55;max-width:560px;margin-top:14px;}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-fade);}
+hr.rule{border:0;height:1.5px;background:var(--ink);margin:56px 0 32px;position:relative;}
+hr.rule::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:.4;}
+h2{font-family:var(--serif);font-size:28px;letter-spacing:-0.02em;font-weight:600;margin:0 0 6px;}
+.section-num{font-family:var(--mono);font-size:11px;color:var(--coral);letter-spacing:0.16em;text-transform:uppercase;}
+.token-table{width:100%;border-collapse:collapse;margin-top:16px;}
+.token-table th{font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);text-align:left;padding:8px 12px;border-bottom:1.5px solid var(--ink);font-weight:500;}
+.token-table td{padding:14px 12px;border-bottom:1px solid var(--rule-soft);font-family:var(--mono);font-size:12px;color:var(--ink);}
+.token-table td.swatch{width:64px;}
+.token-table td.swatch .sw{width:48px;height:32px;border:1px solid var(--ink);}
+.token-table td.name{color:var(--ink);font-weight:500;}
+.token-table td.hex{color:var(--ink-fade);}
+.token-table td.use{font-family:var(--sans);font-size:13px;color:var(--ink-soft);}
+.type-row{display:grid;grid-template-columns:120px 1fr;gap:32px;padding:24px 0;border-bottom:1px solid var(--rule-soft);align-items:baseline;}
+.type-row .lbl{font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);text-transform:uppercase;letter-spacing:0.14em;}
+.type-row .sample{color:var(--ink);}
+.scale-row{display:flex;align-items:center;gap:24px;padding:14px 0;border-bottom:1px solid var(--rule-soft);}
+.scale-row .lbl{font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);width:80px;text-transform:uppercase;letter-spacing:0.14em;}
+.scale-row .bar{height:8px;background:var(--ink);}
+.scale-row .v{font-family:var(--mono);font-size:11px;color:var(--ink-fade);}
+.radius-row{display:flex;gap:18px;align-items:center;}
+.radius-row .b{width:58px;height:58px;background:var(--paper-soft);border:1.5px solid var(--ink);}
+.shadow-row{display:flex;gap:24px;flex-wrap:wrap;padding-top:16px;}
+.shadow-row .b{width:140px;height:80px;background:var(--paper-soft);border:1.5px solid var(--ink);font-family:var(--mono);font-size:10px;color:var(--ink-fade);text-transform:uppercase;letter-spacing:0.12em;display:flex;align-items:flex-end;padding:10px;}
+</style></head>
+<body>
+<div class="page">
+  <span class="trim tl"></span><span class="trim tr"></span><span class="trim bl"></span><span class="trim br"></span>
+  <div class="wrap">
+    <a class="back" href="index.html">← Paper</a>
+    <div class="kicker" style="margin-top:18px;">Sheet 02 · Tokens</div>
+    <h1>Tokens.</h1>
+    <p class="lead">The full primitive set: color, type, space, radius, shadow, motion. Drawn from a 4-grid; everything reads from CSS variables in <code style="font-family:var(--mono);font-size:14px;color:var(--coral);">tokens.css</code>.</p>
+
+    <hr class="rule"/>
+    <div class="section-num">01 · Color</div>
+    <h2 style="margin-top:6px;">Palette</h2>
+    <table class="token-table">
+      <thead><tr><th></th><th>Token</th><th>Hex</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td class="swatch"><div class="sw" style="background:#f3ecd8"></div></td><td class="name">--paper</td><td class="hex">#F3ECD8</td><td class="use">Page surface — the ground</td></tr>
+        <tr><td class="swatch"><div class="sw" style="background:#ede4cb"></div></td><td class="name">--paper-deep</td><td class="hex">#EDE4CB</td><td class="use">Slightly deeper for inset cards</td></tr>
+        <tr><td class="swatch"><div class="sw" style="background:#f7f1de"></div></td><td class="name">--paper-soft</td><td class="hex">#F7F1DE</td><td class="use">Card fills, inputs</td></tr>
+        <tr><td class="swatch"><div class="sw" style="background:#1c1814"></div></td><td class="name">--ink</td><td class="hex">#1C1814</td><td class="use">Primary text, hard rules</td></tr>
+        <tr><td class="swatch"><div class="sw" style="background:#4a4338"></div></td><td class="name">--ink-soft</td><td class="hex">#4A4338</td><td class="use">Secondary text</td></tr>
+        <tr><td class="swatch"><div class="sw" style="background:#8a7e68"></div></td><td class="name">--ink-fade</td><td class="hex">#8A7E68</td><td class="use">Captions, metadata</td></tr>
+        <tr><td class="swatch"><div class="sw" style="background:#3a5a7a"></div></td><td class="name">--blue</td><td class="hex">#3A5A7A</td><td class="use">Technical line work, leader lines</td></tr>
+        <tr><td class="swatch"><div class="sw" style="background:#c96442"></div></td><td class="name">--coral</td><td class="hex">#C96442</td><td class="use">Drafted state · agent · accent</td></tr>
+        <tr><td class="swatch"><div class="sw" style="background:#b88420"></div></td><td class="name">--ochre</td><td class="hex">#B88420</td><td class="use">Warnings, highlights</td></tr>
+        <tr><td class="swatch"><div class="sw" style="background:#5e7a4f"></div></td><td class="name">--sage</td><td class="hex">#5E7A4F</td><td class="use">Quiet positive</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="rule"/>
+    <div class="section-num">02 · Type</div>
+    <h2 style="margin-top:6px;">Three families, deliberate roles</h2>
+    <div class="type-row"><div class="lbl">Display · Source Serif 4</div><div class="sample" style="font-family:'Source Serif 4',serif;font-size:64px;font-weight:600;letter-spacing:-0.025em;line-height:1;">A&amp;c · Aa Bb 12</div></div>
+    <div class="type-row"><div class="lbl">Sans · Inter</div><div class="sample" style="font-family:Inter,sans-serif;font-size:24px;">The quick brown fox jumps over the lazy dog.</div></div>
+    <div class="type-row"><div class="lbl">Mono · JetBrains</div><div class="sample" style="font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:0.02em;">CONST · 0123 · DIM · TOOL · SHEET</div></div>
+    <div class="type-row"><div class="lbl">Hand · Caveat</div><div class="sample" style="font-family:Caveat,cursive;font-size:30px;color:var(--coral);">scanning canvas… <span style="color:var(--ink-soft)">(Atlas's pencil)</span></div></div>
+
+    <h2 style="margin-top:36px;">Scale</h2>
+    <div class="scale-row"><div class="lbl">display</div><div style="font-family:'Source Serif 4',serif;font-size:72px;font-weight:600;line-height:1;letter-spacing:-0.03em;">Aa</div><div class="v">72 / 1.0 / −30</div></div>
+    <div class="scale-row"><div class="lbl">h1</div><div style="font-family:'Source Serif 4',serif;font-size:48px;font-weight:600;line-height:1.05;letter-spacing:-0.025em;">Aa</div><div class="v">48 / 1.05 / −25</div></div>
+    <div class="scale-row"><div class="lbl">h2</div><div style="font-family:'Source Serif 4',serif;font-size:32px;font-weight:600;line-height:1.1;">Aa</div><div class="v">32 / 1.1 / −20</div></div>
+    <div class="scale-row"><div class="lbl">h3</div><div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:600;line-height:1.25;">Aa</div><div class="v">22 / 1.25 / −15</div></div>
+    <div class="scale-row"><div class="lbl">body</div><div style="font-family:Inter,sans-serif;font-size:15px;">Aa</div><div class="v">15 / 1.55</div></div>
+    <div class="scale-row"><div class="lbl">small</div><div style="font-family:Inter,sans-serif;font-size:13px;">Aa</div><div class="v">13 / 1.5</div></div>
+    <div class="scale-row"><div class="lbl">caption</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;">CAPTION</div><div class="v">11 / 1.4 / +140</div></div>
+
+    <hr class="rule"/>
+    <div class="section-num">03 · Space</div>
+    <h2 style="margin-top:6px;">4-pixel grid</h2>
+    <div class="scale-row"><div class="lbl">--s-1</div><div class="bar" style="width:4px;"></div><div class="v">4px</div></div>
+    <div class="scale-row"><div class="lbl">--s-2</div><div class="bar" style="width:8px;"></div><div class="v">8px</div></div>
+    <div class="scale-row"><div class="lbl">--s-3</div><div class="bar" style="width:12px;"></div><div class="v">12px</div></div>
+    <div class="scale-row"><div class="lbl">--s-4</div><div class="bar" style="width:16px;"></div><div class="v">16px</div></div>
+    <div class="scale-row"><div class="lbl">--s-5</div><div class="bar" style="width:24px;"></div><div class="v">24px</div></div>
+    <div class="scale-row"><div class="lbl">--s-6</div><div class="bar" style="width:32px;"></div><div class="v">32px</div></div>
+    <div class="scale-row"><div class="lbl">--s-7</div><div class="bar" style="width:48px;"></div><div class="v">48px</div></div>
+    <div class="scale-row"><div class="lbl">--s-8</div><div class="bar" style="width:64px;"></div><div class="v">64px</div></div>
+    <div class="scale-row"><div class="lbl">--s-9</div><div class="bar" style="width:96px;"></div><div class="v">96px</div></div>
+
+    <hr class="rule"/>
+    <div class="section-num">04 · Radius</div>
+    <h2 style="margin-top:6px;">Square is default</h2>
+    <p style="color:var(--ink-soft);font-size:14px;margin:6px 0 22px;max-width:62ch;">Paper's default corner is square — drafting is straight-edge work. Subtle 1–3px rounding is reserved for chips and inputs.</p>
+    <div class="radius-row">
+      <div><div class="b" style="border-radius:0"></div><div class="kicker" style="margin-top:8px;">--r-0 · 0</div></div>
+      <div><div class="b" style="border-radius:1px"></div><div class="kicker" style="margin-top:8px;">--r-1 · 1</div></div>
+      <div><div class="b" style="border-radius:2px"></div><div class="kicker" style="margin-top:8px;">--r-2 · 2</div></div>
+      <div><div class="b" style="border-radius:3px"></div><div class="kicker" style="margin-top:8px;">--r-3 · 3</div></div>
+      <div><div class="b" style="border-radius:99px"></div><div class="kicker" style="margin-top:8px;">--r-pill</div></div>
+    </div>
+
+    <hr class="rule"/>
+    <div class="section-num">05 · Shadow</div>
+    <h2 style="margin-top:6px;">Soft paper drops</h2>
+    <div class="shadow-row">
+      <div class="b" style="box-shadow:0 1px 0 rgba(28,24,20,0.04);">--sh-1</div>
+      <div class="b" style="box-shadow:0 1px 2px rgba(28,24,20,0.06), 0 4px 12px rgba(28,24,20,0.05);">--sh-2</div>
+      <div class="b" style="box-shadow:0 4px 16px rgba(28,24,20,0.10), 0 16px 40px rgba(28,24,20,0.08);">--sh-3</div>
+      <div class="b" style="box-shadow:0 0 0 1.5px var(--coral), 0 1px 2px rgba(201,100,66,0.2);">--sh-stamp</div>
+    </div>
+
+    <hr class="rule"/>
+    <div class="section-num">06 · Motion</div>
+    <h2 style="margin-top:6px;">Three speeds, one easing</h2>
+    <table class="token-table">
+      <thead><tr><th>Token</th><th>Duration</th><th>Easing</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td class="name">--d-fast</td><td>120ms</td><td>cubic-bezier(.2,.7,.2,1)</td><td class="use">Hover, button press</td></tr>
+        <tr><td class="name">--d-med</td><td>220ms</td><td>cubic-bezier(.2,.7,.2,1)</td><td class="use">Panel open, card lift</td></tr>
+        <tr><td class="name">--d-slow</td><td>380ms</td><td>cubic-bezier(.4,0,.2,1)</td><td class="use">Pencil → ink solidify</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:60px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;border-top:1.5px solid var(--ink);padding-top:18px;">
+      <span>Sheet 02 of 14</span><span><a href="components.html" style="color:var(--coral);">Next: Components →</a></span>
+    </div>
+  </div>
+</div>
+</body></html>

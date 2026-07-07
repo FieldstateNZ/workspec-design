@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Terminal · Empty / cold start</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shell.css">
+<style>
+body{overflow:hidden;}
+.crumb-overlay{position:fixed;top:14px;left:14px;z-index:10;}
+.cold{position:fixed;inset:0;background:var(--bg);display:grid;place-items:center;}
+.cold::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 50% 30%, rgba(255,90,54,0.08) 0%, transparent 60%);pointer-events:none;}
+.cold-inner{position:relative;text-align:center;width:min(640px, 90vw);}
+.wm{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:0.02em;color:var(--ink-fade);}
+.wm .blink{display:inline-block;width:7px;height:13px;background:var(--accent);margin-left:2px;vertical-align:-2px;animation:bl 1.1s steps(2) infinite;}
+@keyframes bl{50%{opacity:0;}}
+h1.cold{font-size:64px;line-height:1.0;letter-spacing:-0.045em;font-weight:700;margin:32px 0 14px;}
+.cold .lead{color:var(--ink-soft);font-size:16px;line-height:1.55;max-width:520px;margin:0 auto;}
+.prompt{margin-top:36px;text-align:left;background:var(--bg-soft);border:1px solid var(--line-2);border-radius:var(--r-3);padding:14px 16px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--sh-3);}
+.prompt .top{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.1em;color:var(--ink-fade);text-transform:uppercase;}
+.prompt textarea{background:none;border:0;color:var(--ink);font-family:var(--mono);font-size:14px;line-height:1.5;resize:none;outline:none;width:100%;min-height:78px;}
+.prompt .bottom{display:flex;align-items:center;gap:6px;}
+.suggest{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;justify-content:center;}
+.suggest .item{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-pill);padding:6px 12px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);letter-spacing:0.04em;cursor:pointer;}
+.suggest .item:hover{border-color:var(--accent);color:var(--accent);}
+.cold-foot{position:fixed;bottom:24px;left:0;right:0;display:flex;justify-content:space-between;padding:0 24px;font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);letter-spacing:0.08em;text-transform:uppercase;}
+</style>
+</head><body>
+<div class="crumb-overlay"><div class="crumb"><a href="../index.html">Design Set</a> · <a href="index.html">Terminal</a> · <span style="color:var(--ink)">Empty · cold start</span></div></div>
+<div class="cold">
+  <div class="cold-inner">
+    <div class="wm">workspec<span class="blink"></span></div>
+    <h1 class="cold">Start with a thought.</h1>
+    <p class="lead">Paste a Slack thread, drop a doc, or type what you're trying to figure out. Atlas will scaffold the first artifacts — you take it from there.</p>
+
+    <div class="prompt">
+      <div class="top"><span style="display:inline-block;width:5px;height:5px;background:var(--accent);border-radius:50%;"></span>NEW SPEC · 1 OF 1</div>
+      <textarea autofocus>we're building a way for users to log in with their GitHub account, but we also want to keep email/password as a fallback for enterprise customers</textarea>
+      <div class="bottom">
+        <span class="chip" style="font-size:10px;">⌘K commands</span>
+        <span class="chip" style="font-size:10px;">⌘V paste</span>
+        <span class="chip" style="font-size:10px;">⌘O upload doc</span>
+        <button class="btn primary" style="margin-left:auto;">Scaffold spec →</button>
+      </div>
+    </div>
+
+    <div class="suggest">
+      <span class="item">+ paste a PRD</span>
+      <span class="item">+ import from Notion</span>
+      <span class="item">+ start from a template</span>
+      <span class="item">+ ⌘V Slack thread</span>
+    </div>
+  </div>
+
+  <div class="cold-foot">
+    <span>workspec · v0.1 · cold start</span>
+    <span><a href="screen-discovery.html" style="border-bottom:1px solid var(--line-2);">skip · see populated canvas →</a></span>
+  </div>
+</div>
+</body></html>

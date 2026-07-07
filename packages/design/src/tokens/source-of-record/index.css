@@ -1,0 +1,8 @@
+/**
+ * Token entry point — console aesthetic, dark and light themes.
+ * Active theme set by [data-aesthetic="console"][data-theme="dark|light"]
+ * on <html>. Components read var(--bg), var(--accent) etc. directly.
+ */
+
+@import "./console-dark.css";
+@import "./console-light.css";

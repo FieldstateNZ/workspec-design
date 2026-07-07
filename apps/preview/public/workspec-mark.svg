@@ -1,0 +1,32 @@
+<!--
+  Provenance: copied verbatim from /assets/brand/workspec-mark.svg (the
+  repo's canonical trademarked mark export) for this app's own header/logo
+  section — apps/preview is the project's own page, not a third party, so
+  this use is fine; see /NOTICE for the license split (Apache-2.0 code/tokens,
+  trademarked brand assets). Do not hand-edit this copy — re-copy from the
+  source of record if the mark changes.
+
+  WorkSpec mark — standalone export.
+
+  Geometry extracted verbatim from the canonical, token-driven React
+  component: workspec/artifacts/workspec/src/components/ui/workspec-mark.tsx
+  (viewBox 0 0 64 64; line + terminal circle + square + accent circle). That
+  component is the source of truth and stays token-driven — stroke
+  var(--ink), terminal-circle/square fill var(--bg-elevated) (the `surface`
+  prop), accent circle fill var(--accent) — so it always matches the active
+  theme. This file trades that theme-awareness for portability: strokes use
+  `currentColor` (set `color` on an ancestor to recolor), the terminal circle
+  and square are left unfilled (`fill="none"`) rather than baked to one
+  theme's surface color so the mark drops onto any background, and the
+  accent circle is fixed to #1b8a55 — the go-live green accent (console-light
+  --accent, equivalently console-dark --accent-deep / "brand guidelines v1",
+  see docs/design/README.md).
+
+  These are trademarks — see /NOTICE.
+-->
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 10 32 L 54 32" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"/>
+  <circle cx="10" cy="32" r="4.5" stroke="currentColor" stroke-width="2.6" fill="none"/>
+  <rect x="25.5" y="25.5" width="13" height="13" stroke="currentColor" stroke-width="2.6" fill="none"/>
+  <circle cx="54" cy="32" r="4.5" fill="#1b8a55"/>
+</svg>

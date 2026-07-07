@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WorkSpec · Design Set</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0e10; --bg-soft:#16161a; --line:#26262c; --line-2:#34343d;
+  --ink:#e8e8ea; --ink-soft:#a4a4ac; --ink-fade:#62626a;
+  --accent:#ff5a36;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --sans:'Inter Tight', system-ui, sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-feature-settings:'ss01','ss02','cv11';}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1280px;margin:0 auto;padding:64px 40px 120px;}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-fade);}
+h1{font-family:var(--sans);font-size:84px;line-height:0.95;letter-spacing:-0.04em;font-weight:700;margin:14px 0 6px;}
+.lead{font-size:20px;line-height:1.45;color:var(--ink-soft);max-width:720px;margin:18px 0 0;}
+.meta{display:flex;gap:30px;margin-top:36px;font-family:var(--mono);font-size:12px;color:var(--ink-fade);letter-spacing:0.04em;text-transform:uppercase;}
+.meta b{color:var(--ink);font-weight:500;display:block;font-family:var(--sans);font-size:14px;text-transform:none;letter-spacing:0;margin-top:4px;}
+hr{border:0;border-top:1px solid var(--line);margin:60px 0;}
+
+.section-title{display:flex;align-items:baseline;gap:14px;margin:0 0 26px;}
+.section-title h2{font-size:36px;letter-spacing:-0.03em;font-weight:600;margin:0;}
+.section-title .num{font-family:var(--mono);color:var(--accent);font-size:13px;letter-spacing:0.1em;}
+
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+
+.card{display:block;background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:border-color .15s, transform .15s;}
+.card:hover{border-color:var(--line-2);transform:translateY(-1px);}
+.card .preview{aspect-ratio:4/3;border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.card .body{padding:14px 16px 16px;}
+.card .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-fade);}
+.card h3{margin:6px 0 4px;font-size:17px;font-weight:600;letter-spacing:-0.01em;}
+.card p{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.45;}
+
+.dir-card .preview{aspect-ratio:16/10;}
+.dir-card .swatches{position:absolute;inset:auto 0 0 0;display:flex;height:32px;}
+.dir-card .swatches span{flex:1;}
+
+.dir-A .preview{background:#f4efe4;}
+.dir-A .preview svg text{font-family:'Fraunces',serif;}
+.dir-B .preview{background:#0a0a0c;}
+.dir-C .preview{background:#fafaf7;}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line-2);border-radius:99px;color:var(--ink-soft);}
+
+.foot{margin-top:80px;padding-top:30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;color:var(--ink-fade);letter-spacing:0.06em;text-transform:uppercase;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">WorkSpec · Design Set · v0.1 · Internal</div>
+  <h1>Design set.</h1>
+  <p class="lead">Three aesthetic directions, each a complete vertical slice — brand basics, tokens, components, and screens covering the canvas, lens toggle, boards, detail panels, agent states, onboarding, and marketing surfaces. Pick one to take to implementation; mix where it makes sense.</p>
+
+  <div class="meta">
+    <div><span>Author</span><b>Design</b></div>
+    <div><span>Status</span><b>Exploration · pre-build</b></div>
+    <div><span>Audience</span><b>Internal — implementation alignment</b></div>
+    <div><span>Linked</span><b><a href="../Canvas Flow Wireframes.html" style="border-bottom:1px solid var(--ink-fade)">Wireframes</a> · <a href="../WorkSpec Prototype.html" style="border-bottom:1px solid var(--ink-fade)">Prototype</a></b></div>
+  </div>
+
+  <hr/>
+
+  <div class="section-title"><span class="num">01</span><h2>Three directions</h2></div>
+  <p style="color:var(--ink-soft);font-size:15px;max-width:680px;margin:-10px 0 30px;line-height:1.5;">Each direction is a complete answer to "what should WorkSpec feel like." Open any to see its tokens, components, and screen set in context.</p>
+
+  <div class="grid-3">
+    <a class="card dir-card dir-A" href="paper/index.html">
+      <div class="preview">
+        <svg viewBox="0 0 320 200" width="100%" height="100%">
+          <text x="30" y="100" font-size="72" font-weight="700" fill="#1a1814" letter-spacing="-2">workspec</text>
+          <text x="30" y="130" font-family="JetBrains Mono" font-size="10" fill="#62626a" letter-spacing="2">PAPER · WARM · CRAFTED</text>
+          <circle cx="280" cy="50" r="20" fill="#c96442"/>
+        </svg>
+        <div class="swatches"><span style="background:#f4efe4"></span><span style="background:#1a1814"></span><span style="background:#c96442"></span><span style="background:#2d5a4d"></span><span style="background:#f2d675"></span></div>
+      </div>
+      <div class="body">
+        <span class="lbl">Direction A</span>
+        <h3>Paper</h3>
+        <p>The wireframe aesthetic, finished. Warm off-white surface, ink black, coral accent. Serif display + hand-set workmanship. Feels like a craftsman's notebook.</p>
+        <div class="tag-row"><span class="tag">warm</span><span class="tag">editorial</span><span class="tag">craft</span></div>
+      </div>
+    </a>
+    <a class="card dir-card dir-B" href="terminal/index.html">
+      <div class="preview">
+        <svg viewBox="0 0 320 200" width="100%" height="100%">
+          <text x="30" y="100" font-family="JetBrains Mono" font-size="44" font-weight="500" fill="#e8e8ea" letter-spacing="-1">workspec</text>
+          <text x="30" y="124" font-family="JetBrains Mono" font-size="10" fill="#62626a" letter-spacing="2">TERMINAL · SHARP · DENSE</text>
+          <rect x="30" y="140" width="9" height="14" fill="#ff5a36"/>
+        </svg>
+        <div class="swatches"><span style="background:#0a0a0c"></span><span style="background:#16161a"></span><span style="background:#e8e8ea"></span><span style="background:#ff5a36"></span><span style="background:#5cf2c0"></span></div>
+      </div>
+      <div class="body">
+        <span class="lbl">Direction B</span>
+        <h3>Terminal</h3>
+        <p>Engineering-first. Near-black surface, monospace for everything functional, hot accent. Every pixel earns its place. Linear/Vercel/Zed lineage but quieter.</p>
+        <div class="tag-row"><span class="tag">dark</span><span class="tag">technical</span><span class="tag">dense</span></div>
+      </div>
+    </a>
+    <a class="card dir-card dir-C" href="atelier/index.html">
+      <div class="preview">
+        <svg viewBox="0 0 320 200" width="100%" height="100%">
+          <text x="30" y="105" font-family="Fraunces" font-style="italic" font-size="68" font-weight="400" fill="#1a1a1a" letter-spacing="-3">workspec</text>
+          <text x="30" y="132" font-family="JetBrains Mono" font-size="10" fill="#7a7a78" letter-spacing="2">ATELIER · CALM · SPACIOUS</text>
+          <circle cx="282" cy="55" r="18" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+          <circle cx="282" cy="55" r="6" fill="#1a1a1a"/>
+        </svg>
+        <div class="swatches"><span style="background:#fafaf7"></span><span style="background:#1a1a1a"></span><span style="background:#5a4af4"></span><span style="background:#e6e4dc"></span><span style="background:#c4c0b3"></span></div>
+      </div>
+      <div class="body">
+        <span class="lbl">Direction C</span>
+        <h3>Atelier</h3>
+        <p>Quiet luxury. Off-white, generous whitespace, Fraunces italic display, single confident violet accent. Calm, spacious, trustworthy. Stripe meets Linear at a gallery.</p>
+        <div class="tag-row"><span class="tag">light</span><span class="tag">spacious</span><span class="tag">considered</span></div>
+      </div>
+    </a>
+  </div>
+
+  <hr/>
+
+  <div class="section-title"><span class="num">02</span><h2>What's in each direction</h2></div>
+  <p style="color:var(--ink-soft);font-size:15px;max-width:720px;margin:-10px 0 30px;line-height:1.5;">All three directions implement the same screen set so you can compare apples-to-apples. Click any direction above; each has its own contents page.</p>
+
+  <div class="grid-4">
+    <Cell title="Brand basics" sub="wordmark · voice · color · type"/>
+    <Cell title="Tokens" sub="color · type · space · radii · shadow · motion"/>
+    <Cell title="Core components" sub="button · input · card · menu · tabs · dialog · toast"/>
+    <Cell title="Canvas components" sub="artifact · edge · bubble · lasso · board tile · lens toggle"/>
+    <Cell title="Workspace shell" sub="left rail · canvas · right detail panel"/>
+    <Cell title="Discovery canvas" sub="populated · agent active"/>
+    <Cell title="Container view" sub="auth drilled in"/>
+    <Cell title="Lens toggle" sub="logical · deployment · both"/>
+    <Cell title="Boards" sub="board-as-artifact drilled in"/>
+    <Cell title="Detail panels" sub="artifact · board · version history"/>
+    <Cell title="Agent thinking" sub="streaming · tool calls · interruption"/>
+    <Cell title="Empty / onboarding" sub="cold start · first prompt"/>
+    <Cell title="States" sub="empty · loading · error"/>
+    <Cell title="Marketing" sub="landing · signup · pricing"/>
+  </div>
+
+  <hr/>
+
+  <div class="section-title"><span class="num">03</span><h2>Pick &amp; mix guidance</h2></div>
+  <div class="grid-2">
+    <div>
+      <div class="kicker" style="margin-bottom:6px;">Recommendation</div>
+      <p style="font-size:16px;line-height:1.55;color:var(--ink-soft);max-width:480px;">Direction <b style="color:var(--ink)">B (Terminal)</b> for the product surface — your users are technical, density rewards expertise, the dark canvas keeps focus on artifacts. Direction <b style="color:var(--ink)">C (Atelier)</b> for marketing — slower, considered, builds trust. Direction A (Paper) is the spirit of the wireframes; it's beautiful but probably too warm for daily use.</p>
+    </div>
+    <div>
+      <div class="kicker" style="margin-bottom:6px;">Caveats</div>
+      <ul style="font-size:14.5px;line-height:1.6;color:var(--ink-soft);padding-left:18px;margin:0;max-width:480px;">
+        <li>This is a v0.1 — names, hex values, and component APIs are negotiable.</li>
+        <li>The screen set is the same across directions but copy varies a little to suit voice.</li>
+        <li>Motion is defined as principles + a small token set; build out as needed.</li>
+        <li>Marketing surfaces are sketched, not finished; shipping copy still TBD.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>WorkSpec · Design Set · v0.1</span>
+    <span>April 2026 · Internal</span>
+  </div>
+</div>
+
+<script>
+function Cell(){} // declared so the JSX-style tags below render as raw HTML elements; we'll replace via DOM
+document.querySelectorAll('Cell').forEach(c=>{
+  const t = c.getAttribute('title'), s = c.getAttribute('sub');
+  const div = document.createElement('div');
+  div.style.cssText = 'border:1px solid var(--line);border-radius:6px;padding:14px 16px;background:var(--bg-soft);';
+  div.innerHTML = `<div style="font-size:14.5px;font-weight:600;letter-spacing:-0.01em;">${t}</div><div style="font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;color:var(--ink-fade);margin-top:6px;text-transform:uppercase;">${s}</div>`;
+  c.replaceWith(div);
+});
+</script>
+</body>
+</html>

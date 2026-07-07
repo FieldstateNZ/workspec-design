@@ -1,0 +1,75 @@
+/* PAPER · DARK token set — "midnight paper"
+   Ink-on-charcoal inversion of the Paper aesthetic. Coral preserved as the
+   accent identity; ochre and sage shifted slightly warmer to read against the
+   dark surface. Paper grain becomes ink grain — same visual logic, inverted.
+
+   Drop-in for the Paper aesthetic when [data-theme="dark"] is set on :root or
+   <html>. Variable names match paper/tokens.css exactly so components don't
+   need to know which theme is active.
+*/
+
+:root[data-theme="dark"],
+.paper-dark {
+  /* Paper surface — now charcoal "ink paper" */
+  --paper:        #161310;       /* deep charcoal, slight warm undertone (was #f3ecd8) */
+  --paper-deep:   #1d1915;       /* cards / elevated (was #ede4cb) */
+  --paper-soft:   #100d0a;       /* deepest wash, page bg if needed (was #f7f1de) */
+  --paper-edge:   #2a241c;       /* aged edge / divider (was #e3d8b8) */
+
+  /* Ink — now light, warm-toned to keep the "ink on paper" character */
+  --ink:          #ede4cf;       /* primary text (was #1c1814) */
+  --ink-soft:     #b8aa8e;       /* secondary (was #4a4338) */
+  --ink-fade:     #7a6e58;       /* tertiary, captions (was #8a7e68) */
+  --ink-ghost:    #4d4537;       /* hand-drawn ghost (was #b6a988) */
+
+  /* Lines */
+  --rule:         #ede4cf;       /* hard ink rule = primary ink */
+  --rule-soft:    rgba(237,228,207,0.18);
+  --rule-faint:   rgba(237,228,207,0.08);
+  --grid-major:   rgba(237,228,207,0.10);
+  --grid-minor:   rgba(237,228,207,0.04);
+
+  /* Blueprint blue — lifted for legibility on dark */
+  --blue:         #7a9ec0;       /* was #3a5a7a */
+  --blue-soft:    #95acc4;
+  --blue-faint:   rgba(122,158,192,0.16);
+
+  /* Coral — preserved as brand accent; slightly warmer to glow on dark */
+  --coral:        #e07a55;       /* was #c96442 */
+  --coral-deep:   #c96442;       /* darker hover */
+  --coral-soft:   rgba(224,122,85,0.16);
+
+  /* Ochre — warmer, brighter for dark */
+  --ochre:        #d6a043;       /* was #b88420 */
+  --ochre-soft:   rgba(214,160,67,0.16);
+
+  /* Sage — lifted */
+  --sage:         #8fa97e;       /* was #5e7a4f */
+  --sage-soft:    rgba(143,169,126,0.16);
+
+  /* Type scales — unchanged across themes */
+  --serif:        "Tiempos Headline","Source Serif 4","Iowan Old Style",Georgia,serif;
+  --sans:         "Söhne","Inter","Helvetica Neue",system-ui,sans-serif;
+  --mono:         "JetBrains Mono","SF Mono",Menlo,monospace;
+  --hand:         "Caveat","Kalam",cursive;
+
+  --t-display: 72px; --t-h1: 48px; --t-h2: 32px; --t-h3: 22px;
+  --t-body: 15px; --t-small: 13px; --t-caption: 11px; --t-mono-sm: 10.5px;
+
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+  --r-1: 1px;  --r-2: 2px;  --r-3: 3px;  --r-pill: 99px;
+
+  /* Shadows — softer on dark; ink halo instead of paper drop */
+  --sh-1: 0 1px 0 rgba(0,0,0,0.5);
+  --sh-2: 0 1px 2px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.4);
+  --sh-3: 0 4px 16px rgba(0,0,0,0.55), 0 16px 40px rgba(0,0,0,0.5);
+  --sh-press: inset 0 1px 0 rgba(0,0,0,0.4);
+  --sh-stamp: 0 0 0 1.5px var(--coral), 0 1px 2px rgba(224,122,85,0.35);
+
+  /* Motion — unchanged */
+  --d-fast: 120ms; --d-med: 220ms; --d-slow: 380ms;
+  --ease-out:  cubic-bezier(.2,.7,.2,1);
+  --ease-in-out: cubic-bezier(.4,0,.2,1);
+}

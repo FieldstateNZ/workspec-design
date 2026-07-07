@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Agent</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+body{margin:0;}
+.app{display:grid;grid-template-rows:auto 1fr;height:100vh;}
+.wrap{display:grid;grid-template-columns:1fr 420px;height:100%;}
+.canvas-area{position:relative;background:var(--paper);overflow:hidden;background-image:linear-gradient(rgba(28,24,20,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(28,24,20,0.06) 1px,transparent 1px);background-size:24px 24px;}
+.afact{background:var(--paper-soft);border:1.5px solid var(--ink);padding:10px 12px;position:absolute;width:160px;}
+.afact .h{font-family:var(--mono);font-size:9px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;}
+.afact .t{font-family:var(--serif);font-size:13px;font-weight:600;margin-top:4px;line-height:1.3;}
+.afact.draft{border-style:dashed;border-color:var(--coral);background:rgba(201,100,66,0.04);}
+.afact.draft .t{color:var(--ink-ghost);}
+.afact.draft .h{color:var(--coral);}
+.afact.pulse{animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,100,66,0);}50%{box-shadow:0 0 0 6px rgba(201,100,66,0.18);}}
+.right{border-left:1.5px solid var(--ink);background:var(--paper-deep);display:flex;flex-direction:column;}
+.r-head{padding:18px 24px;border-bottom:1.5px solid var(--ink);position:relative;display:flex;align-items:center;gap:10px;}
+.r-head::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:.4;}
+.r-head .dot{width:8px;height:8px;background:var(--coral);border-radius:50%;animation:pulse-dot 1.4s infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.3}}
+.r-head .t{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--coral);}
+.r-head .meta{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.12em;text-transform:uppercase;}
+.stream{padding:20px 24px;flex:1;overflow:auto;display:flex;flex-direction:column;gap:14px;}
+.step{padding:12px 14px;border-left:2px solid var(--rule-soft);}
+.step.tool{border-left-color:var(--blue);}
+.step.draft{border-left-color:var(--coral);}
+.step .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);margin-bottom:4px;}
+.step.tool .lbl{color:var(--blue);}
+.step.draft .lbl{color:var(--coral);}
+.step .text{font-family:var(--hand);font-size:17px;color:var(--ink);line-height:1.35;}
+.step .code{font-family:var(--mono);font-size:11.5px;color:var(--ink);}
+.step .meta{font-family:var(--mono);font-size:9.5px;color:var(--ink-fade);letter-spacing:0.1em;margin-top:4px;}
+.composer{border-top:1.5px solid var(--ink);padding:14px 24px;background:var(--paper);}
+.composer .row{display:flex;gap:8px;align-items:center;}
+.composer input{flex:1;border:1.5px solid var(--ink);background:var(--paper-soft);padding:8px 12px;font-family:var(--hand);font-size:16px;outline:none;}
+.composer .actions{margin-top:8px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-fade);}
+.composer .actions .ints{color:var(--coral);cursor:pointer;}
+.bubble{position:absolute;background:var(--paper);border:1.5px solid var(--coral);padding:10px 14px;width:240px;box-shadow:var(--sh-2);z-index:3;}
+.bubble .h{font-family:var(--mono);font-size:9px;color:var(--coral);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:5px;}
+.bubble .text{font-family:var(--hand);font-size:15px;color:var(--ink);line-height:1.3;}
+</style></head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="wordmark">workspec<span class="dot"></span></div>
+    <nav class="nav"><a class="active">Canvas</a><a>Boards</a><a>Library</a></nav>
+    <div class="spacer"></div>
+    <span class="meta">Atlas · drafting</span>
+    <span class="avatar">CL</span>
+  </header>
+  <main class="wrap">
+    <section class="canvas-area">
+      <!-- Existing notes (faded) -->
+      <div class="afact" style="left:60px;top:120px;opacity:.6;"><div class="h">NOTE</div><div class="t">user can't sign in</div></div>
+      <div class="afact" style="left:60px;top:200px;opacity:.6;"><div class="h">NOTE</div><div class="t">SSO ask</div></div>
+      <div class="afact" style="left:60px;top:280px;opacity:.6;"><div class="h">NOTE</div><div class="t">password reset</div></div>
+
+      <!-- Pencil drafts mid-creation -->
+      <div class="afact draft pulse" style="left:280px;top:140px;width:200px;"><div class="h">DRAFT FEATURE</div><div class="t">Auth modernization</div></div>
+      <div class="afact draft pulse" style="left:280px;top:240px;width:200px;animation-delay:.3s;"><div class="h">DRAFT SLICE</div><div class="t">Login retry loop</div></div>
+      <div class="afact draft pulse" style="left:520px;top:190px;width:170px;animation-delay:.6s;"><div class="h">DRAFT</div><div class="t">SSO config</div></div>
+
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+        <path d="M 230 145 Q 270 145, 280 170" stroke="#c96442" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+        <path d="M 230 225 L 280 175" stroke="#c96442" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+        <path d="M 230 305 Q 270 305, 280 270" stroke="#c96442" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+        <path d="M 480 200 L 520 220" stroke="#c96442" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+      </svg>
+
+      <div class="bubble" style="left:280px;top:60px;">
+        <div class="h">Atlas · pencilling</div>
+        <div class="text">Drawing 3 artifacts. Hold ⌥ to interrupt.</div>
+      </div>
+    </section>
+
+    <aside class="right">
+      <div class="r-head"><span class="dot"></span><span class="t">Atlas · drafting</span><span class="meta">2.4s</span></div>
+      <div class="stream">
+        <div class="step"><div class="lbl">Goal</div><div class="text">Group three login-related notes into a coherent feature.</div></div>
+        <div class="step tool"><div class="lbl">→ tool · searchArtifacts</div><div class="code">type:note · contains:"login,sign in,SSO"</div><div class="meta">found 5 candidates · 240ms</div></div>
+        <div class="step tool"><div class="lbl">→ tool · clusterByTopic</div><div class="code">artifacts:[#41,#44,#46,#47,#52]</div><div class="meta">3 clusters · 380ms</div></div>
+        <div class="step draft"><div class="lbl">✎ draft · feature</div><div class="text">Auth modernization — combines OAuth + SSO + retry hardening.</div></div>
+        <div class="step draft"><div class="lbl">✎ draft · slice</div><div class="text">Login retry loop fix · estimated S.</div></div>
+        <div class="step tool"><div class="lbl">→ tool · supersede</div><div class="code">old:feat-auth-v2 → new:feat-auth-v3</div><div class="meta">queued · awaiting accept</div></div>
+        <div class="step"><div class="lbl">Pencil note</div><div class="text">Want me to also draft a slice for SAML?</div></div>
+      </div>
+      <div class="composer">
+        <div class="row">
+          <input placeholder="ask Atlas to revise the draft…"/>
+          <button class="btn primary">Send</button>
+        </div>
+        <div class="actions"><span>⌥ to interrupt · Esc to dismiss</span><span class="ints">Stop drafting →</span></div>
+      </div>
+    </aside>
+  </main>
+</div>
+<div class="titleblock">
+  <div class="row bordered-r"><span class="lbl">Sheet</span><span class="val">A · 14/14</span></div>
+  <div class="row"><span class="lbl">Scale</span><span class="val">1:1</span></div>
+  <div class="row bordered-r"><span class="lbl">Drawn</span><span class="val">CL/AT</span></div>
+  <div class="row"><span class="lbl">Date</span><span class="val">2026.04</span></div>
+  <div class="row full"><span class="lbl">Sheet name</span><span class="val serif">Agent thinking</span></div>
+</div>
+<a class="back-contents" href="index.html">← contents</a>
+</body></html>

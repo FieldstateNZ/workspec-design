@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+body{margin:0;}
+.app{display:grid;grid-template-rows:auto 1fr;height:100vh;}
+.canvas{display:grid;grid-template-columns:220px 1fr;height:100%;}
+.canvas-area{position:relative;background:var(--paper);overflow:hidden;background-image:linear-gradient(rgba(28,24,20,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(28,24,20,0.06) 1px,transparent 1px);background-size:24px 24px;padding:36px 40px;}
+.bhead{display:flex;align-items:baseline;gap:18px;margin-bottom:24px;}
+.bhead h2{font-family:var(--serif);font-size:36px;font-weight:600;letter-spacing:-0.02em;margin:0;}
+.bhead .meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.col{background:var(--paper-deep);border:1.5px solid var(--ink);padding:14px;display:flex;flex-direction:column;gap:10px;}
+.col .ch{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;border-bottom:1.5px solid var(--ink);position:relative;}
+.col .ch::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:.4;}
+.col .ch .t{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blue);}
+.col .ch .n{font-family:var(--mono);font-size:11px;color:var(--ink-fade);}
+.card{background:var(--paper-soft);border:1.5px solid var(--ink);padding:10px 12px;}
+.card .h{font-family:var(--mono);font-size:9px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;display:flex;justify-content:space-between;}
+.card .h .v{color:var(--coral);}
+.card .t{font-family:var(--serif);font-size:13.5px;font-weight:600;margin-top:5px;line-height:1.3;}
+.card .b{font-size:11px;color:var(--ink-soft);margin-top:5px;line-height:1.4;}
+.card .foot{margin-top:8px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--ink-fade);letter-spacing:0.1em;text-transform:uppercase;}
+.card.focus{box-shadow:0 0 0 1.5px var(--coral),var(--sh-2);}
+.card.draft{border-style:dashed;border-color:var(--ink-ghost);background:transparent;}
+.card.draft .t{color:var(--ink-ghost);}
+</style></head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="wordmark">workspec<span class="dot"></span></div>
+    <nav class="nav"><a>Canvas</a><a class="active">Boards</a><a>Library</a></nav>
+    <div class="spacer"></div>
+    <span class="meta">Board · Q2 triage</span>
+    <button class="btn">Share</button>
+    <span class="avatar">CL</span>
+  </header>
+  <main class="canvas">
+    <aside class="sidebar">
+      <div class="group">
+        <div class="group-label">Boards</div>
+        <div class="item active"><span class="num">·</span>Q2 triage</div>
+        <div class="item"><span class="num">·</span>Open questions</div>
+        <div class="item"><span class="num">·</span>Drafts (3)</div>
+      </div>
+      <div class="group">
+        <div class="group-label">Filters</div>
+        <div class="item"><span class="num">·</span>Mine only</div>
+        <div class="item"><span class="num">·</span>Past 7 days</div>
+        <div class="item"><span class="num">·</span>Drafted by Atlas</div>
+      </div>
+    </aside>
+    <section class="canvas-area">
+      <div class="bhead">
+        <h2 class="underline">Q2 backlog</h2>
+        <span class="meta">9 items · drawn by CL · drafted 04.12</span>
+      </div>
+      <div class="cols">
+        <div class="col">
+          <div class="ch"><span class="t">Triage</span><span class="n">3</span></div>
+          <div class="card"><div class="h"><span>NOTE</span></div><div class="t">2FA support email volume</div><div class="b">Three tickets this week. Worth a slice?</div><div class="foot"><span>CL · 04.12</span><span>3 sources</span></div></div>
+          <div class="card draft"><div class="h" style="color:var(--coral);"><span>DRAFT</span><span class="v">·</span></div><div class="t">Atlas: enterprise SAML?</div><div class="b">Pencilled from sales notes.</div><div class="foot" style="color:var(--ink-ghost);"><span>ATLAS · NOW</span><span>review</span></div></div>
+          <div class="card"><div class="h"><span>BUG</span><span class="v">open</span></div><div class="t">Login retry loop</div><div class="b">Infinite redirect on stale token.</div><div class="foot"><span>AT · 04.10</span><span>P1</span></div></div>
+        </div>
+        <div class="col">
+          <div class="ch"><span class="t">Ready</span><span class="n">2</span></div>
+          <div class="card"><div class="h"><span>SLICE</span><span class="v">v1</span></div><div class="t">Password reset polish</div><div class="b">Copy + redirect fix.</div><div class="foot"><span>CL · 04.09</span><span>S</span></div></div>
+          <div class="card focus"><div class="h"><span>FEAT</span><span class="v">v3</span></div><div class="t">GitHub OAuth flow</div><div class="b">Drafted v3 — ready for build.</div><div class="foot"><span>CL/AT · 04.12</span><span>M</span></div></div>
+        </div>
+        <div class="col">
+          <div class="ch"><span class="t">Done</span><span class="n">4</span></div>
+          <div class="card" style="opacity:.7;"><div class="h"><span>SLICE</span><span class="v">shipped</span></div><div class="t" style="text-decoration:line-through;text-decoration-color:var(--ink-fade);">Empty state copy</div><div class="foot"><span>AT · 04.05</span><span>XS</span></div></div>
+          <div class="card" style="opacity:.7;"><div class="h"><span>BUG</span><span class="v">fixed</span></div><div class="t" style="text-decoration:line-through;text-decoration-color:var(--ink-fade);">Email verify race</div><div class="foot"><span>CL · 04.06</span><span>S</span></div></div>
+          <div class="card" style="opacity:.7;"><div class="h"><span>FEAT</span><span class="v">shipped</span></div><div class="t" style="text-decoration:line-through;text-decoration-color:var(--ink-fade);">Magic link fallback</div><div class="foot"><span>CL · 04.04</span><span>M</span></div></div>
+          <div class="card" style="opacity:.7;"><div class="h"><span>NOTE</span><span class="v">archived</span></div><div class="t" style="text-decoration:line-through;text-decoration-color:var(--ink-fade);">Old hypothesis</div><div class="foot"><span>CL · 03.28</span><span>—</span></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="titleblock">
+  <div class="row bordered-r"><span class="lbl">Sheet</span><span class="val">A · 12/14</span></div>
+  <div class="row"><span class="lbl">Scale</span><span class="val">1:1</span></div>
+  <div class="row bordered-r"><span class="lbl">Drawn</span><span class="val">CL</span></div>
+  <div class="row"><span class="lbl">Date</span><span class="val">2026.04</span></div>
+  <div class="row full"><span class="lbl">Sheet name</span><span class="val serif">Board — Q2 triage</span></div>
+</div>
+<a class="back-contents" href="index.html">← contents</a>
+</body></html>

@@ -1,0 +1,129 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Terminal · Lens toggle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shell.css">
+<style>
+.lens-stage{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-3);overflow:hidden;height:380px;}
+.lens-stage::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);background-size:24px 24px;pointer-events:none;}
+.label-top{position:absolute;left:18px;top:14px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.1em;text-transform:uppercase;}
+.toggle-pos{position:absolute;right:18px;top:14px;}
+</style>
+</head><body>
+<div class="page">
+<div class="crumb"><a href="../index.html">Design Set</a> · <a href="index.html">Terminal</a> · <span style="color:var(--ink)">Lens toggle</span></div>
+<h1 class="page-title">Lens toggle.</h1>
+<p class="page-lead">One graph, three views. <b style="color:var(--ink);">Logical</b> shows problems → features → scenarios. <b style="color:var(--ink);">Deployment</b> shows services → infra → endpoints. <b style="color:var(--ink);">Both</b> overlays them with subtle ghost lines so engineers and PMs can talk in the same room.</p>
+
+<hr class="div"/>
+
+<div style="display:grid;grid-template-columns:1fr;gap:24px;">
+  <!-- Logical -->
+  <div>
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:10px;">
+      <span class="lbl" style="color:var(--accent);">L · LOGICAL</span>
+      <span style="font-size:14px;color:var(--ink-soft);">Problem space — what are we doing for whom?</span>
+    </div>
+    <div class="lens-stage">
+      <div class="label-top">DISCOVERY · LOGICAL LENS</div>
+      <div class="toggle-pos lens-toggle"><div class="opt on">L</div><div class="opt">D</div><div class="opt">B</div></div>
+      <div class="art persona" style="left:30px;top:60px;"><div class="type">PERSONA</div><div class="ttl">Sarah · PM</div></div>
+      <div class="art note" style="left:30px;top:140px;"><div class="type">NOTE</div><div class="ttl">"OAuth ideal"</div></div>
+      <div class="art note" style="left:30px;top:220px;"><div class="type">NOTE</div><div class="ttl">"GitHub login"</div></div>
+      <div class="art feature" style="left:280px;top:100px;"><div class="type">FEATURE</div><div class="ttl">GitHub OAuth flow</div><div class="sub">3 sources</div></div>
+      <div class="art feature" style="left:280px;top:200px;"><div class="type">FEATURE</div><div class="ttl">Email/pw fallback</div></div>
+      <div class="art scenario" style="left:530px;top:100px;"><div class="type">SCENARIO</div><div class="ttl">First-time GitHub user</div></div>
+      <div class="art scenario" style="left:530px;top:180px;"><div class="type">SCENARIO</div><div class="ttl">Returning · session</div></div>
+      <div class="art scenario" style="left:530px;top:260px;"><div class="type">SCENARIO</div><div class="ttl">Enterprise SSO</div></div>
+      <svg style="position:absolute;inset:0;width:100%;height:100%;">
+        <path class="edge" d="M 130 160 C 200 160, 220 130, 280 130"/>
+        <path class="edge accent" d="M 130 240 C 200 240, 220 130, 280 130"/>
+        <path class="edge dashed" d="M 130 80 C 200 80, 220 130, 280 130"/>
+        <path class="edge" d="M 460 130 C 500 110, 510 110, 530 122"/>
+        <path class="edge" d="M 460 230 C 500 200, 510 200, 530 200"/>
+        <path class="edge" d="M 460 230 C 500 250, 510 270, 530 282"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Deployment -->
+  <div>
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:10px;">
+      <span class="lbl" style="color:var(--agent);">D · DEPLOYMENT</span>
+      <span style="font-size:14px;color:var(--ink-soft);">Implementation — what runs where, how it talks?</span>
+    </div>
+    <div class="lens-stage">
+      <div class="label-top">SAME GRAPH · DEPLOYMENT LENS</div>
+      <div class="toggle-pos lens-toggle"><div class="opt">L</div><div class="opt on" style="background:var(--agent);color:#0a0a0c;">D</div><div class="opt">B</div></div>
+      <!-- service nodes use a different style -->
+      <div class="art" style="left:30px;top:60px;background:var(--bg-elevated);border-color:rgba(92,242,192,0.4);"><div class="type" style="color:var(--agent);">SERVICE</div><div class="ttl">web-app</div><div class="sub">Next.js · Vercel</div></div>
+      <div class="art" style="left:280px;top:60px;background:var(--bg-elevated);border-color:rgba(92,242,192,0.4);"><div class="type" style="color:var(--agent);">SERVICE</div><div class="ttl">auth-api</div><div class="sub">Node · Fly.io</div></div>
+      <div class="art" style="left:530px;top:60px;background:var(--bg-elevated);border-color:rgba(92,242,192,0.4);"><div class="type" style="color:var(--agent);">3RD PARTY</div><div class="ttl">GitHub OAuth</div><div class="sub">github.com/login/oauth</div></div>
+      <div class="art" style="left:280px;top:180px;background:var(--bg-elevated);border-color:rgba(92,242,192,0.4);"><div class="type" style="color:var(--agent);">DATA</div><div class="ttl">users.db</div><div class="sub">Postgres · 14</div></div>
+      <div class="art" style="left:30px;top:180px;background:var(--bg-elevated);border-color:rgba(92,242,192,0.4);"><div class="type" style="color:var(--agent);">CACHE</div><div class="ttl">sessions</div><div class="sub">Redis · ttl=24h</div></div>
+      <div class="art" style="left:530px;top:180px;background:var(--bg-elevated);border-color:rgba(92,242,192,0.4);"><div class="type" style="color:var(--agent);">3RD PARTY</div><div class="ttl">SAML provider</div><div class="sub">OneLogin SDK</div></div>
+      <svg style="position:absolute;inset:0;width:100%;height:100%;">
+        <path class="edge" stroke="var(--agent)" stroke-width="1.5" fill="none" d="M 130 90 C 200 90, 220 90, 280 90"/>
+        <path class="edge" stroke="var(--agent)" stroke-width="1.5" fill="none" d="M 380 90 C 460 90, 480 90, 530 90"/>
+        <path class="edge dashed" stroke="var(--agent)" fill="none" d="M 320 130 C 320 160, 320 160, 320 180"/>
+        <path class="edge dashed" stroke="var(--agent)" fill="none" d="M 130 140 C 130 160, 130 160, 130 180"/>
+        <path class="edge dashed" stroke="var(--agent)" fill="none" d="M 580 130 C 580 160, 580 160, 580 180"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Both -->
+  <div>
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:10px;">
+      <span class="lbl" style="color:#9ec6ff;">B · BOTH</span>
+      <span style="font-size:14px;color:var(--ink-soft);">Overlay — features sit on top of the services that implement them.</span>
+    </div>
+    <div class="lens-stage">
+      <div class="label-top">SAME GRAPH · OVERLAY</div>
+      <div class="toggle-pos lens-toggle"><div class="opt">L</div><div class="opt">D</div><div class="opt on" style="background:#9ec6ff;color:#0a0a0c;">B</div></div>
+
+      <!-- ghost service strata -->
+      <div style="position:absolute;left:24px;right:24px;top:50px;border:1px dashed rgba(92,242,192,0.25);border-radius:6px;padding:6px 10px;height:80px;">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;color:var(--agent);text-transform:uppercase;opacity:0.7;">deployment stratum · auth-api</span>
+      </div>
+      <div style="position:absolute;left:24px;right:24px;top:170px;border:1px dashed rgba(255,90,54,0.25);border-radius:6px;padding:6px 10px;height:140px;">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;color:var(--accent);text-transform:uppercase;opacity:0.7;">logical stratum · auth domain</span>
+      </div>
+
+      <!-- service ghosts -->
+      <div class="art" style="left:50px;top:78px;background:rgba(28,28,34,0.6);border-color:rgba(92,242,192,0.3);width:160px;opacity:0.85;"><div class="type" style="color:var(--agent);">SERVICE</div><div class="ttl" style="font-size:13px;">auth-api</div></div>
+      <div class="art" style="left:380px;top:78px;background:rgba(28,28,34,0.6);border-color:rgba(92,242,192,0.3);width:160px;opacity:0.85;"><div class="type" style="color:var(--agent);">3RD PARTY</div><div class="ttl" style="font-size:13px;">GitHub OAuth</div></div>
+
+      <!-- features overlay (logical), connected with cross-lens edges -->
+      <div class="art feature" style="left:50px;top:200px;"><div class="type">FEATURE</div><div class="ttl">GitHub OAuth flow</div></div>
+      <div class="art feature" style="left:380px;top:200px;"><div class="type">FEATURE</div><div class="ttl">Email/pw fallback</div></div>
+      <div class="art scenario" style="left:600px;top:200px;"><div class="type">SCENARIO</div><div class="ttl">First-time user</div></div>
+
+      <svg style="position:absolute;inset:0;width:100%;height:100%;">
+        <!-- logical edges -->
+        <path class="edge accent" d="M 230 230 C 280 230, 320 230, 380 230"/>
+        <path class="edge accent" d="M 540 230 C 580 230, 580 230, 600 230"/>
+        <!-- cross-lens dashes -->
+        <path d="M 130 130 C 130 165, 130 165, 130 200" stroke="#9ec6ff" stroke-width="1" stroke-dasharray="2 3" fill="none" opacity="0.5"/>
+        <path d="M 460 130 C 460 165, 460 165, 460 200" stroke="#9ec6ff" stroke-width="1" stroke-dasharray="2 3" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">04</span>Behavior</h2>
+<div class="surface" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+  <div>
+    <div class="lbl">Switching</div>
+    <p class="note" style="margin-top:6px;font-size:13.5px;">Toggle is always present, top-right of canvas. <span class="kbd">L</span> cycles forward (L → D → B → L). <span class="kbd">⇧L</span> backward. The transition crossfades artifacts and lets edges morph in 280ms (<code class="code">--d-slow</code>).</p>
+  </div>
+  <div>
+    <div class="lbl">Persistence</div>
+    <p class="note" style="margin-top:6px;font-size:13.5px;">Lens choice is per-board, persisted in URL. Sharing a board link includes the lens — colleagues see what you saw. The agent respects the active lens when answering: ask "what depends on auth-api?" in deployment lens, get services; ask in logical lens, get features.</p>
+  </div>
+</div>
+
+<div class="foot"><span>Terminal · Lens toggle</span><span><a href="screen-board.html">Boards →</a></span></div>
+</div>
+</body></html>

@@ -1,0 +1,443 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Workspec — give your work a spec.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-feature-settings:"ss01","cv11";min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(11,11,13,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.nav-row{display:flex;align-items:center;height:60px;gap:32px;}
+.logo{font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:0.04em;display:flex;align-items:center;gap:8px;}
+.logo .blk{display:inline-block;width:10px;height:10px;background:var(--accent);}
+.nav-links{display:flex;gap:24px;font-size:13px;color:var(--ink-soft);}
+.nav-links a:hover{color:var(--ink);}
+.nav-cta{margin-left:auto;display:flex;gap:8px;align-items:center;}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:34px;padding:0 14px;border-radius:var(--r-2);border:1px solid var(--line-2);background:transparent;color:var(--ink);font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:-0.005em;cursor:pointer;transition:all var(--d-fast);}
+.btn:hover{border-color:var(--ink-soft);}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#0a0a0c;font-weight:600;}
+.btn.primary:hover{background:#ff7050;border-color:#ff7050;}
+.btn.lg{height:44px;padding:0 20px;font-size:14px;}
+
+/* hero */
+.hero{padding:72px 0 80px;border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);background-size:32px 32px;pointer-events:none;}
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;position:relative;}
+.eyebrow{font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.eyebrow::before{content:'';width:18px;height:1px;background:var(--accent);}
+h1.headline{font-size:72px;font-weight:600;line-height:0.96;letter-spacing:-0.035em;text-wrap:balance;}
+h1.headline .accent{color:var(--accent);font-style:italic;font-weight:500;}
+h1.headline .strike{text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:var(--line-2);color:var(--ink-soft);}
+.lede{font-size:18px;color:var(--ink-soft);line-height:1.55;max-width:520px;margin-top:24px;letter-spacing:-0.005em;}
+.hero-cta{display:flex;gap:10px;margin-top:32px;align-items:center;}
+.hero-meta{display:flex;gap:24px;margin-top:24px;font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.06em;}
+
+/* hero visual */
+.hero-art{position:relative;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-4);height:480px;overflow:hidden;}
+.hero-art::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);background-size:24px 24px;}
+.ha-label{position:absolute;left:18px;top:14px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.12em;text-transform:uppercase;}
+.ha-card{position:absolute;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-2);padding:10px 12px;font-size:12px;}
+.ha-card .t{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-fade);}
+.ha-card .n{font-weight:500;letter-spacing:-0.005em;margin-top:4px;font-size:13px;}
+.ha-card.note{color:var(--ink-soft);font-style:italic;}
+.ha-card.feat{border-color:rgba(255,90,54,0.4);background:rgba(255,90,54,0.05);}
+.ha-card.feat .t{color:var(--accent);}
+.ha-card.scen{border-color:rgba(158,198,255,0.4);}
+.ha-card.scen .t{color:#9ec6ff;}
+.ha-edge{stroke:var(--line-2);stroke-width:1.2;fill:none;}
+.ha-edge.acc{stroke:var(--accent);stroke-width:1.5;}
+@keyframes pulse-d{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.ha-bubble{position:absolute;background:var(--bg-elevated);border:1px solid var(--agent);border-radius:var(--r-3);padding:10px 12px;box-shadow:0 0 0 1px rgba(92,242,192,0.1);font-size:12px;color:var(--ink-soft);max-width:200px;line-height:1.45;}
+.ha-bubble .who{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--agent);margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.ha-bubble .who::before{content:'';width:5px;height:5px;background:var(--agent);border-radius:50%;animation:pulse-d 1.4s ease-in-out infinite;}
+
+/* logos strip */
+.logos{padding:36px 0;border-bottom:1px solid var(--line);}
+.logos-row{display:flex;align-items:center;gap:48px;justify-content:space-between;font-family:var(--mono);font-size:13px;color:var(--ink-fade);}
+.logos-row .lbl{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;}
+
+/* problem */
+.problem{padding:96px 0;border-bottom:1px solid var(--line);}
+.sec-eyebrow{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.sec-eyebrow::before{content:'';width:18px;height:1px;background:var(--accent);}
+h2.sec-title{font-size:44px;font-weight:600;letter-spacing:-0.025em;line-height:1.05;max-width:680px;margin-bottom:48px;text-wrap:balance;}
+h2.sec-title em{color:var(--accent);font-style:italic;font-weight:500;}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.tcard{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-3);padding:24px;}
+.tcard .num{font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.1em;}
+.tcard .h{font-size:18px;font-weight:600;letter-spacing:-0.015em;margin-top:18px;}
+.tcard .b{font-size:14px;color:var(--ink-soft);line-height:1.55;margin-top:10px;}
+.tcard .vis{height:100px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-2);margin-top:18px;position:relative;overflow:hidden;}
+
+/* solution */
+.solution{padding:96px 0;border-bottom:1px solid var(--line);background:var(--bg-soft);}
+.feature-row{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center;margin-bottom:80px;}
+.feature-row.flip{grid-template-columns:1.2fr 1fr;}
+.feature-row.flip .ftxt{order:2;}
+.feature-row:last-child{margin-bottom:0;}
+.fmark{font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px;}
+.fmark .num{color:var(--accent);font-weight:600;}
+.fhead{font-size:32px;font-weight:600;letter-spacing:-0.02em;line-height:1.1;text-wrap:balance;}
+.fbody{font-size:15px;color:var(--ink-soft);line-height:1.6;margin-top:16px;max-width:460px;}
+.fpts{margin-top:20px;display:flex;flex-direction:column;gap:8px;}
+.fpts li{list-style:none;font-size:13.5px;color:var(--ink-soft);display:flex;gap:10px;align-items:flex-start;line-height:1.5;}
+.fpts li::before{content:'·';color:var(--accent);font-weight:700;}
+.fart{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-3);height:340px;position:relative;overflow:hidden;}
+.fart::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);background-size:24px 24px;}
+.fart .lbl{position:absolute;top:14px;left:18px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.1em;text-transform:uppercase;}
+
+/* lens demo box */
+.lens-toggle-pos{position:absolute;top:12px;right:14px;display:inline-flex;background:var(--bg-soft);border:1px solid var(--line);border-radius:18px;padding:2px;font-family:var(--mono);font-size:10px;}
+.lens-toggle-pos .o{padding:4px 8px;border-radius:14px;color:var(--ink-fade);}
+.lens-toggle-pos .o.on{background:var(--accent);color:#0a0a0c;font-weight:700;}
+
+/* manifesto */
+.manifesto{padding:120px 0;border-bottom:1px solid var(--line);}
+.man-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;}
+.man-q{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:18px;}
+.man-h{font-size:48px;font-weight:600;letter-spacing:-0.025em;line-height:1.05;}
+.man-h em{color:var(--accent);font-style:italic;font-weight:500;}
+.man-body{font-size:16px;color:var(--ink-soft);line-height:1.7;}
+.man-body p{margin-bottom:18px;}
+.man-body p:last-child{margin-bottom:0;}
+.man-sig{font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.08em;margin-top:32px;}
+
+/* pricing */
+.pricing{padding:96px 0;border-bottom:1px solid var(--line);background:var(--bg-soft);}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.pcard{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-3);padding:32px;display:flex;flex-direction:column;}
+.pcard.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);position:relative;}
+.pcard.featured::before{content:'POPULAR';position:absolute;top:-10px;left:24px;background:var(--accent);color:#0a0a0c;padding:3px 10px;border-radius:3px;font-family:var(--mono);font-size:10px;letter-spacing:0.12em;font-weight:700;}
+.p-name{font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.12em;text-transform:uppercase;}
+.p-price{font-size:42px;font-weight:600;letter-spacing:-0.025em;margin-top:12px;display:flex;align-items:baseline;gap:6px;}
+.p-price .per{font-size:14px;color:var(--ink-fade);font-weight:400;}
+.p-tag{font-size:13px;color:var(--ink-soft);margin-top:8px;line-height:1.4;}
+.p-feats{margin-top:24px;flex:1;display:flex;flex-direction:column;gap:10px;}
+.p-feats li{list-style:none;font-size:13.5px;color:var(--ink-soft);display:flex;gap:10px;line-height:1.45;}
+.p-feats li::before{content:'+';color:var(--accent);font-family:var(--mono);font-weight:700;}
+.p-cta{margin-top:24px;}
+
+/* faq */
+.faq{padding:96px 0;border-bottom:1px solid var(--line);}
+.faq-grid{display:grid;grid-template-columns:1fr 2fr;gap:64px;}
+.faq-list{display:flex;flex-direction:column;}
+.faq-item{padding:20px 0;border-top:1px solid var(--line);}
+.faq-item:last-child{border-bottom:1px solid var(--line);}
+.faq-q{font-size:17px;font-weight:500;letter-spacing:-0.01em;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+.faq-q .ic{font-family:var(--mono);color:var(--accent);}
+.faq-a{font-size:14px;color:var(--ink-soft);line-height:1.6;margin-top:12px;max-width:620px;}
+
+/* cta */
+.cta{padding:120px 0;text-align:center;border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center, rgba(255,90,54,0.06), transparent 70%);}
+.cta h2{font-size:64px;font-weight:600;letter-spacing:-0.03em;line-height:1.0;text-wrap:balance;position:relative;}
+.cta h2 em{color:var(--accent);font-style:italic;font-weight:500;}
+.cta p{font-size:16px;color:var(--ink-soft);margin-top:18px;position:relative;}
+.cta .row{display:inline-flex;gap:10px;margin-top:32px;position:relative;}
+
+/* footer */
+.foot{padding:48px 0 40px;}
+.foot-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px;}
+.foot-col h5{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-fade);margin-bottom:14px;}
+.foot-col a{display:block;font-size:13px;color:var(--ink-soft);padding:4px 0;}
+.foot-col a:hover{color:var(--ink);}
+.foot-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.06em;}
+</style>
+</head><body>
+
+<!-- NAV -->
+<nav class="nav"><div class="wrap nav-row">
+  <a href="#" class="logo"><span class="blk"></span>workspec</a>
+  <div class="nav-links">
+    <a href="#product">Product</a><a href="#why">Why</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#" class="btn">Sign in</a>
+    <a href="#" class="btn primary">Start free →</a>
+  </div>
+</div></nav>
+
+<!-- HERO -->
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <div class="eyebrow">SPEC ENGINE FOR PRODUCT TEAMS</div>
+    <h1 class="headline">Give your work<br/>a <span class="accent">spec</span>, not a<br/><span class="strike">doc graveyard</span>.</h1>
+    <p class="lede">Workspec turns the messy middle — notes, voice memos, slack threads, half-formed ideas — into a living graph of what you're building, why, and for whom. Your AI agent reads, links, and keeps it true.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn primary lg">Start free →</a>
+      <a href="#" class="btn lg">⌘ Watch 90s demo</a>
+    </div>
+    <div class="hero-meta">
+      <span>NO CREDIT CARD</span><span>·</span><span>SOC 2 TYPE II</span><span>·</span><span>FREE FOR &lt;5 SEATS</span>
+    </div>
+  </div>
+
+  <div class="hero-art">
+    <div class="ha-label">DISCOVERY · LOGICAL LENS</div>
+    <div class="lens-toggle-pos"><div class="o on">L</div><div class="o">D</div><div class="o">B</div></div>
+
+    <div class="ha-card note" style="left:24px;top:80px;width:140px;"><div class="t">NOTE</div><div class="n">"OAuth ideal"</div></div>
+    <div class="ha-card note" style="left:24px;top:160px;width:140px;"><div class="t">NOTE</div><div class="n">"GitHub login"</div></div>
+    <div class="ha-card note" style="left:24px;top:240px;width:140px;"><div class="t">NOTE</div><div class="n">"social signin"</div></div>
+
+    <div class="ha-card feat" style="left:220px;top:140px;width:160px;"><div class="t">FEATURE · v3</div><div class="n">GitHub OAuth flow</div></div>
+
+    <div class="ha-card scen" style="left:430px;top:90px;width:140px;"><div class="t">SCENARIO</div><div class="n">First-time user</div></div>
+    <div class="ha-card scen" style="left:430px;top:170px;width:140px;"><div class="t">SCENARIO</div><div class="n">Returning</div></div>
+    <div class="ha-card scen" style="left:430px;top:250px;width:140px;"><div class="t">SCENARIO</div><div class="n">Enterprise SSO</div></div>
+
+    <svg style="position:absolute;inset:0;width:100%;height:100%;">
+      <path class="ha-edge acc" d="M 165 100 C 200 100, 200 160, 220 160"/>
+      <path class="ha-edge acc" d="M 165 180 C 200 180, 200 175, 220 175"/>
+      <path class="ha-edge acc" d="M 165 260 C 200 260, 200 195, 220 195"/>
+      <path class="ha-edge" d="M 380 165 C 410 130, 420 110, 430 110"/>
+      <path class="ha-edge" d="M 380 180 C 410 185, 420 190, 430 190"/>
+      <path class="ha-edge" d="M 380 195 C 410 240, 420 265, 430 270"/>
+    </svg>
+
+    <div class="ha-bubble" style="left:280px;bottom:30px;"><div class="who">ATLAS · NOTICED</div>3 notes about login. Drafted "GitHub OAuth flow" linking all three. Review?</div>
+  </div>
+</div></section>
+
+<!-- LOGOS -->
+<section class="logos"><div class="wrap logos-row">
+  <span class="lbl">TRUSTED BY TEAMS AT</span>
+  <span>linear-co</span><span>vercel</span><span>retool</span><span>arc.net</span><span>raycast</span><span>posthog</span>
+</div></section>
+
+<!-- PROBLEM -->
+<section class="problem" id="why"><div class="wrap">
+  <div class="sec-eyebrow">THE PROBLEM</div>
+  <h2 class="sec-title">Your product context lives <em>everywhere except where you build</em>.</h2>
+  <div class="three">
+    <div class="tcard">
+      <div class="num">01 · DRIFT</div>
+      <div class="h">PRDs go stale<br/>by Friday.</div>
+      <div class="b">You write a spec on Monday. By Thursday it's outdated. By Friday nobody trusts it. The doc becomes archaeology.</div>
+      <div class="vis"><div style="position:absolute;inset:14px;display:flex;align-items:flex-end;gap:3px;"><div style="flex:1;height:80%;background:var(--accent);"></div><div style="flex:1;height:62%;background:var(--accent);opacity:0.7;"></div><div style="flex:1;height:48%;background:var(--accent);opacity:0.5;"></div><div style="flex:1;height:34%;background:var(--accent);opacity:0.35;"></div><div style="flex:1;height:20%;background:var(--accent);opacity:0.2;"></div></div><div style="position:absolute;bottom:4px;right:8px;font-family:var(--mono);font-size:9px;color:var(--ink-fade);">trust ↓</div></div>
+    </div>
+    <div class="tcard">
+      <div class="num">02 · SCATTER</div>
+      <div class="h">12 tools.<br/>One question.</div>
+      <div class="b">Notion, Figma, Linear, Slack, Loom, GDocs, Miro. Where's the latest decision on auth? Nobody knows. Everyone guesses.</div>
+      <div class="vis"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;padding:14px;">
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--accent);border-radius:3px;background:rgba(255,90,54,0.2);"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+        <div style="width:18px;height:18px;border:1px solid var(--line-2);border-radius:3px;"></div>
+      </div></div>
+    </div>
+    <div class="tcard">
+      <div class="num">03 · TRANSLATION</div>
+      <div class="h">Eng & PM speak<br/>different languages.</div>
+      <div class="b">PMs talk in features. Engineers talk in services. The mapping between them lives in someone's head — usually the person who just left.</div>
+      <div class="vis"><div style="position:absolute;left:14px;top:50%;transform:translateY(-50%);width:80px;height:30px;border:1px solid var(--accent);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--accent);">FEATURES</div><div style="position:absolute;right:14px;top:50%;transform:translateY(-50%);width:80px;height:30px;border:1px solid var(--agent);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--agent);">SERVICES</div><div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:18px;color:var(--ink-fade);">?</div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- SOLUTION -->
+<section class="solution" id="product"><div class="wrap">
+  <div class="sec-eyebrow">HOW IT WORKS</div>
+  <h2 class="sec-title">A spec that <em>writes itself</em>, in a graph that doesn't lie.</h2>
+
+  <div class="feature-row">
+    <div class="ftxt">
+      <div class="fmark"><span class="num">01</span> · LIVING GRAPH</div>
+      <div class="fhead">Every artifact is a node.<br/>Every link is a fact.</div>
+      <div class="fbody">Notes, features, scenarios, slices, services, bugs — everything is a typed node. Edges show provenance: <i>this feature came from those three notes</i>. Nothing floats.</div>
+      <ul class="fpts">
+        <li>10 artifact types, infinitely composable</li>
+        <li>Edges are typed (sources / feeds / blocks / implements)</li>
+        <li>Versioned — see exactly what changed and when</li>
+      </ul>
+    </div>
+    <div class="fart">
+      <div class="lbl">CANVAS · ARTIFACTS</div>
+      <div class="ha-card note" style="left:24px;top:60px;width:130px;"><div class="t">NOTE</div><div class="n">"OAuth ideal"</div></div>
+      <div class="ha-card feat" style="left:200px;top:60px;width:160px;"><div class="t">FEATURE</div><div class="n">GitHub OAuth flow</div></div>
+      <div class="ha-card scen" style="left:400px;top:60px;width:130px;"><div class="t">SCENARIO</div><div class="n">First-time user</div></div>
+      <div class="ha-card" style="left:200px;top:160px;width:160px;background:var(--bg-soft);"><div class="t" style="color:#9ec6ff;">SLICE</div><div class="n" style="font-size:13px;">Callback handler</div></div>
+      <div class="ha-card" style="left:400px;top:160px;width:130px;background:var(--bg-soft);"><div class="t" style="color:#ff8e8e;">BUG</div><div class="n" style="font-size:13px;">Retry loop</div></div>
+      <div class="ha-card" style="left:24px;top:200px;width:130px;background:var(--bg-soft);"><div class="t" style="color:#c8a3ff;">PERSONA</div><div class="n" style="font-size:13px;">Sarah · PM</div></div>
+      <svg style="position:absolute;inset:0;width:100%;height:100%;">
+        <path class="ha-edge acc" d="M 154 90 C 180 90, 180 90, 200 90"/>
+        <path class="ha-edge" d="M 360 90 C 385 90, 385 90, 400 90"/>
+        <path class="ha-edge" d="M 280 110 C 280 140, 280 140, 280 160"/>
+        <path class="ha-edge" d="M 360 100 C 400 130, 420 140, 430 160"/>
+        <path class="ha-edge" d="M 90 110 C 90 160, 90 160, 90 200"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="feature-row flip">
+    <div class="fart">
+      <div class="lbl">LENS · DEPLOYMENT</div>
+      <div class="lens-toggle-pos"><div class="o">L</div><div class="o on" style="background:var(--agent);">D</div><div class="o">B</div></div>
+      <div class="ha-card" style="left:24px;top:80px;width:140px;background:var(--bg-soft);border-color:rgba(92,242,192,0.4);"><div class="t" style="color:var(--agent);">SERVICE</div><div class="n">web-app</div></div>
+      <div class="ha-card" style="left:220px;top:80px;width:140px;background:var(--bg-soft);border-color:rgba(92,242,192,0.4);"><div class="t" style="color:var(--agent);">SERVICE</div><div class="n">auth-api</div></div>
+      <div class="ha-card" style="left:420px;top:80px;width:140px;background:var(--bg-soft);border-color:rgba(92,242,192,0.4);"><div class="t" style="color:var(--agent);">3RD PARTY</div><div class="n">GitHub OAuth</div></div>
+      <div class="ha-card" style="left:24px;top:200px;width:140px;background:var(--bg-soft);border-color:rgba(92,242,192,0.4);"><div class="t" style="color:var(--agent);">CACHE</div><div class="n">sessions</div></div>
+      <div class="ha-card" style="left:220px;top:200px;width:140px;background:var(--bg-soft);border-color:rgba(92,242,192,0.4);"><div class="t" style="color:var(--agent);">DATA</div><div class="n">users.db</div></div>
+      <svg style="position:absolute;inset:0;width:100%;height:100%;">
+        <path d="M 164 100 C 200 100, 200 100, 220 100" stroke="var(--agent)" stroke-width="1.5" fill="none"/>
+        <path d="M 360 100 C 400 100, 410 100, 420 100" stroke="var(--agent)" stroke-width="1.5" fill="none"/>
+        <path d="M 290 130 C 290 160, 290 160, 290 200" stroke="var(--agent)" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
+        <path d="M 90 130 C 90 160, 90 160, 90 200" stroke="var(--agent)" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
+      </svg>
+    </div>
+    <div class="ftxt">
+      <div class="fmark"><span class="num">02</span> · LENS TOGGLE</div>
+      <div class="fhead">One graph.<br/>Three views. <em>L · D · B.</em></div>
+      <div class="fbody">PMs see <b>Logical</b> — problems, features, scenarios. Engineers see <b>Deployment</b> — services, infra, endpoints. Toggle to <b>Both</b> and watch them snap together. Same source of truth, two languages.</div>
+      <ul class="fpts">
+        <li>Press <span style="font-family:var(--mono);background:var(--bg-soft);border:1px solid var(--line-2);padding:1px 6px;border-radius:3px;font-size:11px;">L</span> to cycle lenses anywhere</li>
+        <li>Lens choice persists per board — share the right view</li>
+        <li>Agent answers respect the active lens</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="feature-row">
+    <div class="ftxt">
+      <div class="fmark"><span class="num">03</span> · ATLAS, YOUR AGENT</div>
+      <div class="fhead">An agent that reads the room — and the repo.</div>
+      <div class="fbody">Atlas watches your canvas. It clusters notes, drafts features, flags duplicates, links to commits, and explains its reasoning step by step. You can stop it any time. It never edits without showing you what changed.</div>
+      <ul class="fpts">
+        <li>Reasoning is visible — every tool call, every edit</li>
+        <li>Press <span style="font-family:var(--mono);background:var(--bg-soft);border:1px solid var(--line-2);padding:1px 6px;border-radius:3px;font-size:11px;">Esc</span> to interrupt anything in flight</li>
+        <li>Connects to GitHub, Linear, Notion, Slack — read-only by default</li>
+      </ul>
+    </div>
+    <div class="fart">
+      <div class="lbl">ATLAS · WORKING</div>
+      <div style="position:absolute;left:24px;top:60px;width:300px;background:var(--bg-soft);border:1px solid var(--agent);border-radius:var(--r-3);padding:12px 14px;box-shadow:0 0 0 1px rgba(92,242,192,0.1);">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--agent);letter-spacing:0.12em;display:flex;align-items:center;gap:6px;margin-bottom:10px;"><span style="display:inline-block;width:5px;height:5px;background:var(--agent);border-radius:50%;animation:pulse-d 1.4s ease-in-out infinite;"></span>ATLAS · THINKING · 12.4s</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);line-height:1.7;">
+          <div style="color:var(--agent);">→ searchArtifacts(type:"note") <span style="color:var(--ink);">✓ 12 found</span></div>
+          <div style="color:var(--agent);">→ embedAndCluster(0.78) <span style="color:var(--ink);">✓ 3 clusters</span></div>
+          <div style="color:var(--agent);">→ draftFeature(...) <span style="color:var(--accent);">writing<span style="display:inline-block;width:5px;height:11px;background:var(--accent);margin-left:2px;animation:pulse-d 1s steps(2) infinite;vertical-align:-1px;"></span></span></div>
+        </div>
+      </div>
+      <div class="ha-bubble" style="left:24px;bottom:24px;max-width:300px;"><div class="who">ATLAS</div>Found 3 notes about login methods. Drafting a feature called "GitHub OAuth flow" that links all three. Review?</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- MANIFESTO -->
+<section class="manifesto"><div class="wrap man-grid">
+  <div>
+    <div class="man-q">A NOTE FROM THE FOUNDERS</div>
+    <h2 class="man-h">We built the tool we kept <em>not</em> finding.</h2>
+  </div>
+  <div class="man-body">
+    <p>We've shipped product at companies you've heard of. Every team had the same disease: a graveyard of stale Notion docs, a Slack channel that became the source of truth by accident, and a PM and an engineer who couldn't agree on what "auth" meant.</p>
+    <p>The tools we tried optimized for the artifacts (docs, tickets, diagrams) and ignored the connective tissue between them. So context drifted, decisions got re-litigated, and the people closest to the work spent half their time on archaeology.</p>
+    <p>Workspec is what we wanted: a graph that holds the connective tissue, an agent that keeps it true, and a UI that gets out of the way. We hope it gives you back the half of your week you've been losing to translation.</p>
+    <div class="man-sig">— J. LIANG & S. KAUR · CO-FOUNDERS · SF · 2025</div>
+  </div>
+</div></section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing"><div class="wrap">
+  <div class="sec-eyebrow">PRICING</div>
+  <h2 class="sec-title">Free for small teams.<br/>Honest for the rest.</h2>
+  <div class="price-grid">
+    <div class="pcard">
+      <div class="p-name">SOLO</div>
+      <div class="p-price">$0<span class="per">/seat/mo</span></div>
+      <div class="p-tag">For tinkerers and side projects. Up to 5 collaborators free, forever.</div>
+      <ul class="p-feats">
+        <li>Unlimited artifacts and boards</li>
+        <li>Atlas agent · 100 actions/mo</li>
+        <li>3 connectors</li>
+        <li>Community support</li>
+      </ul>
+      <a href="#" class="btn p-cta">Start free</a>
+    </div>
+    <div class="pcard featured">
+      <div class="p-name">TEAM</div>
+      <div class="p-price">$24<span class="per">/seat/mo</span></div>
+      <div class="p-tag">For product teams who ship. Everything in Solo, plus the agent off the leash.</div>
+      <ul class="p-feats">
+        <li>Atlas · unlimited actions</li>
+        <li>All connectors (GitHub, Linear, Notion, Slack…)</li>
+        <li>Versioning + audit log</li>
+        <li>SAML SSO, role-based access</li>
+        <li>Priority support · 4hr response</li>
+      </ul>
+      <a href="#" class="btn primary p-cta">Start 14-day trial</a>
+    </div>
+    <div class="pcard">
+      <div class="p-name">ENTERPRISE</div>
+      <div class="p-price">Custom</div>
+      <div class="p-tag">For larger orgs that need on-prem, custom retention, or named-account support.</div>
+      <ul class="p-feats">
+        <li>Self-hosted or VPC-dedicated</li>
+        <li>SOC 2 Type II + custom DPA</li>
+        <li>Custom retention + data residency</li>
+        <li>Named CSM + onboarding</li>
+        <li>Custom agent fine-tunes</li>
+      </ul>
+      <a href="#" class="btn p-cta">Talk to sales →</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="faq" id="faq"><div class="wrap faq-grid">
+  <div>
+    <div class="sec-eyebrow">FAQ</div>
+    <h2 class="sec-title" style="font-size:36px;margin-bottom:0;">The short answers.</h2>
+    <p style="margin-top:18px;font-size:14px;color:var(--ink-soft);line-height:1.55;">Didn't find your question? Email us at <span style="font-family:var(--mono);color:var(--accent);">hello@workspec.io</span>.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q">How is this different from Notion or Linear? <span class="ic">+</span></div><div class="faq-a">Notion is a doc tool — text in containers. Linear is a ticket tool — work in queues. Workspec is the graph between them: the typed nodes (notes, features, scenarios, services) and the typed edges (sources, feeds, blocks). It's the connective tissue both of those tools assume someone else is keeping.</div></div>
+    <div class="faq-item"><div class="faq-q">Does Atlas auto-edit my work? <span class="ic">+</span></div><div class="faq-a">Never without showing you. Atlas drafts as ghost artifacts (dashed outlines), and shows every tool call in its thinking trace. You approve or reject. You can disable autonomous actions entirely in settings.</div></div>
+    <div class="faq-item"><div class="faq-q">Where does my data live? <span class="ic">+</span></div><div class="faq-a">US-East by default, EU-West on request. Team plan and above include audit logging. Enterprise customers can self-host or run in their own VPC. We're SOC 2 Type II certified.</div></div>
+    <div class="faq-item"><div class="faq-q">Which models does Atlas use? <span class="ic">+</span></div><div class="faq-a">Claude Sonnet 4 by default, with task-specific routing. Enterprise customers can pin specific models or bring their own keys (Anthropic, OpenAI, or self-hosted).</div></div>
+    <div class="faq-item"><div class="faq-q">Can I export everything? <span class="ic">+</span></div><div class="faq-a">Yes. Export to JSON, Markdown, or a static HTML site. Your graph is yours — we don't lock it in.</div></div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta"><div class="wrap">
+  <h2>Stop writing PRDs.<br/>Start growing <em>specs</em>.</h2>
+  <p>Free for teams under five. Two minutes to import your first project.</p>
+  <div class="row">
+    <a href="#" class="btn primary lg">Start free →</a>
+    <a href="#" class="btn lg">⌘ Watch demo</a>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="foot"><div class="wrap">
+  <div class="foot-row">
+    <div class="foot-col">
+      <a href="#" class="logo" style="margin-bottom:14px;"><span class="blk"></span>workspec</a>
+      <p style="font-size:13px;color:var(--ink-soft);max-width:280px;line-height:1.55;margin-top:14px;">A spec engine for product teams. Built in San Francisco.</p>
+    </div>
+    <div class="foot-col"><h5>PRODUCT</h5><a href="#">Overview</a><a href="#">Atlas</a><a href="#">Connectors</a><a href="#">Changelog</a></div>
+    <div class="foot-col"><h5>COMPANY</h5><a href="#">About</a><a href="#">Manifesto</a><a href="#">Careers</a><a href="#">Press</a></div>
+    <div class="foot-col"><h5>RESOURCES</h5><a href="#">Docs</a><a href="#">Templates</a><a href="#">API</a><a href="#">Status</a></div>
+    <div class="foot-col"><h5>LEGAL</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Security</a><a href="#">DPA</a></div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 WORKSPEC, INC. · ALL RIGHTS RESERVED</span>
+    <span>SF · NYC · REMOTE</span>
+  </div>
+</div></footer>
+
+</body></html>

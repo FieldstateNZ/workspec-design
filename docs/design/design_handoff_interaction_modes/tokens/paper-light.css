@@ -1,0 +1,57 @@
+/* WorkSpec · Paper Light · tokens
+   Editorial / warm / crafted aesthetic.
+   Same variable names as console — components don't branch. */
+:root, [data-theme="paper-light"], .paper-light{
+  /* color — warm cream surfaces, deep ink */
+  --bg:#f3ecd8;
+  --bg-soft:#ede4cc;
+  --bg-elevated:#fbf6e8;
+  --line:#d8cdb0;
+  --line-2:#b8a98a;
+  --ink:#1c1814;
+  --ink-soft:#5a4f3f;
+  --ink-fade:#8a7d68;
+  --ink-ghost:#bcb09a;
+  --accent:#c96442;        /* coral, ink-stamped not glowing */
+  --accent-soft:rgba(201,100,66,0.10);
+  --accent-mid:rgba(201,100,66,0.4);
+  --agent:#3f7a5c;          /* sage */
+  --agent-soft:rgba(63,122,92,0.1);
+  --warn:#a87718;
+  --danger:#a83a2a;
+
+  --on-accent:#fbf6e8;
+
+  --canvas-from:#ede4cc;
+  --canvas-to:#f3ecd8;
+  --canvas-grid:rgba(28,24,20,0.05);
+
+  --type-persona:#3a5a8a;
+  --type-feature:#3f7a5c;
+  --type-scenario:#a87718;
+  --type-userreq:#a83a2a;
+
+  --accent-hover:#b04e2e;
+  --accent-wash:rgba(201,100,66,0.08);
+  --agent-mid:rgba(63,122,92,0.4);
+
+  /* type — serif display + sans body, mono only for labels */
+  --sans:'Söhne', 'Inter Tight', system-ui, sans-serif;
+  --serif:'Tiempos Headline', 'Tiempos', Georgia, serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px; --s-20:80px;
+
+  --r-1:2px; --r-2:3px; --r-3:4px; --r-4:6px; --r-5:8px; --r-pill:99px;
+
+  /* shadow — soft drop, no glow */
+  --sh-1:0 1px 0 rgba(28,24,20,0.06);
+  --sh-2:0 2px 6px rgba(28,24,20,0.08);
+  --sh-3:0 8px 24px rgba(28,24,20,0.10);
+  --sh-glow:0 0 0 1px var(--accent);  /* ink stamp, not glow */
+
+  --ease-out:cubic-bezier(0.2, 0.7, 0.3, 1);
+  --ease-in-out:cubic-bezier(0.5, 0, 0.5, 1);
+  --d-fast:120ms; --d-base:180ms; --d-slow:280ms;
+}

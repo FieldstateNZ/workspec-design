@@ -1,0 +1,217 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Terminal · Tokens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shell.css">
+</head><body>
+<div class="page">
+<div class="crumb"><a href="../index.html">Design Set</a> · <a href="index.html">Terminal</a> · <span style="color:var(--ink)">Tokens</span></div>
+<h1 class="page-title">Tokens.</h1>
+<p class="page-lead">The variables — color, type, space, radius, shadow, motion. Defined in <code class="code">tokens.css</code>; everything else uses <code class="code">var(--…)</code>. No magic numbers.</p>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">01</span>Color</h2>
+
+<h3 class="sub">Surface scale</h3>
+<div class="surface">
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r-3);overflow:hidden;">
+    <Sw hex="#0a0a0c" v="--bg" lbl="bg" w="0"/>
+    <Sw hex="#16161a" v="--bg-soft" lbl="bg-soft" w="0"/>
+    <Sw hex="#1c1c22" v="--bg-elevated" lbl="bg-elevated" w="0"/>
+    <Sw hex="#26262c" v="--line" lbl="line" w="0"/>
+    <Sw hex="#34343d" v="--line-2" lbl="line-2" w="0"/>
+    <Sw hex="#3a3a42" v="--ink-ghost" lbl="ink-ghost" w="0"/>
+    <Sw hex="#62626a" v="--ink-fade" lbl="ink-fade" w="0"/>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r-3);overflow:hidden;margin-top:8px;">
+    <Sw hex="#a4a4ac" v="--ink-soft" lbl="ink-soft" w="0"/>
+    <Sw hex="#e8e8ea" v="--ink" lbl="ink" w="0"/>
+    <Sw hex="#ff5a36" v="--accent" lbl="accent · heat" w="0"/>
+    <Sw hex="#5cf2c0" v="--agent" lbl="agent · mint" w="0"/>
+    <Sw hex="#f2c94c" v="--warn" lbl="warn · honey" w="0"/>
+    <Sw hex="#ff4d4d" v="--danger" lbl="danger" w="0"/>
+    <Sw hex="#9ec6ff" v="—" lbl="info · sky" w="0"/>
+  </div>
+</div>
+
+<h3 class="sub">Semantic pairings</h3>
+<p class="note" style="font-size:13px;">Every color has a fixed role. If you reach for a shade, you're probably wrong — pick a role.</p>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;">
+  <Pair name="Default text on surface" fg="--ink" bg="--bg" sample="The quick agent rewrites your spec."/>
+  <Pair name="Soft text on surface" fg="--ink-soft" bg="--bg" sample="3 notes look duplicated."/>
+  <Pair name="Accent on surface (button)" fg="--bg" bg="--accent" sample="Run agent →"/>
+  <Pair name="Accent text" fg="--accent" bg="--bg" sample="atlas · thinking"/>
+  <Pair name="Agent on surface (tool call)" fg="--agent" bg="--bg" sample="→ tool: createCluster()"/>
+  <Pair name="Danger on surface" fg="--danger" bg="--bg" sample="⚠ couldn't reach the agent"/>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">02</span>Type</h2>
+<div class="surface">
+  <div style="display:grid;grid-template-columns:120px 1fr 200px;gap:12px;align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.06em;text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:10px;">
+    <div>Token</div><div>Sample</div><div>Spec</div>
+  </div>
+  <T tok="display-xl" sample="Spec your product." spec="84/0.95 · -0.04em · 700"/>
+  <T tok="display-l" sample="One graph. Many views." spec="56/0.95 · -0.035em · 700"/>
+  <T tok="display-m" sample="Boards live inside the canvas." spec="36/1.05 · -0.025em · 600"/>
+  <T tok="title" sample="Discovery canvas" spec="22/1.2 · -0.015em · 600"/>
+  <T tok="body" sample="Three notes look duplicated. Group them?" spec="14/1.5 · 0 · 400" mono="0"/>
+  <T tok="body-sm" sample="Sourced from [[note-auth1]] · [[note-auth2]]" spec="12.5/1.45 · 0 · 400"/>
+  <T tok="caption" sample="ATLAS · THINKING" spec="10/1.3 · 0.12em · 600 · upper" mono="1"/>
+  <T tok="mono" sample="artifact.123 → board:triage" spec="13/1.4 · 0 · 500" mono="1"/>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">03</span>Space &amp; radius</h2>
+<div style="display:grid;grid-template-columns:1.5fr 1fr;gap:18px;">
+  <div class="surface">
+    <div class="lbl">Spacing scale (4px base)</div>
+    <div style="display:flex;align-items:flex-end;gap:14px;margin-top:18px;">
+      <Sp px="4" v="s-1"/><Sp px="8" v="s-2"/><Sp px="12" v="s-3"/><Sp px="16" v="s-4"/><Sp px="20" v="s-5"/><Sp px="24" v="s-6"/><Sp px="32" v="s-8"/><Sp px="40" v="s-10"/><Sp px="48" v="s-12"/><Sp px="64" v="s-16"/>
+    </div>
+  </div>
+  <div class="surface">
+    <div class="lbl">Radius scale</div>
+    <div style="display:flex;gap:14px;margin-top:18px;align-items:flex-end;">
+      <R px="3" v="r-1"/><R px="4" v="r-2"/><R px="6" v="r-3"/><R px="8" v="r-4"/><R px="12" v="r-5"/><R px="99" v="r-pill" pill="1"/>
+    </div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">04</span>Shadow &amp; elevation</h2>
+<div class="surface">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
+    <Sh v="sh-1" lbl="hairline · cards"/>
+    <Sh v="sh-2" lbl="hover · toasts"/>
+    <Sh v="sh-3" lbl="modal · menu"/>
+    <Sh v="sh-glow" lbl="selected" glow="1"/>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">05</span>Motion</h2>
+<div class="surface">
+  <p class="note" style="margin-bottom:18px;">Three durations. Two easings. That's it. Anything more is decoration.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+    <M dur="120" name="fast" use="hover · focus · button press"/>
+    <M dur="180" name="base" use="card transitions · panel slides"/>
+    <M dur="280" name="slow" use="page-level · agent appearance"/>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px;">
+    <E ease="ease-out" curve="cubic-bezier(0.2, 0.7, 0.3, 1)" use="enter · default"/>
+    <E ease="ease-in-out" curve="cubic-bezier(0.5, 0, 0.5, 1)" use="position changes"/>
+  </div>
+</div>
+
+<div class="foot"><span>Terminal · Tokens</span><span><a href="components.html">Components →</a></span></div>
+</div>
+
+<script>
+// Sw — surface swatch
+document.querySelectorAll('Sw').forEach(s=>{
+  const hex=s.getAttribute('hex'),v=s.getAttribute('v'),lbl=s.getAttribute('lbl');
+  const d=document.createElement('div');
+  d.style.cssText=`background:${hex};padding:14px 12px;border-right:1px solid var(--line);min-height:78px;display:flex;flex-direction:column;justify-content:space-between;`;
+  const text = ['#0a0a0c','#16161a','#1c1c22','#26262c','#34343d','#3a3a42','#62626a'].includes(hex) ? '#a4a4ac' : '#0a0a0c';
+  d.innerHTML=`<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.08em;color:${text};opacity:0.85;text-transform:uppercase;">${lbl}</div>
+    <div><div style="font-family:var(--mono);font-size:10px;color:${text};opacity:0.65;">${v}</div>
+    <div style="font-family:var(--mono);font-size:10px;color:${text};opacity:0.65;">${hex}</div></div>`;
+  s.replaceWith(d);
+});
+
+// Pair
+document.querySelectorAll('Pair').forEach(s=>{
+  const name=s.getAttribute('name'),fg=s.getAttribute('fg'),bg=s.getAttribute('bg'),sample=s.getAttribute('sample');
+  const d=document.createElement('div');
+  d.style.cssText=`background:var(${bg});color:var(${fg});border:1px solid var(--line);border-radius:var(--r-3);padding:18px 16px;`;
+  d.innerHTML=`<div style="font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6;">${name}</div>
+    <div style="font-size:15px;margin-top:8px;font-weight:500;">${sample}</div>
+    <div style="font-family:var(--mono);font-size:10px;opacity:0.5;margin-top:8px;">${fg} on ${bg}</div>`;
+  s.replaceWith(d);
+});
+
+// T — type row
+document.querySelectorAll('T').forEach(s=>{
+  const tok=s.getAttribute('tok'),sample=s.getAttribute('sample'),spec=s.getAttribute('spec'),mono=s.getAttribute('mono')==='1';
+  const d=document.createElement('div');
+  d.style.cssText='display:grid;grid-template-columns:120px 1fr 200px;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line);';
+  const styles = {
+    'display-xl':'font-size:64px;letter-spacing:-0.04em;font-weight:700;line-height:0.95;',
+    'display-l':'font-size:44px;letter-spacing:-0.035em;font-weight:700;line-height:0.95;',
+    'display-m':'font-size:30px;letter-spacing:-0.025em;font-weight:600;line-height:1.05;',
+    'title':'font-size:20px;letter-spacing:-0.015em;font-weight:600;',
+    'body':'font-size:14px;line-height:1.5;',
+    'body-sm':'font-size:12.5px;line-height:1.45;',
+    'caption':'font-family:var(--mono);font-size:10px;letter-spacing:0.12em;font-weight:600;text-transform:uppercase;color:var(--ink-fade);',
+    'mono':'font-family:var(--mono);font-size:13px;letter-spacing:0;'
+  };
+  d.innerHTML=`<div style="font-family:var(--mono);font-size:11px;color:var(--ink-fade);letter-spacing:0.06em;">${tok}</div>
+    <div style="${styles[tok]||''}${mono?'font-family:var(--mono);':''}">${sample}</div>
+    <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);letter-spacing:0.04em;">${spec}</div>`;
+  s.replaceWith(d);
+});
+
+// Sp — spacing
+document.querySelectorAll('Sp').forEach(s=>{
+  const px=s.getAttribute('px'),v=s.getAttribute('v');
+  const d=document.createElement('div');
+  d.style.cssText='display:flex;flex-direction:column;align-items:center;gap:6px;';
+  d.innerHTML=`<div style="width:${px}px;height:${px}px;background:var(--accent);border-radius:2px;"></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-fade);">${px}</div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ink-ghost);">${v}</div>`;
+  s.replaceWith(d);
+});
+
+// R — radius
+document.querySelectorAll('R').forEach(s=>{
+  const px=s.getAttribute('px'),v=s.getAttribute('v'),pill=s.getAttribute('pill')==='1';
+  const d=document.createElement('div');
+  d.style.cssText='display:flex;flex-direction:column;align-items:center;gap:6px;';
+  d.innerHTML=`<div style="width:${pill?'48px':'40px'};height:${pill?'24px':'40px'};background:var(--bg-elevated);border:1px solid var(--line-2);border-radius:${px}px;"></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-fade);">${pill?'pill':px+'px'}</div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ink-ghost);">${v}</div>`;
+  s.replaceWith(d);
+});
+
+// Sh
+document.querySelectorAll('Sh').forEach(s=>{
+  const v=s.getAttribute('v'),lbl=s.getAttribute('lbl'),glow=s.getAttribute('glow')==='1';
+  const d=document.createElement('div');
+  d.style.cssText='display:flex;flex-direction:column;gap:8px;';
+  const sh = v==='sh-glow' ? '0 0 0 1px var(--accent), 0 0 24px rgba(255,90,54,0.2)' :
+             v==='sh-1' ? '0 1px 0 rgba(0,0,0,0.3)' :
+             v==='sh-2' ? '0 2px 8px rgba(0,0,0,0.4)' :
+             '0 8px 24px rgba(0,0,0,0.5)';
+  d.innerHTML=`<div style="background:var(--bg-elevated);border:1px solid var(${glow?'--accent':'--line-2'});border-radius:var(--r-3);height:64px;box-shadow:${sh};"></div>
+    <div style="font-family:var(--sans);font-size:12px;font-weight:600;">${lbl}</div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-fade);">--${v}</div>`;
+  s.replaceWith(d);
+});
+
+// M — motion duration
+document.querySelectorAll('M').forEach(s=>{
+  const dur=s.getAttribute('dur'),name=s.getAttribute('name'),use=s.getAttribute('use');
+  const d=document.createElement('div');
+  d.style.cssText='border:1px solid var(--line);border-radius:var(--r-3);padding:14px;';
+  d.innerHTML=`<div class="lbl">${name}</div>
+    <div style="font-size:30px;font-weight:600;letter-spacing:-0.02em;margin:6px 0 4px;">${dur}<span style="font-size:14px;color:var(--ink-soft);font-weight:400;">ms</span></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-fade);">--d-${name}</div>
+    <div style="font-size:12px;color:var(--ink-soft);margin-top:10px;">${use}</div>
+    <div class="motion-bar" style="height:3px;background:var(--line);border-radius:2px;margin-top:12px;overflow:hidden;"><div style="width:60%;height:100%;background:var(--accent);animation:slide ${dur}ms cubic-bezier(0.2,0.7,0.3,1) infinite alternate;"></div></div>`;
+  s.replaceWith(d);
+});
+// E — ease
+document.querySelectorAll('E').forEach(s=>{
+  const ease=s.getAttribute('ease'),curve=s.getAttribute('curve'),use=s.getAttribute('use');
+  const d=document.createElement('div');
+  d.style.cssText='border:1px solid var(--line);border-radius:var(--r-3);padding:14px;display:grid;grid-template-columns:1fr 60px;gap:14px;align-items:center;';
+  d.innerHTML=`<div><div class="lbl">${ease}</div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--ink);margin-top:6px;">${curve}</div>
+    <div style="font-size:12px;color:var(--ink-soft);margin-top:6px;">${use}</div></div>
+    <svg viewBox="0 0 60 60" width="60" height="60"><path d="${ease==='ease-out'?'M 4 56 C 16 56, 24 8, 56 4':'M 4 56 C 30 56, 30 4, 56 4'}" fill="none" stroke="var(--accent)" stroke-width="2"/></svg>`;
+  s.replaceWith(d);
+});
+</script>
+<style>@keyframes slide{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}</style>
+</body></html>

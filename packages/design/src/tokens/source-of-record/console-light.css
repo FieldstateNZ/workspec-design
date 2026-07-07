@@ -1,0 +1,145 @@
+/* WorkSpec · Console · Light — brand guidelines v1 */
+[data-aesthetic="console"][data-theme="light"] {
+  /* surface ramp — neutral gray-white (guidelines v1: cool, not cream)
+       --bg            page/shell bg      (softest light)
+       --bg-soft       mid surface        (recessed wells / secondary panels)
+       --bg-elevated   cards / popovers   (white — most elevated)
+     --bg-elev aliases --bg-elevated for guideline SVG compatibility. */
+  --bg:          #f6f6f7;
+  --bg-soft:     #fafafb;
+  --bg-elevated: #ffffff;
+  --bg-elev:     var(--bg-elevated);
+  --panel-dark:  #f1f1f4;
+  --line:        #e4e4e7;
+  --line-2:      #d1d1d6;
+
+  /* ink */
+  --ink:         #0a0a0c;
+  --ink-soft:    #4a4a52;
+  --ink-muted:   #76767c;
+  --ink-fade:    #76767c;
+  --ink-ghost:   #b8b8be;
+
+  /* accent — green, deepened for contrast on light */
+  --accent:      #1b8a55;
+  --accent-deep: #0e3b2a;
+  --accent-soft: rgba(27,138,85,0.10);
+  --accent-mid:  rgba(27,138,85,0.30);
+
+  /* agent — teal, distinct from green accent */
+  --agent:       #0d8a72;
+  --agent-soft:  rgba(13,138,114,0.08);
+
+  /* status */
+  --warn:        #c89216;
+  --danger:      #c43a3a;
+  --danger-soft: rgba(196,58,58,0.08);
+
+  /* on-accent — white on dark green (#1b8a55) for WCAG contrast */
+  --on-accent:#ffffff;
+
+  /* sticky note variants — vibrant paper, like fresh Post-Its on a whiteboard */
+  --sticky-yellow-bg:#ffe566; --sticky-yellow-ink:#5a3d00; --sticky-yellow-edge:#d9c238;
+  --sticky-pink-bg:#ffa8c4;   --sticky-pink-ink:#6e1a3e;   --sticky-pink-edge:#e07b9d;
+  --sticky-green-bg:#a5e8a8;  --sticky-green-ink:#1a4a1a;  --sticky-green-edge:#76c878;
+  --sticky-blue-bg:#a0d2f0;   --sticky-blue-ink:#0e3a6b;   --sticky-blue-edge:#6fb0dc;
+  --sticky-orange-bg:#ffba7a; --sticky-orange-ink:#6b3208; --sticky-orange-edge:#e69140;
+  --sticky-purple-bg:#d4b8eb; --sticky-purple-ink:#3d1c6b; --sticky-purple-edge:#ad8ad0;
+
+  /* sticky on-note content blocks (tags / reactions) — ink-derived so they stay
+     legible on the elevated paper surface in both themes. */
+  --sticky-tag-fill:      color-mix(in oklab, var(--ink) 8%, transparent);
+  --sticky-tag-line:      color-mix(in oklab, var(--ink) 16%, transparent);
+  --sticky-reaction-fill: color-mix(in oklab, var(--ink) 6%, transparent);
+
+  /* index-card note (#357) — intentional warm analog paper, theme-independent.
+     Held as tokens so the component stays hex-free; the same values repeat in
+     dark because an index card is its own light surface (dark ink on warm paper
+     stays high-contrast on either canvas). */
+  --index-paper:#fbfaf5; --index-edge:#e6e0cf; --index-ink:#2a2a2a;
+  --index-rule:#d9e3ec; --index-margin:#e3a9a0;
+
+  /* photo note (#358) — a physical print: white mount, neutral placeholder fill,
+     and a cool-grey camera glyph. Theme-independent like the index card. */
+  --photo-mount:#ffffff; --photo-ink:#222222; --photo-caption:#333333;
+  --photo-placeholder:#cfd4da; --photo-glyph:#7d858f;
+}
+
+/* The Console palette is split across a few rules ON PURPOSE: a single
+   [data-aesthetic][data-theme] rule with ~75+ custom properties tripped a
+   Tailwind v4 CSS-pipeline limit that silently dropped ~half the tokens from
+   the production build (the whole app lost its colour). Keep each rule well
+   under that — add a new split rather than growing one past ~50 tokens. */
+[data-aesthetic="console"][data-theme="light"] {
+
+  /* Prototype Builder component fidelity (#368) — the two columns the Sketch ⇄
+     Structured lens flips between. Sketch is a flat grayscale wireframe (hard
+     radius, no colour); Structured is a real component (Console-green primary,
+     rounded, soft shadow). Prototype screens stay light-surfaced in BOTH app
+     themes, so these are defined identically in console-dark.css (same pattern
+     as the index-card and photo-note tokens above). */
+  --wf-sketch-border:#c4c7d0; --wf-sketch-border-strong:#abafb9;
+  --wf-sketch-fill:#edeef1; --wf-sketch-text:#6b7280; --wf-sketch-strong:#4b5563;
+  --wf-sketch-placeholder:#9aa0ad; --wf-sketch-surface:#ffffff;
+  --wf-sketch-primary:#dcdfe5; --wf-sketch-primary-text:#4b5563;
+  --wf-sketch-primary-soft:#e9ebef; --wf-sketch-radius:4px; --wf-sketch-shadow:none;
+  --wf-hifi-border:#e4e4e7; --wf-hifi-border-strong:#d4d4d8;
+  --wf-hifi-fill:#f4f4f5; --wf-hifi-text:#3f3f46; --wf-hifi-strong:#18181b;
+  --wf-hifi-placeholder:#a1a1aa; --wf-hifi-surface:#ffffff;
+  --wf-hifi-primary:#1b8a55; --wf-hifi-primary-text:#ffffff;
+  --wf-hifi-primary-soft:rgba(27,138,85,.12); --wf-hifi-radius:9px;
+  --wf-hifi-shadow:0 1px 3px rgba(0,0,0,.09);
+}
+
+[data-aesthetic="console"][data-theme="light"] {
+
+  /* canvas */
+  --canvas-bg:#fafafb;
+  --canvas-grid-major:rgba(0,0,0,0.07);
+  --canvas-grid-minor:rgba(0,0,0,0.030);
+  /* legacy gradient tokens */
+  --canvas-from:#f6f6f7;
+  --canvas-to:#ffffff;
+  --canvas-grid:rgba(0,0,0,0.04);
+
+  /* artifact type colors — deepened for legibility on light */
+  --type-persona:#3a6ea5;
+  --type-feature:#1f8a6a;
+  --type-scenario:#a07a14;
+  --type-userreq:#b04848;
+
+  /* Discovery note type colors — typed-artifact rail + eyebrow (#360) */
+  --type-need:#3a6ea5;
+  --type-idea:#a07a14;
+  --type-pain:#b04848;
+  --type-q:#7a4fa6;
+
+  /* derived */
+  --accent-hover:#157849;
+  --accent-wash:rgba(27,138,85,0.08);
+  --agent-mid:rgba(13,138,114,0.4);
+
+  /* type */
+  --sans:'Inter Tight', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --font-body:var(--sans);
+  --font-display:var(--sans);
+
+  /* space — 4px base */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px; --s-20:80px;
+
+  /* radius */
+  --r-1:3px; --r-2:4px; --r-3:6px; --r-4:8px; --r-5:12px; --r-pill:99px;
+
+  /* shadow */
+  --sh-1:0 1px 0 rgba(0,0,0,0.06);
+  --sh-2:0 2px 8px rgba(0,0,0,0.08);
+  --sh-3:0 8px 24px rgba(0,0,0,0.10);
+  --sh-glow:0 0 0 1px var(--accent), 0 0 24px rgba(27,138,85,0.16);
+
+  /* motion */
+  --ease-out:cubic-bezier(0.2, 0.7, 0.3, 1);
+  --ease-in-out:cubic-bezier(0.5, 0, 0.5, 1);
+  --d-fast:120ms; --d-base:180ms; --d-slow:280ms;
+}

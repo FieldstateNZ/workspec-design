@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Paper · Discovery</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="shell.css">
+<style>
+:root{--serif:"Source Serif 4",Georgia,serif;--sans:"Inter",system-ui,sans-serif;}
+body{margin:0;}
+.app{display:grid;grid-template-rows:auto 1fr;height:100vh;}
+.canvas{display:grid;grid-template-columns:220px 1fr 340px;height:100%;}
+.canvas-area{position:relative;background:var(--paper);overflow:hidden;background-image:linear-gradient(rgba(28,24,20,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(28,24,20,0.06) 1px,transparent 1px);background-size:24px 24px;}
+.detail{border-left:1.5px solid var(--ink);background:var(--paper);padding:0;overflow:auto;display:flex;flex-direction:column;}
+.detail-head{padding:18px 22px 14px;border-bottom:1.5px solid var(--ink);position:relative;}
+.detail-head::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:.4;}
+.detail-head .h{font-family:var(--mono);font-size:10px;color:var(--coral);letter-spacing:0.14em;text-transform:uppercase;}
+.detail-head h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-0.015em;margin:8px 0 8px;line-height:1.2;}
+.detail-head .chips{display:flex;gap:6px;flex-wrap:wrap;}
+.detail-body{padding:18px 22px;flex:1;overflow:auto;}
+.field{padding:12px 0;border-bottom:1px solid var(--rule-soft);}
+.field .l{font-family:var(--mono);font-size:9.5px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:5px;}
+.field .v{font-size:13.5px;color:var(--ink);line-height:1.5;}
+.field .v.hand{font-family:var(--hand);font-size:17px;color:var(--ink-soft);}
+.detail-foot{padding:14px 22px;border-top:1.5px solid var(--ink);background:var(--paper-deep);display:flex;gap:10px;}
+
+.afact{background:var(--paper-soft);border:1.5px solid var(--ink);padding:12px 14px;position:absolute;width:170px;}
+.afact .head{font-family:var(--mono);font-size:9px;color:var(--ink-fade);letter-spacing:0.14em;text-transform:uppercase;display:flex;justify-content:space-between;}
+.afact .head .v{color:var(--coral);}
+.afact .title{font-family:var(--serif);font-size:13.5px;font-weight:600;color:var(--ink);margin-top:5px;line-height:1.3;}
+.afact.note{width:170px;}
+.afact.feat{width:200px;background:var(--paper-soft);}
+.afact.focus{box-shadow:0 0 0 1.5px var(--coral),var(--sh-2);}
+.afact.draft{border-style:dashed;border-color:var(--ink-ghost);background:transparent;}
+.afact.draft .title{color:var(--ink-ghost);}
+.bubble{position:absolute;background:var(--paper);border:1.5px solid var(--coral);padding:10px 14px;width:240px;box-shadow:var(--sh-2);}
+.bubble .h{font-family:var(--mono);font-size:9px;color:var(--coral);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:6px;}
+.bubble .dot{width:6px;height:6px;background:var(--coral);border-radius:50%;animation:pulse 1.4s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.bubble .text{font-family:var(--hand);font-size:15px;color:var(--ink);line-height:1.3;}
+.bubble .actions{margin-top:8px;display:flex;gap:6px;}
+.bubble .a{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--ink);cursor:pointer;}
+.bubble .a.coral{background:var(--coral);color:var(--paper);border-color:var(--coral);}
+
+.toolbar{position:absolute;top:18px;left:50%;transform:translateX(-50%);display:flex;gap:6px;background:var(--paper);border:1.5px solid var(--ink);padding:5px;z-index:5;}
+.toolbar .t{padding:6px 12px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;}
+.toolbar .t.active{background:var(--ink);color:var(--paper);}
+.crumb-line{position:fixed;bottom:24px;left:24px;z-index:5;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.12em;text-transform:uppercase;background:var(--paper);border:1px solid var(--ink);padding:5px 10px;}
+.crumb-line .here{color:var(--ink);}
+.dim{position:absolute;font-family:var(--mono);font-size:9px;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;}
+.note-pencil{position:absolute;font-family:var(--hand);font-size:14px;color:var(--coral);transform:rotate(-2deg);}
+</style></head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="wordmark">workspec<span class="dot"></span></div>
+    <nav class="nav"><a class="active">Canvas</a><a>Boards</a><a>Library</a></nav>
+    <div class="spacer"></div>
+    <span class="meta">Sheet · Discovery</span>
+    <button class="btn">Share</button>
+    <button class="btn primary">Run draft <span class="kbd">⌘↵</span></button>
+    <span class="avatar">CL</span>
+  </header>
+  <main class="canvas">
+    <aside class="sidebar">
+      <div class="group">
+        <div class="group-label">Sheets</div>
+        <div class="item active"><span class="num">01</span>Discovery</div>
+        <div class="item"><span class="num">02</span>System</div>
+        <div class="item"><span class="num">03</span>Backlog</div>
+      </div>
+      <div class="group">
+        <div class="group-label">Boards</div>
+        <div class="item"><span class="num">·</span>Q2 triage</div>
+        <div class="item"><span class="num">·</span>Drafts (3)</div>
+      </div>
+      <div class="group">
+        <div class="group-label">Library</div>
+        <div class="item"><span class="num">·</span>Notes · 24</div>
+        <div class="item"><span class="num">·</span>Features · 7</div>
+      </div>
+    </aside>
+
+    <section class="canvas-area">
+      <div class="toolbar">
+        <div class="t active">Logical</div>
+        <div class="t">Deployment</div>
+        <div class="t">Both</div>
+      </div>
+
+      <span class="dim" style="left:60px;top:90px;">SHEET · DISCOVERY · 6 NOTES</span>
+
+      <!-- Notes column -->
+      <div class="afact note" style="left:60px;top:120px;"><div class="head"><span>NOTE</span></div><div class="title">user can't sign in · ticket #41</div></div>
+      <div class="afact note" style="left:60px;top:200px;"><div class="head"><span>NOTE</span></div><div class="title">SSO ask · 3rd time</div></div>
+      <div class="afact note" style="left:60px;top:280px;"><div class="head"><span>NOTE</span></div><div class="title">password reset broken</div></div>
+      <div class="afact note" style="left:60px;top:360px;"><div class="head"><span>NOTE</span></div><div class="title">2FA support email</div></div>
+      <div class="afact note" style="left:60px;top:440px;"><div class="head"><span>NOTE</span></div><div class="title">enterprise SAML req</div></div>
+
+      <!-- Feature column -->
+      <div class="afact feat focus" style="left:320px;top:200px;"><div class="head"><span>FEATURE</span><span class="v">v3</span></div><div class="title">GitHub OAuth flow</div></div>
+      <div class="afact feat draft" style="left:320px;top:300px;"><div class="head" style="color:var(--coral);"><span>DRAFT</span><span class="v">·</span></div><div class="title">SSO support</div></div>
+      <div class="afact feat" style="left:320px;top:400px;"><div class="head"><span>FEATURE</span><span class="v">v1</span></div><div class="title">Password recovery</div></div>
+
+      <!-- Slice column -->
+      <div class="afact draft" style="left:580px;top:200px;width:170px;"><div class="head" style="color:var(--coral);"><span>DRAFT SLICE</span></div><div class="title">Login retry loop</div></div>
+
+      <!-- Pencil annotation -->
+      <div class="note-pencil" style="left:340px;top:170px;">→ merge note 1+2+4?</div>
+
+      <!-- Edges -->
+      <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+        <path d="M 230 145 Q 270 145, 320 220" stroke="#3a5a7a" stroke-width="1" fill="none"/>
+        <path d="M 230 225 L 320 225" stroke="#3a5a7a" stroke-width="1" fill="none"/>
+        <path d="M 230 305 Q 270 305, 320 230" stroke="#3a5a7a" stroke-width="1" fill="none"/>
+        <path d="M 230 385 Q 270 385, 320 320" stroke="#3a5a7a" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+        <path d="M 230 465 Q 270 465, 320 320" stroke="#b6a988" stroke-width="0.8" fill="none" stroke-dasharray="2 2"/>
+        <path d="M 520 220 L 580 220" stroke="#c96442" stroke-width="1.2" fill="none" stroke-dasharray="4 3"/>
+        <path d="M 574 216 L 580 220 L 574 224" stroke="#c96442" stroke-width="1.2" fill="none"/>
+      </svg>
+
+      <!-- Atlas bubble -->
+      <div class="bubble" style="left:320px;top:90px;">
+        <div class="h"><span class="dot"></span>Atlas · drafting</div>
+        <div class="text">Three notes look like one feature. Pencil it in?</div>
+        <div class="actions"><span class="a coral">Pencil</span><span class="a">Not yet</span></div>
+      </div>
+    </section>
+
+    <aside class="detail">
+      <div class="detail-head">
+        <div class="h">Feature · v3 · drafted</div>
+        <h2>GitHub OAuth flow</h2>
+        <div class="chips"><span class="chip coral fill">Drafted v3</span><span class="chip">Auth</span><span class="chip blue">Logical</span></div>
+      </div>
+      <div class="detail-body">
+        <div class="field"><div class="l">Sourced from</div><div class="v">[[note-41]] · [[note-44]] · [[note-46]]</div></div>
+        <div class="field"><div class="l">Drawn by</div><div class="v">CL · 04.12 — revised by Atlas</div></div>
+        <div class="field"><div class="l">Feeds</div><div class="v">[[slice-login-retry]] · [[bug-loop]]</div></div>
+        <div class="field"><div class="l">Description</div><div class="v hand">"three users wrote in this week. SSO is the most-asked. retry next."</div></div>
+        <div class="field"><div class="l">Pencil notes</div><div class="v hand" style="color:var(--coral);">add SSO? · check rate limits</div></div>
+      </div>
+      <div class="detail-foot">
+        <button class="btn primary" style="flex:1;">Promote to ink</button>
+        <button class="btn">Edit</button>
+      </div>
+    </aside>
+  </main>
+</div>
+<div class="crumb-line">canvas › <span class="here">discovery</span></div>
+<div class="titleblock">
+  <div class="row bordered-r"><span class="lbl">Sheet</span><span class="val">A · 09/14</span></div>
+  <div class="row"><span class="lbl">Scale</span><span class="val">1:1</span></div>
+  <div class="row bordered-r"><span class="lbl">Drawn</span><span class="val">CL/AT</span></div>
+  <div class="row"><span class="lbl">Date</span><span class="val">2026.04</span></div>
+  <div class="row full"><span class="lbl">Sheet name</span><span class="val serif">Discovery canvas</span></div>
+</div>
+<a class="back-contents" href="index.html">← contents</a>
+</body></html>

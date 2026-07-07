@@ -1,0 +1,192 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Terminal · Detail panels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shell.css">
+<style>
+.detail-frame{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-3);overflow:hidden;height:600px;display:flex;}
+.detail-frame .preview{flex:1;background:var(--bg);position:relative;overflow:hidden;border-right:1px solid var(--line);}
+.detail-frame .preview::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);background-size:24px 24px;pointer-events:none;}
+.detail-panel{width:340px;background:var(--bg);overflow-y:auto;padding:18px;}
+.row-link{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--ink);}
+.row-link:hover{color:var(--accent);}
+.row-link .ic{width:18px;text-align:center;color:var(--ink-fade);font-family:var(--mono);font-size:10px;}
+.ver{display:grid;grid-template-columns:60px 1fr 80px;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center;}
+.ver.cur{background:rgba(255,90,54,0.04);margin:0 -8px;padding:10px 8px;border-radius:var(--r-2);border-bottom-color:transparent;}
+.diff{font-family:var(--mono);font-size:11px;line-height:1.5;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-2);padding:10px 12px;}
+.diff .add{color:var(--agent);}
+.diff .rem{color:var(--danger);text-decoration:line-through;text-decoration-color:rgba(255,77,77,0.5);}
+</style>
+</head><body>
+<div class="page">
+<div class="crumb"><a href="../index.html">Design Set</a> · <a href="index.html">Terminal</a> · <span style="color:var(--ink)">Detail panels</span></div>
+<h1 class="page-title">Detail panels.</h1>
+<p class="page-lead">Three flavors of the right panel. <b style="color:var(--ink);">Artifact</b> for any single thing. <b style="color:var(--ink);">Board</b> for board-as-artifact (query, columns, velocity). <b style="color:var(--ink);">Versions</b> for history with inline diffs.</p>
+
+<hr class="div"/>
+
+<h2 class="sec"><span class="num">01</span>Artifact detail</h2>
+<div class="detail-frame">
+  <div class="preview">
+    <div class="art feature selected" style="left:60px;top:60px;width:240px;"><div class="type">FEATURE</div><div class="ttl">GitHub OAuth flow</div><div class="sub">3 sources · feeds 2 slices</div><span class="badge">v3</span></div>
+    <div class="art note" style="left:60px;top:200px;width:200px;"><div class="type">NOTE</div><div class="ttl">"OAuth ideal"</div></div>
+    <div class="art" style="left:340px;top:60px;width:160px;background:var(--bg-soft);"><div class="type" style="color:#9ec6ff;">SLICE</div><div class="ttl" style="font-size:13px;">Callback handler</div></div>
+    <div class="art" style="left:340px;top:140px;width:160px;background:var(--bg-soft);"><div class="type" style="color:#ff8e8e;">BUG</div><div class="ttl" style="font-size:13px;">Auth retry loop</div></div>
+    <svg style="position:absolute;inset:0;width:100%;height:100%;">
+      <path class="edge accent" d="M 160 220 C 200 200, 220 100, 300 90"/>
+      <path class="edge accent" d="M 300 110 C 320 110, 320 90, 340 90"/>
+      <path class="edge accent" d="M 300 130 C 320 130, 320 160, 340 160"/>
+    </svg>
+  </div>
+  <div class="detail-panel">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="chip" style="color:#5cf2c0;border-color:rgba(92,242,192,0.4);">FEATURE · v3</span>
+      <button class="btn icon sm" style="margin-left:auto;"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><line x1="3" y1="3" x2="11" y2="11" stroke="currentColor"/><line x1="11" y1="3" x2="3" y2="11" stroke="currentColor"/></svg></button>
+    </div>
+    <div style="font-size:20px;font-weight:600;letter-spacing:-0.015em;margin-top:10px;">GitHub OAuth flow</div>
+    <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);margin-top:4px;">artifact.feat-gh-oauth · updated 12m ago by Jordan</div>
+
+    <div class="tabs" style="margin-top:18px;"><div class="tab active">Overview</div><div class="tab">Sources</div><div class="tab">Code</div><div class="tab">Comments</div></div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Description</div>
+      <p style="color:var(--ink-soft);font-size:13px;line-height:1.5;margin:6px 0 0;">Users authenticate via GitHub OAuth. Returning users skip directly to dashboard. Enterprise customers retain email/password as fallback.</p>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Sourced from · 3</div>
+      <div style="margin-top:6px;">
+        <div class="row-link"><span class="ic">·</span><span>"OAuth ideal" — Sarah</span></div>
+        <div class="row-link"><span class="ic">·</span><span>SSO request — 3 customers</span></div>
+        <div class="row-link"><span class="ic">·</span><span>"GitHub login" — ticket</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <div class="lbl">Feeds · 2</div>
+      <div style="margin-top:6px;">
+        <div class="row-link"><span class="ic">→</span><span><b>Slice:</b> Callback handler</span></div>
+        <div class="row-link"><span class="ic">→</span><span><b>Bug:</b> Auth retry loop</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;display:flex;gap:6px;">
+      <button class="btn sm primary">Edit</button>
+      <button class="btn sm">/ ask</button>
+    </div>
+  </div>
+</div>
+
+<hr class="div"/>
+
+<h2 class="sec"><span class="num">02</span>Board detail</h2>
+<div class="detail-frame">
+  <div class="preview">
+    <div style="position:absolute;left:30px;top:30px;background:var(--bg-soft);border:1px solid var(--accent);box-shadow:var(--sh-glow);border-radius:var(--r-3);width:340px;padding:14px;">
+      <div style="display:flex;justify-content:space-between;"><span class="chip accent">BOARD · selected</span><span style="font-family:var(--mono);font-size:9px;color:var(--ink-fade);">9 ITEMS</span></div>
+      <div style="font-size:14px;font-weight:600;margin-top:8px;">Triage · auth bugs</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;">
+        <div style="background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:8px;height:60px;"><div style="font-family:var(--mono);font-size:8.5px;color:var(--ink-fade);letter-spacing:0.1em;">TRIAGE · 3</div><div style="height:3px;background:var(--line-2);border-radius:1px;margin-top:6px;"></div><div style="height:3px;background:var(--line-2);border-radius:1px;margin-top:3px;"></div><div style="height:3px;background:var(--line-2);border-radius:1px;margin-top:3px;"></div></div>
+        <div style="background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:8px;height:60px;"><div style="font-family:var(--mono);font-size:8.5px;color:var(--accent);letter-spacing:0.1em;">READY · 2</div><div style="height:3px;background:var(--accent);border-radius:1px;margin-top:6px;"></div><div style="height:3px;background:var(--line-2);border-radius:1px;margin-top:3px;"></div></div>
+        <div style="background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:8px;height:60px;"><div style="font-family:var(--mono);font-size:8.5px;color:var(--agent);letter-spacing:0.1em;">DONE · 4</div><div style="height:3px;background:var(--agent);border-radius:1px;margin-top:6px;opacity:0.6;"></div><div style="height:3px;background:var(--agent);border-radius:1px;margin-top:3px;opacity:0.6;"></div></div>
+      </div>
+    </div>
+    <!-- pulled-from indicator -->
+    <div style="position:absolute;left:60px;top:230px;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:0.1em;text-transform:uppercase;">PULLED FROM ↓</div>
+    <div class="art domain" style="left:60px;top:260px;width:200px;"><div class="type">CONTAINER</div><div class="ttl">Authentication</div><div class="sub">12 artifacts</div></div>
+    <svg style="position:absolute;inset:0;width:100%;height:100%;"><path class="edge dashed accent" d="M 200 168 C 200 220, 160 250, 160 260"/></svg>
+  </div>
+  <div class="detail-panel">
+    <span class="chip">BOARD</span>
+    <div style="font-size:20px;font-weight:600;letter-spacing:-0.015em;margin-top:10px;">Triage · auth bugs</div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Query</div>
+      <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--r-2);padding:10px 12px;margin-top:8px;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--ink-soft);">
+        <span style="color:var(--accent);">in</span> <span style="color:var(--ink);">Authentication</span><br/>
+        <span style="color:var(--accent);">where</span> type <span style="color:var(--ink);">∈ {bug, slice}</span><br/>
+        <span style="color:var(--accent);">and</span> state <span style="color:var(--ink);">≠ "closed"</span><br/>
+        <span style="color:var(--accent);">order by</span> priority <span style="color:var(--ink);">desc</span>
+      </div>
+      <button class="btn sm" style="margin-top:8px;">Edit query →</button>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Columns · 3</div>
+      <div style="margin-top:8px;font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);line-height:1.8;">
+        <div>· TRIAGE &nbsp;<span style="color:var(--ink-fade);">state == "open"</span></div>
+        <div>· READY &nbsp;<span style="color:var(--ink-fade);">state == "ready"</span></div>
+        <div>· DONE &nbsp;<span style="color:var(--ink-fade);">state == "closed"</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Velocity · 7d</div>
+      <div style="display:flex;align-items:flex-end;gap:3px;height:48px;margin-top:10px;">
+        <div style="flex:1;height:30%;background:var(--line-2);border-radius:1px;"></div>
+        <div style="flex:1;height:50%;background:var(--line-2);border-radius:1px;"></div>
+        <div style="flex:1;height:25%;background:var(--line-2);border-radius:1px;"></div>
+        <div style="flex:1;height:65%;background:var(--accent);border-radius:1px;"></div>
+        <div style="flex:1;height:80%;background:var(--accent);border-radius:1px;"></div>
+        <div style="flex:1;height:60%;background:var(--accent);border-radius:1px;"></div>
+        <div style="flex:1;height:40%;background:var(--accent);border-radius:1px;"></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-fade);margin-top:6px;">4 closed · trending up</div>
+    </div>
+  </div>
+</div>
+
+<hr class="div"/>
+
+<h2 class="sec"><span class="num">03</span>Versions / history</h2>
+<div class="detail-frame">
+  <div class="preview" style="display:flex;align-items:center;justify-content:center;padding:24px;">
+    <div style="width:100%;max-width:480px;">
+      <div class="lbl" style="margin-bottom:10px;">Inline diff · v2 → v3</div>
+      <div class="diff">
+        <div><span style="color:var(--ink-fade);">  GitHub OAuth flow</span></div>
+        <div><span class="rem">- Returning users see a welcome modal.</span></div>
+        <div><span class="add">+ Returning users skip directly to dashboard.</span></div>
+        <div><span style="color:var(--ink-fade);">  Enterprise customers retain email/password as fallback.</span></div>
+        <div><span class="add">+ Magic-link reset added as v3 follow-up.</span></div>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:14px;">
+        <button class="btn sm">View v2</button>
+        <button class="btn sm">View v3</button>
+        <button class="btn sm" style="margin-left:auto;color:var(--danger);border-color:rgba(255,77,77,0.3);">Restore v2 →</button>
+      </div>
+    </div>
+  </div>
+  <div class="detail-panel">
+    <span class="chip">VERSIONS · 3</span>
+    <div style="font-size:20px;font-weight:600;letter-spacing:-0.015em;margin-top:10px;">GitHub OAuth flow</div>
+
+    <div style="margin-top:18px;">
+      <div class="ver cur">
+        <div style="font-family:var(--mono);color:var(--accent);font-weight:600;">v3</div>
+        <div><div style="font-size:13px;font-weight:500;">Skip welcome modal</div><div style="font-size:11px;color:var(--ink-fade);font-family:var(--mono);">Jordan · 12m ago</div></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--accent);text-align:right;">CURRENT</div>
+      </div>
+      <div class="ver">
+        <div style="font-family:var(--mono);color:var(--ink-soft);">v2</div>
+        <div><div style="font-size:13px;">Add welcome modal</div><div style="font-size:11px;color:var(--ink-fade);font-family:var(--mono);">Sarah · 2d ago</div></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-fade);text-align:right;">SUPERSEDED</div>
+      </div>
+      <div class="ver">
+        <div style="font-family:var(--mono);color:var(--ink-soft);">v1</div>
+        <div><div style="font-size:13px;">Initial scaffold</div><div style="font-size:11px;color:var(--ink-fade);font-family:var(--mono);">Atlas · 5d ago</div></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-fade);text-align:right;">SUPERSEDED</div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">References</div>
+      <p style="color:var(--ink-soft);font-size:12.5px;line-height:1.5;margin:6px 0 0;">3 boards reference this artifact. They auto-track v3 (latest). Pin to v2 if you need historical accuracy.</p>
+      <button class="btn sm" style="margin-top:8px;">Pin to v2 →</button>
+    </div>
+  </div>
+</div>
+
+<div class="foot"><span>Terminal · Detail panels</span><span><a href="screen-agent.html">Agent thinking →</a></span></div>
+</div>
+</body></html>

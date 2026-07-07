@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+@import '@workspec/design/tailwind';
+@import '@workspec/design/fonts.css';
+
+/* This app resolves `@workspec/design`'s "." and "./components" exports to
+   TS source (the `@workspec/source` condition in vite.config.ts), not
+   `dist/`, and that source lives outside this app's own directory — Tailwind
+   v4's automatic content detection does not reach outside the Vite project
+   root, so the migrated components' utility classes (bg-primary, rounded-md,
+   ...) would otherwise never be generated. `@source` is Tailwind's
+   documented mechanism for exactly this monorepo-sibling-package case. */
+@source '../../../packages/design/src/components';
+
+/* Page chrome layout only, not a token demo: every color, spacing, radius,
+   and shadow value on this page comes from a token via Tailwind utilities or
+   `var(--token)`, never a hand-picked value here. */
+body {
+  min-height: 100vh;
+}
+
+.token-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--s-3);
+}
+
+/* The hover half of the motion demo (duration and easing tokens, see
+   MotionSwatch). Inline `style` carries the per-token duration/timing
+   function; this carries the `:hover` trigger, which an inline style
+   cannot express. */
+.motion-demo {
+  transition-property: transform;
+}
+.motion-demo:hover {
+  transform: translateX(0.85rem);
+}

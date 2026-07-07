@@ -1,0 +1,143 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<title>Terminal · Workspace shell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shell.css">
+<style>
+.shell-frame{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-3);overflow:hidden;height:560px;display:grid;grid-template-rows:40px 1fr;grid-template-columns:64px 1fr 320px;}
+.shell-frame .top{grid-column:1/-1;border-bottom:1px solid var(--line);background:var(--bg-soft);display:flex;align-items:center;padding:0 14px;gap:14px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);}
+.shell-frame .rail{border-right:1px solid var(--line);background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:14px;}
+.shell-frame .rail .icon{width:32px;height:32px;border-radius:var(--r-2);display:flex;align-items:center;justify-content:center;color:var(--ink-fade);cursor:pointer;}
+.shell-frame .rail .icon:hover,.shell-frame .rail .icon.active{background:var(--bg-soft);color:var(--ink);}
+.shell-frame .rail .icon.active{color:var(--accent);}
+.shell-frame .canvas{position:relative;overflow:hidden;background:var(--bg);}
+.shell-frame .canvas::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);background-size:24px 24px;}
+.shell-frame .detail{border-left:1px solid var(--line);background:var(--bg);overflow-y:auto;padding:18px;}
+.note-block{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:14px 0;border-bottom:1px dashed var(--line);}
+.note-block:last-child{border-bottom:0;}
+.note-block .lbl{margin-top:2px;}
+.note-block p{color:var(--ink-soft);font-size:13px;line-height:1.55;margin:0;}
+.note-block code{font-family:var(--mono);font-size:11.5px;background:var(--bg-soft);border:1px solid var(--line);padding:1px 5px;border-radius:3px;color:var(--ink);}
+</style>
+</head><body>
+<div class="page">
+<div class="crumb"><a href="../index.html">Design Set</a> · <a href="index.html">Terminal</a> · <span style="color:var(--ink)">Workspace shell</span></div>
+<h1 class="page-title">Workspace shell.</h1>
+<p class="page-lead">The chrome that wraps every screen. Three regions — left rail (navigation), canvas (primary work surface), right detail panel (context). The top bar shows breadcrumbs and lens toggle. Designed to feel like a tool, not a page.</p>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">01</span>Anatomy</h2>
+
+<div class="shell-frame">
+  <div class="top">
+    <div style="display:flex;align-items:center;gap:6px;">
+      <span style="font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:-0.01em;">workspec</span>
+      <span style="color:var(--ink-fade);">/</span>
+      <span style="color:var(--ink-fade);">acme</span>
+      <span style="color:var(--ink-fade);">/</span>
+      <span style="color:var(--ink);">checkout-redesign</span>
+    </div>
+    <div class="lens-toggle" style="margin-left:24px;"><div class="opt on">L</div><div class="opt">D</div><div class="opt">B</div></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+      <button class="btn sm ghost"><span class="kbd">⌘K</span></button>
+      <span class="chip agent"><span style="display:inline-block;width:5px;height:5px;background:var(--agent);border-radius:50%;"></span>ATLAS</span>
+      <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);font-family:var(--mono);font-size:10px;color:#0a0a0c;display:flex;align-items:center;justify-content:center;font-weight:700;">JL</div>
+    </div>
+  </div>
+
+  <div class="rail">
+    <div class="icon active" title="Canvas"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" stroke="currentColor"/><rect x="9" y="2" width="5" height="5" stroke="currentColor"/><rect x="2" y="9" width="5" height="5" stroke="currentColor"/><rect x="9" y="9" width="5" height="5" stroke="currentColor"/></svg></div>
+    <div class="icon" title="Containers"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" stroke="currentColor"/><line x1="2" y1="6" x2="14" y2="6" stroke="currentColor"/></svg></div>
+    <div class="icon" title="Boards"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="3" height="12" stroke="currentColor"/><rect x="6.5" y="2" width="3" height="9" stroke="currentColor"/><rect x="11" y="2" width="3" height="6" stroke="currentColor"/></svg></div>
+    <div class="icon" title="History"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor"/><polyline points="8,5 8,8 11,10" stroke="currentColor" fill="none"/></svg></div>
+    <div style="margin-top:auto;"></div>
+    <div class="icon" title="Search"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor"/><line x1="9.5" y1="9.5" x2="13" y2="13" stroke="currentColor"/></svg></div>
+    <div class="icon" title="Settings"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="2" stroke="currentColor"/><path d="M 7 1 L 7 3 M 7 11 L 7 13 M 1 7 L 3 7 M 11 7 L 13 7" stroke="currentColor"/></svg></div>
+  </div>
+
+  <div class="canvas">
+    <div class="art persona" style="left:60px;top:50px;"><div class="type">PERSONA</div><div class="ttl">Sarah · PM</div><div class="sub">spec lead, 50p SaaS</div></div>
+    <div class="art note" style="left:80px;top:160px;"><div class="type">NOTE</div><div class="ttl">"OAuth ideal"</div><div class="sub">interview · 04-22</div></div>
+    <div class="art feature selected" style="left:300px;top:120px;"><div class="type">FEATURE</div><div class="ttl">GitHub OAuth</div><div class="sub">3 sources</div><span class="badge">v3</span></div>
+    <div class="art scenario" style="left:300px;top:240px;"><div class="type">SCENARIO</div><div class="ttl">First-time user</div></div>
+    <div class="art domain" style="left:540px;top:60px;width:200px;"><div class="type">CONTAINER</div><div class="ttl">Authentication</div><div class="sub">12 artifacts inside →</div></div>
+    <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+      <path class="edge" d="M 230 90 C 270 110, 270 130, 300 140"/>
+      <path class="edge accent" d="M 230 200 C 270 180, 270 160, 300 150"/>
+      <path class="edge dashed" d="M 460 145 C 500 120, 510 100, 540 90"/>
+    </svg>
+    <div class="bubble" style="right:30px;bottom:30px;">
+      <div class="who"><span class="pulse"></span>ATLAS</div>
+      <p>This feature has a duplicate in the Auth container. Merge?</p>
+    </div>
+  </div>
+
+  <div class="detail">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="chip" style="color:#5cf2c0;border-color:rgba(92,242,192,0.4);">FEATURE · v3</span>
+      <button class="btn icon" style="margin-left:auto;"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><line x1="3" y1="3" x2="11" y2="11" stroke="currentColor"/><line x1="11" y1="3" x2="3" y2="11" stroke="currentColor"/></svg></button>
+    </div>
+    <div style="font-size:20px;font-weight:600;letter-spacing:-0.015em;margin-top:10px;">GitHub OAuth flow</div>
+    <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-fade);letter-spacing:0.04em;margin-top:4px;">artifact.feat-gh-oauth · updated 12m ago</div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Description</div>
+      <p style="color:var(--ink-soft);font-size:13px;line-height:1.5;margin:6px 0 0;">Users authenticate via GitHub OAuth. Returning users skip directly to dashboard. Enterprise customers retain email/password as fallback.</p>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Sourced from · 3</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+        <div style="display:flex;gap:8px;align-items:center;font-size:12px;"><span class="chip" style="font-size:9px;">NOTE</span> "OAuth ideal" — Sarah</div>
+        <div style="display:flex;gap:8px;align-items:center;font-size:12px;"><span class="chip" style="font-size:9px;">USER REQ</span> Single sign-on (3 customers)</div>
+        <div style="display:flex;gap:8px;align-items:center;font-size:12px;"><span class="chip" style="font-size:9px;">NOTE</span> "GitHub login" — interview</div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Feeds · 2</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+        <div style="display:flex;gap:8px;align-items:center;font-size:12px;"><span class="chip" style="font-size:9px;">SLICE</span> Implement OAuth callback</div>
+        <div style="display:flex;gap:8px;align-items:center;font-size:12px;"><span class="chip" style="font-size:9px;">BUG</span> Auth retry loop</div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="lbl">Versions</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:8px;line-height:1.7;">
+        <div style="color:var(--accent);">▸ v3 · current · 12m ago</div>
+        <div>&nbsp;&nbsp;v2 · 2d ago</div>
+        <div>&nbsp;&nbsp;v1 · 5d ago</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="div"/>
+<h2 class="sec"><span class="num">02</span>Region notes</h2>
+<div class="surface">
+  <div class="note-block">
+    <div class="lbl">Top bar · 40px</div>
+    <p>Breadcrumb path on the left. Lens toggle just right of breadcrumbs (it's a primary action, not a setting). Command palette trigger, agent status, and avatar on the far right. Always present, never collapses.</p>
+  </div>
+  <div class="note-block">
+    <div class="lbl">Left rail · 64px</div>
+    <p>Icon-only navigation. Five primary destinations (canvas, containers, boards, history) plus search and settings pinned to the bottom. Hover for tooltip. Active state uses <code>--accent</code> color, no fill.</p>
+  </div>
+  <div class="note-block">
+    <div class="lbl">Canvas · flex</div>
+    <p>The work surface. Pannable, zoomable, infinite. Grid background at 24px snaps to the spacing scale. Artifacts, edges, bubbles, and lassos all live here. Bubbles anchor to canvas points, not viewport — they pan with the canvas.</p>
+  </div>
+  <div class="note-block">
+    <div class="lbl">Right detail · 320px</div>
+    <p>Context for the current selection. When nothing is selected, shows a session log (recent agent moves). Collapses to 0 when the user hits <code>⌘\</code>. Width is fixed — content reflows below itself, never compresses.</p>
+  </div>
+  <div class="note-block">
+    <div class="lbl">Responsive behavior</div>
+    <p>Below 1280px, detail panel auto-collapses (still toggleable). Below 960px, left rail collapses to bottom dock. WorkSpec is desktop-first; mobile is read-only — out of scope for v1.</p>
+  </div>
+</div>
+
+<div class="foot"><span>Terminal · Workspace shell</span><span><a href="states.html">States →</a></span></div>
+</div>
+</body></html>

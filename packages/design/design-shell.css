@@ -1,0 +1,260 @@
+/*
+ * Design-shell — shared component CSS for v4 design surfaces.
+ *
+ * Ports the base classes from the design handoff's shell.css + the
+ * canvas-helper <style> block in Interaction Modes.html so JSX written
+ * to the design (e.g. workspace-create) renders 1:1.
+ *
+ * Token-driven — every value reads from var(--*) declared by
+ * styles/tokens/*. The Paper aesthetic's overrides in styles/paper.css
+ * scope under `.paper` and re-skin these classes for the editorial idiom.
+ *
+ * Sourced from /tmp/workspec-design/design_handoff_interaction_modes/
+ *   - shell.css (.btn, .input, .chip, .lbl, .code)
+ *   - Interaction Modes.html <style> (.frame, .fhdr, .steps, .segchoice,
+ *     .surf, .av, .codeblk)
+ */
+
+/* ── frame chrome ───────────────────────────────────────────── */
+.frame {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--sans);
+  color: var(--ink);
+}
+.frame .fhdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-fade);
+}
+.frame .fhdr b { color: var(--ink); font-weight: 500; }
+.frame .body { padding: 22px 24px; }
+
+/* ── steps indicator ────────────────────────────────────────── */
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-fade);
+}
+.steps .s { display: flex; align-items: center; gap: 6px; }
+.steps .s .d {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--ink-fade);
+}
+.steps .s.done .d { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.steps .s.cur .d { border-color: var(--accent); color: var(--accent); }
+.steps .s.cur span { color: var(--ink); }
+.steps .sep { width: 18px; height: 1px; background: var(--line-2); }
+
+/* ── segmented choice cards ─────────────────────────────────── */
+.segchoice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.segchoice .opt {
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  padding: 14px 14px;
+  background: var(--bg);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  width: 100%;
+}
+.segchoice .opt.on {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-mid);
+  background: var(--accent-wash);
+}
+.segchoice .opt .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.segchoice .opt .ttl {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.segchoice .opt .price {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.segchoice .opt.on .price { color: var(--accent); }
+.segchoice .opt .desc {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+.segchoice .opt .feat {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.segchoice .opt .feat .chip { font-size: 9px; padding: 2px 7px; }
+.segchoice .opt.disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── surface card ───────────────────────────────────────────── */
+.surf {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+}
+
+/* ── avatar ─────────────────────────────────────────────────── */
+.av {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #0a0a0c;
+  flex: 0 0 auto;
+}
+.av.lg { width: 28px; height: 28px; font-size: 11px; }
+.av.brett { background: var(--accent); }
+.av.cc { background: #0a0a0c; color: var(--ink); border: 1px solid var(--line-2); }
+.av.gpt { background: #0a0a0c; color: #10a37f; border: 1px solid #10a37f; }
+.av.cur { background: #0a0a0c; color: #9ec6ff; border: 1px solid #9ec6ff; }
+.av.custom { background: #0a0a0c; color: var(--ink-soft); border: 1px solid var(--line-2); }
+
+/* ── inputs / labels ────────────────────────────────────────── */
+.lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-fade);
+}
+.input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 12px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+  width: 100%;
+}
+.input:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.input input {
+  flex: 1;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  outline: none;
+  min-width: 0;
+}
+.input input::placeholder { color: var(--ink-fade); }
+
+/* ── buttons ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0 16px;
+  height: 32px;
+  border-radius: var(--r-3);
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color var(--d-fast) var(--ease-out), background var(--d-fast) var(--ease-out), color var(--d-fast) var(--ease-out);
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.btn:hover { border-color: var(--ink-fade); background: var(--bg-elev); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+.btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.btn.ghost { background: transparent; border-color: transparent; color: var(--ink-soft); }
+.btn.ghost:hover { color: var(--ink); background: var(--bg-soft); }
+.btn.lg { height: 40px; font-size: 14px; padding: 0 18px; }
+
+/* ── chips / inline code ────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-pill);
+  color: var(--ink-soft);
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.chip.accent { color: var(--accent); border-color: var(--accent-mid); }
+.chip.agent { color: var(--agent); border-color: var(--agent-mid); }
+.code {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ── codeblock (mcp.json) ───────────────────────────────────── */
+.codeblk {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  padding: 10px 12px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  white-space: pre;
+  overflow-x: auto;
+}
+.codeblk .k { color: #9ec6ff; }
+.codeblk .s { color: #5cf2c0; }
+.codeblk .c { color: var(--ink-fade); }

@@ -1,0 +1,1916 @@
+{
+  "components": [
+    {
+      "name": "AtlasTurnContext",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/atlas/AtlasTurnContext.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@/hooks/use-atlas-turn"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "CoAuthorSurface",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/atlas/CoAuthorSurface.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@/hooks/use-atlas-turn"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "StepRow",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/atlas/StepRow.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@/lib/atlas-step"],
+      "extractable": "clean"
+    },
+    {
+      "name": "ChangeRequestDetailPane",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/ChangeRequestDetailPane.tsx",
+      "kind": "app-specific",
+      "externalDeps": [
+        "react",
+        "@tanstack/react-query",
+        "react-markdown",
+        "remark-gfm",
+        "lucide-react"
+      ],
+      "workspecInternalDeps": [
+        "raw fetch() to app API via react-query (bypasses generated client)"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ScenarioDetailDialog",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/ScenarioDetailDialog.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/lib/canvas-utils"],
+      "extractable": "clean"
+    },
+    {
+      "name": "SliceDetailPane",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/SliceDetailPane.tsx",
+      "kind": "app-specific",
+      "externalDeps": [
+        "react",
+        "@tanstack/react-query",
+        "react-markdown",
+        "remark-gfm",
+        "lucide-react"
+      ],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "SliceListColumn",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/SliceListColumn.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "AssigneePicker",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/assignee-picker.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "BoardCard",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/board-card.tsx",
+      "kind": "composite",
+      "externalDeps": ["@dnd-kit/sortable", "@dnd-kit/utilities"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "BoardColumn",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/board-column.tsx",
+      "kind": "composite",
+      "externalDeps": ["@dnd-kit/core", "@dnd-kit/sortable", "lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "EffortPicker",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/effort-picker.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "PriorityPicker",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/priority-picker.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "TypeBadge",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/board/type-badge.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "BugDetailPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/bugs/bug-detail-panel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": [
+        "raw fetch() to app API via react-query (bypasses generated client)"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ArchitectureCanvasView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas-host/ArchitectureCanvasView.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [
+        "wouter",
+        "@/canvas/Canvas",
+        "@/canvas/CanvasSpecContext",
+        "@/canvas/c4/PrOverlayContext",
+        "@/canvas/hooks/useCamera",
+        "@/canvas/store",
+        "@/canvas/types",
+        "@/canvas/utils/orphans",
+        "@/hooks/use-active-c4-diagram",
+        "@/hooks/use-project-artifacts-by-type",
+        "@/hooks/use-project-branches",
+        "@/hooks/useC4Diagram",
+        "@/hooks/useProjectSpec",
+        "@/lib/tether"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "FourMechanicsBar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas-host/FourMechanicsBar.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "JourneysLensView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas-host/JourneysLensView.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ProjectGraphCanvas",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas-host/ProjectGraphCanvas.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "framer-motion", "lucide-react"],
+      "workspecInternalDeps": [
+        "@workspace/api-client-react",
+        "@/canvas/* (Canvas, store, types, graph, hooks, tools/c4Bridge, utils, components)",
+        "@/hooks/use-chat-panel-position",
+        "@/hooks/use-interaction-mode",
+        "@/hooks/use-presence",
+        "@/lib/canvas-utils"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ActivityStream",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/ActivityStream.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ArtifactAnnotation",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/ArtifactAnnotation.tsx",
+      "kind": "composite",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ArtifactDetailPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/ArtifactDetailPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": [
+        "wouter",
+        "@workspace/api-client-react",
+        "@/hooks/use-promote-artifact",
+        "@/hooks/use-workspace",
+        "@/lib/canvas-object-types",
+        "@/lib/canvas-utils",
+        "@/lib/pencil-ink"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "AuthorDot",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/AuthorDot.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@/hooks/use-presence"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "BoardConfigPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/BoardConfigPanel.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "CommitsPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/CommitsPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "DomainProfilePanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/DomainProfilePanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "wouter",
+        "@workspace/api-client-react",
+        "@/lib/canvas-object-types",
+        "@/lib/canvas-utils"
+      ],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "JourneyEditorPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/JourneyEditorPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react", "@monaco-editor/react"],
+      "workspecInternalDeps": ["wouter", "@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "PersonaProfilePanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/PersonaProfilePanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["wouter", "@/lib/canvas-utils"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "PublishDialog",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/PublishDialog.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react", "@/hooks/use-project-branches"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "SelectionCommandBar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/canvas/SelectionCommandBar.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Avatar (chat)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/chat/Avatar.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ChatPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/chat/ChatPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@/hooks/use-interaction-mode"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ChatPanelComposer",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/chat/ChatPanelComposer.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "@/hooks/use-interaction-mode",
+        "@/hooks/use-speech-to-text",
+        "@/lib/attachment-utils"
+      ],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ChatPanelHeader",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/chat/ChatPanelHeader.tsx",
+      "kind": "composite",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@/hooks/use-interaction-mode"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "MentionParser (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/chat/MentionParser.ts",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "MessageRow",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/chat/MessageRow.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "NewProjectDialog",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/dashboard/NewProjectDialog.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": ["wouter", "@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "DataDictionaryAtlasPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/data-dictionary/DataDictionaryAtlasPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "framer-motion"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "DataDictionaryGridView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/data-dictionary/DataDictionaryGridView.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "DataDictionaryLensBar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/data-dictionary/DataDictionaryLensBar.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "PinModal",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/decide/PinModal.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "@radix-ui/react-dialog"],
+      "workspecInternalDeps": ["@workspace/api-client-react", "@/hooks/use-toast"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ArtifactCard (design)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/artifact-card.tsx",
+      "kind": "composite",
+      "externalDeps": ["class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Avatar2 (design)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/avatar-2.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Chip",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/chip.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ClientPickerTile",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/client-picker-tile.tsx",
+      "kind": "composite",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "CodeBlock",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/code-block.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "DetailPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/detail-panel.tsx",
+      "kind": "composite",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Frame",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/frame.tsx",
+      "kind": "composite",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "design/index (barrel)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/index.ts",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "LensToggle (design)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/lens-toggle.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "PageShell",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/page-shell.tsx",
+      "kind": "composite",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": ["wouter"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "SegChoice",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/seg-choice.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "StepsBar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/steps-bar.tsx",
+      "kind": "composite",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Surf",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/surf.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Typography",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/design/typography.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "BranchRequiredDialog",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/diagrams/BranchRequiredDialog.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react", "@/hooks/use-project-branches"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "C4ElementEditor",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/diagrams/C4ElementEditor.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "C4Toolbar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/diagrams/C4Toolbar.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "wouter",
+        "@/canvas/c4/PrOverlayContext",
+        "@/canvas/store",
+        "@/hooks/useC4Diagram"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "LensToggle (diagrams)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/diagrams/LensToggle.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "C4Card",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/diagrams/nodes/C4Card.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "EditableLabel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/diagrams/nodes/EditableLabel.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "c4-node-types (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/diagrams/nodes/c4-node-types.ts",
+      "kind": "app-specific",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ProposalContext",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/discovery/ProposalContext.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "proposal-types (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/discovery/proposal-types.ts",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "DocumentDetail",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/documents/DocumentDetail.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["wouter", "@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "DocumentList",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/documents/DocumentList.tsx",
+      "kind": "composite",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "DocumentsContent",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/documents/DocumentsContent.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "FileTree",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/editor/FileTree.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "RepoEditor",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/editor/RepoEditor.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react", "@monaco-editor/react"],
+      "workspecInternalDeps": ["@/hooks/use-project-branches"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "c4-ref-intellisense (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/editor/c4-ref-intellisense.ts",
+      "kind": "app-specific",
+      "externalDeps": ["@monaco-editor/react", "monaco-editor"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "AppSidebar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/AppSidebar.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-theme"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ProjectLayout",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/ProjectLayout.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [
+        "wouter",
+        "@/hooks/use-mobile",
+        "@/hooks/use-project-events",
+        "@/hooks/use-sidebar-preference"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "UserMenu",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/UserMenu.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": ["wouter", "@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "AppLayout",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/app-layout.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "wouter",
+        "@workspace/api-client-react",
+        "@/hooks/use-mobile",
+        "@/hooks/use-sidebar-preference",
+        "@/hooks/use-workspace",
+        "@/hooks/use-workspace-brand"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "marketing-layout (empty stub)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/marketing-layout.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "project-nav-items",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/project-nav-items.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["wouter"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "AtlasPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/right-sidebar/AtlasPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["wouter", "@/lib/atlas-step"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ElementsPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/right-sidebar/ElementsPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "@/hooks/use-active-c4-diagram",
+        "@/hooks/use-project-artifacts-by-type",
+        "@/hooks/useProjectSpec"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "GitExplorer",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/right-sidebar/GitExplorer.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": [
+        "wouter",
+        "@workspace/api-client-react",
+        "@/hooks/use-project-branches",
+        "@/hooks/use-pull-requests"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "NotesPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/right-sidebar/NotesPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [
+        "wouter",
+        "@workspace/api-client-react",
+        "@/hooks/use-canvas-refresh",
+        "@/hooks/use-workspace"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ProposalPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/right-sidebar/ProposalPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["wouter"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "RightSidebar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/right-sidebar/RightSidebar.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "@/hooks/use-active-c4-diagram",
+        "@/hooks/use-right-sidebar-preference",
+        "@/hooks/use-topology-panel"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "TopologyPanel (sidebar)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/layout/right-sidebar/TopologyPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": ["@/canvas/store", "@/hooks/use-topology-panel"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "LicenseBanner",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/license-banner.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-instance-config"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "AnnotationBubble",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/AnnotationBubble.tsx",
+      "kind": "composite",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "AttachmentCard",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/AttachmentCard.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react", "react-markdown"],
+      "workspecInternalDeps": ["@/lib/attachment-utils"],
+      "extractable": "clean"
+    },
+    {
+      "name": "C4RealizesPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/C4RealizesPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": [
+        "@workspace/api-client-react",
+        "@/hooks/use-workspace",
+        "@/lib/native-select"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "CanvasContextMenu",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/CanvasContextMenu.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "DiscoverySidebar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/DiscoverySidebar.tsx",
+      "kind": "app-specific",
+      "externalDeps": [
+        "react",
+        "framer-motion",
+        "react-markdown",
+        "remark-gfm",
+        "@tanstack/react-query"
+      ],
+      "workspecInternalDeps": [
+        "@workspace/api-client-react",
+        "@/hooks/use-chat-panel-position",
+        "@/hooks/use-conversation-events",
+        "@/hooks/use-ingestion-stream",
+        "@/hooks/use-interaction-mode",
+        "@/lib/atlas-step",
+        "@/lib/canvas-utils"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "IngestionProgress",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/IngestionProgress.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-ingestion-stream"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "MessageBubble",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/MessageBubble.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react", "react-markdown", "remark-gfm"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "MessageComposer",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/MessageComposer.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/lib/attachment-utils"],
+      "extractable": "clean"
+    },
+    {
+      "name": "NamedCursors",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/NamedCursors.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "OrphanShelf",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/OrphanShelf.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-project-artifacts-by-type"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "PastePromptDialog",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/PastePromptDialog.tsx",
+      "kind": "composite",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ProjectSettings",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/ProjectSettings.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "DetailTether",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/detail-tether.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ProjectHeader",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/project-header.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": ["wouter", "@/hooks/use-workspace-brand"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "PromoteProjectDialog",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/project/promote-project-dialog.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "PrototypeScreensPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/prototype/PrototypeScreensPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "@/canvas/hooks/usePrototypeAtlas",
+        "@/canvas/shapes/screen/screen-defs",
+        "@/canvas/store",
+        "@/canvas/types"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ArtifactCommentThread",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/pull-requests/ArtifactCommentThread.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-pull-requests"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ConflictResolver",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/pull-requests/ConflictResolver.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-pull-requests"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "FieldCommentThread",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/pull-requests/FieldCommentThread.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-pull-requests"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "FieldDiffView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/pull-requests/FieldDiffView.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-pull-requests"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "MergePanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/pull-requests/MergePanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-pull-requests"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "PullRequestDiffView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/pull-requests/PullRequestDiffView.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@/hooks/use-pull-requests"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ReviewComposer",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/pull-requests/ReviewComposer.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-pull-requests"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "field-diff (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/pull-requests/field-diff.ts",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "CaptureComposer",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/registers/CaptureComposer.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react", "@/hooks/use-workspace"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "DecisionsContent",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/registers/DecisionsContent.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "wouter",
+        "@workspace/api-client-react",
+        "@/hooks/use-workspace",
+        "@/lib/pencil-ink"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "RisksContent",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/registers/RisksContent.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": [
+        "wouter",
+        "@workspace/api-client-react",
+        "@/hooks/use-workspace",
+        "@/lib/pencil-ink"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "Consequences (ADR)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/registers/adr/Consequences.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [
+        "./adr-helpers (transitively @workspace/api-client-react + @/lib/cost-engine)"
+      ],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ConsideredOptions (ADR)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/registers/adr/ConsideredOptions.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react", "@/lib/cost-engine"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "DecisionLinks (ADR)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/registers/adr/DecisionLinks.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "adr-helpers (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/registers/adr/adr-helpers.ts",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@workspace/api-client-react", "@/lib/cost-engine"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ModeSwitch",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/settings/ModeSwitch.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": [
+        "@workspace/api-client-react",
+        "@/hooks/use-interaction-mode",
+        "@/hooks/use-toast"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "GithubIntegrationCard",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/settings/github-integration-card.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "McpSessionsCard",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/settings/mcp-sessions-card.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": [
+        "raw fetch() to app API via react-query (bypasses generated client, 3 call sites)"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "SupportConfigCard",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/settings/support-config-card.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-toast"],
+      "extractable": "clean"
+    },
+    {
+      "name": "FourViewShell",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/FourViewShell.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@/hooks/use-project-events"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "IconRail",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/IconRail.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "PresenceStack",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/PresenceStack.tsx",
+      "kind": "composite",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@/hooks/use-presence"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ShellBreadcrumb",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/ShellBreadcrumb.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@workspace/api-client-react", "@/hooks/use-workspace"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ViewSwitcher",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/ViewSwitcher.tsx",
+      "kind": "composite",
+      "externalDeps": [],
+      "workspecInternalDeps": ["wouter"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "BoardCell",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/board/BoardCell.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "BoardFooter",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/board/BoardFooter.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "FilterBar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/board/FilterBar.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["./board-utils (transitively @workspace/api-client-react types)"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "GroupHeader",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/board/GroupHeader.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["./board-utils (transitively @workspace/api-client-react types)"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "HoleActions",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/board/HoleActions.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["wouter", "@workspace/api-client-react", "@/hooks/use-toast"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "LoomRow",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/board/LoomRow.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["wouter", "@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "ThreadRow",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/board/ThreadRow.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "UnthreadedRow",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/board/UnthreadedRow.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["wouter", "@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "board-utils (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/board/board-utils.ts",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "CenterSheet",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/thread-detail/CenterSheet.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["wouter", "@workspace/api-client-react", "./use-artifact-content"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "HoleCard",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/thread-detail/HoleCard.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ThreadRail",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/thread-detail/ThreadRail.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "artifact-content-types (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/thread-detail/artifact-content-types.ts",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "rail-utils (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/thread-detail/rail-utils.ts",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "type-eyebrow (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/thread-detail/type-eyebrow.ts",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "use-artifact-content (hook)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/thread-detail/use-artifact-content.ts",
+      "kind": "app-specific",
+      "externalDeps": ["@tanstack/react-query"],
+      "workspecInternalDeps": ["fetches app API"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "thread-id (util)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/thread-id.ts",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "CanvasView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/views/CanvasView.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@/hooks/use-workspace"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "DocsView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/views/DocsView.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["wraps DocumentsContent (app-bound)"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "RegistersView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/views/RegistersView.tsx",
+      "kind": "app-specific",
+      "externalDeps": [],
+      "workspecInternalDeps": ["wouter"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ThreadDetailView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/views/ThreadDetailView.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ThreadsView",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/shell/views/ThreadsView.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": ["wouter", "@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "TerminalDock",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/terminal/TerminalDock.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query", "lucide-react"],
+      "workspecInternalDeps": [
+        "@workspace/api-client-react",
+        "@/hooks/use-workspace",
+        "@/lib/terminal-api",
+        "@/lib/terminal-parser"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "terminal-dock-context",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/terminal/terminal-dock-context.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "@tanstack/react-query"],
+      "workspecInternalDeps": ["@workspace/api-client-react"],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "ThemeSwitcher",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/theme/ThemeSwitcher.tsx",
+      "kind": "composite",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-theme"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "CustomNodePicker",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/topology/CustomNodePicker.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "react-dom"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "RealizesSection",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/topology/RealizesSection.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "@workspace/api-client-react",
+        "@/hooks/use-topology-panel",
+        "@/hooks/use-workspace",
+        "@/hooks/useProjectC4Nodes",
+        "@/lib/native-select"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "TopologyDecisionsPanel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/topology/TopologyDecisionsPanel.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "@workspace/api-client-react",
+        "@/canvas/store",
+        "@/canvas/topology/cost",
+        "@/canvas/types",
+        "@/hooks/use-topology-decisions",
+        "@/hooks/use-topology-panel",
+        "@/lib/cost-engine"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "TopologyInspector",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/topology/TopologyInspector.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "@workspace/api-client-react",
+        "@/canvas/store",
+        "@/canvas/tools/c4Bridge",
+        "@/canvas/topology/catalogTree",
+        "@/canvas/topology/model",
+        "@/canvas/types",
+        "@/hooks/use-right-sidebar-preference",
+        "@/hooks/use-topology-decisions",
+        "@/hooks/use-topology-panel",
+        "@/hooks/use-workspace",
+        "@/lib/cost-catalog-model",
+        "@/lib/cost-engine",
+        "@/lib/native-select"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "TopologyPalette",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/topology/TopologyPalette.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [
+        "@workspace/api-client-react",
+        "@/canvas/store",
+        "@/canvas/topology/catalogTree",
+        "@/canvas/topology/model",
+        "@/hooks/use-topology-panel",
+        "@/lib/cost-engine"
+      ],
+      "extractable": "not-extractable"
+    },
+    {
+      "name": "TopologyViewPicker",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/topology/TopologyViewPicker.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": ["@/canvas/topology/model"],
+      "extractable": "needs-inversion"
+    },
+    {
+      "name": "Accordion",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/accordion.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-accordion", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "AlertDialog",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/alert-dialog.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-alert-dialog"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Alert",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/alert.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "AspectRatio",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/aspect-ratio.tsx",
+      "kind": "primitive",
+      "externalDeps": ["@radix-ui/react-aspect-ratio"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Avatar (ui)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/avatar.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-avatar"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Badge",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/badge.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Breadcrumb",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/breadcrumb.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-slot", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ButtonGroup",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/button-group.tsx",
+      "kind": "primitive",
+      "externalDeps": ["@radix-ui/react-slot", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Button",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/button.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-slot", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Calendar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/calendar.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "react-day-picker", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Card",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/card.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Carousel",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/carousel.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "embla-carousel-react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Chart",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/chart.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "recharts"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Checkbox",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/checkbox.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-checkbox", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Collapsible",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/collapsible.tsx",
+      "kind": "primitive",
+      "externalDeps": ["@radix-ui/react-collapsible"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Command",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/command.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "cmdk", "@radix-ui/react-dialog", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ContextMenu",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/context-menu.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-context-menu", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Dialog",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/dialog.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-dialog", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Drawer",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/drawer.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "vaul"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "DropdownMenu",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/dropdown-menu.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-dropdown-menu", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Empty",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/empty.tsx",
+      "kind": "primitive",
+      "externalDeps": ["class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Field",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/field.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Form",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/form.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "react-hook-form", "@radix-ui/react-label", "@radix-ui/react-slot"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "HoverCard",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/hover-card.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-hover-card"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "InputGroup",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/input-group.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "InputOTP",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/input-otp.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "input-otp", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Input",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/input.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Item",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/item.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-slot", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Kbd",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/kbd.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Label",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/label.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-label", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Menubar",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/menubar.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-menubar", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "NavigationMenu",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/navigation-menu.tsx",
+      "kind": "primitive",
+      "externalDeps": [
+        "react",
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Pagination",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/pagination.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Popover",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/popover.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-popover"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Progress",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/progress.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-progress"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "RadioGroup",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/radio-group.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-radio-group", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Resizable",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/resizable.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react-resizable-panels", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ScrollArea",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/scroll-area.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-scroll-area"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "SegmentedToggle",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/segmented-toggle.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Select",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/select.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-select", "lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Separator",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/separator.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-separator"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Sheet",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/sheet.tsx",
+      "kind": "primitive",
+      "externalDeps": [
+        "react",
+        "@radix-ui/react-dialog",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Sidebar (ui)",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/sidebar.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
+      "workspecInternalDeps": ["@/hooks/use-mobile (generic viewport hook, portable)"],
+      "extractable": "clean"
+    },
+    {
+      "name": "Skeleton",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/skeleton.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Slider",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/slider.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-slider"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Sonner",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/sonner.tsx",
+      "kind": "primitive",
+      "externalDeps": ["next-themes", "sonner"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Spinner",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/spinner.tsx",
+      "kind": "primitive",
+      "externalDeps": ["lucide-react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Switch",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/switch.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-switch"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Table",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/table.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Tabs",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/tabs.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-tabs"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Textarea",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/textarea.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Toast",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/toast.tsx",
+      "kind": "primitive",
+      "externalDeps": [
+        "react",
+        "@radix-ui/react-toast",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Toaster",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/toaster.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": ["@/hooks/use-toast (self-contained shadcn toast store, portable)"],
+      "extractable": "clean"
+    },
+    {
+      "name": "ToggleGroup",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/toggle-group.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-toggle-group", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Toggle",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/toggle.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-toggle", "class-variance-authority"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "Tooltip",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/tooltip.tsx",
+      "kind": "primitive",
+      "externalDeps": ["react", "@radix-ui/react-tooltip"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "WorkspecMark",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/ui/workspec-mark.tsx",
+      "kind": "primitive",
+      "externalDeps": [],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "ProjectSetupProgress",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/workspace/ProjectSetupProgress.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    },
+    {
+      "name": "WorkspaceSetupProgress",
+      "path": "/home/user/workspec/artifacts/workspec/src/components/workspace/WorkspaceSetupProgress.tsx",
+      "kind": "app-specific",
+      "externalDeps": ["react"],
+      "workspecInternalDeps": [],
+      "extractable": "clean"
+    }
+  ],
+  "sharedUtilities": [
+    "cn() \u2014 /home/user/workspec/artifacts/workspec/src/lib/utils.ts (clsx + tailwind-merge twMerge; 68 imports across components as @/lib/utils)",
+    "class-variance-authority (cva) \u2014 external npm package used directly in 17 files (most ui/* variant defs + design/artifact-card.tsx); no local wrapper module",
+    "native-select className constants \u2014 /home/user/workspec/artifacts/workspec/src/lib/native-select.ts (shared Tailwind class strings for native <select>, used by project/C4RealizesPanel, topology/RealizesSection, topology/TopologyInspector)",
+    "CSS custom-property tokens (--ink, --accent, --bg-elevated, --ink-muted, etc.) referenced inline in design/*, ui/workspec-mark.tsx, canvas-host/FourMechanicsBar.tsx; defined in /home/user/workspec/artifacts/workspec/src/index.css and /home/user/workspec/artifacts/workspec/src/styles",
+    "Other src/lib helpers components lean on (all /home/user/workspec/artifacts/workspec/src/lib/): canvas-utils.ts, atlas-step.ts, attachment-utils.ts, pencil-ink.ts, cost-engine.ts, cost-catalog-model.ts, canvas-object-types.ts, terminal-api.ts, terminal-parser.ts, tether.ts",
+    "Portable generic hooks under /home/user/workspec/artifacts/workspec/src/hooks/: use-mobile.tsx (viewport), use-toast.ts (shadcn toast store), use-theme.ts (theme preference) \u2014 imported by ui/sidebar, ui/toaster, and several composites"
+  ],
+  "stateCoupling": "Two-tier coupling. Tier 1 (decoupled): ui/ (57 shadcn-style primitives) and design/ (14 files) depend only on react, radix, cva, lucide, cn() from src/lib/utils.ts, and CSS-var tokens \u2014 the only exceptions are design/page-shell.tsx (wouter Link), ui/sidebar.tsx (use-mobile), ui/toaster.tsx (use-toast), all portable. Tier 2 (coupled): everything outside ui/ and design/ is progressively bound to app internals \u2014 52 import statements of @workspace/api-client-react (generated React Query hooks AND response types) across ~40 files, 27 wouter imports (Link/useLocation/useRoute), ~35 app hooks in src/hooks/ (use-workspace, use-pull-requests, use-interaction-mode, use-presence, use-atlas-turn, use-topology-panel, etc.), and the @/canvas/* store/types/tools (a sibling dir excluded from this inventory) which hard-binds canvas-host/, topology/, prototype/, diagrams/C4Toolbar, and layout/right-sidebar/TopologyPanel. Three files (bugs/bug-detail-panel.tsx, board/ChangeRequestDetailPane.tsx, settings/mcp-sessions-card.tsx) bypass the generated client with raw fetch() + @tanstack/react-query. A notable middle band (~45 files marked needs-inversion) imports api-client-react only for row/response types or a single read hook and is structurally presentational.",
+  "testCoverage": "Zero component tests. The only test file anywhere under /home/user/workspec/artifacts/workspec is /home/user/workspec/artifacts/workspec/src/lib/cost-engine.test.ts (Vitest, pure cost-engine lib \u2014 not a component). No *.test.tsx, no *.spec.tsx, no __tests__ directories, no *.stories.* files, and no test/ directory in the workspec artifact (repo test conventions per CLAUDE.md put tests in artifacts/api-server/test/, which covers services, not this frontend).",
+  "notes": [
+    "Complete coverage: 213 files inventoried, matching `find src/components -type f | wc -l` = 213 (includes .ts utils, type files, hooks, and one barrel that live inside the components tree).",
+    "Exclusion applied: /home/user/workspec/artifacts/workspec/src/canvas is a SIBLING of src/components (the canvas engine: store, types, shapes, tools) and was excluded per instructions; it is referenced from components as @/canvas/*. src/components/canvas/ and src/components/canvas-host/ ARE part of the components dir and are included.",
+    "Dependency-list conventions: intra-library imports (@/components/ui/*, @/components/design/*, sibling components in same dir) are omitted from both dep lists; @/lib/utils (cn) is omitted (listed under sharedUtilities); wouter and @workspace/api-client-react are classified under workspecInternalDeps per task definition even though they are npm packages, because they bind components to the app router and generated API client.",
+    "Entries marked 'clean' that still list a @/lib/* item in workspecInternalDeps (e.g. StepRow\u2192atlas-step, AttachmentCard/MessageComposer\u2192attachment-utils, ScenarioDetailDialog\u2192canvas-utils) only need that pure helper module vendored alongside \u2014 no prop/slot refactor observed in the import graph.",
+    "layout/marketing-layout.tsx is a 1-line empty stub containing only `export {}`.",
+    "Raw fetch() + @tanstack/react-query bypassing the generated client (contrary to the repo's stated frontend pattern) found in: bugs/bug-detail-panel.tsx (2 call sites), board/ChangeRequestDetailPane.tsx (1), settings/mcp-sessions-card.tsx (3).",
+    "design/index.ts is a barrel re-exporting all 13 design components; ui/ has no barrel (per-file imports).",
+    "kind values used: 'primitive' = single-purpose reusable control/token-level piece (all 57 ui/* plus type-badge, chat Avatar, design atoms, EditableLabel); 'composite' = multi-part reusable widget built from primitives; 'app-specific' = screen chunk/panel/view/context bound to WorkSpec domain shapes even when import-clean.",
+    "Verdict distribution: 116 clean (57 of them ui/, 13 design/), 39 needs-inversion, 58 not-extractable. Original scout note understated clean/overstated others; corrected at commit time (S0 review).",
+    "Grep artifacts 'working\u2026' (DiscoverySidebar) and ' : ' (TopologyInspector) matched string literals in code, not real imports \u2014 excluded from dep lists."
+  ]
+}

@@ -1,0 +1,45 @@
+/* WorkSpec · Direction B · Terminal · tokens */
+:root{
+  /* color */
+  --bg:#0a0a0c;
+  --bg-soft:#16161a;
+  --bg-elevated:#1c1c22;
+  --line:#26262c;
+  --line-2:#34343d;
+  --ink:#e8e8ea;
+  --ink-soft:#a4a4ac;
+  --ink-fade:#62626a;
+  --ink-ghost:#3a3a42;
+  --accent:#ff5a36;
+  --accent-soft:rgba(255,90,54,0.12);
+  --accent-mid:rgba(255,90,54,0.4);
+  --agent:#5cf2c0;
+  --agent-soft:rgba(92,242,192,0.1);
+  --warn:#f2c94c;
+  --danger:#ff4d4d;
+
+  /* type */
+  --sans:'Inter Tight', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+
+  /* space — 4px base */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px; --s-20:80px;
+
+  /* radius */
+  --r-1:3px; --r-2:4px; --r-3:6px; --r-4:8px; --r-5:12px; --r-pill:99px;
+
+  /* shadow */
+  --sh-1:0 1px 0 rgba(0,0,0,0.3);
+  --sh-2:0 2px 8px rgba(0,0,0,0.4);
+  --sh-3:0 8px 24px rgba(0,0,0,0.5);
+  --sh-glow:0 0 0 1px var(--accent), 0 0 24px rgba(255,90,54,0.2);
+
+  /* motion */
+  --ease-out:cubic-bezier(0.2, 0.7, 0.3, 1);
+  --ease-in-out:cubic-bezier(0.5, 0, 0.5, 1);
+  --d-fast:120ms; --d-base:180ms; --d-slow:280ms;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-feature-settings:'ss01','cv11';-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
