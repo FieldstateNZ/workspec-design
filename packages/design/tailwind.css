@@ -32,7 +32,7 @@
   --color-popover-foreground: var(--ink);
   --color-popover-border: var(--line);
 
-  /* Primary = brand accent (green · #34d17f dark / #1b8a55 light).
+  /* Primary = brand accent (green · #34d17f dark / #18804e light).
      bg-primary / text-primary are the brand-colored surfaces.
      Foreground reads from --on-accent (#0a0a0c dark, #ffffff light).
   */

@@ -4,8 +4,11 @@ import type { ThemeDefinition } from './theme-definition.types.js';
 /**
  * Transcribed verbatim from
  * `workspec/artifacts/workspec/src/styles/tokens/console-light.css` (extracted
- * 2026-07-06). Values, names, order, and comments must match
- * `src/tokens/source-of-record/console-light.css` exactly — the drift tests in
+ * 2026-07-06). Names, order, and comments must match
+ * `src/tokens/source-of-record/console-light.css` exactly, and so must every
+ * value except the WCAG AA contrast corrections in
+ * `src/tokens/adjudicated-deviations.ts` (Brett, 2026-07-07 — see
+ * `docs/drift-log.md` D36/D37/D38/D39/D40) — the drift tests in
  * `src/tokens/source-of-record.test.ts` enforce this on every test run.
  */
 export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
@@ -33,18 +36,18 @@ export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
           tokens: [
             { name: '--ink', value: '#0a0a0c' },
             { name: '--ink-soft', value: '#4a4a52' },
-            { name: '--ink-muted', value: '#76767c' },
-            { name: '--ink-fade', value: '#76767c' },
-            { name: '--ink-ghost', value: '#b8b8be' },
+            { name: '--ink-muted', value: '#64646a' },
+            { name: '--ink-fade', value: '#6d6d73' },
+            { name: '--ink-ghost', value: '#89898f' },
           ],
         },
         {
           comment: 'accent — green, deepened for contrast on light',
           tokens: [
-            { name: '--accent', value: '#1b8a55' },
+            { name: '--accent', value: '#18804e' },
             { name: '--accent-deep', value: '#0e3b2a' },
-            { name: '--accent-soft', value: 'rgba(27,138,85,0.10)' },
-            { name: '--accent-mid', value: 'rgba(27,138,85,0.30)' },
+            { name: '--accent-soft', value: 'rgba(24,128,78,0.10)' },
+            { name: '--accent-mid', value: 'rgba(24,128,78,0.30)' },
           ],
         },
         {
@@ -57,7 +60,7 @@ export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
         {
           comment: 'status',
           tokens: [
-            { name: '--warn', value: '#c89216' },
+            { name: '--warn', value: '#b08012' },
             { name: '--danger', value: '#c43a3a' },
             { name: '--danger-soft', value: 'rgba(196,58,58,0.08)' },
           ],
@@ -203,7 +206,7 @@ export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
           comment: 'derived',
           tokens: [
             { name: '--accent-hover', value: '#157849' },
-            { name: '--accent-wash', value: 'rgba(27,138,85,0.08)' },
+            { name: '--accent-wash', value: 'rgba(24,128,78,0.08)' },
             { name: '--agent-mid', value: 'rgba(13,138,114,0.4)' },
           ],
         },
@@ -249,7 +252,7 @@ export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
             { name: '--sh-1', value: '0 1px 0 rgba(0,0,0,0.06)' },
             { name: '--sh-2', value: '0 2px 8px rgba(0,0,0,0.08)' },
             { name: '--sh-3', value: '0 8px 24px rgba(0,0,0,0.10)' },
-            { name: '--sh-glow', value: '0 0 0 1px var(--accent), 0 0 24px rgba(27,138,85,0.16)' },
+            { name: '--sh-glow', value: '0 0 0 1px var(--accent), 0 0 24px rgba(24,128,78,0.16)' },
           ],
         },
         {

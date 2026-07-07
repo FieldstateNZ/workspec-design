@@ -18,31 +18,31 @@ Every documented pair (`src/contrast/pairs.ts`), measured against both themes' a
 | `--ink-soft on --bg-soft` | normal-text | 4.50:1 | 7.29:1 | PASS | 8.41:1 | PASS |
 | `--ink-soft on --bg-elevated` | normal-text | 4.50:1 | 6.85:1 | PASS | 8.78:1 | PASS |
 | `--ink-soft on --panel-dark` | normal-text | 4.50:1 | 7.42:1 | PASS | 7.79:1 | PASS |
-| `--ink-muted on --bg` | normal-text | 4.50:1 | 4.15:1 | FAIL | 4.18:1 | FAIL |
-| `--ink-muted on --bg-soft` | normal-text | 4.50:1 | 3.78:1 | FAIL | 4.33:1 | FAIL |
-| `--ink-muted on --bg-elevated` | normal-text | 4.50:1 | 3.56:1 | FAIL | 4.51:1 | PASS |
-| `--ink-muted on --panel-dark` | normal-text | 4.50:1 | 3.85:1 | FAIL | 4.00:1 | FAIL |
-| `--ink-fade on --bg` | normal-text | 4.50:1 | 3.27:1 | FAIL | 4.18:1 | FAIL |
-| `--ink-fade on --bg-soft` | normal-text | 4.50:1 | 2.99:1 | FAIL | 4.33:1 | FAIL |
-| `--ink-fade on --bg-elevated` | normal-text | 4.50:1 | 2.81:1 | FAIL | 4.51:1 | PASS |
-| `--ink-fade on --panel-dark` | normal-text | 4.50:1 | 3.04:1 | FAIL | 4.00:1 | FAIL |
-| `--ink-ghost on --bg` | large-text-or-ui | 3.00:1 | 1.76:1 | FAIL | 1.83:1 | FAIL |
-| `--ink-ghost on --bg-soft` | large-text-or-ui | 3.00:1 | 1.60:1 | FAIL | 1.89:1 | FAIL |
-| `--ink-ghost on --bg-elevated` | large-text-or-ui | 3.00:1 | 1.50:1 | FAIL | 1.97:1 | FAIL |
-| `--ink-ghost on --panel-dark` | large-text-or-ui | 3.00:1 | 1.63:1 | FAIL | 1.75:1 | FAIL |
-| `--accent on --bg` | large-text-or-ui | 3.00:1 | 9.96:1 | PASS | 4.04:1 | PASS |
-| `--accent on --bg-soft` | large-text-or-ui | 3.00:1 | 9.08:1 | PASS | 4.18:1 | PASS |
-| `--accent on --bg-elevated` | large-text-or-ui | 3.00:1 | 8.54:1 | PASS | 4.36:1 | PASS |
+| `--ink-muted on --bg` | normal-text | 4.50:1 | 6.08:1 | PASS | 5.44:1 | PASS |
+| `--ink-muted on --bg-soft` | normal-text | 4.50:1 | 5.55:1 | PASS | 5.63:1 | PASS |
+| `--ink-muted on --bg-elevated` | normal-text | 4.50:1 | 5.22:1 | PASS | 5.88:1 | PASS |
+| `--ink-muted on --panel-dark` | normal-text | 4.50:1 | 5.65:1 | PASS | 5.21:1 | PASS |
+| `--ink-fade on --bg` | normal-text | 4.50:1 | 5.33:1 | PASS | 4.76:1 | PASS |
+| `--ink-fade on --bg-soft` | normal-text | 4.50:1 | 4.86:1 | PASS | 4.93:1 | PASS |
+| `--ink-fade on --bg-elevated` | normal-text | 4.50:1 | 4.57:1 | PASS | 5.14:1 | PASS |
+| `--ink-fade on --panel-dark` | normal-text | 4.50:1 | 4.95:1 | PASS | 4.56:1 | PASS |
+| `--ink-ghost on --bg` | large-text-or-ui | 3.00:1 | 3.58:1 | PASS | 3.22:1 | PASS |
+| `--ink-ghost on --bg-soft` | large-text-or-ui | 3.00:1 | 3.27:1 | PASS | 3.33:1 | PASS |
+| `--ink-ghost on --bg-elevated` | large-text-or-ui | 3.00:1 | 3.07:1 | PASS | 3.48:1 | PASS |
+| `--ink-ghost on --panel-dark` | large-text-or-ui | 3.00:1 | 3.32:1 | PASS | 3.08:1 | PASS |
+| `--accent on --bg` | large-text-or-ui | 3.00:1 | 9.96:1 | PASS | 4.59:1 | PASS |
+| `--accent on --bg-soft` | large-text-or-ui | 3.00:1 | 9.08:1 | PASS | 4.75:1 | PASS |
+| `--accent on --bg-elevated` | large-text-or-ui | 3.00:1 | 8.54:1 | PASS | 4.96:1 | PASS |
 | `--agent on --bg` | large-text-or-ui | 3.00:1 | 14.05:1 | PASS | 3.97:1 | PASS |
 | `--agent on --bg-soft` | large-text-or-ui | 3.00:1 | 12.82:1 | PASS | 4.11:1 | PASS |
 | `--agent on --bg-elevated` | large-text-or-ui | 3.00:1 | 12.04:1 | PASS | 4.29:1 | PASS |
-| `--warn on --bg` | large-text-or-ui | 3.00:1 | 12.47:1 | PASS | 2.57:1 | FAIL |
-| `--warn on --bg-soft` | large-text-or-ui | 3.00:1 | 11.37:1 | PASS | 2.66:1 | FAIL |
-| `--warn on --bg-elevated` | large-text-or-ui | 3.00:1 | 10.69:1 | PASS | 2.77:1 | FAIL |
+| `--warn on --bg` | large-text-or-ui | 3.00:1 | 12.47:1 | PASS | 3.27:1 | PASS |
+| `--warn on --bg-soft` | large-text-or-ui | 3.00:1 | 11.37:1 | PASS | 3.39:1 | PASS |
+| `--warn on --bg-elevated` | large-text-or-ui | 3.00:1 | 10.69:1 | PASS | 3.53:1 | PASS |
 | `--danger on --bg` | large-text-or-ui | 3.00:1 | 6.46:1 | PASS | 4.84:1 | PASS |
 | `--danger on --bg-soft` | large-text-or-ui | 3.00:1 | 5.90:1 | PASS | 5.02:1 | PASS |
 | `--danger on --bg-elevated` | large-text-or-ui | 3.00:1 | 5.54:1 | PASS | 5.23:1 | PASS |
-| `--on-accent on --accent` | normal-text | 4.50:1 | 9.96:1 | PASS | 4.36:1 | FAIL |
+| `--on-accent on --accent` | normal-text | 4.50:1 | 9.96:1 | PASS | 4.96:1 | PASS |
 | `--on-accent on --accent-hover` | normal-text | 4.50:1 | 12.54:1 | PASS | 5.51:1 | PASS |
 | `--sticky-yellow-ink on --sticky-yellow-bg` | normal-text | 4.50:1 | 9.31:1 | PASS | 7.92:1 | PASS |
 | `--sticky-pink-ink on --sticky-pink-bg` | normal-text | 4.50:1 | 6.95:1 | PASS | 6.20:1 | PASS |
@@ -72,38 +72,9 @@ Every documented pair (`src/contrast/pairs.ts`), measured against both themes' a
 
 ## Failures
 
-26 of 118 pair×theme checks fall below their class threshold. Each is a documented, allowlisted drift (`src/contrast/known-failures.ts`) — extraction discipline forbids changing token values to fix these here; disposition is recorded in `docs/drift-log.md` for Brett to adjudicate. This audit does not change any token value.
-
-| Pair | Theme | Class | Threshold | Ratio | Drift log |
-|---|---|---|---|---|---|
-| `--ink-muted on --bg` | console-dark | normal-text | 4.50:1 | 4.15:1 | D33 |
-| `--ink-muted on --bg` | console-light | normal-text | 4.50:1 | 4.18:1 | D36 |
-| `--ink-muted on --bg-soft` | console-dark | normal-text | 4.50:1 | 3.78:1 | D33 |
-| `--ink-muted on --bg-soft` | console-light | normal-text | 4.50:1 | 4.33:1 | D36 |
-| `--ink-muted on --bg-elevated` | console-dark | normal-text | 4.50:1 | 3.56:1 | D33 |
-| `--ink-muted on --panel-dark` | console-dark | normal-text | 4.50:1 | 3.85:1 | D33 |
-| `--ink-muted on --panel-dark` | console-light | normal-text | 4.50:1 | 4.00:1 | D36 |
-| `--ink-fade on --bg` | console-dark | normal-text | 4.50:1 | 3.27:1 | D34 |
-| `--ink-fade on --bg` | console-light | normal-text | 4.50:1 | 4.18:1 | D37 |
-| `--ink-fade on --bg-soft` | console-dark | normal-text | 4.50:1 | 2.99:1 | D34 |
-| `--ink-fade on --bg-soft` | console-light | normal-text | 4.50:1 | 4.33:1 | D37 |
-| `--ink-fade on --bg-elevated` | console-dark | normal-text | 4.50:1 | 2.81:1 | D34 |
-| `--ink-fade on --panel-dark` | console-dark | normal-text | 4.50:1 | 3.04:1 | D34 |
-| `--ink-fade on --panel-dark` | console-light | normal-text | 4.50:1 | 4.00:1 | D37 |
-| `--ink-ghost on --bg` | console-dark | large-text-or-ui | 3.00:1 | 1.76:1 | D35 |
-| `--ink-ghost on --bg` | console-light | large-text-or-ui | 3.00:1 | 1.83:1 | D38 |
-| `--ink-ghost on --bg-soft` | console-dark | large-text-or-ui | 3.00:1 | 1.60:1 | D35 |
-| `--ink-ghost on --bg-soft` | console-light | large-text-or-ui | 3.00:1 | 1.89:1 | D38 |
-| `--ink-ghost on --bg-elevated` | console-dark | large-text-or-ui | 3.00:1 | 1.50:1 | D35 |
-| `--ink-ghost on --bg-elevated` | console-light | large-text-or-ui | 3.00:1 | 1.97:1 | D38 |
-| `--ink-ghost on --panel-dark` | console-dark | large-text-or-ui | 3.00:1 | 1.63:1 | D35 |
-| `--ink-ghost on --panel-dark` | console-light | large-text-or-ui | 3.00:1 | 1.75:1 | D38 |
-| `--warn on --bg` | console-light | large-text-or-ui | 3.00:1 | 2.57:1 | D39 |
-| `--warn on --bg-soft` | console-light | large-text-or-ui | 3.00:1 | 2.66:1 | D39 |
-| `--warn on --bg-elevated` | console-light | large-text-or-ui | 3.00:1 | 2.77:1 | D39 |
-| `--on-accent on --accent` | console-light | normal-text | 4.50:1 | 4.36:1 | D40 |
+None — every documented pair meets its class threshold.
 
 ## Verdict — workspec-decision-studio#8
 
-In the light theme — the theme the Decision Studio live demo follows via `prefers-color-scheme` — the primary text hierarchy (`--ink`, `--ink-soft`) measures AA-clean against every documented surface (`--bg`, `--bg-soft`, `--bg-elevated`, `--panel-dark`): all 8 of 8 pairs pass, the weakest at 7.79:1 against a 4.5:1 requirement. If the demo's readability problem is about primary body or heading text, that is off-spec usage of the design system, not a defect in the spec itself — a conclusion to confirm during S10 (workspec-decision-studio#8) against this audit. The spec is not spotless everywhere, though: `--ink-muted`, `--ink-fade`, `--ink-ghost`, `--warn`, `--on-accent` fail their own class threshold against at least one documented surface in the light theme (see Failures above for exact ratios). If the demo's readability complaint traces to any of those roles — tertiary/metadata text, placeholder or disabled UI, warning-colored text, or button/badge labels on a filled accent — it is a weak pair in the spec itself, not off-spec usage, and needs Brett's adjudication (`docs/drift-log.md`).
+In the light theme — the theme the Decision Studio live demo follows via `prefers-color-scheme` — the primary text hierarchy (`--ink`, `--ink-soft`) measures AA-clean against every documented surface (`--bg`, `--bg-soft`, `--bg-elevated`, `--panel-dark`): all 8 of 8 pairs pass, the weakest at 7.79:1 against a 4.5:1 requirement. If the demo's readability problem is about primary body or heading text, that is off-spec usage of the design system, not a defect in the spec itself — a conclusion to confirm during S10 (workspec-decision-studio#8) against this audit. Every documented pair in the light theme is AA-clean, with no exceptions.
 

@@ -4,8 +4,11 @@ import type { ThemeDefinition } from './theme-definition.types.js';
 /**
  * Transcribed verbatim from
  * `workspec/artifacts/workspec/src/styles/tokens/console-dark.css` (extracted
- * 2026-07-06). Values, names, order, and comments must match
- * `src/tokens/source-of-record/console-dark.css` exactly — the drift tests in
+ * 2026-07-06). Names, order, and comments must match
+ * `src/tokens/source-of-record/console-dark.css` exactly, and so must every
+ * value except the WCAG AA contrast corrections in
+ * `src/tokens/adjudicated-deviations.ts` (Brett, 2026-07-07 — see
+ * `docs/drift-log.md` D33/D34/D35) — the drift tests in
  * `src/tokens/source-of-record.test.ts` enforce this on every test run.
  */
 export const CONSOLE_DARK_THEME: ThemeDefinition = {
@@ -33,9 +36,9 @@ export const CONSOLE_DARK_THEME: ThemeDefinition = {
           tokens: [
             { name: '--ink', value: '#e8e8ea' },
             { name: '--ink-soft', value: '#a4a4ac' },
-            { name: '--ink-muted', value: '#72727a' },
-            { name: '--ink-fade', value: '#62626a' },
-            { name: '--ink-ghost', value: '#3a3a42' },
+            { name: '--ink-muted', value: '#8e8e96' },
+            { name: '--ink-fade', value: '#84848c' },
+            { name: '--ink-ghost', value: '#686870' },
           ],
         },
         {

@@ -31,7 +31,7 @@ export const TAILWIND_MAPPING: readonly TailwindMappingEntry[] = [
     name: '--color-primary',
     value: 'var(--accent)',
     comment:
-      'Primary = brand accent (green · #34d17f dark / #1b8a55 light).\nbg-primary / text-primary are the brand-colored surfaces.\nForeground reads from --on-accent (#0a0a0c dark, #ffffff light).',
+      'Primary = brand accent (green · #34d17f dark / #18804e light).\nbg-primary / text-primary are the brand-colored surfaces.\nForeground reads from --on-accent (#0a0a0c dark, #ffffff light).',
   },
   { name: '--color-primary-foreground', value: 'var(--on-accent)' },
   { name: '--color-primary-border', value: 'var(--accent)' },
