@@ -1,14 +1,18 @@
 /**
  * Smoke-render registry — one entry per migrated component FILE (57 `ui/` +
- * 13 `design/` = 70), each mounting a minimal but realistic composition that
- * exercises every named export that file has (compound Radix
- * primitives render as one assembled tree rather than one row per sub-part;
- * see smoke.test.tsx). Portal/positioned content (Dialog, Popover, Select,
- * ...) is forced into the DOM with `defaultOpen`/`forceMount` so its
- * sub-components actually mount instead of only proving the closed Root +
- * Trigger render — see vitest.components.setup.ts for the jsdom stubs that
- * makes that safe (ResizeObserver, matchMedia, pointer capture,
- * scrollIntoView, recharts' layout measurement).
+ * 13 `design/` = 70), each mounting a minimal but realistic composition of
+ * that file's primary component(s) (compound Radix primitives render as one
+ * assembled tree rather than one row per sub-part; see smoke.test.tsx). Some
+ * subcomponents render only transitively, as children of the primary
+ * component being exercised, not because every named export is deliberately
+ * invoked — a handful of value exports (variant-class functions, hooks,
+ * type-only exports) are never rendered at all, since there is nothing to
+ * mount. Portal/positioned content (Dialog, Popover, Select, ...) is forced
+ * into the DOM with `defaultOpen`/`forceMount` so its sub-components
+ * actually mount instead of only proving the closed Root + Trigger render —
+ * see vitest.components.setup.ts for the jsdom stubs that makes that safe
+ * (ResizeObserver, matchMedia, pointer capture, scrollIntoView, recharts'
+ * layout measurement).
  *
  * Imports go straight to each file (not through ./index.js) so `ui/toaster`
  * and `ui/sonner` — the one name collision in the whole export surface (both
@@ -93,6 +97,7 @@ import {
   ContextMenuRadioGroup,
   ContextMenuRadioItem,
   ContextMenuSeparator,
+  ContextMenuShortcut,
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
@@ -494,7 +499,9 @@ export const SMOKE_REGISTRY: Record<string, () => ReactElement> = {
         <ContextMenuSub>
           <ContextMenuSubTrigger>More</ContextMenuSubTrigger>
           <ContextMenuSubContent forceMount>
-            <ContextMenuItem>Sub item</ContextMenuItem>
+            <ContextMenuItem>
+              Sub item <ContextMenuShortcut>⌘S</ContextMenuShortcut>
+            </ContextMenuItem>
           </ContextMenuSubContent>
         </ContextMenuSub>
       </ContextMenuContent>

@@ -140,7 +140,11 @@ enterprise source. The migrated file replaces that with a `linkComponent` prop (
 `ComponentType<PageHeaderLinkProps>`), defaulting to a plain `<a>`; host apps pass their own
 router's link component (e.g. `linkComponent={Link}` from wouter) to restore client-side
 navigation. No `wouter` dependency exists anywhere in `packages/design`. This is the one
-behaviour-shaped change across the whole migration (drift-log D31).
+behaviour-shaped change across the whole migration (drift-log D31). The same file also carries a
+type-only deviation alongside it: every `React.ReactNode` annotation became a bare `ReactNode`
+fed by `import type { ComponentType, ReactNode } from 'react'` — no behaviour change, just this
+package's `verbatimModuleSyntax` style, picked up file-wide once the inversion's new types
+needed a type-only React import anyway.
 
 **Fidelity, verified per-file:** `packages/design/scripts/verify-migration.ts`
 (`pnpm --filter @workspec/design run verify:migration`) Prettier-normalizes and strips

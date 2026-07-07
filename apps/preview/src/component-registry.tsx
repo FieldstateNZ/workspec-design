@@ -9,11 +9,13 @@
  *
  * One entry per migrated component FILE (57 `ui/` + 13 `design/` = 70,
  * grouped by directory for the Components section), matching
- * docs/inventory.md's own file-based component count. Every export from
- * that file appears somewhere in its entry's composed tree (compound Radix
- * primitives render as one assembled, force-opened instance rather than each
- * sub-part in isolation — most Radix sub-parts cannot mount at all outside
- * their family's Root context).
+ * docs/inventory.md's own file-based component count. Each entry's composed
+ * tree renders that file's primary component(s) (compound Radix primitives
+ * render as one assembled, force-opened instance rather than each sub-part
+ * in isolation — most Radix sub-parts cannot mount at all outside their
+ * family's Root context). Some subcomponents render only transitively, as
+ * children of the primary component; a handful of value exports (variant-
+ * class functions, hooks, type-only exports) are never rendered at all.
  */
 import type { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
@@ -98,6 +100,7 @@ import {
   ContextMenuRadioGroup,
   ContextMenuRadioItem,
   ContextMenuSeparator,
+  ContextMenuShortcut,
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
@@ -540,7 +543,9 @@ export const COMPONENT_REGISTRY: readonly ComponentRegistryEntry[] = [
           <ContextMenuSub>
             <ContextMenuSubTrigger>More</ContextMenuSubTrigger>
             <ContextMenuSubContent>
-              <ContextMenuItem>Sub item</ContextMenuItem>
+              <ContextMenuItem>
+                Sub item <ContextMenuShortcut>⌘S</ContextMenuShortcut>
+              </ContextMenuItem>
             </ContextMenuSubContent>
           </ContextMenuSub>
         </ContextMenuContent>

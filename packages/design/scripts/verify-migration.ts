@@ -68,7 +68,10 @@ const JUSTIFICATIONS: Record<string, string> = {
   'components/design/page-shell.tsx':
     "INVERSION (docs/inventory.md, DELIVERY_PLAN.md decision 6): wouter's `Link` replaced by " +
     'a `linkComponent` prop (default plain `<a>`) so the package carries no router dependency. ' +
-    'The only behaviour-shaped change in the whole migration.',
+    'The only behaviour-shaped change in the whole migration. Also carries a type-only ' +
+    'deviation alongside it: every `React.ReactNode` annotation became a bare `ReactNode` ' +
+    "fed by `import type { ReactNode } from 'react'` — no behaviour change, just this " +
+    "package's `verbatimModuleSyntax` style.",
   'components/ui/calendar.tsx':
     "`DayButton` split into its own `import type` — react-day-picker's `DayButton` is used " +
     "here only as a type (`React.ComponentProps<typeof DayButton>`); the enterprise app's " +
@@ -119,22 +122,46 @@ const CSS_MAPPING = {
 };
 
 /**
+ * Counts a line's net effect on brace depth. Scoped to import/export
+ * specifier clauses only (see caller) — those never contain nested object
+ * literals per TS grammar, so naive char-counting (no string/comment
+ * awareness) is exact there, unlike in general code.
+ */
+function braceDelta(line: string): number {
+  let delta = 0;
+  for (const ch of line) {
+    if (ch === '{') delta += 1;
+    else if (ch === '}') delta -= 1;
+  }
+  return delta;
+}
+
+/**
  * Removes every `import ...` and `export ... from '...'` statement (single-
- * or multi-line) from already-Prettier-formatted code. Safe because Prettier
- * (semi: true) always terminates a statement with a line ending in `;`, so
- * the state machine just consumes lines until it sees that terminator.
+ * or multi-line) from already-Prettier-formatted code. A statement's extent
+ * is found by brace-balancing its specifier clause (0 delta = single-line
+ * form; a multi-line `{ ... }` list closes once depth returns to 0) rather
+ * than by scanning for `from` — a bare `export { X };` re-export-free list
+ * has no `from` clause and must not swallow lines past its own closing `}`
+ * looking for one. This assumes Prettier's placement of a wrapped list's
+ * `from '...'` on the same line as the closing `}` (this repo's config) and
+ * that no import carries a brace-containing assertion clause
+ * (`with { type: 'json' }`) — neither form appears in this codebase.
  */
 function stripModuleSpecifierStatements(code: string): string {
   const lines = code.split('\n');
   const out: string[] = [];
   let i = 0;
   const startsStatement = /^\s*(import\b|export\s*(\*|\{))/;
-  const terminates = /from\s+['"][^'"]*['"];?\s*$/;
   while (i < lines.length) {
     const line = lines[i] ?? '';
     if (startsStatement.test(line)) {
       let j = i;
-      while (j < lines.length && !terminates.test(lines[j] ?? '')) j++;
+      let depth = braceDelta(line);
+      while (depth > 0 && j + 1 < lines.length) {
+        j += 1;
+        depth += braceDelta(lines[j] ?? '');
+      }
       out.push('/* module-specifier statement removed */');
       i = j + 1;
       continue;
