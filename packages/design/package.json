@@ -74,7 +74,8 @@
     "test": "vitest run",
     "gen:tokens": "tsx scripts/generate.ts",
     "build:components-css": "tsx scripts/build-components-css.ts",
-    "audit:contrast": "tsx scripts/contrast-audit.ts"
+    "audit:contrast": "tsx scripts/contrast-audit.ts",
+    "verify:migration": "tsx scripts/verify-migration.ts"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -134,6 +135,7 @@
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "jsdom": "^25.0.1",
+    "prettier": "^3.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^4.1.14",
