@@ -51,8 +51,8 @@ test.describe('fixture smoke — @workspec/design resolves through a real Tailwi
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
     await expect(page.locator('html')).not.toHaveClass(/dark/);
 
-    await expect(rawAccent).toHaveCSS('color', 'rgb(27, 138, 85)');
-    await expect(primarySwatch).toHaveCSS('background-color', 'rgb(27, 138, 85)');
+    await expect(rawAccent).toHaveCSS('color', 'rgb(24, 128, 78)');
+    await expect(primarySwatch).toHaveCSS('background-color', 'rgb(24, 128, 78)');
 
     // ── the font-sans utility (mapped from --sans) resolves to Inter Tight ──
     const bodyFontFamily = await page.evaluate(() => getComputedStyle(document.body).fontFamily);
