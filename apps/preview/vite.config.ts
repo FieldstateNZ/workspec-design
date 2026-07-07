@@ -9,6 +9,14 @@ import { defineConfig } from 'vite';
 // `vite dev`/`vite preview` serve from the site root instead.
 export default defineConfig({
   base: process.env.PREVIEW_BASE_PATH ?? '/workspec-design/',
+  // Resolve `@workspec/design`'s "." export to its TypeScript source (the
+  // `@workspec/source` condition packages/design's package.json exports map
+  // defines) rather than `dist/index.js`. Without this, dev/build silently
+  // depend on `packages/design/dist` already existing — bundling from source
+  // instead means live tokens and no cross-package build-order dependency.
+  resolve: {
+    conditions: ['@workspec/source'],
+  },
   plugins: [react(), tailwindcss()],
   build: {
     outDir: 'dist',

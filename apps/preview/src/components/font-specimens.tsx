@@ -1,10 +1,31 @@
 import { tokensJson } from '../tokens-data';
 
 /**
- * Families already demoed via a typography token (`--sans` → Inter Tight,
- * `--mono` → JetBrains Mono) — excluded here so the two aren't shown twice.
+ * Reads the leading family out of a CSS font-stack token value, e.g.
+ * `"'Inter Tight', system-ui, sans-serif"` -> `"Inter Tight"`. Assumes the
+ * stack always leads with a single-quoted family name, which is how
+ * packages/design/scripts/generate.ts emits every `--sans`/`--mono` value —
+ * see packages/design/src/tokens/source-of-record.
  */
-const TOKEN_BOUND_FAMILIES = new Set(['Inter Tight', 'JetBrains Mono']);
+function firstFamily(fontStack: string): string {
+  const family = /^'([^']+)'/.exec(fontStack)?.[1];
+  if (family === undefined) {
+    throw new Error(`expected a leading quoted font family in stack: "${fontStack}"`);
+  }
+  return family;
+}
+
+/**
+ * Families already demoed via a typography token (`--sans`, `--mono`) —
+ * derived from every theme's stacks in tokens.json rather than hand-listed,
+ * so a token change can't silently double-list or drop a specimen below.
+ */
+const TOKEN_BOUND_FAMILIES = new Set(
+  Object.values(tokensJson.themes).flatMap((theme) => [
+    firstFamily(theme.tokens['--sans']),
+    firstFamily(theme.tokens['--mono']),
+  ]),
+);
 
 /**
  * The self-hosted font families that don't back a typography token (Caveat,
