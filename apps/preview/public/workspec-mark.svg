@@ -18,9 +18,11 @@
   `currentColor` (set `color` on an ancestor to recolor), the terminal circle
   and square are left unfilled (`fill="none"`) rather than baked to one
   theme's surface color so the mark drops onto any background, and the
-  accent circle is fixed to #1b8a55 — the go-live green accent (console-light
-  --accent, equivalently console-dark --accent-deep / "brand guidelines v1",
-  see docs/design/README.md).
+  accent circle is fixed to #1b8a55 — the go-live brand green of "brand
+  guidelines v1" (today: console-dark --accent-deep; it was also console-light
+  --accent until the 2026-07-07 WCAG adjudication darkened that token to
+  #18804e — whether the brand mark should follow is an open brand ruling,
+  see docs/design/README.md and docs/drift-log.md).
 
   These are trademarks — see /NOTICE.
 -->

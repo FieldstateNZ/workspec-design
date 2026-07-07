@@ -67,9 +67,10 @@ discrepancy._
 The WCAG AA contrast gate added in this slice (`packages/design/src/contrast/`) measures every
 documented text/UI-role-on-background pair (`packages/design/src/contrast/pairs.ts`) against both
 themes' actual token values — hand-rolled WCAG 2.x relative luminance + contrast ratio math, no
-new dependency. 26 of 118 pair×theme checks fall below their class threshold; see
-`docs/contrast-audit.md` for the full matrix, the failures table, and the readability verdict for
-`workspec-decision-studio#8`. At the time of the initial audit (2026-07-06), none of these findings
+new dependency. The initial audit (2026-07-06) measured 26 of 118 pair×theme checks below their
+class threshold; the old→new values are recorded per entry below, and `docs/contrast-audit.md`
+carries the current all-pass matrix and the readability verdict for
+`workspec-decision-studio#8`. At the time of the initial audit, none of these findings
 changed any token value — extraction discipline forbade that pending Brett's adjudication — and
 each was allowlisted in `packages/design/src/contrast/known-failures.ts` (which referenced the
 D-number in its own row) so the gate documented the defect instead of hiding it.
