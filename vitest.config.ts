@@ -9,6 +9,10 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     include: ['test/**/*.test.ts'],
-    projects: ['.', 'packages/*', 'apps/*'],
+    // 'packages/*' only picks up one config file per directory (its own
+    // directory-glob discovery), so packages/design's second suite (the S4
+    // component smoke tests, jsdom + react plugin) needs an explicit path
+    // entry alongside the directory glob that finds vitest.config.ts.
+    projects: ['.', 'packages/*', 'packages/design/vitest.components.config.ts', 'apps/*'],
   },
 });

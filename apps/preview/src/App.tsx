@@ -1,3 +1,4 @@
+import { ComponentsSection } from './components/components-section';
 import { ContrastSection } from './components/contrast-section';
 import { LogoUsageSection } from './components/logo-usage-section';
 import { SiteFooter } from './components/site-footer';
@@ -7,9 +8,11 @@ import { useChromeTheme } from './use-chrome-theme';
 
 /**
  * The `@workspec/design` token/theme preview — the system's visible home,
- * deployed to GitHub Pages. Every section is generated from
+ * deployed to GitHub Pages. The token panels are generated from
  * `@workspec/design/tokens.json` (see `src/tokens-data.ts` and
- * `components/token-section.tsx`); nothing here is a hand-written token list.
+ * `components/token-section.tsx`); the Components section (S4,
+ * workspec-design#5) is generated from `@workspec/design/components` (see
+ * `src/component-registry.tsx`) — neither is a hand-written list.
  */
 export function App() {
   const [chromeTheme, toggleChromeTheme] = useChromeTheme();
@@ -22,6 +25,8 @@ export function App() {
         <ThemePanel theme="console-dark" title="console-dark" />
         <ThemePanel theme="console-light" title="console-light" />
       </div>
+
+      <ComponentsSection />
 
       <ContrastSection />
       <LogoUsageSection />

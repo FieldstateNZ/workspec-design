@@ -15,7 +15,9 @@
   "dependencies": {
     "@workspec/design": "workspace:*",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.55.0",
+    "recharts": "^2.15.2"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.14",

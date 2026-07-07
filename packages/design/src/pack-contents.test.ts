@@ -14,16 +14,26 @@ const packageJson = JSON.parse(readFileSync(join(PACKAGE_ROOT, 'package.json'), 
 };
 
 /**
+ * Export specifiers with an `@workspec/source` condition pointing at `src/`
+ * (excluded from the published tarball entirely) alongside `types`/`import`/
+ * `default` conditions pointing at their `dist/` build output. Those dist
+ * paths are asserted separately, in the same tarball, by the test below —
+ * `exportFileTargets` skips these specifiers wholesale rather than treating
+ * their `src/` condition as a literal file the tarball must contain.
+ */
+const DIST_BACKED_EXPORTS = ['.', './components'];
+
+/**
  * Every concrete file path the export map promises, read straight from
  * package.json rather than duplicated here — this is what makes the test a
  * gate against B1-class regressions instead of a snapshot that quietly
- * agrees with whatever `files`/`exports` say. `.` (dist build output) and
+ * agrees with whatever `files`/`exports` say. `DIST_BACKED_EXPORTS` and
  * `./fonts/*` (a glob, not a file) are asserted separately below.
  */
 function exportFileTargets(exportsMap: Record<string, string | Record<string, string>>): string[] {
   const targets = new Set<string>();
   for (const [specifier, target] of Object.entries(exportsMap)) {
-    if (specifier === '.' || specifier === './fonts/*') continue;
+    if (DIST_BACKED_EXPORTS.includes(specifier) || specifier === './fonts/*') continue;
     const values = typeof target === 'string' ? [target] : Object.values(target);
     for (const value of values) {
       targets.add(value.replace(/^\.\//, ''));
@@ -69,9 +79,11 @@ describe('published tarball contents', () => {
     }
   });
 
-  it('includes the dist build output backing the `.` export', () => {
+  it('includes the dist build output backing the `.` and `./components` exports', () => {
     expect(tarballEntries).toContain('dist/index.js');
     expect(tarballEntries).toContain('dist/index.d.ts');
+    expect(tarballEntries).toContain('dist/components/index.js');
+    expect(tarballEntries).toContain('dist/components/index.d.ts');
   });
 
   it('includes every self-hosted font file, the manifest, and every OFL license (the `./fonts/*` glob)', () => {

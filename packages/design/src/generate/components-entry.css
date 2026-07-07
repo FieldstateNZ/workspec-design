@@ -1,0 +1,19 @@
+/*
+ * Build entry for `components.css` — compiled via @tailwindcss/cli:
+ *   pnpm --filter @workspec/design run build:components-css
+ *
+ * NOT imported by consumers and NOT shipped (excluded from `files` by being
+ * under src/). See components.css's own header for what ships and how
+ * library consumers should use it — this file only exists to hand the real
+ * Tailwind v4 engine a JIT compile target: theme + utilities layers (no
+ * preflight — this is meant to layer into a non-Tailwind consumer's page
+ * without silently applying a CSS reset), the S1 preset's `@theme inline`
+ * token mapping, and `@source` pointed at this package's own component
+ * source so only the utility classes the migrated components actually use
+ * are emitted.
+ */
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import '../../tailwind.css';
+
+@source '../components';

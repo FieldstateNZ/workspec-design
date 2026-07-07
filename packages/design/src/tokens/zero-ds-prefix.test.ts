@@ -31,13 +31,13 @@ describe('zero ds-prefix gate', () => {
     ).toEqual([]);
   });
 
-  it('no source file under src/ contains a ds-prefixed custom property or class name', () => {
+  it('no source file under src/ (including the migrated .tsx component tree) contains a ds-prefixed custom property or class name', () => {
     const srcDir = join(packageRoot, 'src');
     // This file itself is exempt — it's the only place in `src/` allowed to
     // *talk about* the `ds-` prefix (see the comment above `DS_PREFIX_PATTERN`).
     const self = fileURLToPath(import.meta.url);
     const offenders = listFilesRecursive(srcDir)
-      .filter((path) => path.endsWith('.ts') && path !== self)
+      .filter((path) => /\.tsx?$/.test(path) && path !== self)
       .filter((path) => DS_PREFIX_PATTERN.test(readFileSync(path, 'utf8')))
       .map((path) => path.slice(packageRoot.length));
 
@@ -52,6 +52,8 @@ describe('zero ds-prefix gate', () => {
       'tailwind.css',
       'tokens.json',
       'fonts.css',
+      'components.css',
+      'design-shell.css',
     ];
     const offenders = artifacts.filter((relativePath) =>
       DS_PREFIX_PATTERN.test(readFileSync(join(packageRoot, relativePath), 'utf8')),
