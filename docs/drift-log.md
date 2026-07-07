@@ -85,3 +85,22 @@ value changes (outside this extraction) or the pair/class is revised.
 | D38 | `--ink-ghost` on `--bg`, `--bg-soft`, `--bg-elevated`, `--panel-dark`                                                                                                          | console-light | large-text-or-ui, 3:1 | 1.83:1, 1.89:1, 1.97:1, 1.75:1 | open — for Brett |
 | D39 | `--warn` on `--bg`, `--bg-soft`, `--bg-elevated` (as UI text/fill)                                                                                                             | console-light | large-text-or-ui, 3:1 | 2.57:1, 2.66:1, 2.77:1         | open — for Brett |
 | D40 | `--on-accent` on `--accent` (passes on `--accent-hover` at 5.51:1)                                                                                                             | console-light | normal-text, 4.5:1    | 4.36:1                         | open — for Brett |
+
+## Component migration findings (S4, workspec-design#5)
+
+New drift surfaced while migrating `components/ui/` + `components/design/` (`docs/inventory.md`
+"Migrated-to mapping"), found by `packages/design/scripts/verify-migration.ts`
+(`pnpm --filter @workspec/design run verify:migration`), which Prettier-normalizes and
+import-strips every migrated file against its enterprise source and diffs the rest. 70 of 75
+files are identical past that normalization; page-shell.tsx's inversion (D31) accounts for one of
+the other 5. These four are new: each is a spot where this package's own, stricter
+`tsconfig.base.json` / `eslint.config.js` settings — not present in the enterprise app's — forced
+a one-line fix. None are behavioural changes; each is confirmed by reverting the file to its
+source form and re-running `tsc --noEmit` / `eslint` against it.
+
+| ID  | File                                  | What differs from source                                                                        | Why (this package's stricter setting, absent in the enterprise app)                                                                                   | Disposition                                  |
+| --- | ------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| D41 | `hooks/use-toast.ts`                  | Dead runtime `actionTypes` const removed; `ActionType` type inlined as a literal object type    | `noUnusedLocals`: the const was only ever read via `typeof actionTypes` (a type position), never as a value                                           | resolved-in-migration, logged for visibility |
+| D42 | `components/ui/calendar.tsx`          | `DayButton` split out of the `react-day-picker` import into its own `import type { DayButton }` | `@typescript-eslint/consistent-type-imports` (error here) — `DayButton` is used only as a type (`React.ComponentProps<typeof DayButton>`)             | resolved-in-migration                        |
+| D43 | `components/ui/input-otp.tsx`         | `inputOTPContext.slots[index]` gets a `!` non-null assertion, with an explanatory comment       | `noUncheckedIndexedAccess` types array index access as possibly-`undefined`; `index` is always in range (input-otp renders exactly `maxLength` slots) | resolved-in-migration                        |
+| D44 | `components/design/artifact-card.tsx` | `['--art-accent' as any]: accent` → `{ ..., '--art-accent': accent } as React.CSSProperties`    | `@typescript-eslint/no-explicit-any` (error here)                                                                                                     | resolved-in-migration                        |
