@@ -43,6 +43,10 @@ function systemTheme(): ThemeMode {
 }
 
 function applyThemeToDocument(theme: ThemeMode): void {
+  // No-op off the DOM (SSR/non-browser): setTheme()/initTheme() call this
+  // before their own window guards, so a library consumer importing and
+  // calling them server-side must not hit a `document` ReferenceError.
+  if (typeof document === 'undefined') return;
   const root = document.documentElement;
   root.setAttribute('data-aesthetic', 'console');
   root.setAttribute('data-theme', theme);
