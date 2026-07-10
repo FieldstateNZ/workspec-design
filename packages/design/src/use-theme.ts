@@ -23,17 +23,20 @@ export function useTheme(): ThemeMode {
   useEffect(() => {
     const sync = (): void => setThemeState(currentTheme());
     sync();
+    // No `storage` listener here: this hook only reads `data-theme`, and a
+    // cross-tab preference change reaches it through `initTheme()` (which
+    // re-applies `data-theme` on `storage`) → the MutationObserver below.
+    // Listening for `storage` directly did nothing (the attribute hadn't
+    // changed yet) and risked double-firing once initTheme owns that path.
     const observer = new MutationObserver(sync);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['data-theme'],
     });
     window.addEventListener(THEME_CHANGE_EVENT, sync);
-    window.addEventListener('storage', sync);
     return () => {
       observer.disconnect();
       window.removeEventListener(THEME_CHANGE_EVENT, sync);
-      window.removeEventListener('storage', sync);
     };
   }, []);
 

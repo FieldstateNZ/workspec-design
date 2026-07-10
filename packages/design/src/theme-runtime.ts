@@ -86,8 +86,26 @@ export function setTheme(theme: ThemeMode): void {
  */
 export function initTheme(): () => void {
   applyThemeToDocument(resolveInitialTheme());
-  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+  if (typeof window === 'undefined') {
     return () => {};
+  }
+
+  // Cross-tab sync: another tab's `setTheme()` writes THEME_STORAGE_KEY, which
+  // fires a `storage` event here (never in the writing tab). Re-resolve and
+  // re-apply so this tab's `data-theme`/`.dark` follow, and dispatch
+  // THEME_CHANGE_EVENT so `useTheme()` readers update. Without this, the docs'
+  // promised cross-tab preference sync never reached a receiving tab — nothing
+  // updated `data-theme`, so `useTheme()` (which only reads it) stayed stale.
+  const onStorage = (event: StorageEvent): void => {
+    // `key` is null on localStorage.clear(); treat that as "re-resolve too".
+    if (event.key !== null && event.key !== THEME_STORAGE_KEY) return;
+    applyThemeToDocument(resolveInitialTheme());
+    window.dispatchEvent(new CustomEvent(THEME_CHANGE_EVENT));
+  };
+  window.addEventListener('storage', onStorage);
+
+  if (typeof window.matchMedia !== 'function') {
+    return () => window.removeEventListener('storage', onStorage);
   }
   const mql = window.matchMedia('(prefers-color-scheme: dark)');
   const onChange = (event: MediaQueryListEvent): void => {
@@ -96,7 +114,10 @@ export function initTheme(): () => void {
     window.dispatchEvent(new CustomEvent(THEME_CHANGE_EVENT));
   };
   mql.addEventListener('change', onChange);
-  return () => mql.removeEventListener('change', onChange);
+  return () => {
+    window.removeEventListener('storage', onStorage);
+    mql.removeEventListener('change', onChange);
+  };
 }
 
 /**
@@ -105,6 +126,6 @@ export function initTheme(): () => void {
  * before any stylesheet or app bundle loads, so it never has to hand-transcribe
  * (and risk drifting from) the storage key or the attribute/class pair.
  */
-export const NO_FLASH_SCRIPT = `(function(){var r=document.documentElement,t='dark';try{var s=JSON.parse(localStorage.getItem(${JSON.stringify(
+export const NO_FLASH_SCRIPT = `(function(){var r=document.documentElement,t='dark';function sys(){return (typeof window.matchMedia==='function'&&!window.matchMedia('(prefers-color-scheme: dark)').matches)?'light':'dark';}try{var s=JSON.parse(localStorage.getItem(${JSON.stringify(
   THEME_STORAGE_KEY,
-)}));t=(s&&(s.theme==='light'||s.theme==='dark'))?s.theme:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}r.setAttribute('data-aesthetic','console');r.setAttribute('data-theme',t);r.classList.toggle('dark',t==='dark');})();`;
+)}));t=(s&&(s.theme==='light'||s.theme==='dark'))?s.theme:sys();}catch(e){t=sys();}r.setAttribute('data-aesthetic','console');r.setAttribute('data-theme',t);r.classList.toggle('dark',t==='dark');})();`;

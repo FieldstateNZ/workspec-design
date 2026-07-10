@@ -16,7 +16,10 @@ export type StatusTone = 'accent' | 'warn' | 'muted';
 
 const PILL_TONE_CLS: Record<StatusTone, string> = {
   accent: 'text-primary border-primary',
-  warn: 'text-[color:var(--warn)] border-[color:var(--warn)]',
+  // Label text stays --ink: --warn fails the 3:1 UI/large-text contrast
+  // threshold on console-light (contrast/known-failures.ts, D39), so the
+  // warning signal is carried by the border + dot, not the text color.
+  warn: 'text-[color:var(--ink)] border-[color:var(--warn)]',
   muted: 'text-muted-foreground border-border',
 };
 

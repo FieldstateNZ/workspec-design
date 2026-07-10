@@ -1586,8 +1586,8 @@
   .text-\[color\:var\(--agent\)\] {
     color: var(--agent);
   }
-  .text-\[color\:var\(--warn\)\] {
-    color: var(--warn);
+  .text-\[color\:var\(--ink\)\] {
+    color: var(--ink);
   }
   .text-accent-foreground {
     color: var(--on-accent);
