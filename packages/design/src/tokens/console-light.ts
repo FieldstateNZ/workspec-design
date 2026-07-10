@@ -273,18 +273,18 @@ export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
       sections: [
         {
           comment:
-            'C4 element-kind colors (workspec-studio addition, NOT extracted from\nWorkSpec Enterprise — see the file header) — deepened for legibility on\nlight, same relationship as the artifact type colors above.',
+            'C4 element-kind colors (workspec-studio addition, NOT extracted from\nWorkSpec Enterprise — see the file header) — kept IDENTICAL to console-dark\non purpose, same rationale as the wireframe/index-card/photo tokens above:\n@workspec/c4-ui already lifts the raw accent toward white for the dark\ncanvas itself (its own accent-lift step, unrelated to these tokens), so a\nsecond, separately-authored dark value here would double-adjust it.',
           tokens: [
-            { name: '--el-actor', value: '#2f5379' },
-            { name: '--el-system', value: '#1f4870' },
-            { name: '--el-external-system', value: '#32445d' },
-            { name: '--el-container', value: '#1f467a' },
-            { name: '--el-database', value: '#21666e' },
-            { name: '--el-queue', value: '#5b366d' },
-            { name: '--el-domain', value: '#325d47' },
-            { name: '--el-class', value: '#4f3875' },
-            { name: '--el-interface', value: '#285367' },
-            { name: '--el-function', value: '#315e47' },
+            { name: '--el-actor', value: '#4A90D9' },
+            { name: '--el-system', value: '#1168BD' },
+            { name: '--el-external-system', value: '#64748b' },
+            { name: '--el-container', value: 'hsl(214 88% 51%)' },
+            { name: '--el-database', value: 'hsl(186 79% 35%)' },
+            { name: '--el-queue', value: 'hsl(280 50% 55%)' },
+            { name: '--el-domain', value: 'hsl(150 35% 38%)' },
+            { name: '--el-class', value: 'hsl(262 52% 58%)' },
+            { name: '--el-interface', value: 'hsl(199 65% 48%)' },
+            { name: '--el-function', value: 'hsl(150 45% 42%)' },
           ],
         },
         {

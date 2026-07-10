@@ -280,7 +280,7 @@ export const CONSOLE_DARK_THEME: ThemeDefinition = {
       sections: [
         {
           comment:
-            'C4 element-kind colors (workspec-studio addition, NOT extracted from\nWorkSpec Enterprise — see the file header). One accent per C4 element kind,\nreplacing the hardcoded hues in @workspec/c4-ui\'s style/spec-defaults.ts so\nC4 and Decisions share one token vocabulary. A kind that already has a\nDecisions-side analog reuses that token instead of duplicating it here\n(a C4 "feature"/"component" node uses --type-feature, not a new token).',
+            'C4 element-kind colors (workspec-studio addition, NOT extracted from\nWorkSpec Enterprise — see the file header). One accent per C4 element kind,\nreplacing the hardcoded hues in @workspec/c4-ui\'s style/spec-defaults.ts so\nC4 and Decisions share one token vocabulary. A kind that already has a\nDecisions-side analog reuses that token instead of duplicating it here\n(a C4 "feature"/"component" node uses --type-feature, not a new token).\nIdentical in console-light.ts on purpose (see that file) — c4-ui\'s own\naccent-lift step, not a second authored dark/light pair, adapts these for\nthe dark canvas.',
           tokens: [
             { name: '--el-actor', value: '#4A90D9' },
             { name: '--el-system', value: '#1168BD' },

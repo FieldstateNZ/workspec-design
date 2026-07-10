@@ -151,18 +151,20 @@ the production build (the whole app lost its colour). Keep each rule well
 under that — add a new split rather than growing one past ~50 tokens. */
 [data-aesthetic="console"][data-theme="light"]{
   /* C4 element-kind colors (workspec-studio addition, NOT extracted from
-     WorkSpec Enterprise — see console-dark.ts's file header) — deepened for
-     legibility on light, same relationship as the artifact type colors above. */
-  --el-actor:#2f5379;
-  --el-system:#1f4870;
-  --el-external-system:#32445d;
-  --el-container:#1f467a;
-  --el-database:#21666e;
-  --el-queue:#5b366d;
-  --el-domain:#325d47;
-  --el-class:#4f3875;
-  --el-interface:#285367;
-  --el-function:#315e47;
+     WorkSpec Enterprise — see console-dark.ts's file header) — kept IDENTICAL
+     to console-dark on purpose: c4-ui's own accent-lift step adapts these for
+     the dark canvas, so a second authored dark/light pair here would
+     double-adjust it. */
+  --el-actor:#4A90D9;
+  --el-system:#1168BD;
+  --el-external-system:#64748b;
+  --el-container:hsl(214 88% 51%);
+  --el-database:hsl(186 79% 35%);
+  --el-queue:hsl(280 50% 55%);
+  --el-domain:hsl(150 35% 38%);
+  --el-class:hsl(262 52% 58%);
+  --el-interface:hsl(199 65% 48%);
+  --el-function:hsl(150 45% 42%);
 
   /* C4 element-grammar derivation percentages (workspec-studio addition,
      promoted from @workspec/c4-ui's style/element-tints.ts). Lighter-touch

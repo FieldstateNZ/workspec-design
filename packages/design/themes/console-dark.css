@@ -215,6 +215,9 @@
      C4 and Decisions share one token vocabulary. A kind that already has a
      Decisions-side analog reuses that token instead of duplicating it here
      (a C4 "feature"/"component" node uses --type-feature, not a new token).
+     Identical in console-light.ts on purpose (see that file) — c4-ui's own
+     accent-lift step, not a second authored dark/light pair, adapts these for
+     the dark canvas.
   */
   --el-actor: #4A90D9;
   --el-system: #1168BD;
