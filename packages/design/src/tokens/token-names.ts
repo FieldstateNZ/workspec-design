@@ -1,8 +1,10 @@
 /**
  * Every custom-property name declared in both console theme files, in the exact
  * order they appear in the source CSS. `console-dark.css` and `console-light.css`
- * declare the identical 124 names in the identical order (byte-verified against
- * `docs/inventory.md`) — this array is that shared order, asserted once in
+ * declare the identical 138 names in the identical order (124 extracted from
+ * WorkSpec Enterprise, byte-verified against `docs/inventory.md`, plus the 14
+ * `--el-*` tokens documented in `console-dark.ts` as a workspec-studio-only
+ * addition) — this array is that shared order, asserted once in
  * `console-dark.ts` / `console-light.ts` rather than duplicated per theme.
  */
 export const TOKEN_NAMES = [
@@ -130,7 +132,21 @@ export const TOKEN_NAMES = [
   '--d-fast',
   '--d-base',
   '--d-slow',
+  '--el-actor',
+  '--el-system',
+  '--el-external-system',
+  '--el-container',
+  '--el-database',
+  '--el-queue',
+  '--el-domain',
+  '--el-class',
+  '--el-interface',
+  '--el-function',
+  '--el-tint-surface',
+  '--el-tint-border',
+  '--el-tint-eyebrow',
+  '--el-tint-ink-dim',
 ] as const;
 
-/** The name of one of the 124 console design tokens. */
+/** The name of one of the 138 console design tokens. */
 export type TokenName = (typeof TOKEN_NAMES)[number];

@@ -29,19 +29,19 @@ describe('App', () => {
   // AC (workspec-design#5): "preview page shows every component in both
   // themes ... rendered component count equals the export count of
   // @workspec/design/components". docs/inventory.md and every other count in
-  // this project count components by migrated FILE (57 ui/ + 13 design/ =
-  // 70), never by raw JS export-symbol count (330 identifiers, including
+  // this project count components by migrated FILE (57 ui/ + 14 design/ =
+  // 71), never by raw JS export-symbol count (330+ identifiers, including
   // cva variant functions and hooks that aren't components) — this test
   // follows that convention. If a stricter per-export-symbol reading was
   // intended, COMPONENT_REGISTRY (apps/preview/src/component-registry.tsx)
   // is where to widen it.
   it.each(['console-dark', 'console-light'] as const)(
-    'renders exactly one component tile per registry entry in the %s theme (70 = 57 ui/ + 13 design/)',
+    'renders exactly one component tile per registry entry in the %s theme (71 = 57 ui/ + 14 design/)',
     (theme) => {
       render(<App />);
       const panel = screen.getByTestId(`component-theme-panel-${theme}`);
       const tiles = within(panel).getAllByTestId('component-tile');
-      expect(COMPONENT_REGISTRY).toHaveLength(70);
+      expect(COMPONENT_REGISTRY).toHaveLength(71);
       expect(tiles).toHaveLength(COMPONENT_REGISTRY.length);
     },
   );

@@ -28,10 +28,10 @@ describe('component smoke registry coverage', () => {
     expect(Object.keys(SMOKE_REGISTRY).sort()).toEqual(expected);
   });
 
-  it('covers all 57 ui/ files and 13 design/ files (70 total)', () => {
+  it('covers all 57 ui/ files and 14 design/ files (71 total)', () => {
     expect(componentFiles('ui')).toHaveLength(57);
-    expect(componentFiles('design').filter((name) => name !== 'design/index')).toHaveLength(13);
-    expect(Object.keys(SMOKE_REGISTRY)).toHaveLength(70);
+    expect(componentFiles('design').filter((name) => name !== 'design/index')).toHaveLength(14);
+    expect(Object.keys(SMOKE_REGISTRY)).toHaveLength(71);
   });
 });
 

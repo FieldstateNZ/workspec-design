@@ -7,6 +7,10 @@ import type { ThemeDefinition } from './theme-definition.types.js';
  * 2026-07-06). Values, names, order, and comments must match
  * `src/tokens/source-of-record/console-light.css` exactly — the drift tests in
  * `src/tokens/source-of-record.test.ts` enforce this on every test run.
+ *
+ * The final block (`el-*` tokens) is the one documented EXCEPTION to that
+ * extraction discipline: a workspec-studio addition with no WorkSpec
+ * Enterprise source — see `console-dark.ts`'s matching comment.
  */
 export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
   name: 'console-light',
@@ -260,6 +264,37 @@ export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
             { name: '--d-fast', value: '120ms' },
             { name: '--d-base', value: '180ms' },
             { name: '--d-slow', value: '280ms' },
+          ],
+        },
+      ],
+    },
+    {
+      precedingComment: PIPELINE_LIMIT_NOTE,
+      sections: [
+        {
+          comment:
+            'C4 element-kind colors (workspec-studio addition, NOT extracted from\nWorkSpec Enterprise — see the file header) — deepened for legibility on\nlight, same relationship as the artifact type colors above.',
+          tokens: [
+            { name: '--el-actor', value: '#2f5379' },
+            { name: '--el-system', value: '#1f4870' },
+            { name: '--el-external-system', value: '#32445d' },
+            { name: '--el-container', value: '#1f467a' },
+            { name: '--el-database', value: '#21666e' },
+            { name: '--el-queue', value: '#5b366d' },
+            { name: '--el-domain', value: '#325d47' },
+            { name: '--el-class', value: '#4f3875' },
+            { name: '--el-interface', value: '#285367' },
+            { name: '--el-function', value: '#315e47' },
+          ],
+        },
+        {
+          comment:
+            'C4 element-grammar derivation percentages (workspec-studio addition,\npromoted from @workspec/c4-ui\'s style/element-tints.ts). Lighter-touch than\ndark: the accent needs less help standing out on a bright surface.',
+          tokens: [
+            { name: '--el-tint-surface', value: '9%' },
+            { name: '--el-tint-border', value: '28%' },
+            { name: '--el-tint-eyebrow', value: '70%' },
+            { name: '--el-tint-ink-dim', value: '60%' },
           ],
         },
       ],

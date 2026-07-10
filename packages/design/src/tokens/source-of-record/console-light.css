@@ -143,3 +143,32 @@
   --ease-in-out:cubic-bezier(0.5, 0, 0.5, 1);
   --d-fast:120ms; --d-base:180ms; --d-slow:280ms;
 }
+
+/* The Console palette is split across a few rules ON PURPOSE: a single
+[data-aesthetic][data-theme] rule with ~75+ custom properties tripped a
+Tailwind v4 CSS-pipeline limit that silently dropped ~half the tokens from
+the production build (the whole app lost its colour). Keep each rule well
+under that — add a new split rather than growing one past ~50 tokens. */
+[data-aesthetic="console"][data-theme="light"]{
+  /* C4 element-kind colors (workspec-studio addition, NOT extracted from
+     WorkSpec Enterprise — see console-dark.ts's file header) — deepened for
+     legibility on light, same relationship as the artifact type colors above. */
+  --el-actor:#2f5379;
+  --el-system:#1f4870;
+  --el-external-system:#32445d;
+  --el-container:#1f467a;
+  --el-database:#21666e;
+  --el-queue:#5b366d;
+  --el-domain:#325d47;
+  --el-class:#4f3875;
+  --el-interface:#285367;
+  --el-function:#315e47;
+
+  /* C4 element-grammar derivation percentages (workspec-studio addition,
+     promoted from @workspec/c4-ui's style/element-tints.ts). Lighter-touch
+     than dark: the accent needs less help standing out on a bright surface. */
+  --el-tint-surface:9%;
+  --el-tint-border:28%;
+  --el-tint-eyebrow:70%;
+  --el-tint-ink-dim:60%;
+}
