@@ -1,0 +1,50 @@
+/**
+ * The shared "typed element" grammar — one derivation rule for any WorkSpec
+ * surface that shows a typed, accent-colored thing a user can open: a
+ * Decisions option, a C4 node, a links chip. Promoted from
+ * @workspec/c4-ui's `.c4-node` layer (accent -> tinted surface -> tinted
+ * border -> eyebrow), generalized so Decisions' option-card can share the
+ * exact same rule instead of a second, hand-rolled one.
+ *
+ * Usage: set `--ws-el-accent` to any accent color (a `--type-*`/`--el-*`
+ * token or a plain color) on an element with the `.ws-el` class, and apply
+ * `.ws-el-eyebrow` / `.ws-el-ink-dim` to the kind label / secondary text
+ * inside it:
+ *
+ *   <div class="ws-el" style="--ws-el-accent: var(--type-feature)">
+ *     <span class="ws-el-eyebrow">feature</span>
+ *     <h3>Container Apps</h3>
+ *   </div>
+ *
+ * The tint/border/eyebrow percentages themselves are theme-scoped tokens
+ * (--el-tint-surface/--el-tint-border/--el-tint-eyebrow/--el-tint-ink-dim,
+ * declared per theme in tokens.css) — this file has no [data-theme] branches
+ * of its own; it just applies whichever the active theme resolves.
+ */
+
+.ws-el {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-5);
+  border: 1px solid color-mix(in oklab, var(--ws-el-accent) var(--el-tint-border), transparent);
+  background: color-mix(in oklab, var(--ws-el-accent) var(--el-tint-surface), var(--bg-elevated));
+}
+
+/* The 3px accent bar. */
+.ws-el::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--ws-el-accent);
+}
+
+/* The kind eyebrow — mono, uppercase, accent-dominant ink. */
+.ws-el-eyebrow {
+  color: color-mix(in oklab, var(--ws-el-accent) var(--el-tint-eyebrow), var(--ink));
+}
+
+/* Dimmed secondary text (description/technology) inside a .ws-el. */
+.ws-el-ink-dim {
+  color: color-mix(in oklab, var(--ink) var(--el-tint-ink-dim), transparent);
+}

@@ -18,11 +18,14 @@ export interface TokenSection {
 }
 
 /**
- * One of the three CSS rule blocks each console theme file is deliberately
- * split into (workspec#384 — see `PIPELINE_LIMIT_NOTE` in
- * `shared-comments.ts`). Reproducing the same three-way split in generated
- * CSS is the point: a single rule with all 124 properties silently lost
- * tokens under the enterprise app's Tailwind v4 pipeline.
+ * One CSS rule block a console theme file is split into (workspec#384 — see
+ * `PIPELINE_LIMIT_NOTE` in `shared-comments.ts`). Reproducing the same split
+ * in generated CSS is the point: a single rule with too many properties
+ * silently lost tokens under the enterprise app's Tailwind v4 pipeline. The
+ * first three blocks are the enterprise extraction itself; a fourth block
+ * (the `--el-*` tokens, a workspec-studio-only addition — see
+ * `console-dark.ts`'s file header) exists for the same pipeline-limit
+ * reason, not a new one.
  */
 export interface TokenBlock {
   /** Comment appearing directly above this block's selector, if any. */
@@ -33,11 +36,11 @@ export interface TokenBlock {
 /** The full transcription of one enterprise console theme file. */
 export interface ThemeDefinition {
   readonly name: 'console-dark' | 'console-light';
-  /** e.g. `[data-aesthetic="console"][data-theme="dark"]` — identical across all three blocks. */
+  /** e.g. `[data-aesthetic="console"][data-theme="dark"]` — identical across all blocks. */
   readonly selector: string;
   /** The file's opening comment, e.g. "WorkSpec · Console · Dark — brand guidelines v1". */
   readonly titleComment: string;
-  readonly blocks: readonly [TokenBlock, TokenBlock, TokenBlock];
+  readonly blocks: readonly [TokenBlock, TokenBlock, TokenBlock, TokenBlock];
   /** Comment appearing after the final block's closing brace, if any (console-dark only). */
   readonly trailingComment?: string;
 }

@@ -7,6 +7,14 @@ import type { ThemeDefinition } from './theme-definition.types.js';
  * 2026-07-06). Values, names, order, and comments must match
  * `src/tokens/source-of-record/console-dark.css` exactly — the drift tests in
  * `src/tokens/source-of-record.test.ts` enforce this on every test run.
+ *
+ * The final block (`el-*` tokens) is the one documented EXCEPTION to that
+ * extraction discipline: a workspec-studio addition with no WorkSpec
+ * Enterprise source, added to unify C4's and Decisions' per-kind accents
+ * behind one token vocabulary (see the Site Review UX pass, finding 01/02).
+ * `source-of-record/console-dark.css` carries the identical block, flagged
+ * the same way, purely so the fidelity tests stay meaningful for the other
+ * 124 tokens.
  */
 export const CONSOLE_DARK_THEME: ThemeDefinition = {
   name: 'console-dark',
@@ -263,6 +271,37 @@ export const CONSOLE_DARK_THEME: ThemeDefinition = {
             { name: '--d-fast', value: '120ms' },
             { name: '--d-base', value: '180ms' },
             { name: '--d-slow', value: '280ms' },
+          ],
+        },
+      ],
+    },
+    {
+      precedingComment: PIPELINE_LIMIT_NOTE,
+      sections: [
+        {
+          comment:
+            'C4 element-kind colors (workspec-studio addition, NOT extracted from\nWorkSpec Enterprise — see the file header). One accent per C4 element kind,\nreplacing the hardcoded hues in @workspec/c4-ui\'s style/spec-defaults.ts so\nC4 and Decisions share one token vocabulary. A kind that already has a\nDecisions-side analog reuses that token instead of duplicating it here\n(a C4 "feature"/"component" node uses --type-feature, not a new token).\nIdentical in console-light.ts on purpose (see that file) — c4-ui\'s own\naccent-lift step, not a second authored dark/light pair, adapts these for\nthe dark canvas.',
+          tokens: [
+            { name: '--el-actor', value: '#4A90D9' },
+            { name: '--el-system', value: '#1168BD' },
+            { name: '--el-external-system', value: '#64748b' },
+            { name: '--el-container', value: 'hsl(214 88% 51%)' },
+            { name: '--el-database', value: 'hsl(186 79% 35%)' },
+            { name: '--el-queue', value: 'hsl(280 50% 55%)' },
+            { name: '--el-domain', value: 'hsl(150 35% 38%)' },
+            { name: '--el-class', value: 'hsl(262 52% 58%)' },
+            { name: '--el-interface', value: 'hsl(199 65% 48%)' },
+            { name: '--el-function', value: 'hsl(150 45% 42%)' },
+          ],
+        },
+        {
+          comment:
+            "C4 element-grammar derivation percentages (workspec-studio addition,\npromoted from @workspec/c4-ui's style/element-tints.ts so Decisions' option\ncards can share the exact same accent -> tinted-surface / tinted-border /\neyebrow rule). Consumed via color-mix(in oklab, <accent> var(--el-tint-*), ...).\nDark values are already tuned for the dark canvas, so no separate\naccent-lift step is needed on top of these (c4-ui's old +22%-toward-white\nlift is retired now that --el-* itself resolves per theme).",
+          tokens: [
+            { name: '--el-tint-surface', value: '14%' },
+            { name: '--el-tint-border', value: '34%' },
+            { name: '--el-tint-eyebrow', value: '100%' },
+            { name: '--el-tint-ink-dim', value: '62%' },
           ],
         },
       ],

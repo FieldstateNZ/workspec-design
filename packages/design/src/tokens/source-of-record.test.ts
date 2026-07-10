@@ -47,11 +47,11 @@ describe('source-of-record fidelity', () => {
     },
   );
 
-  it('both themes declare the same 124 names, in the same order', () => {
+  it('both themes declare the same 138 names, in the same order', () => {
     const darkNames = flattenTheme(CONSOLE_DARK_THEME).map((entry) => entry.name);
     const lightNames = flattenTheme(CONSOLE_LIGHT_THEME).map((entry) => entry.name);
 
-    expect(darkNames).toHaveLength(124);
+    expect(darkNames).toHaveLength(138);
     expect(darkNames).toEqual(lightNames);
   });
 });

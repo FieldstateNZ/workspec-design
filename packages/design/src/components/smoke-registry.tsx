@@ -328,6 +328,7 @@ import { CardHeaderStrip, DesignFrame } from './design/frame.js';
 import { LensToggle } from './design/lens-toggle.js';
 import { PageHeader, PageShell } from './design/page-shell.js';
 import { SegChoice } from './design/seg-choice.js';
+import { Status } from './design/status.js';
 import { StepsBar } from './design/steps-bar.js';
 import { InfoBar, Surf } from './design/surf.js';
 import { DisplayTitle, Kicker, Lbl, Lead } from './design/typography.js';
@@ -934,6 +935,7 @@ export const SMOKE_REGISTRY: Record<string, () => ReactElement> = {
   'design/seg-choice': () => (
     <SegChoice active onClick={() => {}} title="Single" desc="One seat" features={['Fast']} />
   ),
+  'design/status': () => <Status tone="accent">Decided</Status>,
   'design/steps-bar': () => <StepsBar step={1} labels={['One', 'Two', 'Three']} />,
   'design/surf': () => (
     <>

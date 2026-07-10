@@ -24,3 +24,14 @@ export type { TailwindMappingEntry } from './tokens/tailwind-mapping.js';
 export { TAILWIND_MAPPING } from './tokens/tailwind-mapping.js';
 
 export { themeStyle } from './theme-style.js';
+
+export type { ThemeMode } from './theme-runtime.js';
+export {
+  THEME_STORAGE_KEY,
+  THEME_CHANGE_EVENT,
+  NO_FLASH_SCRIPT,
+  resolveInitialTheme,
+  setTheme,
+  initTheme,
+} from './theme-runtime.js';
+export { useTheme } from './use-theme.js';

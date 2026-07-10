@@ -283,6 +283,7 @@ import {
   Slider,
   SonnerToaster,
   Spinner,
+  Status,
   StepsBar,
   Surf,
   Switch,
@@ -1126,6 +1127,11 @@ export const COMPONENT_REGISTRY: readonly ComponentRegistryEntry[] = [
     render: () => (
       <SegChoice active onClick={() => {}} title="Single" desc="One seat" features={['Fast']} />
     ),
+  },
+  {
+    name: 'status',
+    group: 'design',
+    render: () => <Status tone="accent">Decided</Status>,
   },
   {
     name: 'steps-bar',

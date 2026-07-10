@@ -105,20 +105,25 @@ Ship one theme's custom properties without the other — e.g. for a build that n
 
 ## What's in here
 
-| Export                                   | What                                                                     |
-| ---------------------------------------- | ------------------------------------------------------------------------ |
-| `.`                                      | Typed API — `TokenName`, `THEME_TOKENS`, `TOKEN_GROUPS`, `themeStyle`, … |
-| `./tokens.css`                           | Both theme files' raw custom properties (no Tailwind mapping)            |
-| `./tailwind` (`./tailwind.css`)          | The Tailwind v4 CSS-first preset                                         |
-| `./tokens.json`                          | Machine-readable themes + groups + Tailwind mapping + font summary       |
-| `./themes/console-dark.css`, `.../light` | One theme at a time                                                      |
-| `./fonts.css`, `./fonts/*`               | Self-hosted `@font-face` rules + woff2 + OFL license texts               |
+| Export                                   | What                                                                                                                                                                  |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.`                                      | Typed API — `TokenName`, `THEME_TOKENS`, `TOKEN_GROUPS`, `themeStyle`, `useTheme`, `setTheme`, `initTheme`, …                                                         |
+| `./components`                           | React component library (`ui/` + `design/`, incl. `Chip`, `Status`, …)                                                                                                |
+| `./tokens.css`                           | Both theme files' raw custom properties (no Tailwind mapping)                                                                                                         |
+| `./tailwind` (`./tailwind.css`)          | The Tailwind v4 CSS-first preset                                                                                                                                      |
+| `./tokens.json`                          | Machine-readable themes + groups + Tailwind mapping + font summary                                                                                                    |
+| `./themes/console-dark.css`, `.../light` | One theme at a time                                                                                                                                                   |
+| `./fonts.css`, `./fonts/*`               | Self-hosted `@font-face` rules + woff2 + OFL license texts                                                                                                            |
+| `./components.css`, `./design-shell.css` | Generated Tailwind utility CSS / hand-authored design-shell CSS                                                                                                       |
+| `./element-grammar.css`                  | Shared "typed element" grammar — one accent -> tinted-surface -> tinted-border -> eyebrow rule for any typed thing a user can open (a Decisions option, a C4 node, …) |
 
-124 tokens per theme, 49 Tailwind mapping entries, 4 self-hosted font families (Inter Tight,
-JetBrains Mono, Caveat, Lora — all SIL OFL, see `NOTICE`). Extraction discipline: names, values,
-and selectors move exactly as found in the enterprise source — zero renames, zero value changes.
-Any handoff-vs-implementation discrepancy found along the way is logged in the repo-root
-`docs/drift-log.md`, not silently fixed here.
+138 tokens per theme (124 extracted from Enterprise, 49 Tailwind mapping entries, 4 self-hosted
+font families (Inter Tight, JetBrains Mono, Caveat, Lora — all SIL OFL, see `NOTICE`), plus 14
+`--el-*` tokens that are a **workspec-studio-only addition**, not extracted from Enterprise — see
+`console-dark.ts`'s file header and `docs/inventory.md`). Extraction discipline for the other 124:
+names, values, and selectors move exactly as found in the enterprise source — zero renames, zero
+value changes. Any handoff-vs-implementation discrepancy found along the way is logged in the
+repo-root `docs/drift-log.md`, not silently fixed here.
 
 ## Regenerating committed artifacts
 

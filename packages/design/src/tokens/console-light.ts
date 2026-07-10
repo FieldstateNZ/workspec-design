@@ -7,6 +7,10 @@ import type { ThemeDefinition } from './theme-definition.types.js';
  * 2026-07-06). Values, names, order, and comments must match
  * `src/tokens/source-of-record/console-light.css` exactly — the drift tests in
  * `src/tokens/source-of-record.test.ts` enforce this on every test run.
+ *
+ * The final block (`el-*` tokens) is the one documented EXCEPTION to that
+ * extraction discipline: a workspec-studio addition with no WorkSpec
+ * Enterprise source — see `console-dark.ts`'s matching comment.
  */
 export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
   name: 'console-light',
@@ -260,6 +264,37 @@ export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
             { name: '--d-fast', value: '120ms' },
             { name: '--d-base', value: '180ms' },
             { name: '--d-slow', value: '280ms' },
+          ],
+        },
+      ],
+    },
+    {
+      precedingComment: PIPELINE_LIMIT_NOTE,
+      sections: [
+        {
+          comment:
+            'C4 element-kind colors (workspec-studio addition, NOT extracted from\nWorkSpec Enterprise — see the file header) — kept IDENTICAL to console-dark\non purpose, same rationale as the wireframe/index-card/photo tokens above:\n@workspec/c4-ui already lifts the raw accent toward white for the dark\ncanvas itself (its own accent-lift step, unrelated to these tokens), so a\nsecond, separately-authored dark value here would double-adjust it.',
+          tokens: [
+            { name: '--el-actor', value: '#4A90D9' },
+            { name: '--el-system', value: '#1168BD' },
+            { name: '--el-external-system', value: '#64748b' },
+            { name: '--el-container', value: 'hsl(214 88% 51%)' },
+            { name: '--el-database', value: 'hsl(186 79% 35%)' },
+            { name: '--el-queue', value: 'hsl(280 50% 55%)' },
+            { name: '--el-domain', value: 'hsl(150 35% 38%)' },
+            { name: '--el-class', value: 'hsl(262 52% 58%)' },
+            { name: '--el-interface', value: 'hsl(199 65% 48%)' },
+            { name: '--el-function', value: 'hsl(150 45% 42%)' },
+          ],
+        },
+        {
+          comment:
+            "C4 element-grammar derivation percentages (workspec-studio addition,\npromoted from @workspec/c4-ui's style/element-tints.ts). Lighter-touch than\ndark: the accent needs less help standing out on a bright surface.",
+          tokens: [
+            { name: '--el-tint-surface', value: '9%' },
+            { name: '--el-tint-border', value: '28%' },
+            { name: '--el-tint-eyebrow', value: '70%' },
+            { name: '--el-tint-ink-dim', value: '60%' },
           ],
         },
       ],

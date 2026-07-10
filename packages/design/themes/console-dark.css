@@ -202,6 +202,48 @@
   --d-slow: 280ms;
 }
 
+/* The Console palette is split across a few rules ON PURPOSE: a single
+   [data-aesthetic][data-theme] rule with ~75+ custom properties tripped a
+   Tailwind v4 CSS-pipeline limit that silently dropped ~half the tokens from
+   the production build (the whole app lost its colour). Keep each rule well
+   under that — add a new split rather than growing one past ~50 tokens.
+*/
+[data-aesthetic="console"][data-theme="dark"] {
+  /* C4 element-kind colors (workspec-studio addition, NOT extracted from
+     WorkSpec Enterprise — see the file header). One accent per C4 element kind,
+     replacing the hardcoded hues in @workspec/c4-ui's style/spec-defaults.ts so
+     C4 and Decisions share one token vocabulary. A kind that already has a
+     Decisions-side analog reuses that token instead of duplicating it here
+     (a C4 "feature"/"component" node uses --type-feature, not a new token).
+     Identical in console-light.ts on purpose (see that file) — c4-ui's own
+     accent-lift step, not a second authored dark/light pair, adapts these for
+     the dark canvas.
+  */
+  --el-actor: #4A90D9;
+  --el-system: #1168BD;
+  --el-external-system: #64748b;
+  --el-container: hsl(214 88% 51%);
+  --el-database: hsl(186 79% 35%);
+  --el-queue: hsl(280 50% 55%);
+  --el-domain: hsl(150 35% 38%);
+  --el-class: hsl(262 52% 58%);
+  --el-interface: hsl(199 65% 48%);
+  --el-function: hsl(150 45% 42%);
+
+  /* C4 element-grammar derivation percentages (workspec-studio addition,
+     promoted from @workspec/c4-ui's style/element-tints.ts so Decisions' option
+     cards can share the exact same accent -> tinted-surface / tinted-border /
+     eyebrow rule). Consumed via color-mix(in oklab, <accent> var(--el-tint-*), ...).
+     Dark values are already tuned for the dark canvas, so no separate
+     accent-lift step is needed on top of these (c4-ui's old +22%-toward-white
+     lift is retired now that --el-* itself resolves per theme).
+  */
+  --el-tint-surface: 14%;
+  --el-tint-border: 34%;
+  --el-tint-eyebrow: 100%;
+  --el-tint-ink-dim: 62%;
+}
+
 /* Three orphaned reset rules from the original design-handoff CSS
    were here (`*{box-sizing:...}`, `body{...}`, `a{color:inherit}`).
    Removed — they belong in `@layer base` not in a token file, and

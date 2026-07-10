@@ -14,6 +14,7 @@
  *   - <ClientPickerTile>     4-col tile with avatar + check badge
  *   - <TwoLetterAvatar>      22px round mono-caps initials avatar
  *   - <Chip>                 mono-caps pill (outline / active / agent / ghost)
+ *   - <Status>               dot + label lifecycle pill (accent / warn / muted)
  *   - <Surf>                 generic muted bordered panel
  *   - <InfoBar>              bottom-of-step explanatory bar (1 or 2 col)
  *   - <CodeBlock>            syntax-highlighted JSON/config snippet
@@ -25,6 +26,7 @@
  */
 export { Lbl, DisplayTitle, Lead, Kicker } from './typography';
 export { Chip } from './chip';
+export { Status, type StatusTone } from './status';
 export { Surf, InfoBar } from './surf';
 export { DesignFrame, CardHeaderStrip } from './frame';
 export { StepsBar } from './steps-bar';

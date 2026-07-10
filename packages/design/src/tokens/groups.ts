@@ -19,6 +19,8 @@ export type TokenGroupId =
   | 'wireframe'
   | 'canvas'
   | 'type-colors'
+  | 'el-colors'
+  | 'el-tint'
   | 'typography'
   | 'spacing'
   | 'radius'
@@ -38,6 +40,8 @@ export const TOKEN_GROUP_IDS: readonly TokenGroupId[] = [
   'wireframe',
   'canvas',
   'type-colors',
+  'el-colors',
+  'el-tint',
   'typography',
   'spacing',
   'radius',
@@ -142,6 +146,19 @@ export const TOKEN_GROUPS: Readonly<Record<TokenGroupId, readonly TokenName[]>> 
     '--type-pain',
     '--type-q',
   ],
+  'el-colors': [
+    '--el-actor',
+    '--el-system',
+    '--el-external-system',
+    '--el-container',
+    '--el-database',
+    '--el-queue',
+    '--el-domain',
+    '--el-class',
+    '--el-interface',
+    '--el-function',
+  ],
+  'el-tint': ['--el-tint-surface', '--el-tint-border', '--el-tint-eyebrow', '--el-tint-ink-dim'],
   typography: ['--sans', '--mono', '--font-body', '--font-display'],
   spacing: [
     '--s-1',
