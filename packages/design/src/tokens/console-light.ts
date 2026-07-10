@@ -289,7 +289,7 @@ export const CONSOLE_LIGHT_THEME: ThemeDefinition = {
         },
         {
           comment:
-            'C4 element-grammar derivation percentages (workspec-studio addition,\npromoted from @workspec/c4-ui\'s style/element-tints.ts). Lighter-touch than\ndark: the accent needs less help standing out on a bright surface.',
+            "C4 element-grammar derivation percentages (workspec-studio addition,\npromoted from @workspec/c4-ui's style/element-tints.ts). Lighter-touch than\ndark: the accent needs less help standing out on a bright surface.",
           tokens: [
             { name: '--el-tint-surface', value: '9%' },
             { name: '--el-tint-border', value: '28%' },

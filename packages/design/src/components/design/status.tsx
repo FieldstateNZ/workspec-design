@@ -44,7 +44,10 @@ export function Status({
         className,
       )}
     >
-      <span aria-hidden="true" className={cn('size-[7px] shrink-0 rounded-full', DOT_TONE_CLS[tone])} />
+      <span
+        aria-hidden="true"
+        className={cn('size-[7px] shrink-0 rounded-full', DOT_TONE_CLS[tone])}
+      />
       {children}
     </span>
   );

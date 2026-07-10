@@ -296,7 +296,7 @@ export const CONSOLE_DARK_THEME: ThemeDefinition = {
         },
         {
           comment:
-            'C4 element-grammar derivation percentages (workspec-studio addition,\npromoted from @workspec/c4-ui\'s style/element-tints.ts so Decisions\' option\ncards can share the exact same accent -> tinted-surface / tinted-border /\neyebrow rule). Consumed via color-mix(in oklab, <accent> var(--el-tint-*), ...).\nDark values are already tuned for the dark canvas, so no separate\naccent-lift step is needed on top of these (c4-ui\'s old +22%-toward-white\nlift is retired now that --el-* itself resolves per theme).',
+            "C4 element-grammar derivation percentages (workspec-studio addition,\npromoted from @workspec/c4-ui's style/element-tints.ts so Decisions' option\ncards can share the exact same accent -> tinted-surface / tinted-border /\neyebrow rule). Consumed via color-mix(in oklab, <accent> var(--el-tint-*), ...).\nDark values are already tuned for the dark canvas, so no separate\naccent-lift step is needed on top of these (c4-ui's old +22%-toward-white\nlift is retired now that --el-* itself resolves per theme).",
           tokens: [
             { name: '--el-tint-surface', value: '14%' },
             { name: '--el-tint-border', value: '34%' },
